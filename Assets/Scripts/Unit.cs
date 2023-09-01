@@ -14,7 +14,6 @@ public class Unit : MonoBehaviour
     public const int minLevel = 1;
     public const int maxLevel = 20;
     public XPCurveData xpData;
-    
 
     public int LV{
         get { return statsScript[StatTypes.LV]; }
