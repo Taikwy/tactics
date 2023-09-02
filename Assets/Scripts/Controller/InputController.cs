@@ -24,6 +24,8 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PauseMenu.isPaused)
+            return;
         int x = _hor.Update();
         int y = _ver.Update();
         if (x != 0 || y != 0){
