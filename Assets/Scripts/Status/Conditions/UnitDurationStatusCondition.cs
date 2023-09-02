@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DurationStatusCondition : StatusCondition 
+public class UnitDurationStatusCondition : StatusCondition 
 {
     public int duration = 3;
     void OnEnable (){

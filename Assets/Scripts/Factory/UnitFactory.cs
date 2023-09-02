@@ -21,7 +21,7 @@ public static class UnitFactory
 		unit.AddComponent<Unit>();
 		AddStats(unit);
 		AddMovement(unit, recipe.movementType);
-		// unit.AddComponent<Status>();
+		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
 		AddJob(unit, recipe.job);
 		// AddRank(unit, level);

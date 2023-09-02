@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-
 public class AssetCreator
 {
 	[MenuItem("Assets/Create/Unit Recipe")]
