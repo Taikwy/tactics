@@ -51,15 +51,14 @@ public abstract class BattleState : State
         return content != null ? content.GetComponent<Unit>() : null;
     }
 
-    protected virtual void RefreshPrimaryStatPanel (Point p){
+    protected virtual void RefreshBasePanel (Point p){
         Unit target = GetUnit(p);
         if (target != null){
-            statPanelController.ShowPrimary(target.gameObject);
-            panelController.ShowBase(turn.actingUnit.gameObject);
+            // statPanelController.ShowPrimary(target.gameObject);
+            panelController.ShowBase(target.gameObject);
         }
         else{
-
-            statPanelController.HidePrimary();
+            // statPanelController.HidePrimary();
             panelController.HideBase();
         }
     }

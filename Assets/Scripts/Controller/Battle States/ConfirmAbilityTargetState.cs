@@ -15,7 +15,7 @@ public class ConfirmAbilityTargetState : BattleState
         // board.SelectTiles(tiles);
         board.HighlightAttackTiles(targetedTiles);
         FindTargets();
-        RefreshPrimaryStatPanel(turn.actingUnit.tile.position);
+        RefreshBasePanel(turn.actingUnit.tile.position);
         SetTarget(0);
         if (turn.targets.Count > 0)
         {

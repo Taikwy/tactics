@@ -28,7 +28,8 @@ public class BasePanel : MonoBehaviour
         Stats stats = obj.GetComponent<Stats>();
         if (stats) {
             lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LV]);
-            xpLabel.text = string.Format( "XP. {0} / {1}", stats[StatTypes.XP], obj.GetComponent<Unit>().xpData.experiencePerLevel[stats[StatTypes.LV]]);
+            // xpLabel.text = string.Format( "XP. {0} / {1}", stats[StatTypes.XP], obj.GetComponent<Unit>().xpData.experiencePerLevel[stats[StatTypes.LV]]);
+            xpLabel.text = string.Format( "XP. {0}", stats[StatTypes.XP]);
             hpLabel.text = string.Format( "HEALTH {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
             enLabel.text = string.Format( "ENERGY {0} / {1}", stats[StatTypes.EN], stats[StatTypes.MEN] );
         }
