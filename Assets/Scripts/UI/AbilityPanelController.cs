@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityMenuPanelController : MonoBehaviour
+public class AbilityPanelController : MonoBehaviour
 {
 
     const string ShowKey = "Show";
@@ -14,8 +14,7 @@ public class AbilityMenuPanelController : MonoBehaviour
 
     [SerializeField] GameObject entryPrefab;
     [SerializeField] TMP_Text titleLabel;
-    // [SerializeField] Panel panel;
-    [SerializeField] GameObject canvas;
+    [SerializeField] GameObject menuPanel;
     List<AbilityMenuEntry> menuEntries = new List<AbilityMenuEntry>(MenuCount);
     public int selection { get; private set; }
 
@@ -26,7 +25,7 @@ public class AbilityMenuPanelController : MonoBehaviour
     AbilityMenuEntry Dequeue (){
         Poolable p = GameObjectPoolController.Dequeue(EntryPoolKey);
         AbilityMenuEntry entry = p.GetComponent<AbilityMenuEntry>();
-        entry.transform.SetParent(canvas.transform, false);
+        entry.transform.SetParent(menuPanel.transform, false);
         // entry.transform.SetParent(panel.transform, false);
         entry.transform.localScale = Vector3.one;
         entry.gameObject.SetActive(true);
@@ -48,15 +47,8 @@ public class AbilityMenuPanelController : MonoBehaviour
     void Start ()
     {
         // panel.SetPosition(HideKey, false);
-        canvas.SetActive(false);
+        menuPanel.SetActive(false);
     }
-
-    // Tweener TogglePos (string pos){
-    //     Tweener t = panel.SetPosition(pos, true);
-    //     t.easingControl.duration = 0.5f;
-    //     t.easingControl.equation = EasingEquations.EaseOutQuad;
-    //     return t;
-    // }
 
     bool SetSelection (int value){
         if (menuEntries[value].IsLocked)
@@ -91,8 +83,19 @@ public class AbilityMenuPanelController : MonoBehaviour
         }
     }
 
+    public void Show (List<string> options){
+        menuPanel.SetActive(true);
+        Clear ();
+        for (int i = 0; i < options.Count; ++i){
+            AbilityMenuEntry entry = Dequeue();
+            entry.Title = options[i];
+            menuEntries.Add(entry);
+        }
+        SetSelection(0);
+        // TogglePos(ShowKey);
+    }
     public void Show (string title, List<string> options){
-        canvas.SetActive(true);
+        menuPanel.SetActive(true);
         Clear ();
         titleLabel.text = title;
         for (int i = 0; i < options.Count; ++i){
@@ -114,14 +117,6 @@ public class AbilityMenuPanelController : MonoBehaviour
 
     public void Hide (){
         Clear();
-        canvas.SetActive(false);
-
-        // Tweener t = TogglePos(HideKey);
-        // t.easingControl.completedEvent += delegate(object sender, System.EventArgs e)  {
-        //     if (panel.CurrentPosition == panel[HideKey]){
-        //         Clear();
-        //         canvas.SetActive(false);
-        //     }
-        // };
+        menuPanel.SetActive(false);
     }
 }

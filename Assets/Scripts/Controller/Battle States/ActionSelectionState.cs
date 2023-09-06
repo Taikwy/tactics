@@ -11,10 +11,12 @@ public class ActionSelectionState : BaseAbilityMenuState
     public override void Enter (){
         base.Enter ();
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
+        panelController.ShowBase(turn.actingUnit.gameObject);
     }
     public override void Exit (){
         base.Exit ();
         statPanelController.HidePrimary();
+        panelController.HideBase();
     }
     protected override void LoadMenu ()
     {
@@ -38,12 +40,17 @@ public class ActionSelectionState : BaseAbilityMenuState
             locks[i] = !ability.CanPerform();
         }
         abilityMenuPanelController.Show(menuTitle, menuOptions);
-        for (int i = 0; i < count; ++i)
+        abilityPanelController.Show(menuOptions);
+        for (int i = 0; i < count; ++i){
             abilityMenuPanelController.SetLocked(i, locks[i]);
+            abilityPanelController.SetLocked(i, locks[i]);
+
+        }
     }
     protected override void Confirm ()
     {
         turn.ability = catalog.GetAbility(category, abilityMenuPanelController.selection);
+        turn.ability = catalog.GetAbility(category, abilityPanelController.selection);
         owner.ChangeState<AbilityTargetState>();
     }
 

@@ -11,9 +11,13 @@ public abstract class BattleState : State
     public Transform tileSelectionIndicator { get { return owner.tileSelectionIndicator; }}
     public Point pos { get { return owner.pos; } set { owner.pos = value; }}
     public AbilityMenuPanelController abilityMenuPanelController { get { return owner.abilityMenuPanelController; }}
+    public AbilityPanelController abilityPanelController { get { return owner.abilityPanelController; }}
     public Turn turn { get { return owner.turn; }}
     public List<Unit> units { get { return owner.units; }}
+
+
     public StatPanelController statPanelController { get { return owner.statPanelController; }}
+    public PanelController panelController { get { return owner.panelController; }}
 
     public HitSuccessIndicator hitSuccessIndicator { get { return owner.hitSuccessIndicator; }}
 
@@ -49,10 +53,15 @@ public abstract class BattleState : State
 
     protected virtual void RefreshPrimaryStatPanel (Point p){
         Unit target = GetUnit(p);
-        if (target != null)
+        if (target != null){
             statPanelController.ShowPrimary(target.gameObject);
-        else
+            panelController.ShowBase(turn.actingUnit.gameObject);
+        }
+        else{
+
             statPanelController.HidePrimary();
+            panelController.HideBase();
+        }
     }
     protected virtual void RefreshSecondaryStatPanel (Point p){
         Unit target = GetUnit(p);

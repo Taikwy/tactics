@@ -11,6 +11,7 @@ public class SelectUnitState : BattleState
     public override void Exit (){
         base.Exit ();
         statPanelController.HidePrimary();
+        panelController.HideBase();
     }
     IEnumerator ChangeCurrentUnit (){
         owner.round.MoveNext();

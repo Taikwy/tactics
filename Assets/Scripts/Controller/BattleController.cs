@@ -15,10 +15,12 @@ public class BattleController : StateMachine
     public Tile selectedTile { get { return board.GetTile(pos); }}
 
     public AbilityMenuPanelController abilityMenuPanelController;
+    public AbilityPanelController abilityPanelController;
     public Turn turn = new Turn();
     public List<Unit> units = new List<Unit>();
 
     public StatPanelController statPanelController;
+    public PanelController panelController;
     public IEnumerator round;
     
     public HitSuccessIndicator hitSuccessIndicator;

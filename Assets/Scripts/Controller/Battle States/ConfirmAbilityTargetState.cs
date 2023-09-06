@@ -29,6 +29,7 @@ public class ConfirmAbilityTargetState : BattleState
         board.UnhighlightTiles(targetedTiles);
         statPanelController.HidePrimary();
         statPanelController.HideSecondary();
+        panelController.HideBase();
 
         hitSuccessIndicator.Hide();
     }

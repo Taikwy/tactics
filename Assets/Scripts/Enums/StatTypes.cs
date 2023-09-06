@@ -8,6 +8,8 @@ public enum StatTypes
     XP,
     HP,
     MHP,
+    EN,
+    MEN,
     AT,
     DF,
     SK,

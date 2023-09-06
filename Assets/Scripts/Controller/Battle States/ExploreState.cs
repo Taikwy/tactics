@@ -13,6 +13,7 @@ public class ExploreState : BattleState
     public override void Exit (){
         base.Exit ();
         statPanelController.HidePrimary();
+        panelController.HideBase();
     }
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
         SelectTile(e.info + pos);

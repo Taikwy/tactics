@@ -10,6 +10,7 @@ public class AbilityTargetState : BattleState
         base.Enter ();
         ar = turn.ability.GetComponent<AbilityRange>();
         SelectTiles ();
+        panelController.ShowBase(turn.actingUnit.gameObject);
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         if (ar.directionOriented)
             RefreshSecondaryStatPanel(pos);
@@ -17,6 +18,7 @@ public class AbilityTargetState : BattleState
     public override void Exit (){
         base.Exit ();
         board.UnhighlightTiles(tiles);
+        panelController.HideBase();
         statPanelController.HidePrimary();
         statPanelController.HideSecondary();
     }

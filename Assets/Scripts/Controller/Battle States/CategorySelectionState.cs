@@ -7,10 +7,13 @@ public class CategorySelectionState : BaseAbilityMenuState
     public override void Enter (){
         base.Enter ();
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
+        
+            panelController.ShowBase(turn.actingUnit.gameObject);
     }
     public override void Exit (){
         base.Exit ();
         statPanelController.HidePrimary();
+        panelController.HideBase();
     }
     // protected override void LoadMenu (){
     //     if (menuOptions == null){
@@ -31,20 +34,21 @@ public class CategorySelectionState : BaseAbilityMenuState
         else
             menuOptions.Clear();
         menuTitle = "Action";
-        menuOptions.Add("Attack");
+        menuOptions.Add("ATTACK");
         AbilityCatalog catalog = turn.actingUnit.GetComponentInChildren<AbilityCatalog>();
         for (int i = 0; i < catalog.CategoryCount(); ++i)
             menuOptions.Add( catalog.GetCategory(i).name );
         
         abilityMenuPanelController.Show(menuTitle, menuOptions);
+        abilityPanelController.Show(menuOptions);
     }
     protected override void Confirm ()
     {
         //will need to change this to be separate ex and normal attack
-        if (abilityMenuPanelController.selection == 0 || abilityMenuPanelController.selection == 1)
+        if (abilityPanelController.selection == 0 || abilityPanelController.selection == 1)
             Attack();
         else
-            SetCategory(abilityMenuPanelController.selection - 1);
+            SetCategory(abilityPanelController.selection - 1);
     }
     // protected override void Confirm ()
     // {

@@ -21,6 +21,7 @@ public class MoveTargetState : BattleState
         board.UnhighlightTiles(tiles);
         tiles = null;
         statPanelController.HidePrimary();
+        panelController.HideBase();
     } 
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){

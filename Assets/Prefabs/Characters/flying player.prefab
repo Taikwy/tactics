@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: 0
-  unitName: Player prefab test
+  unitName: Flyinh
   statData: {fileID: 11400000, guid: 2d96c613e20d04f4fa5bc695c9156ffa, type: 2}
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statsScript: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3807833489052316396}
   m_Layer: 0
-  m_Name: Super Attack
+  m_Name: Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 2601361487958566116}
   - component: {fileID: 8393619980562142053}
   m_Layer: 0
-  m_Name: Skill Attack
+  m_Name: Unique
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSubEffect: 0
 --- !u!114 &4252062084314511222
 MonoBehaviour:
   m_ObjectHideFlags: 0

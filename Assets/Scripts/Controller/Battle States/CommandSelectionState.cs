@@ -7,20 +7,22 @@ public class CommandSelectionState : BaseAbilityMenuState
     public override void Enter (){
         base.Enter ();
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
+            panelController.ShowBase(turn.actingUnit.gameObject);
     }
     public override void Exit (){
         base.Exit ();
         statPanelController.HidePrimary();
+        panelController.HideBase();
     }
     protected override void LoadMenu () {
         // Debug.Log("loading default commands");
         if (menuOptions == null){
             menuTitle = "Commands";
             menuOptions = new List<string>(4);
-            menuOptions.Add("Move");
-            menuOptions.Add("Action");
-            menuOptions.Add("Defend");
-            menuOptions.Add("Pass");
+            menuOptions.Add("MOVE");
+            menuOptions.Add("ACTION");
+            menuOptions.Add("STATUS");
+            menuOptions.Add("PASS");
         }
 
         //SETS THE OTHER ENTRIES AS LOCKED DEPENDING ON WHAT THE UNIT HAS ALREADY DONE
@@ -28,11 +30,16 @@ public class CommandSelectionState : BaseAbilityMenuState
         abilityMenuPanelController.SetLocked(0, turn.hasUnitMoved);
         abilityMenuPanelController.SetLocked(1, turn.hasUnitActed);
         abilityMenuPanelController.SetLocked(2, turn.hasUnitActed);
+
+        abilityPanelController.Show(menuOptions);
+        abilityPanelController.SetLocked(0, turn.hasUnitMoved);
+        abilityPanelController.SetLocked(1, turn.hasUnitActed);
+        abilityPanelController.SetLocked(2, turn.hasUnitActed);
     }
 
     protected override void Confirm ()
     {
-        switch (abilityMenuPanelController.selection)
+        switch (abilityPanelController.selection)
         {
             case 0: // Move
                 Debug.Log("move");
@@ -59,7 +66,7 @@ public class CommandSelectionState : BaseAbilityMenuState
     protected override void Cancel (){
         if (turn.hasUnitMoved && !turn.lockMove){
             turn.UndoMove();
-            abilityMenuPanelController.SetLocked(0, false);
+            abilityPanelController.SetLocked(0, false);
             SelectTile(turn.actingUnit.tile.position);
         }
         else{
