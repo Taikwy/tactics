@@ -19,7 +19,7 @@ public abstract class BattleState : State
     public StatPanelController statPanelController { get { return owner.statPanelController; }}
     public PanelController panelController { get { return owner.panelController; }}
 
-    public HitSuccessIndicator hitSuccessIndicator { get { return owner.hitSuccessIndicator; }}
+    public ForecastPanel forecastPanel { get { return owner.forecastPanel; }}
 
     protected virtual void Awake (){
         owner = GetComponent<BattleController>();

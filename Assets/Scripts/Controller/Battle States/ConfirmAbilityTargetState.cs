@@ -20,7 +20,7 @@ public class ConfirmAbilityTargetState : BattleState
         if (turn.targets.Count > 0)
         {
             // Debug.Log("targetting " + turn.targets.Count);
-            hitSuccessIndicator.Show();
+            forecastPanel.Show();
             SetTarget(0);
         }
     }
@@ -31,7 +31,7 @@ public class ConfirmAbilityTargetState : BattleState
         statPanelController.HideSecondary();
         panelController.HideBase();
 
-        hitSuccessIndicator.Hide();
+        forecastPanel.Hide();
     }
     //scrolls thru all the targets affected by the current attack
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
@@ -132,7 +132,7 @@ public class ConfirmAbilityTargetState : BattleState
 			}
 		}
 
-		hitSuccessIndicator.SetStats(hitrate, amount);
+		forecastPanel.SetStats(turn.actingUnit, target.content, turn.ability.gameObject, hitrate, amount);
 	}
     float CalculateHitRate ()
     {

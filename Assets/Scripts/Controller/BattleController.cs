@@ -23,7 +23,7 @@ public class BattleController : StateMachine
     public PanelController panelController;
     public IEnumerator round;
     
-    public HitSuccessIndicator hitSuccessIndicator;
+    public ForecastPanel forecastPanel;
 
     void Start ()
     {
