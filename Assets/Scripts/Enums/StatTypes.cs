@@ -17,6 +17,7 @@ public enum StatTypes
     AC,
     SP,
     MV,
+    AV,
     TurnCounter,
     Count
 }

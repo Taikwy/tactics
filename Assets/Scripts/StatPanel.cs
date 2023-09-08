@@ -28,7 +28,7 @@ public class StatPanel : MonoBehaviour
         // Temp until I add a component to determine unit alliances
         background.sprite = UnityEngine.Random.value > 0.5f? enemyBackground : allyBackground;
         // avatar.sprite = null; Need a component which provides this data
-        nameLabel.text = obj.GetComponent<Unit>().unitName;
+        nameLabel.text = obj.GetComponent<Unit>().name;
         Stats stats = obj.GetComponent<Stats>();
         if (stats) {
             lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LV]);

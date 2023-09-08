@@ -5,13 +5,15 @@ using UnityEngine;
 public class ConfirmAbilityTargetState : BattleState
 {
     List<Tile> targetedTiles;
-    AbilityArea aa;
+    AbilityArea areaScript;
     int currentTarget = 0;
     AbilityEffectTarget[] targeters;
     public override void Enter (){
         base.Enter ();
-        aa = turn.ability.GetComponent<AbilityArea>();
-        targetedTiles = aa.GetTilesInArea(board, pos);
+        areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
+        
+        Debug.Log(areaScript.gameObject);
+        targetedTiles = areaScript.GetTilesInArea(board, selectPos);
         // board.SelectTiles(tiles);
         board.HighlightAttackTiles(targetedTiles);
         FindTargets();
@@ -57,7 +59,7 @@ public class ConfirmAbilityTargetState : BattleState
     }
     void FindTargets (){
         turn.targets = new List<Tile>();
-        AbilityEffectTarget[] targeters = turn.ability.GetComponentsInChildren<AbilityEffectTarget>();
+        AbilityEffectTarget[] targeters = turn.selectedAbility.GetComponentsInChildren<AbilityEffectTarget>();
         for (int i = 0; i < targetedTiles.Count; ++i){
             if (IsTarget(targetedTiles[i], targeters))
                 turn.targets.Add(targetedTiles[i]);
@@ -116,7 +118,7 @@ public class ConfirmAbilityTargetState : BattleState
 		int amount = 0;
 		Tile target = turn.targets[currentTarget];
 
-		Transform obj = turn.ability.transform;
+		Transform obj = turn.selectedAbility.transform;
 		for (int i = 0; i < obj.childCount; ++i)
 		{
 			AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
@@ -132,14 +134,14 @@ public class ConfirmAbilityTargetState : BattleState
 			}
 		}
 
-		forecastPanel.SetStats(turn.actingUnit, target.content, turn.ability.gameObject, hitrate, amount);
+		forecastPanel.SetStats(turn.actingUnit, target.content, turn.selectedAbility.gameObject, hitrate, amount);
 	}
     float CalculateHitRate ()
     {
         //Will have to change this if i want to let things attack inanimate objects
         // Unit target = turn.targets[currentTarget].content.GetComponent<Unit>();
         Tile target = turn.targets[currentTarget];
-        HitRate hitrateScript = turn.ability.GetComponentInChildren<HitRate>();
+        HitRate hitrateScript = turn.selectedAbility.GetComponentInChildren<HitRate>();
         return hitrateScript.CalculateHitRate(target);
     }
     int EstimateDamage ()

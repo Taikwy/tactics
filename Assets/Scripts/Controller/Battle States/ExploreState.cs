@@ -8,7 +8,7 @@ public class ExploreState : BattleState
 
     public override void Enter (){
         base.Enter ();
-        RefreshBasePanel(pos);
+        RefreshBasePanel(selectPos);
     }
     public override void Exit (){
         base.Exit ();
@@ -16,8 +16,8 @@ public class ExploreState : BattleState
         panelController.HideBase();
     }
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
-        SelectTile(e.info + pos);
-        RefreshBasePanel(pos);
+        SelectTile(e.info + selectPos);
+        RefreshBasePanel(selectPos);
     }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){

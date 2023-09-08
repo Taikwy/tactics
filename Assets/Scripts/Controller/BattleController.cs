@@ -8,11 +8,11 @@ public class BattleController : StateMachine
     public Board board;
     public LevelData levelData;
     public Transform tileSelectionIndicator;
-    public Point pos;
+    public Point selectPos;
 
     public GameObject playerPrefab;
     public Unit currentUnit;
-    public Tile selectedTile { get { return board.GetTile(pos); }}
+    public Tile selectedTile { get { return board.GetTile(selectPos); }}
 
     public AbilityMenuPanelController abilityMenuPanelController;
     public AbilityPanelController abilityPanelController;

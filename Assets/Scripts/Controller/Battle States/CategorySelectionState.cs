@@ -76,7 +76,7 @@ public class CategorySelectionState : BaseAbilityMenuState
         owner.ChangeState<CommandSelectionState>();
     }
     void Attack (){
-        turn.ability = turn.actingUnit.GetComponentInChildren<Ability>();
+        turn.selectedAbility = turn.actingUnit.GetComponentInChildren<Ability>();
         // turn.ability = turn.actingUnit.GetComponentInChildren<AbilityRange>().gameObject;
         owner.ChangeState<AbilityTargetState>();
     }

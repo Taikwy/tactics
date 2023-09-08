@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 689172179595486786}
   - component: {fileID: 82161900697383297}
   - component: {fileID: 4454149225260190510}
-  - component: {fileID: 861529024111057897}
+  - component: {fileID: 3513271803329824320}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799ff66fa8b981d43875d21870d2c673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal: 3
---- !u!114 &861529024111057897
+  horizontal: 4
+--- !u!114 &3513271803329824320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,11 +68,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1351586068408484884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db8ed93e2efee4446a288738e391c8ef, type: 3}
+  m_Script: {fileID: 11500000, guid: e93fdc0ddc106ef4cb10bd5dda7ad325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal: 3
-  vertical: 3
 --- !u!1 &1668664507475141822
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,9 +81,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8690957083861743372}
   - component: {fileID: 8965745102058684167}
-  - component: {fileID: 5606721695218185632}
   m_Layer: 0
-  m_Name: flying player
+  m_Name: Unit Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,23 +157,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5606721695218185632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668664507475141822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48aa579bffd987479f9644f2e6a9b73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dir: 0
-  xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
-  statData: {fileID: 11400000, guid: 2d96c613e20d04f4fa5bc695c9156ffa, type: 2}
-  portrait: {fileID: 21300000, guid: 06231f216879b894cabe181b3f2c3cbc, type: 3}
-  statsScript: {fileID: 0}
 --- !u!1 &3748609060192880747
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,8 +199,8 @@ GameObject:
   - component: {fileID: 4727950310008289774}
   - component: {fileID: 6977951273178356517}
   - component: {fileID: 5099665556822472263}
+  - component: {fileID: 2601361487958566116}
   - component: {fileID: 8393619980562142053}
-  - component: {fileID: 3500373055185623621}
   m_Layer: 0
   m_Name: Unique
   m_TagString: Untagged
@@ -256,7 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f15774e5b48f43a605f3046a8525f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
 --- !u!114 &5099665556822472263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +249,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontal: 4
+--- !u!114 &2601361487958566116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4501593128554951558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93fdc0ddc106ef4cb10bd5dda7ad325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8393619980562142053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,18 +274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 0
---- !u!114 &3500373055185623621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4501593128554951558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d876e6f5dd31b274cb1fc518264d1a32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8446525712287416133
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,10 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c92cffd0726a4a8a8cdb92b62a5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicAbility: {fileID: 0}
-  techniqueAbility: {fileID: 0}
-  skillAbility: {fileID: 0}
-  burstAbility: {fileID: 0}
 --- !u!1 &8851829163385392909
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityCatalogRecipe : ScriptableObject 
+public enum AbilityTypes
 {
-    public string[] entries;
+    BASIC,
+    TECHNIQUE,
+    SKILL,
+    BURST
 }
