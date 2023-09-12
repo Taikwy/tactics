@@ -24,5 +24,5 @@ public class AbilityCatalog : MonoBehaviour
         if (category == null || abilityIndex < 0 || abilityIndex >= category.transform.childCount)
             return null;
         return category.transform.GetChild(abilityIndex).GetComponent<Ability>();
-    }
+    } 
 }
