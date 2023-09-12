@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ability : MonoBehaviour 
 {
+    public AbilityTypes type;
     public const string CanPerformCheck = "Ability.CanPerformCheck";
     public const string FailedNotification = "Ability.FailedNotification";
     public const string DidPerformNotification = "Ability.DidPerformNotification";

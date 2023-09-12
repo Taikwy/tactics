@@ -5,15 +5,15 @@ using UnityEngine;
 public class AbilityTargetState : BattleState 
 {
     List<Tile> tiles;
-    AbilityRange ar;
+    AbilityRange rangeScript;
     public override void Enter (){
         base.Enter ();
-        ar = turn.ability.GetComponent<AbilityRange>();
+        rangeScript = turn.selectedAbility.GetComponent<AbilityRange>();
         SelectTiles ();
         panelController.ShowBase(turn.actingUnit.gameObject);
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
-        if (ar.directionOriented)
-            RefreshSecondaryStatPanel(pos);
+        if (rangeScript.directionOriented)
+            RefreshSecondaryStatPanel(selectPos);
     }
     public override void Exit (){
         base.Exit ();
@@ -23,18 +23,18 @@ public class AbilityTargetState : BattleState
         statPanelController.HideSecondary();
     }
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
-        if (ar.directionOriented){
+        if (rangeScript.directionOriented){
             ChangeDirection(e.info);
         }
         else{
-            SelectTile(e.info + pos);
-            RefreshSecondaryStatPanel(pos);
+            SelectTile(e.info + selectPos);
+            RefreshSecondaryStatPanel(selectPos);
         }
     }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){
-            if (ar.directionOriented || tiles.Contains(board.GetTile(pos)))
+            if (rangeScript.directionOriented || tiles.Contains(board.GetTile(selectPos)))
                 owner.ChangeState<ConfirmAbilityTargetState>();
         }
         else{
@@ -51,7 +51,8 @@ public class AbilityTargetState : BattleState
         }
     }
     void SelectTiles (){
-        tiles = ar.GetTilesInRange(board);
+        Debug.Log(rangeScript.gameObject);
+        tiles = rangeScript.GetTilesInRange(board);
         // board.SelectTiles(tiles);
         board.HighlightAttackTiles(tiles);
     }

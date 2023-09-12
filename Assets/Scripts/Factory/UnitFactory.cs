@@ -16,20 +16,28 @@ public static class UnitFactory
 
 	public static GameObject Create (UnitRecipe recipe, int level)
 	{
-		GameObject unit = InstantiatePrefab("Units/" + recipe.model);
+		GameObject unit = InstantiatePrefab("Units/" + recipe.unitBase);
 		unit.name = recipe.name;
-		unit.AddComponent<Unit>();
-		AddStats(unit);
+
+		Unit unitScript = unit.AddComponent<Unit>();
+		unitScript.statData = recipe.statData;
+		unitScript.xpData = recipe.xpData;
+		unitScript.portrait = recipe.portrait;
+		// AddStats(unit);
+		
 		AddMovement(unit, recipe.movementType);
 		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
-		AddJob(unit, recipe.job);
+		// AddJob(unit, recipe.job);
+
 		// AddRank(unit, level);
 		// unit.AddComponent<Health>();
 		// unit.AddComponent<Mana>();
-		AddAttack(unit, recipe.attack);
-		AddAbilityCatalog(unit, recipe.abilityCatalog);
-		AddAlliance(unit, recipe.alliance);
+
+		// AddAttack(unit, recipe.attack);
+		// AddAbilityCatalog(unit, recipe.abilityCatalog);
+		// AddAlliance(unit, recipe.alliance);
+
 		// AddAttackPattern(unit, recipe.strategy);
 		return unit;
 	}
@@ -90,9 +98,9 @@ public static class UnitFactory
 	}
 
 	static void AddAbilityCatalog (GameObject obj, string name){
-		GameObject main = new GameObject("Ability Catalog");
-		main.transform.SetParent(obj.transform);
-		main.AddComponent<AbilityCatalog>();
+		GameObject catalog = new GameObject("Ability Catalog");
+		catalog.transform.SetParent(obj.transform);
+		AbilityCatalog catalogScript = catalog.AddComponent<AbilityCatalog>();
 
 		AbilityCatalogRecipe recipe = Resources.Load<AbilityCatalogRecipe>("Ability Catalog Recipes/" + name);
 		if (recipe == null){
@@ -100,14 +108,23 @@ public static class UnitFactory
 			return;
 		}
 
-		for (int i = 0; i < recipe.categories.Length; ++i){
-			GameObject category = new GameObject( recipe.categories[i].name );
-			category.transform.SetParent(main.transform);
-
-			for (int j = 0; j < recipe.categories[i].entries.Length; ++j){
-				string abilityName = string.Format("Abilities/{0}/{1}", recipe.categories[i].name, recipe.categories[i].entries[j]);
-				GameObject ability = InstantiatePrefab(abilityName);
-				ability.transform.SetParent(category.transform);
+		for (int i = 0; i < recipe.entries.Length; ++i){
+			string abilityName = string.Format("Abilities/{0}", recipe.entries[i]);
+			GameObject ability = InstantiatePrefab(abilityName);
+			ability.transform.SetParent(catalog.transform);
+			switch(ability.GetComponent<Ability>().type){
+				case AbilityTypes.BASIC:
+					catalogScript.basicAbility = ability;
+					break;
+				case AbilityTypes.TECHNIQUE:
+					catalogScript.techniqueAbility = ability;
+					break;
+				case AbilityTypes.SKILL:
+					catalogScript.skillAbility = ability;
+					break;
+				case AbilityTypes.BURST:
+					catalogScript.burstAbility = ability;
+					break;
 			}
 		}
 	}

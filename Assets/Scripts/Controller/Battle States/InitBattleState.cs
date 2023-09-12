@@ -24,40 +24,39 @@ public class InitBattleState : BattleState
 
     void SpawnTestUnits ()
     {
+        string[] unitRecipes = new string[]{
+            // "Paladin",
+            // "Wizard",
+            // "Slime",
+            // "Mushroom",
+            "Snake"
+        };
+        //List of all locations on map
+        List<Tile> locations = new List<Tile>(board.tiles.Values);
+        for (int i = 0; i < unitRecipes.Length; ++i)
+        {
+            int level = 0;
+            GameObject instance = UnitFactory.Create(unitRecipes[i], level);
+
+            //Finds random point to spawn the unit
+            int random = Random.Range(0, locations.Count);
+            Tile randomTile = locations[random];
+            locations.RemoveAt(random);
+
+            Unit unitScript = instance.GetComponent<Unit>();
+            unitScript.Init(randomTile);
+
+            units.Add(unitScript);
+        }
         
         OldSpawnUnits();
-        return;
-
-        // string[] recipes = new string[]
-        // {
-        //     "Alaois",
-        //     "Hania",
-        //     "Kamau",
-        //     "Enemy Rogue",
-        //     "Enemy Warrior",
-        //     "Enemy Wizard"
-        // };
-        // List<Tile> locations = new List<Tile>(board.tiles.Values);
-        // for (int i = 0; i < recipes.Length; ++i)
-        // {
-        //     int level = Random.Range(9, 12);
-        //     GameObject instance = UnitFactory.Create(recipes[i], level);
-        //     int random = Random.Range(0, locations.Count);
-        //     Tile randomTile = locations[ random ];
-        //     locations.RemoveAt(random);
-        //     Unit unit = instance.GetComponent<Unit>();
-        //     unit.Place( randomTile );
-        //     unit.dir = (Directions)Random.Range(0, 4);
-        //     unit.Match();
-        //     units.Add(unit);
-        // }
-        // SelectTile(units[0].tile.position);
+        SelectTile(units[0].tile.position);
     }
 
     void OldSpawnUnits(){
-        string[] jobs = new string[]{"Rogue", "Warriro", "yuhyuh"};
+        string[] jobs = new string[]{"Rogue", "Warriro"};
+        
         for (int i = 0; i < jobs.Length; ++i){
-            // Debug.Log("spawning " + jobs[i]);
             GameObject unit = Instantiate(owner.playerPrefab);
             unit.name = jobs[i];
             

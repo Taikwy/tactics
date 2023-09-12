@@ -42,7 +42,7 @@ public class PerformAbilityState : BattleState
     }
     void ApplyAbility ()
     {
-        BaseAbilityEffect[] effects = turn.ability.GetComponentsInChildren<BaseAbilityEffect>();
+        BaseAbilityEffect[] effects = turn.selectedAbility.GetComponentsInChildren<BaseAbilityEffect>();
         bool[] effectHit = new bool[effects.Length];
         for (int i = 0; i < turn.targets.Count; ++i)
         {

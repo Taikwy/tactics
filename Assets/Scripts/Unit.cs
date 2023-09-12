@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour 
 {
     public Tile tile { get; protected set; }
     public Directions dir;
-    public string unitName;
-    // public UnitStats stats;
-    public UnitStatData statData;
+    // public string unitName;
 
     public const int minLevel = 1;
     public const int maxLevel = 20;
     public XPCurveData xpData;
+    public UnitStatData statData;
+    public Sprite portrait;
+
 
     public int LV{
         get { return statsScript[StatTypes.LV]; }

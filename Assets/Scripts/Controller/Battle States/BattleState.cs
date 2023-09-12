@@ -9,7 +9,7 @@ public abstract class BattleState : State
     public Board board { get { return owner.board; }}
     public LevelData levelData { get { return owner.levelData; }}
     public Transform tileSelectionIndicator { get { return owner.tileSelectionIndicator; }}
-    public Point pos { get { return owner.pos; } set { owner.pos = value; }}
+    public Point selectPos { get { return owner.selectPos; } set { owner.selectPos = value; }}
     public AbilityMenuPanelController abilityMenuPanelController { get { return owner.abilityMenuPanelController; }}
     public AbilityPanelController abilityPanelController { get { return owner.abilityPanelController; }}
     public Turn turn { get { return owner.turn; }}
@@ -39,9 +39,9 @@ public abstract class BattleState : State
     protected virtual void OnFire (object sender, InfoEventArgs<int> e){  
     }
     protected virtual void SelectTile (Point p) {
-        if (pos == p || !board.tiles.ContainsKey(p))
+        if (selectPos == p || !board.tiles.ContainsKey(p))
             return;
-        pos = p;
+        selectPos = p;
         tileSelectionIndicator.localPosition = board.tiles[p].center;
     }
 

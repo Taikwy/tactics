@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class UnitRecipe : ScriptableObject 
 {
-    public string model;
+    public string unitBase;
+    public XPCurveData xpData;
+    public UnitStatData statData;
+    public Sprite portrait;
     public string job;
     public string attack;
     public string abilityCatalog;
