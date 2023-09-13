@@ -96,6 +96,16 @@ public class Board : MonoBehaviour
         }
             //tiles[i].GetComponent<Renderer>().material.SetColor("_Color", defaultTileColor);
     }
+    public void TargetTiles (List<Tile> tiles){
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            tiles[i].selectSprite.enabled = true;
+        }
+    }
+    public void UntargetTiles (List<Tile> tiles){
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            tiles[i].selectSprite.enabled = false;
+        }
+    }
 
     //Finds tiles within range, no filter
     public List<Tile> Search (Tile startTile, Func<Tile, Tile, bool> addTile){

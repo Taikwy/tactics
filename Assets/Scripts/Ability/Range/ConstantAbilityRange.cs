@@ -8,6 +8,10 @@ public class ConstantAbilityRange : AbilityRange
         return board.Search(unit.tile, ExpandSearch);
     }
     bool ExpandSearch (Tile from, Tile to){
-        return (from.distance + 1) <= horizontal;
+        return (from.distance + 1) <= range;
+    }
+
+    public override List<Tile> GetTargetsInRange (Board board){
+        return board.Search(unit.tile, ExpandSearch);
     }
 }

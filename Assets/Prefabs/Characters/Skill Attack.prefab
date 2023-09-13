@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7149224293746548200}
   - component: {fileID: 9092268942645011978}
   m_Layer: 0
-  m_Name: Damage
+  m_Name: Damage Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f15774e5b48f43a605f3046a8525f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!114 &281975597048506171
 MonoBehaviour:
   m_ObjectHideFlags: 0

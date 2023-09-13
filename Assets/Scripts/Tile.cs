@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
     // public Sprite defaultSprite;
     // public Sprite highlightedSprite;
 
-    public SpriteRenderer tileSprite, highlightSprite;
+    public SpriteRenderer tileSprite, highlightSprite, selectSprite;
     // public Color moveHighlight = new Color(1,1,1);
     // public Color attackHighlight = new Color(1,1,1);
     // public Color allyHighlight = new Color(1,1,1);

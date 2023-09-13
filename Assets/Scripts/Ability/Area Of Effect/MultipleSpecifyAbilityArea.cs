@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecifyAbilityArea : AbilityArea 
+public class MultipleSpecifyAbilityArea : AbilityArea 
 {
     public int horizontal;
     public int vertical;
     Tile tile;
-    public override List<Tile> GetTilesInArea (Board board, Point pos){
+    public override bool multipleTargets { get { return true; }}
+    public override List<Tile> GetTargetedTiles (Board board, Point pos){
         tile = board.GetTile(pos);
         return board.Search(tile, ExpandSearch);
     }

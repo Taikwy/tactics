@@ -4,5 +4,8 @@ using UnityEngine;
 
 public abstract class AbilityArea : MonoBehaviour
 {
-    public abstract List<Tile> GetTilesInArea (Board board, Point pos);
+    public int numTargets = 1;
+    public List<Tile> targets;
+    public virtual bool multipleTargets { get { return false; }}
+    public abstract List<Tile> GetTargetedTiles (Board board, Point pos);
 }

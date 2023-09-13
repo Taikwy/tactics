@@ -62,7 +62,7 @@ public abstract class BattleState : State
             panelController.HideBase();
         }
     }
-    protected virtual void RefreshSecondaryStatPanel (Point p){
+    protected virtual void RefreshSecondaryBasePanel (Point p){
         Unit target = GetUnit(p);
         if (target != null)
             statPanelController.ShowSecondary(target.gameObject);

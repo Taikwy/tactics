@@ -13,7 +13,7 @@ public class ConfirmAbilityTargetState : BattleState
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
         
         Debug.Log(areaScript.gameObject);
-        targetedTiles = areaScript.GetTilesInArea(board, selectPos);
+        targetedTiles = areaScript.GetTargetedTiles(board, selectPos);
         // board.SelectTiles(tiles);
         board.HighlightAttackTiles(targetedTiles);
         FindTargets();
@@ -29,6 +29,7 @@ public class ConfirmAbilityTargetState : BattleState
     public override void Exit (){
         base.Exit ();
         board.UnhighlightTiles(targetedTiles);
+        board.UntargetTiles(targetedTiles);
         statPanelController.HidePrimary();
         statPanelController.HideSecondary();
         panelController.HideBase();
@@ -82,7 +83,7 @@ public class ConfirmAbilityTargetState : BattleState
             currentTarget = 0;
         if (turn.targets.Count > 0)
         {
-            RefreshSecondaryStatPanel(turn.targets[currentTarget].position);
+            RefreshSecondaryBasePanel(turn.targets[currentTarget].position);
             UpdateHitSuccessIndicator ();
             SelectTile(turn.targets[currentTarget].position);
         }
