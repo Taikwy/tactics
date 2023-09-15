@@ -1551,7 +1551,7 @@ MonoBehaviour:
   board: {fileID: 550533396}
   levelData: {fileID: 11400000, guid: 09eea12c879a5d14e98059a793d1a53a, type: 2}
   tileSelectionIndicator: {fileID: 1683587603}
-  pos:
+  selectPos:
     x: 0
     y: 0
   playerPrefab: {fileID: 1668664507475141822, guid: 2b74ba521a5bbf047bc6aa4f67499e56, type: 3}
@@ -2051,9 +2051,15 @@ MonoBehaviour:
   groundTilePrefab: {fileID: 6364204904911779010, guid: 1a2fa7137e31ac4459b3cc763feca813, type: 3}
   pitTilePrefab: {fileID: 6534081145384810864, guid: 012815fbcefeb4e4eb72b52e340667cc, type: 3}
   wallTilePrefab: {fileID: 1025403324043751005, guid: 65d63e402feeb434a8c32a81da587579, type: 3}
-  moveHighlightColor: {r: 0, g: 0.27205753, b: 1, a: 0.627451}
-  attackHighlightColor: {r: 1, g: 0, b: 0, a: 0.627451}
-  allyHighlightColor: {r: 0, g: 1, b: 0.15721321, a: 0.627451}
+  moveHighlightColor: {r: 0, g: 0.27205753, b: 1, a: 0.47058824}
+  attackHighlightColor: {r: 1, g: 0, b: 0, a: 0.47058824}
+  allyHighlightColor: {r: 0, g: 1, b: 0.15721321, a: 0.47058824}
+  moveColor: {r: 0, g: 0.27058825, b: 1, a: 1}
+  passColor: {r: 0, g: 1, b: 0.15686275, a: 1}
+  attackColor: {r: 1, g: 0, b: 0, a: 1}
+  healColor: {r: 0, g: 1, b: 0.15686275, a: 1}
+  buffColor: {r: 0, g: 1, b: 0.9725491, a: 1}
+  debuffColor: {r: 1, g: 0, b: 0.48627454, a: 1}
 --- !u!4 &550533397
 Transform:
   m_ObjectHideFlags: 0

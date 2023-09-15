@@ -8,6 +8,9 @@ public class Ability : MonoBehaviour
     public const string CanPerformCheck = "Ability.CanPerformCheck";
     public const string FailedNotification = "Ability.FailedNotification";
     public const string DidPerformNotification = "Ability.DidPerformNotification";
+    public EffectZone primaryEffectZone, primarySubEffectZone;
+    public EffectZone secondaryEffectZone, secondarySubEffectZone;
+
     public bool CanPerform ()
     {
         BaseException exc = new BaseException(true);

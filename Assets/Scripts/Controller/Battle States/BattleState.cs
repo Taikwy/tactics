@@ -64,6 +64,7 @@ public abstract class BattleState : State
     }
     protected virtual void RefreshSecondaryBasePanel (Point p){
         Unit target = GetUnit(p);
+        Debug.Log(target);
         if (target != null)
             statPanelController.ShowSecondary(target.gameObject);
         else

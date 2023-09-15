@@ -5,13 +5,24 @@ using System;
 
 public class Board : MonoBehaviour 
 {
+    public enum OverlayColor{
+        MOVE,
+        PASS,
+        ATTACK,
+        HEAL,
+        BUFF,
+        DEBUFF
+    }
     [SerializeField] GameObject barrierTilePrefab;
     [SerializeField] GameObject groundTilePrefab;
     [SerializeField] GameObject pitTilePrefab;
     [SerializeField] GameObject wallTilePrefab;
+    [Space(10)]
     [SerializeField] Color moveHighlightColor = new Color(0, 1, 1, 1);
     [SerializeField] Color attackHighlightColor = new Color(0, 1, 1, 1);
     [SerializeField] Color allyHighlightColor = new Color(0, 1, 1, 1);
+    [SerializeField] Color moveColor, passColor, attackColor, healColor, buffColor, debuffColor;
+    // [SerializeField] Color selectColor = new Color(0, 1, 1, 1);
     public Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile>();
     Point[] dirs = new Point[4]{
         new Point(0, 1),
@@ -72,38 +83,131 @@ public class Board : MonoBehaviour
     //     }
     // }
 
-    public void HighlightMoveTiles (List<Tile> tiles){
-        // Debug.Log("highlight " + tiles.Count );
-        for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].highlightSprite.color = moveHighlightColor;
-        }
-    }
-    public void HighlightAttackTiles (List<Tile> tiles){
-        for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].highlightSprite.color = attackHighlightColor;
-        }
-    }
-    public void HighlightAllyTiles (List<Tile> tiles){
-        for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].highlightSprite.color = allyHighlightColor;
-        }
-    }
+    
 
+    // public void HighlightMoveTiles (List<Tile> tiles){
+    //     // Debug.Log("highlight " + tiles.Count );
+    //     for (int i = tiles.Count - 1; i >= 0; --i){
+    //         // tiles[i].highlightRenderer.color = moveHighlightColor;
+    //         tiles[i].highlightRenderer.enabled = true;
+    //         tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
+    //         tiles[i].highlightRenderer.color = moveHighlightColor;
+    //     }
+    // }
+    // public void HighlightAttackTiles (List<Tile> tiles){
+    //     for (int i = tiles.Count - 1; i >= 0; --i){
+    //         // tiles[i].highlightRenderer.color = attackHighlightColor;
+    //         tiles[i].highlightRenderer.enabled = true;
+    //         tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
+    //         tiles[i].highlightRenderer.color = attackHighlightColor;
+    //     }
+    // }
+    // public void HighlightAllyTiles (List<Tile> tiles){
+    //     for (int i = tiles.Count - 1; i >= 0; --i){
+    //         // tiles[i].highlightRenderer.color = allyHighlightColor;
+    //         tiles[i].highlightRenderer.enabled = true;
+    //         tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
+    //         tiles[i].highlightRenderer.color = allyHighlightColor;
+    //     }
+    // }
+
+    public void HighlightTiles (List<Tile> tiles, OverlayColor type){
+        Color temp = Color.white;
+        switch(type){
+            case OverlayColor.MOVE:
+                temp = moveColor;
+                break;
+            case OverlayColor.PASS:
+                temp = passColor;
+                break;
+            case OverlayColor.ATTACK:
+                temp = attackColor;
+                break;
+            case OverlayColor.HEAL:
+                break;
+        }
+        temp.a = .4f;
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            tiles[i].highlightRenderer.enabled = true;
+            tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
+            tiles[i].highlightRenderer.color = temp;
+        }
+    }
     public void UnhighlightTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
             // tiles[i].GetComponent<SpriteRenderer>().sprite = tiles[i].defaultSprite;
-            tiles[i].highlightSprite.color = new Color(1,1,1, 0f);
+            // tiles[i].highlightRenderer.color = new Color(1,1,1, 0f);
+            tiles[i].highlightRenderer.enabled = false;
         }
             //tiles[i].GetComponent<Renderer>().material.SetColor("_Color", defaultTileColor);
     }
     public void TargetTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].selectSprite.enabled = true;
+            tiles[i].targetRenderer.enabled = true;
+            tiles[i].targetRenderer.sprite = tiles[i].targetSprite;
+            tiles[i].targetRenderer.color = attackHighlightColor;
+        }
+    }
+    public void TargetTiles (List<Tile> tiles, OverlayColor type){
+        Color temp = Color.white;
+        switch(type){
+            case OverlayColor.MOVE:
+                temp = moveColor;
+                break;
+            case OverlayColor.PASS:
+                temp = passColor;
+                break;
+            case OverlayColor.ATTACK:
+                temp = attackColor;
+                break;
+            case OverlayColor.HEAL:
+                break;
+        }
+        temp.a = .5f;
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            tiles[i].targetRenderer.enabled = true;
+            tiles[i].targetRenderer.sprite = tiles[i].targetSprite;
+            tiles[i].targetRenderer.color = temp;
         }
     }
     public void UntargetTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].selectSprite.enabled = false;
+            tiles[i].targetRenderer.enabled = false;
+        }
+    }
+
+    public void SelectTiles (List<Tile> tiles){
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            tiles[i].selectRenderer.enabled = true;
+            tiles[i].selectRenderer.sprite = tiles[i].selectSprite;
+            tiles[i].selectRenderer.color = Color.white;
+        }
+    }
+    public void SelectTiles (List<Tile> tiles, OverlayColor type){
+        Color temp = Color.white;
+        switch(type){
+            case OverlayColor.MOVE:
+                temp = moveColor;
+                break;
+            case OverlayColor.PASS:
+                temp = passColor;
+                break;
+            case OverlayColor.ATTACK:
+                temp = attackColor;
+                break;
+            case OverlayColor.HEAL:
+                break;
+        }
+        temp.a = 1f;
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            tiles[i].selectRenderer.enabled = true;
+            tiles[i].selectRenderer.sprite = tiles[i].selectSprite;
+            tiles[i].selectRenderer.color = temp;
+        }
+    }
+    public void UnselectTiles (List<Tile> tiles){
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            tiles[i].selectRenderer.enabled = false;
         }
     }
 

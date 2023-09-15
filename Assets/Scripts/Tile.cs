@@ -7,7 +7,13 @@ public class Tile : MonoBehaviour
     // public Sprite defaultSprite;
     // public Sprite highlightedSprite;
 
-    public SpriteRenderer tileSprite, highlightSprite, selectSprite;
+    // public SpriteRenderer tileRenderer;
+    public SpriteRenderer highlightRenderer, targetRenderer, selectRenderer;
+    // public SpriteRenderer overlayRenderer;
+    // public Sprite tileSprite;
+    public Sprite highlightSprite, targetSprite, selectSprite;
+     [Space(10)]
+    public Animation targetAnim;
     // public Color moveHighlight = new Color(1,1,1);
     // public Color attackHighlight = new Color(1,1,1);
     // public Color allyHighlight = new Color(1,1,1);
@@ -31,8 +37,12 @@ public class Tile : MonoBehaviour
     // public bool isTraversible;
     [HideInInspector] public Tile prev;
     [HideInInspector] public int distance;
-
+    // public SpriteRenderer overlayRenderer;
+    // public Sprite tileSprite;
     public void Load (Point p){
+        highlightRenderer.enabled = false;
+        targetRenderer.enabled = false;
+        selectRenderer.enabled = false;
         // Debug.Log(tileType);
         position = p;
         Match();
@@ -48,15 +58,4 @@ public class Tile : MonoBehaviour
         transform.localScale = new Vector2(1,1);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

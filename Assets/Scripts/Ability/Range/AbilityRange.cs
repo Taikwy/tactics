@@ -12,5 +12,5 @@ public abstract class AbilityRange : MonoBehaviour
     public virtual bool directionOriented { get { return false; }}
     protected Unit unit { get { return GetComponentInParent<Unit>(); }}
     public abstract List<Tile> GetTilesInRange (Board board);
-    public abstract List<Tile> GetTargetsInRange (Board board);
+    // public abstract List<Tile> GetTargetsInRange (Board board);
 }

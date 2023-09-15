@@ -9,9 +9,9 @@ public class SelfAbilityRange : AbilityRange
         retValue.Add(unit.tile);
         return retValue;
     }
-    public override List<Tile> GetTargetsInRange (Board board){
-        List<Tile> retValue = new List<Tile>(1);
-        retValue.Add(unit.tile);
-        return retValue;
-    }
+    // public override List<Tile> GetTargetsInRange (Board board){
+    //     List<Tile> retValue = new List<Tile>(1);
+    //     retValue.Add(unit.tile);
+    //     return retValue;
+    // }
 }

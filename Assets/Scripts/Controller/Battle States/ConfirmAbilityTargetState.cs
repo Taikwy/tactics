@@ -11,11 +11,12 @@ public class ConfirmAbilityTargetState : BattleState
     public override void Enter (){
         base.Enter ();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
-        
-        Debug.Log(areaScript.gameObject);
-        targetedTiles = areaScript.GetTargetedTiles(board, selectPos);
+        // targetedTiles = areaScript.GetTargetedTiles(board, selectPos);
+        targetedTiles = areaScript.targets;
         // board.SelectTiles(tiles);
-        board.HighlightAttackTiles(targetedTiles);
+        SelectTile(areaScript.targets[0].position);
+        // board.HighlightAttackTiles(targetedTiles);
+        board.HighlightTiles(targetedTiles, Board.OverlayColor.ATTACK);
         FindTargets();
         RefreshBasePanel(turn.actingUnit.tile.position);
         SetTarget(0);
@@ -28,6 +29,7 @@ public class ConfirmAbilityTargetState : BattleState
     }
     public override void Exit (){
         base.Exit ();
+        areaScript.targets.Clear();
         board.UnhighlightTiles(targetedTiles);
         board.UntargetTiles(targetedTiles);
         statPanelController.HidePrimary();

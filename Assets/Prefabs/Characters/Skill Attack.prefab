@@ -86,9 +86,9 @@ GameObject:
   m_Component:
   - component: {fileID: 338170469522401426}
   - component: {fileID: 2736719864597236313}
-  - component: {fileID: 281975597048506171}
   - component: {fileID: 7004652114382419352}
   - component: {fileID: 3553412018441683481}
+  - component: {fileID: 9172157703010218231}
   m_Layer: 0
   m_Name: Skill Attack
   m_TagString: Untagged
@@ -125,19 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
---- !u!114 &281975597048506171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8886937526163366650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49c54517960dd794294bb16b1109b348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontal: 4
 --- !u!114 &7004652114382419352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93fdc0ddc106ef4cb10bd5dda7ad325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numTargets: 1
+  targets: []
 --- !u!114 &3553412018441683481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +152,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 0
+--- !u!114 &9172157703010218231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886937526163366650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5aabdaf8ef3ca54da2fbc499c5a41bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3
+  tilesInRange: []
+  targetsInRange: []

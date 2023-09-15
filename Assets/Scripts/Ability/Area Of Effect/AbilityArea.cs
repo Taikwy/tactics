@@ -4,8 +4,9 @@ using UnityEngine;
 
 public abstract class AbilityArea : MonoBehaviour
 {
+    [HideInInspector] public bool canTargetSelf = false;
     public int numTargets = 1;
     public List<Tile> targets;
-    public virtual bool multipleTargets { get { return false; }}
-    public abstract List<Tile> GetTargetedTiles (Board board, Point pos);
+    public abstract List<Tile> ShowTargetedTiles (Board board);
+    // public abstract List<Tile> GetTargetedTiles (Board board, Point pos);
 }
