@@ -18,8 +18,8 @@ public class AbilityTargetState : BattleState
         areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);
         HighlightTiles ();
-        TargetTiles();
-        SelectTiles();
+        // TargetTiles();
+        // SelectTiles();
         
         panelController.ShowBase(turn.actingUnit.gameObject);
         // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
@@ -27,9 +27,11 @@ public class AbilityTargetState : BattleState
             RefreshSecondaryBasePanel(selectPos);
     }
     public override void Exit (){
+        // Debug.Log("exitingggg");
         base.Exit ();
         board.UnhighlightTiles(highlightedTiles);
         board.UntargetTiles(targetedTiles);
+        selectedTiles.Add(turn.actingUnit.tile);
         board.UnselectTiles(selectedTiles);
         panelController.HideBase();
         statPanelController.HidePrimary();

@@ -5,7 +5,7 @@ using UnityEngine;
 public enum AbilityTypes
 {
     BASIC,
-    TECHNIQUE,
+    TRAIT,
     SKILL,
     BURST
 }

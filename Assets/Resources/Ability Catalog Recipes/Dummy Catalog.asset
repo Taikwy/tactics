@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f823deb77975585449c82735fad5baf4, type: 3}
-  m_Name: LevelSetter
+  m_Script: {fileID: 11500000, guid: 5abbaefbc901eb748ad7867c36863d37, type: 3}
+  m_Name: Dummy Catalog
   m_EditorClassIdentifier: 
-  mapLayout: {fileID: 0}
-  mapData: {fileID: 0}
-  tilePositions: []
-  tileTypes: 
+  entries:
+  - Basic

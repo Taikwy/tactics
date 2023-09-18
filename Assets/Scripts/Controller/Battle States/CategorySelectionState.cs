@@ -34,7 +34,7 @@ public class CategorySelectionState : BaseAbilityMenuState
         else
             menuOptions.Clear();
         menuTitle = "Action";
-        menuOptions.Add("ATTACK");
+        // menuOptions.Add("ATTACK");
         AbilityCatalog catalog = turn.actingUnit.GetComponentInChildren<AbilityCatalog>();
         for (int i = 0; i < catalog.CategoryCount(); ++i)
             menuOptions.Add( catalog.GetCategory(i).name );

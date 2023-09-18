@@ -83,34 +83,6 @@ public class Board : MonoBehaviour
     //     }
     // }
 
-    
-
-    // public void HighlightMoveTiles (List<Tile> tiles){
-    //     // Debug.Log("highlight " + tiles.Count );
-    //     for (int i = tiles.Count - 1; i >= 0; --i){
-    //         // tiles[i].highlightRenderer.color = moveHighlightColor;
-    //         tiles[i].highlightRenderer.enabled = true;
-    //         tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
-    //         tiles[i].highlightRenderer.color = moveHighlightColor;
-    //     }
-    // }
-    // public void HighlightAttackTiles (List<Tile> tiles){
-    //     for (int i = tiles.Count - 1; i >= 0; --i){
-    //         // tiles[i].highlightRenderer.color = attackHighlightColor;
-    //         tiles[i].highlightRenderer.enabled = true;
-    //         tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
-    //         tiles[i].highlightRenderer.color = attackHighlightColor;
-    //     }
-    // }
-    // public void HighlightAllyTiles (List<Tile> tiles){
-    //     for (int i = tiles.Count - 1; i >= 0; --i){
-    //         // tiles[i].highlightRenderer.color = allyHighlightColor;
-    //         tiles[i].highlightRenderer.enabled = true;
-    //         tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
-    //         tiles[i].highlightRenderer.color = allyHighlightColor;
-    //     }
-    // }
-
     public void HighlightTiles (List<Tile> tiles, OverlayColor type){
         Color temp = Color.white;
         switch(type){
@@ -126,7 +98,7 @@ public class Board : MonoBehaviour
             case OverlayColor.HEAL:
                 break;
         }
-        temp.a = .4f;
+        temp.a = .35f;
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].highlightRenderer.enabled = true;
             tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
@@ -135,19 +107,10 @@ public class Board : MonoBehaviour
     }
     public void UnhighlightTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
-            // tiles[i].GetComponent<SpriteRenderer>().sprite = tiles[i].defaultSprite;
-            // tiles[i].highlightRenderer.color = new Color(1,1,1, 0f);
             tiles[i].highlightRenderer.enabled = false;
         }
-            //tiles[i].GetComponent<Renderer>().material.SetColor("_Color", defaultTileColor);
     }
-    public void TargetTiles (List<Tile> tiles){
-        for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].targetRenderer.enabled = true;
-            tiles[i].targetRenderer.sprite = tiles[i].targetSprite;
-            tiles[i].targetRenderer.color = attackHighlightColor;
-        }
-    }
+    
     public void TargetTiles (List<Tile> tiles, OverlayColor type){
         Color temp = Color.white;
         switch(type){
@@ -163,7 +126,7 @@ public class Board : MonoBehaviour
             case OverlayColor.HEAL:
                 break;
         }
-        temp.a = .5f;
+        temp.a = .8f;
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].targetRenderer.enabled = true;
             tiles[i].targetRenderer.sprite = tiles[i].targetSprite;
@@ -176,13 +139,6 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void SelectTiles (List<Tile> tiles){
-        for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].selectRenderer.enabled = true;
-            tiles[i].selectRenderer.sprite = tiles[i].selectSprite;
-            tiles[i].selectRenderer.color = Color.white;
-        }
-    }
     public void SelectTiles (List<Tile> tiles, OverlayColor type){
         Color temp = Color.white;
         switch(type){

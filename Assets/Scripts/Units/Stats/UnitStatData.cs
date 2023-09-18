@@ -27,8 +27,6 @@ public class UnitStatData : ScriptableObject
     // Stats statsScript;
     // public String unitName;
 
-    public bool canFly = false;
-
 
     public int minLevel = 1;
     public int maxLevel = 20;

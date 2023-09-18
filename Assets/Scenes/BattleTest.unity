@@ -1549,7 +1549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraRig: {fileID: 1742690635}
   board: {fileID: 550533396}
-  levelData: {fileID: 11400000, guid: 09eea12c879a5d14e98059a793d1a53a, type: 2}
+  levelData: {fileID: 11400000, guid: 5f83d828f47b71f4fa9a8b17bcf7a27a, type: 2}
   tileSelectionIndicator: {fileID: 1683587603}
   selectPos:
     x: 0
@@ -2054,9 +2054,9 @@ MonoBehaviour:
   moveHighlightColor: {r: 0, g: 0.27205753, b: 1, a: 0.47058824}
   attackHighlightColor: {r: 1, g: 0, b: 0, a: 0.47058824}
   allyHighlightColor: {r: 0, g: 1, b: 0.15721321, a: 0.47058824}
-  moveColor: {r: 0, g: 0.27058825, b: 1, a: 1}
+  moveColor: {r: 0, g: 0.12997723, b: 1, a: 1}
   passColor: {r: 0, g: 1, b: 0.15686275, a: 1}
-  attackColor: {r: 1, g: 0, b: 0, a: 1}
+  attackColor: {r: 1, g: 0.30571634, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0.15686275, a: 1}
   buffColor: {r: 0, g: 1, b: 0.9725491, a: 1}
   debuffColor: {r: 1, g: 0, b: 0.48627454, a: 1}

@@ -207,8 +207,8 @@ GameObject:
   - component: {fileID: 4727950310008289774}
   - component: {fileID: 6977951273178356517}
   - component: {fileID: 8393619980562142053}
-  - component: {fileID: 8891747609851313457}
-  - component: {fileID: 7926230499234613224}
+  - component: {fileID: 5738377793748526022}
+  - component: {fileID: 1070431732668507379}
   m_Layer: 0
   m_Name: Unique
   m_TagString: Untagged
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 0
---- !u!114 &8891747609851313457
+--- !u!114 &5738377793748526022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,27 +271,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4501593128554951558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 4
-  tilesInRange: []
-  targetsInRange: []
---- !u!114 &7926230499234613224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4501593128554951558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d876e6f5dd31b274cb1fc518264d1a32, type: 3}
+  m_Script: {fileID: 11500000, guid: e93fdc0ddc106ef4cb10bd5dda7ad325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 3
+  numTargets: 1
   targets: []
+--- !u!114 &1070431732668507379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4501593128554951558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b597e8041048347b9a1c8fbb269263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3
+  tilesInRange: []
+  targetsInRange: []
 --- !u!1 &8446525712287416133
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAbility: {fileID: 0}
-  techniqueAbility: {fileID: 0}
+  traitAbility: {fileID: 0}
   skillAbility: {fileID: 0}
   burstAbility: {fileID: 0}
 --- !u!1 &8851829163385392909
@@ -431,4 +431,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splashRange: 1
+  splashRange: 0

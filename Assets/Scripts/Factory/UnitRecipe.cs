@@ -5,10 +5,16 @@ using UnityEngine;
 public class UnitRecipe : ScriptableObject 
 {
     public string unitBase;
+     [Header("Sprites")]
+    public Sprite sprite;
+    public Sprite portrait;
+    
+     [Header("stat curves")]
     public XPCurveData xpData;
     public UnitStatData statData;
-    public Sprite portrait;
     public string job;
+    
+     [Header("attacks and stuff")]
     public string attack;
     public string abilityCatalog;
     public MovementTypes movementType;

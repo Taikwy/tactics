@@ -27,17 +27,5 @@ public class AttackHitRate : HitRate
         Debug.Log("defender stats " + TStats[StatTypes.SP] + " " + TStats[StatTypes.LU] + " " + TStats[StatTypes.MV]);
         Debug.Log("attacking hit rate " + attackingHitRate +  " evasion " + evasion + " final hit rate " + finalHitRate);
         return finalHitRate;
-
-
-        // if (AutomaticHit(attacker, target))
-        //     return Final(0);
-        // if (AutomaticMiss(attacker, target))
-        //     return Final(100);
-        // int evade = GetEvade(target);
-        // evade = AdjustForRelativeFacing(attacker, target, evade);
-        // evade = AdjustForStatusEffects(attacker, target, evade);
-        // evade = Mathf.Clamp(evade, 5, 95);
-        // return evade;
-        // return Final(evade);
     }
 }

@@ -127,12 +127,14 @@ public class ConfirmAbilityTargetState : BattleState
 			AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
 			if (targeter.IsTarget(target))
 			{
-                Debug.Log("targets");
+                // Debug.Log("targets");
 				HitRate hitRate = targeter.GetComponent<HitRate>();
 				hitrate = hitRate.CalculateHitRate(target);
 
 				BaseAbilityEffect effect = targeter.GetComponent<BaseAbilityEffect>();
 				amount = effect.Predict(target);
+                
+                // Debug.Log("predicted damage " + amount);
 				break;
 			}
 		}

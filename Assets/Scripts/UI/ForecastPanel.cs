@@ -23,8 +23,6 @@ public class ForecastPanel : MonoBehaviour
   }
   public void SetStats (Unit actor, GameObject target, GameObject ability, float chance, int amount)
   {
-
-    
       actorPortrait.sprite = actor.portrait;
       targetPortrait.sprite = target.GetComponent<Unit>().portrait;
       // arrow.fillAmount = chance / 100f;

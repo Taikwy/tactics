@@ -18,25 +18,27 @@ public static class UnitFactory
 	{
 		GameObject unit = InstantiatePrefab("Units/" + recipe.unitBase);
 		unit.name = recipe.name;
+		unit.GetComponent<SpriteRenderer>().sprite = recipe.sprite;
 
-		Unit unitScript = unit.AddComponent<Unit>();
-		unitScript.statData = recipe.statData;
-		unitScript.xpData = recipe.xpData;
-		unitScript.portrait = recipe.portrait;
-		// AddStats(unit);
+		// Unit unitScript = unit.AddComponent<Unit>();
+		// unitScript.statData = recipe.statData;
+		// unitScript.xpData = recipe.xpData;
+		// unitScript.portrait = recipe.portrait;
+		InitUnit(unit, recipe);
+		AddStats(unit, recipe.statData);
 		
 		AddMovement(unit, recipe.movementType);
 		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
 		// AddJob(unit, recipe.job);
 
-		// AddRank(unit, level);
+		AddLevel(unit, level, recipe.xpData);
 		// unit.AddComponent<Health>();
 		// unit.AddComponent<Mana>();
 
 		// AddAttack(unit, recipe.attack);
-		// AddAbilityCatalog(unit, recipe.abilityCatalog);
-		// AddAlliance(unit, recipe.alliance);
+		AddAbilityCatalog(unit, recipe.abilityCatalog);
+		AddAlliance(unit, recipe.alliance);
 
 		// AddAttackPattern(unit, recipe.strategy);
 		return unit;
@@ -55,9 +57,18 @@ public static class UnitFactory
 		return instance;
 	}
 
-	static void AddStats (GameObject obj){
+	static void InitUnit(GameObject unit, UnitRecipe recipe){
+		Unit unitScript = unit.AddComponent<Unit>();
+		// unitScript.statData = recipe.statData;
+		// unitScript.xpData = recipe.xpData;
+		unitScript.portrait = recipe.portrait;
+	}
+
+	static Stats AddStats (GameObject obj, UnitStatData data){
 		Stats s = obj.AddComponent<Stats>();
-		s.SetValue(StatTypes.LV, 1, false);
+		s.statData = data;
+		s.InitBaseStats();
+		return s;
 	}
 
 	static void AddJob (GameObject obj, string name){
@@ -87,10 +98,10 @@ public static class UnitFactory
 		alliance.type = type;
 	}
 
-	// static void AddRank (GameObject obj, int level){
-	// 	Rank rank = obj.AddComponent<Rank>();
-	// 	rank.Init(level);
-	// }
+	static void AddLevel (GameObject obj, int level, XPCurveData data){
+		UnitLevel unitLevel = obj.AddComponent<UnitLevel>();
+		unitLevel.Init(level, data);
+	}
 
 	static void AddAttack (GameObject obj, string name){
 		GameObject instance = InstantiatePrefab("Abilities/" + name);
@@ -116,8 +127,8 @@ public static class UnitFactory
 				case AbilityTypes.BASIC:
 					catalogScript.basicAbility = ability;
 					break;
-				case AbilityTypes.TECHNIQUE:
-					catalogScript.techniqueAbility = ability;
+				case AbilityTypes.TRAIT:
+					catalogScript.traitAbility = ability;
 					break;
 				case AbilityTypes.SKILL:
 					catalogScript.skillAbility = ability;

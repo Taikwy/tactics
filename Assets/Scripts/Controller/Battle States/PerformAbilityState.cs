@@ -62,11 +62,14 @@ public class PerformAbilityState : BattleState
                     }
                     HitRate rate = currentEffect.GetComponent<HitRate>();
                     float chance = rate.CalculateHitRate(target);
-                    if (Random.Range(0, 101) > chance)
+                    Debug.Log("chance : " + chance);
+                    if (Random.Range(0, 1f) > chance)
                     {
                         // A Miss!
+                    Debug.Log("ability missed!");
                         continue;
                     }
+                    Debug.Log("ability hit!");
                     effectHit[j] = true;
                     currentEffect.Apply(target);
                 }

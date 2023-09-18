@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbilityCatalog : MonoBehaviour 
 {
-    public GameObject basicAbility, techniqueAbility, skillAbility, burstAbility;
+    public GameObject basicAbility, traitAbility, skillAbility, burstAbility;
     public int CategoryCount ()
     {
         return transform.childCount;

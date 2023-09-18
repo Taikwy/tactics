@@ -8,8 +8,9 @@ public class MoveSequenceState : BattleState
         base.Enter ();
         StartCoroutine("Sequence");
 
-        Debug.Log("moving and adding xp");
-        turn.actingUnit.GainExperience(100);
+        // Debug.Log("moving and adding xp");
+        // ExperienceManager.GainExperience(100, turn.actingUnit);
+        // turn.actingUnit.GainExperience(100);
     }
     
     // IEnumerator Sequence (){
