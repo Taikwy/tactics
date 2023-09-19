@@ -54,6 +54,10 @@ public class EventCenter{
 			
 			list.Add( handler );
 		}
+		if(eventName == "BaseAbilityEffect.GetAttackEvent"){
+			Debug.Log("event being added by " + sender + " for " + eventName);
+			Debug.Log("handlers: " + handler);
+		}
 	}
 	
     //shorthand method to remove an observer of event
@@ -125,18 +129,29 @@ public class EventCenter{
 	}
 	
 	public void PostEvent (string eventName, System.Object sender, System.Object args){
+		// if(eventName == "BaseAbilityEffect.GetAttackEvent"){
+		// 	Debug.Log("event being posted by " + sender + " for " + eventName);
+		// 	// Debug.Log("ARGS: " + args);
+		// }
+		// if(eventName == "TurnOrderController.turnBegan"){
+		// 	Debug.Log("turn beginning");
+		// 	Debug.Log("event being posted by " + sender + " for " + eventName);
+		// 	// Debug.Log("ARGS: " + args);
+		// }
+
 		if (string.IsNullOrEmpty(eventName)){
 			Debug.LogError("Cannot invoke unnamed event");
 			return;
 		}
-		
 		// checks if event is monitored
 		if (!_table.ContainsKey(eventName))
 			return;
 		
-		//posts to subscribers that gave a sender
+		//gets table holding all senders and respective handlers
 		SenderTable subTable = _table[eventName];
+		//posts to subscribers that gave a sender
 		if (sender != null && subTable.ContainsKey(sender)){
+			//gets handler methods given the sender
 			List<Handler> handlers = subTable[sender];
 			currentlyInvoking.Add(handlers);
 			for (int i = 0; i < handlers.Count; ++i)
@@ -146,6 +161,7 @@ public class EventCenter{
 		
 		//posts to subscribers that did not give a sender
 		if (subTable.ContainsKey(this)){
+			// Debug.Log("IF YOU'RE SEEING THIS THAT'S WEIRD CUZ IM USING THE EVENTEXTENSION TO CALL ALL EVENTCENTER FUNCTIONS SO THERE SHOULD ALWYAS BE A SENDER");
 			List<Handler> handlers = subTable[this];
 			currentlyInvoking.Add(handlers);
 			for (int i = 0; i < handlers.Count; ++i)

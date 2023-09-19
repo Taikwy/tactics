@@ -14,10 +14,16 @@ public class TurnOrderController : MonoBehaviour
     const int turnActivation = 1000;
     const int turnCost = 500;
 
+    public const string RoundBeganEvent = "TurnOrderController.roundBegan";
+	public const string TurnCheckEvent = "TurnOrderController.turnCheck";
+	public const string TurnBeganEvent = "TurnOrderController.turnBegan";
+	public const string TurnCompletedEvent = "TurnOrderController.turnCompleted";
+	public const string RoundEndedEvent = "TurnOrderController.roundEnded";
 
     public IEnumerator Round (){
         BattleController battleController = GetComponent<BattleController>();
         while (true){
+			this.PostEvent(RoundBeganEvent);
             List<Unit> units = new List<Unit>( battleController.units );
             SortUnitsTurnOrder(units);
 
@@ -32,11 +38,13 @@ public class TurnOrderController : MonoBehaviour
                 SortUnitsTurnOrder(units);
             }
 
+
             //Loops thru all 
             for (int i = units.Count - 1; i >= 0; --i){
-                //If one of the units AV is below 0, it can act and will change to its turn
+                //If the current units AV is below 0, it can act and will change to its turn
                 if (CanAct(units[i])){
                     battleController.turn.Change(units[i]);
+					units[i].PostEvent(TurnBeganEvent);
                     yield return units[i];
 
                     //Calculation for setting the new AV
@@ -51,10 +59,13 @@ public class TurnOrderController : MonoBehaviour
 
                     //Sets the current unit its new AV
                     statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
+
+					units[i].PostEvent(TurnCompletedEvent);
                 }
             }
         }
     }
+    
 
     //Sorts unit by remaining Action Value
     public void SortUnitsTurnOrder(List<Unit> units){
@@ -69,50 +80,20 @@ public class TurnOrderController : MonoBehaviour
         statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(newAV), false);
     }
 
-    public IEnumerator OldRound (){
-        BattleController bc = GetComponent<BattleController>();;
-        while (true){
-            // this.PostNotification(RoundBeganNotification);
-            List<Unit> units = new List<Unit>( bc.units );
-            for (int i = 0; i < units.Count; ++i) {
-                Stats s = units[i].GetComponent<Stats>();
-                s[StatTypes.TurnCounter] += s[StatTypes.SP];
-            }
-
-            units.Sort( (a,b) => GetCounter(a).CompareTo(GetCounter(b)) );
-
-            for (int i = units.Count - 1; i >= 0; --i){
-                if (CanTakeTurn(units[i])){
-                    bc.turn.Change(units[i]);
-                    yield return units[i];
-
-                    int cost = turnCost;
-                    if (bc.turn.hasUnitMoved)
-                        cost += moveCost;
-                    if (bc.turn.hasUnitActed)
-                        cost += actionCost;
-                    Stats s = units[i].GetComponent<Stats>();
-                    s.SetValue(StatTypes.TurnCounter, s[StatTypes.TurnCounter] - cost, false);
-                    // units[i].PostNotification(TurnCompletedNotification);
-                }
-            }
-            
-            // this.PostNotification(RoundEndedNotification);
-        }
-    }
     bool CanAct (Unit target){
         BaseException exc = new BaseException( GetAV(target) <= 0 );
+        target.PostEvent( TurnCheckEvent, exc );
         return exc.toggle;
     }
     float GetAV (Unit target){
         return target.GetComponent<Stats>()[StatTypes.AV];
     }
 
-    bool CanTakeTurn (Unit target){
-        BaseException exc = new BaseException( GetCounter(target) >= turnActivation );
-        // target.PostNotification( TurnCheckNotification, exc );
-        return exc.toggle;
-    }
+    // bool CanTakeTurn (Unit target){
+    //     BaseException exc = new BaseException( GetCounter(target) >= turnActivation );
+    //     target.PostEvent( TurnCheckEvent, exc );
+    //     return exc.toggle;
+    // }
     
     int GetCounter (Unit target){
         return target.GetComponent<Stats>()[StatTypes.TurnCounter];

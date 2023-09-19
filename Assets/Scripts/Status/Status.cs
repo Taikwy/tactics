@@ -53,6 +53,23 @@ public class Status : MonoBehaviour
 			this.PostEvent(AddedNotification, effect);
 		}
 	}
+	public void Add(GameObject statusPrefab){
+		
+		Debug.Log("adding status");
+		GameObject statusObj = Instantiate(statusPrefab, gameObject.transform);
+		this.PostEvent(AddedNotification, statusObj.GetComponent<StatusEffect>());
+
+		// StatusEffect effect = GetComponentInChildren<StatusEffect>();
+		// if(effect != null)
+		// 	CheckStatus();
+		// else{
+		// 	GameObject statusObj = new GameObject( typeof(StatusEffect).Name );
+		// 	statusObj.transform.SetParent(gameObject.transform);
+		// 	effect = statusObj.AddComponent<StatusEffect>();
+		// 	statusObj.AddComponent<StatusCondition>();
+		// 	this.PostEvent(AddedNotification, effect);
+		// }
+	}
 	public void Remove(StatusCondition condition){
 		StatusEffect effect = condition.GetComponentInChildren<StatusEffect>();
 		

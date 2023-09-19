@@ -11,22 +11,31 @@ public class ConfirmAbilityTargetState : BattleState
     public override void Enter (){
         base.Enter ();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
-        // targetedTiles = areaScript.GetTargetedTiles(board, selectPos);
         targetedTiles = areaScript.targets;
-        // board.SelectTiles(tiles);
+        //sets cursor over the first target
         SelectTile(areaScript.targets[0].position);
-        // board.HighlightAttackTiles(targetedTiles);
+        //highlights all the tiles that are targeted, will need new logic here to properly overlay things
         board.HighlightTiles(targetedTiles, Board.OverlayColor.ATTACK);
         FindTargets();
         RefreshBasePanel(turn.actingUnit.tile.position);
-        SetTarget(0);
+        
         if (turn.targets.Count > 0)
         {
             // Debug.Log("targetting " + turn.targets.Count);
             forecastPanel.Show();
             SetTarget(0);
         }
+
+        if (turn.targets.Count > 0)
+		{
+			// if (driver.Current == Drivers.Human)
+			// 	hitSuccessIndicator.Show();
+			SetTarget(0);
+		}
+		// if (driver.Current == Drivers.Computer)
+		// 	StartCoroutine(ComputerDisplayAbilitySelection());
     }
+
     public override void Exit (){
         base.Exit ();
         areaScript.targets.Clear();
@@ -42,8 +51,6 @@ public class ConfirmAbilityTargetState : BattleState
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
         if (e.info.y > 0 || e.info.x > 0){
             SetTarget(currentTarget + 1);
-            // SelectTile(turn.targets[currentTarget].position);
-            // Tile target = turn.targets[currentTarget];
         }
         else{
             SetTarget(currentTarget - 1);
@@ -60,22 +67,14 @@ public class ConfirmAbilityTargetState : BattleState
             SelectTile(turn.actingUnit.tile.position);
         }
     }
+    //find all tiles with a thing that can be targeted, usually units but also maybe other things in the map
     void FindTargets (){
         turn.targets = new List<Tile>();
-        AbilityEffectTarget[] targeters = turn.selectedAbility.GetComponentsInChildren<AbilityEffectTarget>();
-        for (int i = 0; i < targetedTiles.Count; ++i){
-            if (IsTarget(targetedTiles[i], targeters))
-                turn.targets.Add(targetedTiles[i]);
-        }
+        for (int i = 0; i < targetedTiles.Count; ++i)
+			if (turn.selectedAbility.IsTarget(targetedTiles[i]))
+				turn.targets.Add(targetedTiles[i]);
     }
     
-    bool IsTarget (Tile tile, AbilityEffectTarget[] list){
-        for (int i = 0; i < list.Length; ++i)
-        if (list[i].IsTarget(tile))
-            return true;
-        
-        return false;
-    }
     void SetTarget (int target)
     {
         currentTarget = target;
@@ -83,40 +82,17 @@ public class ConfirmAbilityTargetState : BattleState
             currentTarget = turn.targets.Count - 1;
         if (currentTarget >= turn.targets.Count)
             currentTarget = 0;
-        if (turn.targets.Count > 0)
-        {
+
+        if (turn.targets.Count > 0){
             RefreshSecondaryBasePanel(turn.targets[currentTarget].position);
             UpdateHitSuccessIndicator ();
             SelectTile(turn.targets[currentTarget].position);
         }
     }
-    // void UpdateHitSuccessIndicator ()
-    // {
-    //     float hitrate = CalculateHitRate();
-    //     int damage = EstimateDamage();
-    //     hitSuccessIndicator.SetStats(hitrate, damage);
-    // }
-    // void UpdateHitSuccessIndicator (){
-    //     float hitrate = 0;
-    //     int amount = 0;
-    //     Tile target = turn.targets[currentTarget];
-    //     AbilityEffectTarget[] targeters = turn.ability.GetComponentsInChildren<AbilityEffectTarget>();
-    //     for (int i = 0; i < targeters.Length; ++i)
-    //     {
-    //         if (targeters[i].IsTarget(target))
-    //         {
-    //             HitRate hitRate = targeters[i].GetComponent<HitRate>();
-    //             hitrate = hitRate.CalculateHitRate(target);
-    //             BaseAbilityEffect effect = targeters[i].GetComponent<BaseAbilityEffect>();
-    //             amount = effect.Predict(target);
-    //             break;
-    //         }
-    //     }
-    //     hitSuccessIndicator.SetStats(hitrate, amount);
-    // }
+
     void UpdateHitSuccessIndicator ()
 	{
-        Debug.Log("updating");
+        Debug.Log("updating hit success indicator");
 		float hitrate = 0;
 		int amount = 0;
 		Tile target = turn.targets[currentTarget];
@@ -141,16 +117,12 @@ public class ConfirmAbilityTargetState : BattleState
 
 		forecastPanel.SetStats(turn.actingUnit, target.content, turn.selectedAbility.gameObject, hitrate, amount);
 	}
-    float CalculateHitRate ()
-    {
-        //Will have to change this if i want to let things attack inanimate objects
-        // Unit target = turn.targets[currentTarget].content.GetComponent<Unit>();
-        Tile target = turn.targets[currentTarget];
-        HitRate hitrateScript = turn.selectedAbility.GetComponentInChildren<HitRate>();
-        return hitrateScript.CalculateHitRate(target);
-    }
-    int EstimateDamage ()
-    {
-        return 50;
-    }
+
+    //ai stuff later
+    // IEnumerator ComputerDisplayAbilitySelection ()
+	// {
+	// 	owner.battleMessageController.Display(turn.ability.name);
+	// 	yield return new WaitForSeconds (2f);
+	// 	owner.ChangeState<PerformAbilityState>();
+	// }
 }

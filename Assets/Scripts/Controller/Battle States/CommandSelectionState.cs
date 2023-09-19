@@ -55,7 +55,7 @@ public class CommandSelectionState : BaseAbilityMenuState
                 owner.ChangeState<SelectUnitState>();
                 break;
             case 3: // Pass
-                Debug.Log("wait");
+                // Debug.Log("wait");
                 // owner.ChangeState<EndFacingState>();
                 
                 owner.ChangeState<SelectUnitState>();

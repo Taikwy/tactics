@@ -11,7 +11,7 @@ public class Turn
     public int actionCost;
     public bool lockMove;
     Tile startTile;
-    Directions startDir;
+    // Directions startDir;
     // public GameObject ability;
     public Ability selectedAbility;
     public List<Tile> targets;

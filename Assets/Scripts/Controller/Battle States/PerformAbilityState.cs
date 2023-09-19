@@ -26,21 +26,18 @@ public class PerformAbilityState : BattleState
         else
             owner.ChangeState<CommandSelectionState>();
     }
-    
-    void TemporaryAttackExample ()
-    {
-        // Debug.Log("temporrary attacking");
-        for (int i = 0; i < turn.targets.Count; ++i) {
-            GameObject obj = turn.targets[i].content;
-            Stats stats = obj != null ? obj.GetComponentInChildren<Stats>() : null;
-            if (stats != null){
-                stats[StatTypes.HP] -= 50;
-                if (stats[StatTypes.HP] <= 0)
-                    Debug.Log("Killed unit!", obj);
-            }
-        }
-    }
+
     void ApplyAbility ()
+	{
+		turn.selectedAbility.Perform(turn.targets);
+	}
+	
+	// bool UnitHasControl ()
+	// {
+	// 	return turn.actingUnit.GetComponentInChildren<KnockOutStatusEffect>() == null;
+	// }
+
+    void OldApplyAbility ()
     {
         BaseAbilityEffect[] effects = turn.selectedAbility.GetComponentsInChildren<BaseAbilityEffect>();
         bool[] effectHit = new bool[effects.Length];
@@ -66,7 +63,7 @@ public class PerformAbilityState : BattleState
                     if (Random.Range(0, 1f) > chance)
                     {
                         // A Miss!
-                    Debug.Log("ability missed!");
+                        Debug.Log("ability missed!");
                         continue;
                     }
                     Debug.Log("ability hit!");
