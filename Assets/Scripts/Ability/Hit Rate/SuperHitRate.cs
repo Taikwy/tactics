@@ -8,7 +8,6 @@ public class SuperHitRate : HitRate
     public float luckMultiplier = 1;
     public float accuracyMultiplier = 1;
     public float superBonus = 150;
-    public bool guaranteed = false;
     public override float CalculateHitRate (Tile target)
     {
         if(target.content.GetComponent<Unit>() == null || guaranteed)

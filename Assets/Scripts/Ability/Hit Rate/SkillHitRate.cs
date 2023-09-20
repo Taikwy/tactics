@@ -8,7 +8,6 @@ public class SkillHitRate : HitRate
     public float luckMultiplier = .5f;
     public float accuracyMultiplier = 1;
     public float skillBonus = 0;
-    public bool guaranteed = false;
     public override float CalculateHitRate (Tile target)
     {
         if(target.content.GetComponent<Unit>() == null || guaranteed)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DamageAbilityEffect : BaseAbilityEffect 
 {
-    #region Public
 	public override int Predict (Tile target)
 	{
 		Debug.Log("predicting damage ability effect");
@@ -54,5 +53,8 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		s[StatTypes.HP] += value;
 		return value;
 	}
-	#endregion
+
+	protected override void OnPrimaryHit(object sender, object args){}
+	protected override void OnPrimaryMiss(object sender, object args){}
+	
 }

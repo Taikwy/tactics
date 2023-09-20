@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class HitRate : MonoBehaviour 
 {
-    #region Notifications
 	/// <summary>
 	/// Includes a toggleable MatchException argument which defaults to false.
 	/// </summary>
@@ -21,21 +20,15 @@ public abstract class HitRate : MonoBehaviour
 	/// should modify the arg2 parameter.
 	/// </summary>
 	public const string StatusCheckNotification = "HitRate.StatusCheckNotification";
-	#endregion
 
-	#region Fields
 	public virtual bool IsAngleBased { get { return true; }}
 	protected Unit attacker;
-	#endregion
+    public bool guaranteed = false;
 
-	#region MonoBehaviour
 	protected virtual void Start ()
 	{
 		attacker = GetComponentInParent<Unit>();
 	}
-	#endregion
-
-	#region Public
 	/// <summary>
 	/// Returns a value in the range of 0 t0 100 as a percent chance of
 	/// an ability succeeding to hit
@@ -45,15 +38,14 @@ public abstract class HitRate : MonoBehaviour
     //im assuming this replaces the thingy in perform ability state
 	public virtual bool RollForHit (Tile target)
 	{
+		if(guaranteed)
+			return true;
 		// float roll = Random.Range(0, 1f);
-		float roll = Random.Range(0, .5f);
+		float roll = Random.Range(0, 1f);
 		float chance = CalculateHitRate(target);
         Debug.Log("rolled for hit " + roll + " " + chance);
 		return roll <= chance;
 	}
-	#endregion
-
-	#region Protected
 	// protected virtual bool AutomaticHit (Unit target)
 	// {
 	// 	MatchException exc = new MatchException(attacker, target);
@@ -79,5 +71,4 @@ public abstract class HitRate : MonoBehaviour
 	{
 		return 100 - evade;
 	}
-	#endregion
 }

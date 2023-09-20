@@ -28,16 +28,16 @@ public class InitBattleState : BattleState
     void SpawnFactory(){
         string[] unitRecipes = new string[]{
             "Paladin",
-            // "Witch",
-            // "Slime",
-            // "Mushroom",
+            "Witch",
+            "Slime",
+            "Mushroom",
             "Snake"
         };
         Point[] spawnLocations = new Point[]{
             new Point(2,3),
-            // new Point(3,3),
-            // new Point(6,6),
-            // new Point(4,7),
+            new Point(3,3),
+            new Point(6,6),
+            new Point(4,7),
             new Point(5,8),
         };
         for (int i = 0; i < unitRecipes.Length; ++i)

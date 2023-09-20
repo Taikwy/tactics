@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AttackHitRate : HitRate 
 {
-    public bool guaranteed = false;
     public override float CalculateHitRate (Tile target)
     {
         if(target.content.GetComponent<Unit>() == null || guaranteed)

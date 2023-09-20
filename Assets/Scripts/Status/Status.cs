@@ -55,7 +55,7 @@ public class Status : MonoBehaviour
 	}
 	public void Add(GameObject statusPrefab){
 		
-		Debug.Log("adding status");
+		// Debug.Log("adding status");
 		GameObject statusObj = Instantiate(statusPrefab, gameObject.transform);
 		this.PostEvent(AddedNotification, statusObj.GetComponent<StatusEffect>());
 

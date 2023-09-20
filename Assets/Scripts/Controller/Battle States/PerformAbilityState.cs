@@ -50,7 +50,7 @@ public class PerformAbilityState : BattleState
                 AbilityEffectTarget targeter = currentEffect.GetComponent<AbilityEffectTarget>();
                 if (targeter.IsTarget(target))
                 {
-                    if(currentEffect.isSubEffect){
+                    if(currentEffect.hasSubEffects){
                         //Checks if the previous, ie main effect hit successfully
                         if(!effectHit[j-1]){
                             //previous effect did not hit, skip the bonus effect

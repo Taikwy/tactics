@@ -138,6 +138,10 @@ public class EventCenter{
 		// 	Debug.Log("event being posted by " + sender + " for " + eventName);
 		// 	// Debug.Log("ARGS: " + args);
 		// }
+		// if(eventName == "BaseAbilityEffect.HitEvent"){
+		// 	Debug.Log("event being posted by " + sender + " for " + eventName);
+		// 	Debug.Log("ARGS: " + args);
+		// }
 
 		if (string.IsNullOrEmpty(eventName)){
 			Debug.LogError("Cannot invoke unnamed event");

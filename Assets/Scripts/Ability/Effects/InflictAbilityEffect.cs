@@ -59,4 +59,8 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		condition.duration = duration;
 		return 0;
 	}
+	
+	protected override void OnPrimaryHit(object sender, object args){
+	}
+	protected override void OnPrimaryMiss(object sender, object args){}
 }
