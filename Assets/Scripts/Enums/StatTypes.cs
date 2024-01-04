@@ -8,18 +8,25 @@ public enum StatTypes
     XP,                 //Experience - indicates unit's current experience
     HP,                 //Health Points - indicates unit's current health
     MHP,                //Max Health Points - indicates unit's max health
-    EP,                 //Energy Points - indicates unit's current energy
-    MEP,                //Max Energy Points - indicates unit's max energy
-    
-    EN,
-    MEN,
+    BP,                 //Energy Points - indicates unit's current energy
+    MBP,                //Max Energy Points - indicates unit's max energy
+    SKP,                //Skill Points - indicates unit's current skill points
+    MSKP,               //Max Skill Points
+    MV,                 //Move - indicates unit's max move range
+
     AT,                 //Attack
     DF,                 //Defense
+    SP,                 //Speed
+
+    CP,                 //Crit Percent - only from weapons
+    CD,                 //Crit DMG - only from weapons
+
+    EN,
+    MEN,
     SK,
     LU,
     AC,
-    SP,                 //Speed
-    MV,                 //Move - indicates unit's max move range
+
     AV,                 //Action Value - indicates unit's current action value
     TurnCounter,
     Count
