@@ -53,7 +53,7 @@ public class InitBattleState : BattleState
         SelectTile(units[0].tile.position);
     }
 
-    void SpawnTestUnits ()
+    void SpawnTestUnits ()    //curerently unused, i think this was the old version of spawnfactory?
     {
         string[] unitRecipes = new string[]{
             // "Paladin",

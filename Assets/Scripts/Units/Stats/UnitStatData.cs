@@ -8,20 +8,37 @@ public class UnitStatData : ScriptableObject
 {
     
 
+    // public static readonly StatTypes[] statOrder = new StatTypes[]
+    // {
+    //     StatTypes.MHP,
+    //     StatTypes.AT,
+    //     StatTypes.DF,
+    //     StatTypes.SK,
+    //     StatTypes.LU,
+    //     StatTypes.SP,
+    //     StatTypes.MV
+    // };
+
     public static readonly StatTypes[] statOrder = new StatTypes[]
     {
         StatTypes.MHP,
+        StatTypes.BP,
+        StatTypes.SKP,
+        StatTypes.MV,
+
         StatTypes.AT,
         StatTypes.DF,
-        StatTypes.SK,
-        StatTypes.LU,
         StatTypes.SP,
-        StatTypes.MV
+        
+        StatTypes.CP,
+        StatTypes.CD,
     };
 
-    [Tooltip("Max HP, Attack, Defense, Skill, Luck, Speed, Move")]
+    // [Tooltip("Max HP, Attack, Defense, Skill, Luck, Speed, Move")]
+    [Tooltip("Max HP, Burst, Skill Points, Move, Attack, Defense, Speed, Crit%, CritDMG")]
     public int[] baseStats = new int[ statOrder.Length ];
-    [Tooltip("Max HP, Attack, Defense, Skill, Luck, Speed, Move")]
+    // [Tooltip("Max HP, Attack, Defense, Skill, Luck, Speed, Move")]
+    [Tooltip("Max HP, Burst, Skill Points, Move, Attack, Defense, Speed, Crit%, CritDMG")]
     public float[] growStats = new float[ statOrder.Length ];
     
     // Stats statsScript;
