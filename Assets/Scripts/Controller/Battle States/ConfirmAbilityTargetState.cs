@@ -17,12 +17,14 @@ public class ConfirmAbilityTargetState : BattleState
         //highlights all the tiles that are targeted, will need new logic here to properly overlay things
         board.HighlightTiles(targetedTiles, Board.OverlayColor.ATTACK);
         FindTargets();
-        RefreshBasePanel(turn.actingUnit.tile.position);
+        RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
         if (turn.targets.Count > 0)
         {
             // Debug.Log("targetting " + turn.targets.Count);
             forecastPanel.Show();
+            
+            // RefreshSecondaryPanel(selectPos);
             SetTarget(0);
         }
 
@@ -43,7 +45,7 @@ public class ConfirmAbilityTargetState : BattleState
         board.UntargetTiles(targetedTiles);
         statPanelController.HidePrimary();
         statPanelController.HideSecondary();
-        panelController.HideBase();
+        panelController.HidePrimary();
 
         forecastPanel.Hide();
     }
@@ -84,7 +86,7 @@ public class ConfirmAbilityTargetState : BattleState
             currentTarget = 0;
 
         if (turn.targets.Count > 0){
-            RefreshSecondaryBasePanel(turn.targets[currentTarget].position);
+            RefreshSecondaryPanel(turn.targets[currentTarget].position);
             UpdateHitSuccessIndicator ();
             SelectTile(turn.targets[currentTarget].position);
         }

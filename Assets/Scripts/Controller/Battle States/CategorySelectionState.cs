@@ -8,12 +8,12 @@ public class CategorySelectionState : BaseAbilityMenuState
         base.Enter ();
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         
-            panelController.ShowBase(turn.actingUnit.gameObject);
+            panelController.ShowPrimary(turn.actingUnit.gameObject);
     }
     public override void Exit (){
         base.Exit ();
         statPanelController.HidePrimary();
-        panelController.HideBase();
+        panelController.HidePrimary();
     }
     // protected override void LoadMenu (){
     //     if (menuOptions == null){

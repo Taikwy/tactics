@@ -21,10 +21,11 @@ public class AbilityTargetState : BattleState
         // TargetTiles();
         // SelectTiles();
         
-        panelController.ShowBase(turn.actingUnit.gameObject);
-        // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
+        panelController.ShowPrimary(turn.actingUnit.gameObject);
+        // RefreshSecondaryPanel(selectPos);
+        panelController.ShowSecondary(turn.actingUnit.gameObject);
         if (rangeScript.directionOriented)
-            RefreshSecondaryBasePanel(selectPos);
+            RefreshSecondaryPanel(selectPos);
     }
     public override void Exit (){
         // Debug.Log("exitingggg");
@@ -33,7 +34,7 @@ public class AbilityTargetState : BattleState
         board.UntargetTiles(targetedTiles);
         selectedTiles.Add(turn.actingUnit.tile);
         board.UnselectTiles(selectedTiles);
-        panelController.HideBase();
+        panelController.HidePrimary();
         statPanelController.HidePrimary();
         statPanelController.HideSecondary();
     }
@@ -51,8 +52,10 @@ public class AbilityTargetState : BattleState
         }
         TargetTiles();
         SelectTiles();
-        // RefreshSecondaryBasePanel(selectPos);
-        RefreshBasePanel(selectPos);
+
+        
+        if(true)                                    //Add an if statement so abilities that cannot harm yourself cannot target urself and urself cannot come up on the second panel
+            RefreshSecondaryPanel(selectPos);
     }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){

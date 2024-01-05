@@ -11,12 +11,12 @@ public class SelectUnitState : BattleState
     public override void Exit (){
         base.Exit ();
         statPanelController.HidePrimary();
-        panelController.HideBase();
+        panelController.HidePrimary();
     }
     IEnumerator ChangeCurrentUnit (){
         owner.round.MoveNext();
         SelectTile(turn.actingUnit.tile.position);
-        RefreshBasePanel(selectPos);
+        RefreshPrimaryPanel(selectPos);
         yield return null;
         owner.ChangeState<CommandSelectionState>();
     }

@@ -15,7 +15,7 @@ public class MoveTargetState : BattleState
         tiles.Add(turn.actingUnit.tile);
         // board.HighlightMoveTiles(tiles);
         board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
-        RefreshBasePanel(selectPos);
+        RefreshPrimaryPanel(selectPos);
     }
     
     public override void Exit () {
@@ -24,13 +24,13 @@ public class MoveTargetState : BattleState
         board.UntargetTiles(pathTiles);
         tiles = null;
         statPanelController.HidePrimary();
-        panelController.HideBase();
+        panelController.HidePrimary();
     } 
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
         SelectTile(e.info + selectPos);
         TargetTiles();
-        RefreshBasePanel(selectPos);
+        RefreshPrimaryPanel(selectPos);
     }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
