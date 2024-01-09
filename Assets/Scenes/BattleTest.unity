@@ -1466,7 +1466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.2, y: 0}
+  m_AnchoredPosition: {x: 24, y: 0}
   m_SizeDelta: {x: 32, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205846720
@@ -1594,8 +1594,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30.2}
-  m_SizeDelta: {x: 80, y: 40}
+  m_AnchoredPosition: {x: 0, y: -28.5}
+  m_SizeDelta: {x: 64, y: 24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &210886685
 MonoBehaviour:
@@ -3499,10 +3499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978a113cb3d4cb94d8279a385abe9a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrierTilePrefab: {fileID: 6692019245188394809, guid: 21b6035208c0e8c46b54262637c5e25d, type: 3}
-  groundTilePrefab: {fileID: 6364204904911779010, guid: 1a2fa7137e31ac4459b3cc763feca813, type: 3}
-  pitTilePrefab: {fileID: 6534081145384810864, guid: 012815fbcefeb4e4eb72b52e340667cc, type: 3}
-  wallTilePrefab: {fileID: 1025403324043751005, guid: 65d63e402feeb434a8c32a81da587579, type: 3}
+  barrierTilePrefab: {fileID: 6692019245188394809, guid: bffde1243e82a3f4e940d1cad167d3cd, type: 3}
+  groundTilePrefab: {fileID: 6364204904911779010, guid: 90bd2a19f46ae2c4fa2977a5e384d33f, type: 3}
+  pitTilePrefab: {fileID: 6534081145384810864, guid: 681bd367d04e4f540a4d9ff125009ea9, type: 3}
+  wallTilePrefab: {fileID: 1025403324043751005, guid: 2d1833f51b6bd424a81a418c30b67967, type: 3}
   moveHighlightColor: {r: 0, g: 0.27205753, b: 1, a: 0.47058824}
   attackHighlightColor: {r: 1, g: 0, b: 0, a: 0.47058824}
   allyHighlightColor: {r: 0, g: 1, b: 0.15721321, a: 0.47058824}
@@ -4379,7 +4379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -34, y: 11}
+  m_AnchoredPosition: {x: -17.9, y: 11}
   m_SizeDelta: {x: 30, y: 8}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &765101381
@@ -4465,7 +4465,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -5.939827, w: 0}
+  m_margin: {x: 0, y: 0, z: -12.787373, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5898,7 +5898,7 @@ GameObject:
   - component: {fileID: 1274223311}
   - component: {fileID: 1274223312}
   m_Layer: 0
-  m_Name: Panel Controller
+  m_Name: UI Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8869,7 +8869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -34, y: 5}
+  m_AnchoredPosition: {x: -17.900003, y: 5}
   m_SizeDelta: {x: 40, y: 8}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2020142327
@@ -8955,7 +8955,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -8.264294, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
