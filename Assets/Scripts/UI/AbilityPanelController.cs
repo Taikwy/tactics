@@ -15,8 +15,8 @@ public class AbilityPanelController : MonoBehaviour
     [SerializeField] GameObject entryPrefab;
     [SerializeField] TMP_Text titleLabel;
     [SerializeField] GameObject menuPanel;
-    List<AbilityMenuEntry> menuEntries = new List<AbilityMenuEntry>(MenuCount);
-    public int selection { get; private set; }
+    public List<AbilityMenuEntry> menuEntries = new List<AbilityMenuEntry>(MenuCount);
+    public int currentSelection { get; private set; }
 
     void Awake (){
         GameObjectPoolController.AddEntry(EntryPoolKey, entryPrefab, MenuCount, int.MaxValue);
@@ -25,13 +25,15 @@ public class AbilityPanelController : MonoBehaviour
     AbilityMenuEntry Dequeue (){
         Poolable p = GameObjectPoolController.Dequeue(EntryPoolKey);
         AbilityMenuEntry entry = p.GetComponent<AbilityMenuEntry>();
+
+        entry.Reset();
         entry.transform.SetParent(menuPanel.transform, false);
-        // entry.transform.SetParent(panel.transform, false);
         entry.transform.localScale = Vector3.one;
         entry.gameObject.SetActive(true);
-        entry.Reset();
+
         return entry;
     }
+    
     void Enqueue (AbilityMenuEntry entry){
         Poolable p = entry.GetComponent<Poolable>();
         GameObjectPoolController.Enqueue(p);
@@ -50,68 +52,75 @@ public class AbilityPanelController : MonoBehaviour
         menuPanel.SetActive(false);
     }
 
-    bool SetSelection (int value){
-        if (menuEntries[value].IsLocked)
-            return false;
-        
-        // Deselect the previously selected entry
-        if (selection >= 0 && selection < menuEntries.Count)
-            menuEntries[selection].IsSelected = false;
-        
-        selection = value;
-        
-        // Select the new entry
-        if (selection >= 0 && selection < menuEntries.Count)
-            menuEntries[selection].IsSelected = true;
-        
-        return true;
-    }
-
-    public void Next () {
-        // Debug.Log("nexting w " + menuEntries.Count + " options");
-        for (int i = selection + 1; i < selection + menuEntries.Count; ++i){
-            int index = i % menuEntries.Count;
-            if (SetSelection(index))
-                break;
-        }
-    }
-    public void Previous (){
-        for (int i = selection - 1 + menuEntries.Count; i > selection; --i) {
-            int index = i % menuEntries.Count;
-            if (SetSelection(index))
-                break;
-        }
-    }
-
     public void Show (List<string> options){
         menuPanel.SetActive(true);
         Clear ();
         for (int i = 0; i < options.Count; ++i){
             AbilityMenuEntry entry = Dequeue();
             entry.Title = options[i];
+            entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
             menuEntries.Add(entry);
         }
         SetSelection(0);
         // TogglePos(ShowKey);
     }
-    public void Show (string title, List<string> options){
-        menuPanel.SetActive(true);
-        Clear ();
-        titleLabel.text = title;
-        for (int i = 0; i < options.Count; ++i){
-            AbilityMenuEntry entry = Dequeue();
-            entry.Title = options[i];
-            menuEntries.Add(entry);
-        }
-        SetSelection(0);
-        // TogglePos(ShowKey);
+    // public void Show (string title, List<string> options){
+    //     menuPanel.SetActive(true);
+    //     Clear ();
+    //     titleLabel.text = title;
+    //     for (int i = 0; i < options.Count; ++i){
+    //         AbilityMenuEntry entry = Dequeue();
+    //         entry.Title = options[i];
+    //         menuEntries.Add(entry);
+    //     }
+    //     SetSelection(0);
+    //     // TogglePos(ShowKey);
+    // }
+
+    private void ButtonClicked(string name)
+    {
+        // Debug.Log("Button: " + name + " was clicked!");   
     }
+
+    bool SetSelection (int value){
+        if (menuEntries[value].IsLocked)
+            return false;
+        
+        // Deselect the previously selected entry
+        if (currentSelection >= 0 && currentSelection < menuEntries.Count)
+            menuEntries[currentSelection].IsSelected = false;
+        
+        currentSelection = value;
+        
+        // Select the new entry
+        if (currentSelection >= 0 && currentSelection < menuEntries.Count)
+            menuEntries[currentSelection].IsSelected = true;
+        
+        return true;
+    }
+
+    public void Next () {
+        // Debug.Log("nexting w " + menuEntries.Count + " options");
+        for (int i = currentSelection + 1; i < currentSelection + menuEntries.Count; ++i){
+            int index = i % menuEntries.Count;
+            if (SetSelection(index))
+                break;
+        }
+    }
+    public void Previous (){
+        for (int i = currentSelection - 1 + menuEntries.Count; i > currentSelection; --i) {
+            int index = i % menuEntries.Count;
+            if (SetSelection(index))
+                break;
+        }
+    }
+    
 
     public void SetLocked (int index, bool value){
         if (index < 0 || index >= menuEntries.Count)
             return;
         menuEntries[index].IsLocked = value;
-        if (value && selection == index)
+        if (value && currentSelection == index)
             Next();
     }
 

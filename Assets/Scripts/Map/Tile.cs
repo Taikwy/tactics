@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -45,6 +46,7 @@ public class Tile : MonoBehaviour
         selectRenderer.enabled = false;
         // Debug.Log(tileType);
         position = p;
+        gameObject.name = position.x + " - " + position.y + "     | " + tileType;
         Match();
     }
 
@@ -56,6 +58,56 @@ public class Tile : MonoBehaviour
     void Match(){
         transform.localPosition = new Vector2(position.x, position.y);
         transform.localScale = new Vector2(1,1);
+    }
+
+    void OnMouseEnter(){
+        // Debug.Log("entered " + gameObject.name);
+        Hover();
+    }
+    void OnMouseExit(){
+        // Debug.Log("exited " + gameObject.name);
+        Unhover();
+    }
+
+    public void Hover(){
+        highlightRenderer.enabled = true;
+        highlightRenderer.sprite = highlightSprite;
+        highlightRenderer.color = new Color(1,1,1, 0.5f);
+    }
+    public void Unhover(){
+        highlightRenderer.enabled = false;
+        highlightRenderer.color = Color.clear;
+    }
+
+    public void Highlight(Color color){
+        highlightRenderer.enabled = true;
+        highlightRenderer.sprite = highlightSprite;
+        highlightRenderer.color = color;
+    }
+    public void Unhighlight(){
+        highlightRenderer.enabled = false;
+        // highlightRenderer.sprite = highlightSprite;
+        highlightRenderer.color = Color.clear;
+    }
+    public void Target(Color color){
+        targetRenderer.enabled = true;
+        targetRenderer.sprite = targetSprite;
+        targetRenderer.color = color;
+    }
+    public void Untarget(){
+        targetRenderer.enabled = false;
+        // targetRenderer.sprite = targetSprite;
+        targetRenderer.color = Color.clear;
+    }
+    public void Select(Color color){
+        selectRenderer.enabled = true;
+        selectRenderer.sprite = selectSprite;
+        selectRenderer.color = color;
+    }
+    public void Unselect(){
+        selectRenderer.enabled = false;
+        // selectRenderer.sprite = selectSprite;
+        selectRenderer.color = Color.clear;
     }
 
 }

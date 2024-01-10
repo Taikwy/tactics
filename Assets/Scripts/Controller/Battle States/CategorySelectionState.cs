@@ -42,13 +42,14 @@ public class CategorySelectionState : BaseAbilityMenuState
         abilityMenuPanelController.Show(menuTitle, menuOptions);
         abilityPanelController.Show(menuOptions);
     }
+    protected override void Select (){}
     protected override void Confirm ()
     {
         //will need to change this to be separate ex and normal attack
-        if (abilityPanelController.selection == 0 || abilityPanelController.selection == 1)
+        if (abilityPanelController.currentSelection == 0 || abilityPanelController.currentSelection == 1)
             Attack();
         else
-            SetCategory(abilityPanelController.selection - 1);
+            SetCategory(abilityPanelController.currentSelection - 1);
     }
     // protected override void Confirm ()
     // {

@@ -59,8 +59,6 @@ public class Board : MonoBehaviour
                     tileInstance = Instantiate(wallTilePrefab, gameObject.transform);
                     break;
             }
-            // GameObject instance = Instantiate(tilePrefab) as GameObject;
-            // tileInstance.transform.parent = gameObject.transform;
 
             Tile tileScript = tileInstance.GetComponent<Tile>();
             tileScript.Load(data.tilePositions[i]);
@@ -77,11 +75,6 @@ public class Board : MonoBehaviour
         return tiles.ContainsKey(p) ? tiles[p] : null;
     }
 
-    // public void SelectTiles (List<Tile> tiles){
-    //     for (int i = tiles.Count - 1; i >= 0; --i){
-    //         tiles[i].highlightSprite.color = moveHighlightColor;
-    //     }
-    // }
 
     public void HighlightTiles (List<Tile> tiles, OverlayColor type){
         Color temp = Color.white;
@@ -100,14 +93,16 @@ public class Board : MonoBehaviour
         }
         temp.a = .35f;
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].highlightRenderer.enabled = true;
-            tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
-            tiles[i].highlightRenderer.color = temp;
+            tiles[i].Highlight(temp);
+            // tiles[i].highlightRenderer.enabled = true;
+            // tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
+            // tiles[i].highlightRenderer.color = temp;
         }
     }
     public void UnhighlightTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].highlightRenderer.enabled = false;
+            tiles[i].Unhighlight();
+            // tiles[i].highlightRenderer.enabled = false;
         }
     }
     
@@ -128,14 +123,16 @@ public class Board : MonoBehaviour
         }
         temp.a = .8f;
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].targetRenderer.enabled = true;
-            tiles[i].targetRenderer.sprite = tiles[i].targetSprite;
-            tiles[i].targetRenderer.color = temp;
+            tiles[i].Target(temp);
+            // tiles[i].targetRenderer.enabled = true;
+            // tiles[i].targetRenderer.sprite = tiles[i].targetSprite;
+            // tiles[i].targetRenderer.color = temp;
         }
     }
     public void UntargetTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].targetRenderer.enabled = false;
+            tiles[i].Untarget();
+            // tiles[i].targetRenderer.enabled = false;
         }
     }
 
@@ -156,14 +153,16 @@ public class Board : MonoBehaviour
         }
         temp.a = 1f;
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].selectRenderer.enabled = true;
-            tiles[i].selectRenderer.sprite = tiles[i].selectSprite;
-            tiles[i].selectRenderer.color = temp;
+            tiles[i].Select(temp);
+            // tiles[i].selectRenderer.enabled = true;
+            // tiles[i].selectRenderer.sprite = tiles[i].selectSprite;
+            // tiles[i].selectRenderer.color = temp;
         }
     }
     public void UnselectTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].selectRenderer.enabled = false;
+            tiles[i].Unselect();
+            // tiles[i].selectRenderer.enabled = false;
         }
     }
 
