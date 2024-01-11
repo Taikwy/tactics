@@ -130,10 +130,11 @@ public class Board : MonoBehaviour
         }
     }
     public void UntargetTiles (List<Tile> tiles){
-        for (int i = tiles.Count - 1; i >= 0; --i){
-            tiles[i].Untarget();
-            // tiles[i].targetRenderer.enabled = false;
-        }
+        if(tiles != null)
+            for (int i = tiles.Count - 1; i >= 0; --i){
+                tiles[i].Untarget();
+                // tiles[i].targetRenderer.enabled = false;
+            }
     }
 
     public void SelectTiles (List<Tile> tiles, OverlayColor type){

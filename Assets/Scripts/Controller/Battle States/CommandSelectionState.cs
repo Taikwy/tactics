@@ -16,6 +16,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         statPanelController.HidePrimary();
         panelController.HidePrimary();
     }
+
     protected override void LoadMenu () {
         // Debug.Log("loading default commands");
         if (menuOptions == null){
@@ -26,7 +27,6 @@ public class CommandSelectionState : BaseAbilityMenuState
                 "STATUS",
                 "PASS"
             };
-
             menuFunctions = new List<Action>(4){
                 delegate { Move(); },
                 delegate { Act(); },
@@ -36,89 +36,54 @@ public class CommandSelectionState : BaseAbilityMenuState
         }
         
         abilityPanelController.Show(menuOptions, menuFunctions);
-        // List<AbilityMenuEntry> menuEntries = 
-        // abilityPanelController.Show(menuOptions);
 
         //logic for setting stuff as locked depending on actions the playe rhas taken
         abilityPanelController.SetLocked(0, turn.hasUnitMoved);
         abilityPanelController.SetLocked(1, turn.hasUnitActed);
         abilityPanelController.SetLocked(2, turn.hasUnitActed);
 
-        // for(int i = 0; i < menuEntries.Count; i++){
-        //     int temp = i;
-        //     // abilityPanelController.menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(temp);});
-        //     menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(menuFunctions[i]));
-        //     // Debug.Log(i);   
-        // }
     }
 
+    //for when a button is clicked
     protected void Move(){
-        Debug.Log("move clicked!");
+        // Debug.Log("move clicked!");
         owner.ChangeState<MoveTargetState>();
     }protected void Act(){
-        Debug.Log("act clicked!");
+        // Debug.Log("act clicked!");
         owner.ChangeState<CategorySelectionState>();
     }protected void Defend(){
-        Debug.Log("defend clicked!");
+        // Debug.Log("defend clicked!");
         owner.ChangeState<SelectUnitState>();
     }protected void Pass(){
-        Debug.Log("pass clicked!");
+        // Debug.Log("pass clicked!");
         owner.ChangeState<SelectUnitState>();
     }
 
-
-    protected override void Select ()
-    {
-        switch (abilityPanelController.currentSelection)
-        {
-            case 0: // Move
-                Debug.Log("move");
-                owner.ChangeState<MoveTargetState>();
-                break;
-            case 1: // Action
-                Debug.Log("act");
-                owner.ChangeState<CategorySelectionState>();
-                break;
-            case 2: // Defend, add state later
-                Debug.Log("defend");
-                // owner.ChangeState<EndFacingState>();
-                owner.ChangeState<SelectUnitState>();
-                break;
-            case 3: // Pass
-                // Debug.Log("wait");
-                // owner.ChangeState<EndFacingState>();
-                
-                owner.ChangeState<SelectUnitState>();
-                break;
-        }
-    }
-
+    //for when confirm is pressed
     protected override void Confirm ()
     {
         switch (abilityPanelController.currentSelection)
         {
             case 0: // Move
-                Debug.Log("move");
+                // Debug.Log("move pressed");
                 owner.ChangeState<MoveTargetState>();
                 break;
             case 1: // Action
-                Debug.Log("act");
+                // Debug.Log("act pressed");
                 owner.ChangeState<CategorySelectionState>();
                 break;
             case 2: // Defend, add state later
-                Debug.Log("defend");
-                // owner.ChangeState<EndFacingState>();
+                // Debug.Log("defend pressed");
                 owner.ChangeState<SelectUnitState>();
                 break;
             case 3: // Pass
-                // Debug.Log("wait");
-                // owner.ChangeState<EndFacingState>();
-                
+                // Debug.Log("pass pressed");
                 owner.ChangeState<SelectUnitState>();
                 break;
         }
     }
 
+    //goes to the previous state. pressing cancel or RMB triggers this
     protected override void Cancel (){
         if (turn.hasUnitMoved && !turn.lockMove){
             turn.UndoMove();

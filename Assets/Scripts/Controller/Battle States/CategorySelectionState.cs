@@ -42,7 +42,7 @@ public class CategorySelectionState : BaseAbilityMenuState
         abilityMenuPanelController.Show(menuTitle, menuOptions);
         abilityPanelController.Show(menuOptions);
     }
-    protected override void Select (){}
+
     protected override void Confirm ()
     {
         //will need to change this to be separate ex and normal attack

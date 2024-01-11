@@ -47,7 +47,6 @@ public class ActionSelectionState : BaseAbilityMenuState
 
         }
     }
-    protected override void Select ()    {    }
     protected override void Confirm ()
     {
         turn.selectedAbility = catalog.GetAbility(category, abilityMenuPanelController.selection);

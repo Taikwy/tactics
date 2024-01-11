@@ -36,6 +36,7 @@ public class InputController : MonoBehaviour
         // Debug.Log(Input.GetAxisRaw("Horizontal"));
         // Debug.Log(Input.GetAxisRaw("Vertical"));
 
+        //loops thru the 3 fire buttons to see if any of them were pressed (released)
         for (int i = 0; i < 3; ++i){
             if (Input.GetButtonUp(_buttons[i])){
                 if (fireEvent != null)

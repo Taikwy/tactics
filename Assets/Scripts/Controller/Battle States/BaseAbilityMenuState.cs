@@ -22,8 +22,7 @@ public abstract class BaseAbilityMenuState : BattleState
     }
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){
-            // Confirm();
-            Select();
+            Confirm();
         }
         else
             Cancel();
@@ -40,7 +39,6 @@ public abstract class BaseAbilityMenuState : BattleState
     }
     
     protected abstract void LoadMenu ();
-    protected abstract void Select ();
     protected abstract void Confirm ();
     protected abstract void Cancel ();
 }

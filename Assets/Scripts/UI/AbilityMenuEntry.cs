@@ -58,7 +58,7 @@ public class AbilityMenuEntry : MonoBehaviour
             
             if (IsLocked) {
                 // bullet.sprite = disabledSprite;
-                label.color = Color.gray;
+                label.color = Color.red;
                 // outline.effectColor = new Color32(20, 36, 44, 255);
             }
             else if (IsSelected) {
@@ -68,7 +68,7 @@ public class AbilityMenuEntry : MonoBehaviour
             }
             else {
                 // bullet.sprite = normalSprite;
-                label.color = Color.white;
+                label.color = Color.black;
                 // outline.effectColor = new Color32(20, 36, 44, 255);
             }
         }
@@ -80,17 +80,19 @@ public class AbilityMenuEntry : MonoBehaviour
     }
 
 
-    void OnMouseEnter(){
-        Debug.Log("entered " + gameObject.name);
-        Hover();
-    }
-    void OnMouseExit(){
-        Debug.Log("exited " + gameObject.name);
-        Unhover();
-    }
+    // void OnMouseEnter(){
+    //     Debug.Log("entered " + gameObject.name);
+    //     Hover();
+    // }
+    // void OnMouseExit(){
+    //     Debug.Log("exited " + gameObject.name);
+    //     Unhover();
+    // }
 
     public void Hover(){
+        Debug.Log("hovering " + gameObject.name);
     }
     public void Unhover(){
+        Debug.Log("unhovering " + gameObject.name);
     }
 }
