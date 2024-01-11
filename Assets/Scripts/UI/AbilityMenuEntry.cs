@@ -91,6 +91,7 @@ public class AbilityMenuEntry : MonoBehaviour
 
     public void Hover(){
         Debug.Log("hovering " + gameObject.name);
+        // IsSelected = true;
     }
     public void Unhover(){
         Debug.Log("unhovering " + gameObject.name);
