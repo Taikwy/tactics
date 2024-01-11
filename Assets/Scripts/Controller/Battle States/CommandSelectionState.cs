@@ -27,22 +27,17 @@ public class CommandSelectionState : BaseAbilityMenuState
                 "PASS"
             };
 
-            menuFunctions = new List<Action>(4);
-            menuFunctions.Add(delegate{Move();});
-            menuFunctions.Add(delegate{Act();});
-            menuFunctions.Add(delegate{Defend();});
-            menuFunctions.Add(delegate{Pass();});
+            menuFunctions = new List<Action>(4){
+                delegate { Move(); },
+                delegate { Act(); },
+                delegate { Defend(); },
+                delegate { Pass(); }
+            };
         }
-
-        //SETS THE OTHER ENTRIES AS LOCKED DEPENDING ON WHAT THE UNIT HAS ALREADY DONE
-        // abilityMenuPanelController.Show(menuTitle, menuOptions);
-        // abilityMenuPanelController.SetLocked(0, turn.hasUnitMoved);
-        // abilityMenuPanelController.SetLocked(1, turn.hasUnitActed);
-        // abilityMenuPanelController.SetLocked(2, turn.hasUnitActed);
-
         
-        // List<AbilityMenuEntry> menuEntries = 
         abilityPanelController.Show(menuOptions, menuFunctions);
+        // List<AbilityMenuEntry> menuEntries = 
+        // abilityPanelController.Show(menuOptions);
 
         //logic for setting stuff as locked depending on actions the playe rhas taken
         abilityPanelController.SetLocked(0, turn.hasUnitMoved);
@@ -52,19 +47,23 @@ public class CommandSelectionState : BaseAbilityMenuState
         // for(int i = 0; i < menuEntries.Count; i++){
         //     int temp = i;
         //     // abilityPanelController.menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(temp);});
-        //     menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(delegate{Select();});
+        //     menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(menuFunctions[i]));
         //     // Debug.Log(i);   
         // }
     }
 
     protected void Move(){
         Debug.Log("move clicked!");
+        owner.ChangeState<MoveTargetState>();
     }protected void Act(){
         Debug.Log("act clicked!");
+        owner.ChangeState<CategorySelectionState>();
     }protected void Defend(){
         Debug.Log("defend clicked!");
+        owner.ChangeState<SelectUnitState>();
     }protected void Pass(){
         Debug.Log("pass clicked!");
+        owner.ChangeState<SelectUnitState>();
     }
 
 

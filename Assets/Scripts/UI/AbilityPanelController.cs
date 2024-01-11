@@ -23,6 +23,11 @@ public class AbilityPanelController : MonoBehaviour
         GameObjectPoolController.AddEntry(EntryPoolKey, entryPrefab, MenuCount, int.MaxValue);
     }
 
+    // Start is called before the first frame update
+    void Start ()    {
+        menuPanel.SetActive(false);
+    }
+
     AbilityMenuEntry Dequeue (){
         Poolable p = GameObjectPoolController.Dequeue(EntryPoolKey);
         AbilityMenuEntry entry = p.GetComponent<AbilityMenuEntry>();
@@ -41,15 +46,11 @@ public class AbilityPanelController : MonoBehaviour
     }
 
     void Clear (){
-        for (int i = menuEntries.Count - 1; i >= 0; --i)
+        for (int i = menuEntries.Count - 1; i >= 0; --i){
+            menuEntries[i].gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
             Enqueue(menuEntries[i]);
+        }
         menuEntries.Clear();
-    }
-
-    // Start is called before the first frame update
-    void Start ()
-    {
-        menuPanel.SetActive(false);
     }
 
     //creates ability entries with names from the list of strings passed in
@@ -62,12 +63,17 @@ public class AbilityPanelController : MonoBehaviour
             AbilityMenuEntry entry = Dequeue();
             entry.Title = options[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(functions[i]));
+            Debug.Log(functions[i]);
             // entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
             menuEntries.Add(entry);
         }
         SetSelection(0);
         return menuEntries;
-
+    }
+    
+    public void Hide (){
+        Clear();
+        menuPanel.SetActive(false);
     }
     public List<AbilityMenuEntry> Show (List<string> options){
         menuPanel.SetActive(true);
@@ -83,18 +89,7 @@ public class AbilityPanelController : MonoBehaviour
         return menuEntries;
 
     }
-    // public void Show (string title, List<string> options){
-    //     menuPanel.SetActive(true);
-    //     Clear ();
-    //     titleLabel.text = title;
-    //     for (int i = 0; i < options.Count; ++i){
-    //         AbilityMenuEntry entry = Dequeue();
-    //         entry.Title = options[i];
-    //         menuEntries.Add(entry);
-    //     }
-    //     SetSelection(0);
-    //     // TogglePos(ShowKey);
-    // }
+
 
     private void ButtonClicked(string name)
     {
@@ -143,8 +138,4 @@ public class AbilityPanelController : MonoBehaviour
             Next();
     }
 
-    public void Hide (){
-        Clear();
-        menuPanel.SetActive(false);
-    }
 }
