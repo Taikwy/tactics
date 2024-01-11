@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -48,21 +49,39 @@ public class AbilityPanelController : MonoBehaviour
     // Start is called before the first frame update
     void Start ()
     {
-        // panel.SetPosition(HideKey, false);
         menuPanel.SetActive(false);
     }
 
-    public void Show (List<string> options){
+    //creates ability entries with names from the list of strings passed in
+    //returns list of menu entries
+    //its called show, but it essentially creates it from scratch
+    public List<AbilityMenuEntry> Show (List<string> options, List<Action> functions){
         menuPanel.SetActive(true);
         Clear ();
         for (int i = 0; i < options.Count; ++i){
             AbilityMenuEntry entry = Dequeue();
             entry.Title = options[i];
+            entry.gameObject.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(functions[i]));
+            // entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
+            menuEntries.Add(entry);
+        }
+        SetSelection(0);
+        return menuEntries;
+
+    }
+    public List<AbilityMenuEntry> Show (List<string> options){
+        menuPanel.SetActive(true);
+        Clear ();
+        for (int i = 0; i < options.Count; ++i){
+            AbilityMenuEntry entry = Dequeue();
+            entry.Title = options[i];
+            // entry.gameObject.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(functions[i]));
             entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
             menuEntries.Add(entry);
         }
         SetSelection(0);
-        // TogglePos(ShowKey);
+        return menuEntries;
+
     }
     // public void Show (string title, List<string> options){
     //     menuPanel.SetActive(true);

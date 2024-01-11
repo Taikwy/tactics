@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public abstract class BaseAbilityMenuState : BattleState
 {
     protected string menuTitle;
     protected List<string> menuOptions;
+    protected List<Action> menuFunctions;
     public override void Enter (){
         // Debug.Log("entering base ability menu state");
         base.Enter ();

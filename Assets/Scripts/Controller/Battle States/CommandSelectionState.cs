@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class CommandSelectionState : BaseAbilityMenuState
     public override void Enter (){
         base.Enter ();
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
-            panelController.ShowPrimary(turn.actingUnit.gameObject);
+        panelController.ShowPrimary(turn.actingUnit.gameObject);
     }
     public override void Exit (){
         base.Exit ();
@@ -19,11 +20,18 @@ public class CommandSelectionState : BaseAbilityMenuState
         // Debug.Log("loading default commands");
         if (menuOptions == null){
             menuTitle = "Commands";
-            menuOptions = new List<string>(4);
-            menuOptions.Add("MOVE");
-            menuOptions.Add("ACTION");
-            menuOptions.Add("STATUS");
-            menuOptions.Add("PASS");
+            menuOptions = new List<string>(4){
+                "MOVE",
+                "ACTION",
+                "STATUS",
+                "PASS"
+            };
+
+            menuFunctions = new List<Action>(4);
+            menuFunctions.Add(delegate{Move();});
+            menuFunctions.Add(delegate{Act();});
+            menuFunctions.Add(delegate{Defend();});
+            menuFunctions.Add(delegate{Pass();});
         }
 
         //SETS THE OTHER ENTRIES AS LOCKED DEPENDING ON WHAT THE UNIT HAS ALREADY DONE
@@ -32,45 +40,34 @@ public class CommandSelectionState : BaseAbilityMenuState
         // abilityMenuPanelController.SetLocked(1, turn.hasUnitActed);
         // abilityMenuPanelController.SetLocked(2, turn.hasUnitActed);
 
-        abilityPanelController.Show(menuOptions);
+        
+        // List<AbilityMenuEntry> menuEntries = 
+        abilityPanelController.Show(menuOptions, menuFunctions);
+
+        //logic for setting stuff as locked depending on actions the playe rhas taken
         abilityPanelController.SetLocked(0, turn.hasUnitMoved);
         abilityPanelController.SetLocked(1, turn.hasUnitActed);
         abilityPanelController.SetLocked(2, turn.hasUnitActed);
 
-        for(int i = 0; i < abilityPanelController.menuEntries.Count; i++){
-            int temp = i;
-            // abilityPanelController.menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(temp);});
-            abilityPanelController.menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(delegate{Select();});
-            // Debug.Log(i);   
-        }
+        // for(int i = 0; i < menuEntries.Count; i++){
+        //     int temp = i;
+        //     // abilityPanelController.menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(temp);});
+        //     menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(delegate{Select();});
+        //     // Debug.Log(i);   
+        // }
     }
 
-    // private void ButtonClicked(int index)
-    // {
-    //     Debug.Log("Button: " + index + " was selected ");   
-    //     switch (index)
-    //     {
-    //         case 0: // Move
-    //             Debug.Log("move " + index);
-    //             owner.ChangeState<MoveTargetState>();
-    //             break;
-    //         case 1: // Action
-    //             Debug.Log("act " + index);
-    //             owner.ChangeState<CategorySelectionState>();
-    //             break;
-    //         case 2: // Defend, add state later
-    //             Debug.Log("defend " + index);
-    //             // owner.ChangeState<EndFacingState>();
-    //             owner.ChangeState<SelectUnitState>();
-    //             break;
-    //         case 3: // Pass
-    //             // Debug.Log("wait");
-    //             // owner.ChangeState<EndFacingState>();
-                
-    //             owner.ChangeState<SelectUnitState>();
-    //             break;
-    //     }
-    // }
+    protected void Move(){
+        Debug.Log("move clicked!");
+    }protected void Act(){
+        Debug.Log("act clicked!");
+    }protected void Defend(){
+        Debug.Log("defend clicked!");
+    }protected void Pass(){
+        Debug.Log("pass clicked!");
+    }
+
+
     protected override void Select ()
     {
         switch (abilityPanelController.currentSelection)
