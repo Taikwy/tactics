@@ -17,6 +17,7 @@ public class AbilityPanelController : MonoBehaviour
     [SerializeField] TMP_Text titleLabel;
     [SerializeField] GameObject menuPanel;
     public List<AbilityMenuEntry> menuEntries = new List<AbilityMenuEntry>(MenuCount);
+    public List<Action> menuFunctions = new List<Action>(MenuCount);
     public int currentSelection { get; private set; }
 
     void Awake (){
@@ -31,6 +32,9 @@ public class AbilityPanelController : MonoBehaviour
     AbilityMenuEntry Dequeue (){
         Poolable p = GameObjectPoolController.Dequeue(EntryPoolKey);
         AbilityMenuEntry entry = p.GetComponent<AbilityMenuEntry>();
+
+
+        p.GetComponent<ReactiveButton>().Reset();
 
         entry.Reset();
         entry.transform.SetParent(menuPanel.transform, false);
@@ -47,7 +51,9 @@ public class AbilityPanelController : MonoBehaviour
 
     void Clear (){
         for (int i = menuEntries.Count - 1; i >= 0; --i){
+            // Debug.Log("looping thru");
             menuEntries[i].gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
+            // Destroy(menuEntries[i].gameObject);
             Enqueue(menuEntries[i]);
         }
         menuEntries.Clear();
@@ -59,19 +65,36 @@ public class AbilityPanelController : MonoBehaviour
     public List<AbilityMenuEntry> Show (List<string> options, List<Action> functions){
         menuPanel.SetActive(true);
         Clear ();
+
+        menuFunctions = functions;
         for (int i = 0; i < options.Count; ++i){
             AbilityMenuEntry entry = Dequeue();
             entry.Title = options[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(functions[i]));
-            Debug.Log(functions[i]);
+            // Debug.Log(functions[i]);
             // entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
             menuEntries.Add(entry);
         }
-        SetSelection(0);
+        // SetSelection(0);
+        return menuEntries;
+    }
+
+    public List<AbilityMenuEntry> Show (List<string> options, List<UnityEngine.Events.UnityAction> actions){
+        menuPanel.SetActive(true);
+        Clear ();
+
+        // menuFunctions = actions;
+        for (int i = 0; i < options.Count; ++i){
+            AbilityMenuEntry entry = Dequeue();
+            entry.Title = options[i];
+            entry.gameObject.GetComponent<Button>().onClick.AddListener(actions[i]);
+            menuEntries.Add(entry);
+        }
         return menuEntries;
     }
     
     public void Hide (){
+        Debug.Log("hiding panel controller");
         Clear();
         menuPanel.SetActive(false);
     }

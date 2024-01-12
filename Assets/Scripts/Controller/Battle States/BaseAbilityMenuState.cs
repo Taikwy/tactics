@@ -17,24 +17,24 @@ public abstract class BaseAbilityMenuState : BattleState
     }
     public override void Exit (){
         base.Exit ();
-        // abilityMenuPanelController.Hide();
         abilityPanelController.Hide();
     }
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){
-            Confirm();
+            //no longer allowing keyboard controls, just mouse clicking the menu items
+            // Confirm();
         }
         else
             Cancel();
     }
     protected override void OnMove (object sender, InfoEventArgs<Point> e) {
         if (e.info.x > 0 || e.info.y < 0){
-            // abilityMenuPanelController.Next();
-            abilityPanelController.Next();
+            //no longer allowing keyboard controls here either
+            // abilityPanelController.Next();
         }
         else{
-            // abilityMenuPanelController.Previous();
-            abilityPanelController.Previous();  
+            //no longer allowing keyboard controls here either
+            // abilityPanelController.Previous();  
         }
     }
     

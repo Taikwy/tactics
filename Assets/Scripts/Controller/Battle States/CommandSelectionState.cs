@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class CommandSelectionState : BaseAbilityMenuState
 {
     public override void Enter (){
+        Debug.Log("enter command selection  state");
         base.Enter ();
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         panelController.ShowPrimary(turn.actingUnit.gameObject);
     }
     public override void Exit (){
+        Debug.Log("exiting command selection state");
         base.Exit ();
         statPanelController.HidePrimary();
         panelController.HidePrimary();
@@ -35,27 +37,44 @@ public class CommandSelectionState : BaseAbilityMenuState
             };
         }
         
-        abilityPanelController.Show(menuOptions, menuFunctions);
+        List<UnityEngine.Events.UnityAction> altMenuFunctions = new List<UnityEngine.Events.UnityAction>(4){
+            delegate { Move(); },
+            delegate { Act(); },
+            delegate { Defend(); },
+            delegate { Pass(); }
+            // new UnityEngine.Events.UnityAction(Move),
+            // new UnityEngine.Events.UnityAction(Act),
+            // new UnityEngine.Events.UnityAction(Defend),
+            // new UnityEngine.Events.UnityAction(Pass)
+        };
+        
+        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, altMenuFunctions);
+        // List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, menuFunctions);
+        List<UnityEngine.Events.UnityAction> list = new List<UnityEngine.Events.UnityAction>();
+
+        for(int i = 0; i < menuEntries.Count; i++){
+            // menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(Move);
+        }
 
         //logic for setting stuff as locked depending on actions the playe rhas taken
-        abilityPanelController.SetLocked(0, turn.hasUnitMoved);
-        abilityPanelController.SetLocked(1, turn.hasUnitActed);
-        abilityPanelController.SetLocked(2, turn.hasUnitActed);
+        // abilityPanelController.SetLocked(0, turn.hasUnitMoved);
+        // abilityPanelController.SetLocked(1, turn.hasUnitActed);
+        // abilityPanelController.SetLocked(2, turn.hasUnitActed);
 
     }
 
     //for when a button is clicked
     protected void Move(){
-        // Debug.Log("move clicked!");
+        Debug.Log("move clicked! " + owner);
         owner.ChangeState<MoveTargetState>();
     }protected void Act(){
-        // Debug.Log("act clicked!");
+        Debug.Log("act clicked!");
         owner.ChangeState<CategorySelectionState>();
     }protected void Defend(){
-        // Debug.Log("defend clicked!");
+        Debug.Log("defend clicked!");
         owner.ChangeState<SelectUnitState>();
     }protected void Pass(){
-        // Debug.Log("pass clicked!");
+        Debug.Log("pass clicked!");
         owner.ChangeState<SelectUnitState>();
     }
 

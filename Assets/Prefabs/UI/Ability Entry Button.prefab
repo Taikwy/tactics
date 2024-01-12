@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -154,10 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityMenuEntry: {fileID: 3724088396020168900}
-  normalColor: {r: 1, g: 0.8745098, b: 0, a: 0}
-  highlightedColor: {r: 1, g: 0.9189049, b: 0.3537736, a: 0}
-  pressedColor: {r: 0.6226415, g: 0.54450613, b: 0, a: 0}
-  disabledColor: {r: 0.3584906, g: 0.31350353, b: 0, a: 0}
+  normalColor: {r: 0.6226415, g: 0.5058962, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.7960785, b: 0, a: 1}
+  pressedColor: {r: 0.31132078, g: 0.2494104, b: 0, a: 1}
+  disabledColor: {r: 0.2735849, g: 0.13528793, b: 0, a: 1}
 --- !u!1 &6031837601106618384
 GameObject:
   m_ObjectHideFlags: 0

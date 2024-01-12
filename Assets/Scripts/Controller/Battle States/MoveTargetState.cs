@@ -8,6 +8,7 @@ public class MoveTargetState : BattleState
     Movement moveScript;
     
     public override void Enter (){
+        Debug.Log("enter moving state");
         base.Enter ();
         moveScript = turn.actingUnit.GetComponent<Movement>();
         tiles = moveScript.GetTilesInRange(board);
@@ -19,6 +20,7 @@ public class MoveTargetState : BattleState
     }
     
     public override void Exit () {
+        Debug.Log("exiting moving state");
         base.Exit ();
         board.UnhighlightTiles(tiles);
         board.UntargetTiles(pathTiles);
@@ -34,16 +36,23 @@ public class MoveTargetState : BattleState
     }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
+            Debug.Log("movement fire");
         if (e.info == 0){
             if (tiles.Contains(owner.selectedTile)){
-                // if(owner.selectedTile != turn.actingUnit.tile)
+                if(owner.selectedTile != turn.actingUnit.tile){
+                    Debug.Log("moving");
                     owner.ChangeState<MoveSequenceState>();
+                }
+                else{
+                    // Debug.Log("going back");
+                    // owner.ChangeState<CommandSelectionState>();
+                }
                 // else
                 //     owner.ChangeState<CommandSelectionState>();
             }
         }
         else{
-            // Debug.Log("going back");
+            Debug.Log("going back");
             owner.ChangeState<CommandSelectionState>();
         }
     }

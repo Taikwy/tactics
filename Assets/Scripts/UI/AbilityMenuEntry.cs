@@ -49,6 +49,7 @@ public class AbilityMenuEntry : MonoBehaviour
         }
     }
 
+    //getter setter for entry state. automatically updates the text color when a new state has been set
     States State{ 
         get { return state; }
         set{
@@ -56,21 +57,21 @@ public class AbilityMenuEntry : MonoBehaviour
                 return;
             state = value;
             
-            if (IsLocked) {
-                // bullet.sprite = disabledSprite;
-                label.color = Color.red;
-                // outline.effectColor = new Color32(20, 36, 44, 255);
-            }
-            else if (IsSelected) {
-                // bullet.sprite = selectedSprite;
-                label.color = new Color32(249, 210, 118, 255);
-                // outline.effectColor = new Color32(255, 160, 72, 255);
-            }
-            else {
-                // bullet.sprite = normalSprite;
-                label.color = Color.black;
-                // outline.effectColor = new Color32(20, 36, 44, 255);
-            }
+            // if (IsLocked) {
+            //     // bullet.sprite = disabledSprite;
+            //     label.color = Color.red;
+            //     // outline.effectColor = new Color32(20, 36, 44, 255);
+            // }
+            // else if (IsSelected) {
+            //     // bullet.sprite = selectedSprite;
+            //     label.color = new Color32(249, 210, 118, 255);
+            //     // outline.effectColor = new Color32(255, 160, 72, 255);
+            // }
+            // else {
+            //     // bullet.sprite = normalSprite;
+            //     label.color = Color.black;
+            //     // outline.effectColor = new Color32(20, 36, 44, 255);
+            // }
         }
     }
     States state;
@@ -90,10 +91,10 @@ public class AbilityMenuEntry : MonoBehaviour
     // }
 
     public void Hover(){
-        Debug.Log("hovering " + gameObject.name);
+        // Debug.Log("hovering " + gameObject.name);
         // IsSelected = true;
     }
     public void Unhover(){
-        Debug.Log("unhovering " + gameObject.name);
+        // Debug.Log("unhovering " + gameObject.name);
     }
 }
