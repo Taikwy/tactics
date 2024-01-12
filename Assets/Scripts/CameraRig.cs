@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraRig : MonoBehaviour 
 {
     public float speed = 5f;
-    public Transform follow;
+    public bool following = false;
+    public Transform target;
     Transform _transform;
     
     void Awake ()
@@ -15,7 +16,9 @@ public class CameraRig : MonoBehaviour
     
     void Update ()
     {
-        if (follow)
-        _transform.position = Vector3.Lerp(_transform.position, follow.position, speed * Time.deltaTime);
+        //makes sure there's a target transform and that camera is supposed to be following right now
+        if (target)
+            _transform.position = Vector3.Lerp(_transform.position, target.position, speed * Time.deltaTime);
+            // _transform.position = Vector3.MoveTowards(_transform.position, target.position, 5* speed * Time.deltaTime);
     }
 }

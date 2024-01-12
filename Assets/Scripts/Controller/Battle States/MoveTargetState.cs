@@ -6,6 +6,7 @@ public class MoveTargetState : BattleState
 {
     List<Tile> tiles, pathTiles = new List<Tile>();
     Movement moveScript;
+    bool updating = false;
     
     public override void Enter (){
         Debug.Log("enter moving state");
@@ -17,10 +18,14 @@ public class MoveTargetState : BattleState
         // board.HighlightMoveTiles(tiles);
         board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
         RefreshPrimaryPanel(selectPos);
+
+        updating = true;
     }
     
     public override void Exit () {
         Debug.Log("exiting moving state");
+        updating = false;
+
         base.Exit ();
         board.UnhighlightTiles(tiles);
         board.UntargetTiles(pathTiles);
@@ -29,7 +34,11 @@ public class MoveTargetState : BattleState
         panelController.HidePrimary();
     } 
 
-    public void Update(){
+    protected void Update(){
+        if(!updating)
+            return;
+        // Debug.Log("movestate updating");
+        
         SelectTile(board.selectedPoint);
         TargetTiles();
     }

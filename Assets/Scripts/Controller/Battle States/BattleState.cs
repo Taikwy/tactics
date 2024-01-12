@@ -21,6 +21,8 @@ public abstract class BattleState : State
 
     public ForecastPanel forecastPanel { get { return owner.forecastPanel; }}
 
+    // public bool currentlyActive = false;                    //used for update functions of the different states
+
     protected virtual void Awake (){
         owner = GetComponent<BattleController>();
     }
@@ -34,17 +36,17 @@ public abstract class BattleState : State
         InputController.fireEvent -= OnFire;
     }
 
-    protected void Update(){
-
-    }
+    
 
     protected virtual void OnMove (object sender, InfoEventArgs<Point> e){
     }
     
     protected virtual void OnFire (object sender, InfoEventArgs<int> e){  
     }
+
+    //moves tile selection indicator to point
     protected virtual void SelectTile (Point p) {
-        Debug.Log("selecting tile " + p);
+        // Debug.Log("selecting tile " + p);
         if (selectPos == p || !board.tiles.ContainsKey(p))
             return;
         selectPos = p;

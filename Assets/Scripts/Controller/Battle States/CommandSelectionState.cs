@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CommandSelectionState : BaseAbilityMenuState
 {
+    bool updating = false;
     public override void Enter (){
         Debug.Log("enter command selection  state");
         base.Enter ();
@@ -14,12 +15,24 @@ public class CommandSelectionState : BaseAbilityMenuState
 
         
         SelectTile(turn.actingUnit.tile.position);
+
+        updating = true;
     }
     public override void Exit (){
         Debug.Log("exiting command selection state");
+        updating = false;
+
         base.Exit ();
         statPanelController.HidePrimary();
         panelController.HidePrimary();
+    }
+    protected void Update(){
+        if(!updating)
+            return;
+        // Debug.Log("commandstate updating");
+
+        // SelectTile(owner.turn.actingUnit.tile.position);
+        // SelectTile(turn.actingUnit.tile.position);
     }
 
     protected override void LoadMenu () {
@@ -45,9 +58,9 @@ public class CommandSelectionState : BaseAbilityMenuState
         
 
         //logic for setting stuff as locked depending on actions the playe rhas taken
-        // abilityPanelController.SetLocked(0, turn.hasUnitMoved);
-        // abilityPanelController.SetLocked(1, turn.hasUnitActed);
-        // abilityPanelController.SetLocked(2, turn.hasUnitActed);
+        abilityPanelController.SetLocked(0, turn.hasUnitMoved);                             //disable movement if already moved
+        abilityPanelController.SetLocked(1, turn.hasUnitActed);                             //disable action if already acted
+        // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             
 
     }
 

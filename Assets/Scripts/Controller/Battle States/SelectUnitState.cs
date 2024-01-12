@@ -13,6 +13,8 @@ public class SelectUnitState : BattleState
         statPanelController.HidePrimary();
         panelController.HidePrimary();
     }
+
+    //logic for cycling thru and selecting the next acting unit
     IEnumerator ChangeCurrentUnit (){
         owner.round.MoveNext();
         SelectTile(turn.actingUnit.tile.position);
