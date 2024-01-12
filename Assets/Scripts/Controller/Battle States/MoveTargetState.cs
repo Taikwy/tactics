@@ -28,6 +28,10 @@ public class MoveTargetState : BattleState
         statPanelController.HidePrimary();
         panelController.HidePrimary();
     } 
+
+    public void Update(){
+        SelectTile(board.selectedPoint);
+    }
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
         SelectTile(e.info + selectPos);

@@ -24,6 +24,8 @@ public class Board : MonoBehaviour
     [SerializeField] Color moveColor, passColor, attackColor, healColor, buffColor, debuffColor;
     // [SerializeField] Color selectColor = new Color(0, 1, 1, 1);
     public Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile>();
+
+    public Point selectedPoint;
     Point[] dirs = new Point[4]{
         new Point(0, 1),
         new Point(0, -1),
@@ -75,6 +77,14 @@ public class Board : MonoBehaviour
         return tiles.ContainsKey(p) ? tiles[p] : null;
     }
 
+
+    public void Update(){
+        foreach(KeyValuePair<Point, Tile> tile in tiles){
+            if(tile.Value.hovered){
+                selectedPoint = tile.Value.position;
+            }
+        }
+    }
 
     public void HighlightTiles (List<Tile> tiles, OverlayColor type){
         Color temp = Color.white;

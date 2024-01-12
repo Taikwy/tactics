@@ -33,12 +33,18 @@ public abstract class BattleState : State
         InputController.moveEvent -= OnMove;
         InputController.fireEvent -= OnFire;
     }
+
+    protected void Update(){
+
+    }
+
     protected virtual void OnMove (object sender, InfoEventArgs<Point> e){
     }
     
     protected virtual void OnFire (object sender, InfoEventArgs<int> e){  
     }
     protected virtual void SelectTile (Point p) {
+        Debug.Log("selecting tile");
         if (selectPos == p || !board.tiles.ContainsKey(p))
             return;
         selectPos = p;

@@ -18,6 +18,9 @@ public class Tile : MonoBehaviour
     // public Color moveHighlight = new Color(1,1,1);
     // public Color attackHighlight = new Color(1,1,1);
     // public Color allyHighlight = new Color(1,1,1);
+
+
+    public bool hovered = false;
     
     public Point position;
     //public int height;
@@ -62,11 +65,13 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter(){
         // Debug.Log("entered " + gameObject.name);
-        Hover();
+        hovered = true;
+        // Hover();
     }
     void OnMouseExit(){
         // Debug.Log("exited " + gameObject.name);
-        Unhover();
+        hovered = false;
+        // Unhover();
     }
 
     public void Hover(){

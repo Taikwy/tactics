@@ -3512,6 +3512,9 @@ MonoBehaviour:
   healColor: {r: 0, g: 1, b: 0.15686275, a: 1}
   buffColor: {r: 0, g: 1, b: 0.9725491, a: 1}
   debuffColor: {r: 1, g: 0, b: 0.48627454, a: 1}
+  selectedPoint:
+    x: 0
+    y: 0
 --- !u!4 &550533397
 Transform:
   m_ObjectHideFlags: 0
@@ -8190,7 +8193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761c753624e17b24f8b147328330b33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   follow: {fileID: 1683587603}
 --- !u!4 &1742690636
 Transform:
