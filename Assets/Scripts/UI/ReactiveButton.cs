@@ -71,7 +71,6 @@ public class ReactiveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter( PointerEventData eventData ){
         isHighlightDesired = true;
-        abilityMenuEntry.Hover();
     }
 
     public void OnPointerDown( PointerEventData eventData ){

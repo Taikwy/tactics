@@ -11,6 +11,9 @@ public class CommandSelectionState : BaseAbilityMenuState
         base.Enter ();
         statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         panelController.ShowPrimary(turn.actingUnit.gameObject);
+
+        
+        SelectTile(turn.actingUnit.tile.position);
     }
     public override void Exit (){
         Debug.Log("exiting command selection state");
@@ -29,7 +32,7 @@ public class CommandSelectionState : BaseAbilityMenuState
                 "STATUS",
                 "PASS"
             };
-            menuFunctions = new List<Action>(4){
+            menuFunctions = new List<UnityEngine.Events.UnityAction>(4){
                 delegate { Move(); },
                 delegate { Act(); },
                 delegate { Defend(); },
@@ -37,24 +40,9 @@ public class CommandSelectionState : BaseAbilityMenuState
             };
         }
         
-        List<UnityEngine.Events.UnityAction> altMenuFunctions = new List<UnityEngine.Events.UnityAction>(4){
-            delegate { Move(); },
-            delegate { Act(); },
-            delegate { Defend(); },
-            delegate { Pass(); }
-            // new UnityEngine.Events.UnityAction(Move),
-            // new UnityEngine.Events.UnityAction(Act),
-            // new UnityEngine.Events.UnityAction(Defend),
-            // new UnityEngine.Events.UnityAction(Pass)
-        };
+        // List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, altMenuFunctions);
+        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, menuFunctions);
         
-        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, altMenuFunctions);
-        // List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, menuFunctions);
-        List<UnityEngine.Events.UnityAction> list = new List<UnityEngine.Events.UnityAction>();
-
-        for(int i = 0; i < menuEntries.Count; i++){
-            // menuEntries[i].gameObject.GetComponent<Button>().onClick.AddListener(Move);
-        }
 
         //logic for setting stuff as locked depending on actions the playe rhas taken
         // abilityPanelController.SetLocked(0, turn.hasUnitMoved);

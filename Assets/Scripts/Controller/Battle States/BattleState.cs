@@ -44,7 +44,7 @@ public abstract class BattleState : State
     protected virtual void OnFire (object sender, InfoEventArgs<int> e){  
     }
     protected virtual void SelectTile (Point p) {
-        Debug.Log("selecting tile");
+        Debug.Log("selecting tile " + p);
         if (selectPos == p || !board.tiles.ContainsKey(p))
             return;
         selectPos = p;

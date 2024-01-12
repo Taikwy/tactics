@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityMenuEntry : MonoBehaviour
+public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] Image bullet;
     // [SerializeField] SpriteRenderer bullet;
@@ -12,9 +13,60 @@ public class AbilityMenuEntry : MonoBehaviour
     [SerializeField] Sprite selectedSprite;
     [SerializeField] Sprite disabledSprite;
     [SerializeField] TMP_Text label;
-    Outline outline;
+
+    private TextMeshProUGUI txt;
+    private Button button;
+
+    public Color normalColor;
+    public Color highlightedColor;
+    public Color pressedColor;
+    public Color disabledColor;
+
+    public enum ButtonStatus{
+        Normal,
+        Disabled,
+        Highlighted,
+        Pressed
+    }
+
+    private ButtonStatus lastButtonStatus = ButtonStatus.Normal;
+    private bool isHighlightDesired = false;
+    private bool isPressedDesired = false;
+
     void Awake (){
-        outline = label.GetComponent<Outline>();
+        txt = GetComponentInChildren<TextMeshProUGUI>();
+        button = gameObject.GetComponent<Button>();
+    }
+
+    void Update()
+    {
+        ButtonStatus desiredButtonStatus = ButtonStatus.Normal;
+        if ( !button.interactable )
+            desiredButtonStatus = ButtonStatus.Disabled;
+        else{
+            if ( isHighlightDesired )
+                desiredButtonStatus = ButtonStatus.Highlighted;
+            if ( isPressedDesired )
+                desiredButtonStatus = ButtonStatus.Pressed;
+        }
+
+        // if ( desiredButtonStatus != lastButtonStatus ){
+        //     lastButtonStatus = desiredButtonStatus;
+        //     switch ( lastButtonStatus ){
+        //         case ButtonStatus.Normal:
+        //             txt.color = normalColor;
+        //             break;
+        //         case ButtonStatus.Disabled:
+        //             txt.color = disabledColor;
+        //             break;
+        //         case ButtonStatus.Pressed:
+        //             txt.color = pressedColor;
+        //             break;
+        //         case ButtonStatus.Highlighted:
+        //             txt.color = highlightedColor;
+        //             break;
+        //     }
+        // }
     }
 
     public string Title {
@@ -78,23 +130,25 @@ public class AbilityMenuEntry : MonoBehaviour
 
     public void Reset () {
         State = States.None;
+        isHighlightDesired = false;
+        isPressedDesired = false;
     }
 
 
-    // void OnMouseEnter(){
-    //     Debug.Log("entered " + gameObject.name);
-    //     Hover();
-    // }
-    // void OnMouseExit(){
-    //     Debug.Log("exited " + gameObject.name);
-    //     Unhover();
-    // }
-
-    public void Hover(){
-        // Debug.Log("hovering " + gameObject.name);
-        // IsSelected = true;
+    public void OnPointerEnter( PointerEventData eventData ){
+        isHighlightDesired = true;
     }
-    public void Unhover(){
-        // Debug.Log("unhovering " + gameObject.name);
+
+    public void OnPointerDown( PointerEventData eventData ){
+        isPressedDesired = true;
+    }
+
+    public void OnPointerUp( PointerEventData eventData ){
+        isPressedDesired = false;
+    }
+
+    public void OnPointerExit( PointerEventData eventData ){
+        isHighlightDesired = false;
+        // abilityMenuEntry.Unhover();
     }
 }

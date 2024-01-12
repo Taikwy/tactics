@@ -31,6 +31,7 @@ public class MoveTargetState : BattleState
 
     public void Update(){
         SelectTile(board.selectedPoint);
+        TargetTiles();
     }
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
