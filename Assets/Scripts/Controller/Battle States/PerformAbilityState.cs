@@ -19,11 +19,11 @@ public class PerformAbilityState : BattleState
         // TemporaryAttackExample();
         ApplyAbility();
         
-        if (turn.hasUnitMoved){
-            owner.ChangeState<SelectUnitState>();
-        }
-            // owner.ChangeState<EndFacingState>();
-        else
+        // if (turn.hasUnitMoved){
+        //     owner.ChangeState<SelectUnitState>();
+        // }
+        //     // owner.ChangeState<EndFacingState>();
+        // else
             owner.ChangeState<CommandSelectionState>();
     }
 

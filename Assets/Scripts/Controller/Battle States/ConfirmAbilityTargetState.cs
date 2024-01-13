@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//shows ability forecast state p much
 public class ConfirmAbilityTargetState : BattleState
 {
-    List<Tile> targetedTiles;
+    List<Tile> targetedTiles, highlightedTiles;
     AbilityArea areaScript;
     int currentTarget = 0;
     AbilityEffectTarget[] targeters;
@@ -12,10 +14,11 @@ public class ConfirmAbilityTargetState : BattleState
         base.Enter ();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
         targetedTiles = areaScript.targets;
+        highlightedTiles = new List<Tile>(targetedTiles);
         //sets cursor over the first target
         SelectTile(areaScript.targets[0].position);
         //highlights all the tiles that are targeted, will need new logic here to properly overlay things
-        board.HighlightTiles(targetedTiles, Board.OverlayColor.ATTACK);
+        board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
         FindTargets();
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
@@ -39,13 +42,14 @@ public class ConfirmAbilityTargetState : BattleState
     }
 
     public override void Exit (){
+        Debug.Log("exiting");
         base.Exit ();
         areaScript.targets.Clear();
-        board.UnhighlightTiles(targetedTiles);
+        // Debug.Log(highlightedTiles + "        | " + highlightedTiles.Count);
+        board.UnhighlightTiles(highlightedTiles);
         board.UntargetTiles(targetedTiles);
-        // statPanelController.HidePrimary();
-        // statPanelController.HideSecondary();
         panelController.HidePrimary();
+        panelController.HideSecondary();
 
         forecastPanel.Hide();
     }

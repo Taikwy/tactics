@@ -48,36 +48,7 @@ public class ActionSelectionState : BaseAbilityMenuState
 
         }
     }
-    // protected override void Confirm ()
-    // {
-    //     turn.selectedAbility = catalog.GetAbility(category, abilityMenuPanelController.selection);
-    //     turn.selectedAbility = catalog.GetAbility(category, abilityPanelController.currentSelection);
-    //     owner.ChangeState<AbilityTargetState>();
-    // }
 
-
-    // protected override void LoadMenu () {
-    //     if (menuOptions == null)
-    //         menuOptions = new List<string>(3);
-    //     if (category == 0){
-    //         Debug.Log("loading white magic");
-    //         menuTitle = "White Magic";
-    //         SetOptions(whiteMagicOptions);
-    //     }
-    //     else {
-    //         Debug.Log("loading black magic");
-    //         menuTitle = "Black Magic";
-    //         SetOptions(blackMagicOptions);
-    //     }
-    //     abilityMenuPanelController.Show(menuTitle, menuOptions);
-    // }
-    // protected override void Confirm (){
-    //         Debug.Log("confirming but idk when this happens");
-    //     turn.hasUnitActed = true;
-    //     if (turn.hasUnitMoved)
-    //         turn.lockMove = true;
-    //     owner.ChangeState<CommandSelectionState>();
-    // }
     protected override void Cancel (){
         owner.ChangeState<CategorySelectionState>();
     }

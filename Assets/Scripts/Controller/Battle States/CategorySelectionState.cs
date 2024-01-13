@@ -56,36 +56,12 @@ public class CategorySelectionState : BaseAbilityMenuState
             }
         }
 
-        // menuOptions.Add( catalog.GetCategory(0).name);
-        // menuOptions.Add( catalog.GetCategory(1).name);
-        // menuOptions.Add( catalog.GetCategory(2).name);
-        // menuOptions.Add( catalog.GetCategory(3).name);
-        // menuFunctions = new List<UnityEngine.Events.UnityAction>(4){
-        //     delegate { Basic(); },
-        //     delegate { Trait(); },
-        //     delegate { Skill(); },
-        //     delegate { Burst(); }
-        // };
-        
-
-        
         List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, menuFunctions);
         //logic for disabling actions the unit cannot take, ie not enough burst or currently silenced or whatever
-        // abilityPanelController.SetLocked(0, turn.hasUnitMoved);                             //disable movement if already moved
+        // abilityPanelController.SetLocked(0, turn.hasUnitMoved);                           
     }
 
-    // void Basic(){
-    //     Debug.Log("basic clicked");
-    //     turn.selectedAbility = turn.actingUnit.GetComponentInChildren<Ability>();
-    //     // turn.ability = turn.actingUnit.GetComponentInChildren<AbilityRange>().gameObject;
-    //     owner.ChangeState<AbilityTargetState>();
-    // }void Trait(){
-    //     Debug.Log("trait clicked");
-    // }void Skill(){
-    //     Debug.Log("skill clicked");
-    // }void Burst(){
-    //     Debug.Log("burst clicked");
-    // }
+
 
     void Attack (GameObject ability){
         Debug.Log("attacking with " + ability);
@@ -93,39 +69,6 @@ public class CategorySelectionState : BaseAbilityMenuState
         owner.ChangeState<AbilityTargetState>();
     }
 
-
-    // protected override void Confirm ()
-    // {
-    //     //will need to change this to be separate ex and normal attack
-    //     if (abilityPanelController.currentSelection == 0 || abilityPanelController.currentSelection == 1)
-    //         Attack();
-    //     else
-    //         SetCategory(abilityPanelController.currentSelection - 1);
-    // }
-
-
-    // protected override void Confirm ()
-    // {
-    //     switch (abilityMenuPanelController.selection) {
-    //         case 0:
-    //             Debug.Log("attack");
-    //             Attack();
-    //             break;
-    //         case 1:
-    //             Debug.Log("ex attack");
-    //             Attack();
-    //             break;
-    //         case 2:
-    //             Debug.Log("skill");
-    //             SetCategory(0);
-    //             break;
-    //         case 3:
-    //             Debug.Log("super");
-    //             SetCategory(1);
-    //             break;
-    //     }
-    // }
-    
     protected override void Cancel(){
         owner.ChangeState<CommandSelectionState>();
     }
