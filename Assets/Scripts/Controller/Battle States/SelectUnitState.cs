@@ -10,7 +10,7 @@ public class SelectUnitState : BattleState
     }
     public override void Exit (){
         base.Exit ();
-        statPanelController.HidePrimary();
+        // statPanelController.HidePrimary();
         panelController.HidePrimary();
     }
 

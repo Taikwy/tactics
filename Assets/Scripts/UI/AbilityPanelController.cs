@@ -140,9 +140,12 @@ public class AbilityPanelController : MonoBehaviour
     public void SetLocked (int index, bool value){
         if (index < 0 || index >= menuEntries.Count)
             return;
-        menuEntries[index].IsLocked = value;
-        if (value && currentSelection == index)
-            Next();
+        
+        menuEntries[index].button.interactable = !value;
+
+        // menuEntries[index].IsLocked = value;
+        // if (value && currentSelection == index)
+        //     Next();
     }
 
 }

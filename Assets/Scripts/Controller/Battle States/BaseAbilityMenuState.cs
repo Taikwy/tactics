@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class BaseAbilityMenuState : BattleState
 {
-    protected string menuTitle;
+    // protected string menuTitle;
     protected List<string> menuOptions;
     protected List<UnityEngine.Events.UnityAction> menuFunctions;
     public override void Enter (){
@@ -39,6 +39,6 @@ public abstract class BaseAbilityMenuState : BattleState
     }
     
     protected abstract void LoadMenu ();
-    protected abstract void Confirm ();
+    // protected abstract void Confirm ();
     protected abstract void Cancel ();
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AbilityCatalog : MonoBehaviour 
 {
+    //these get set in the unity factory, wil need ways to ref these ig
     public GameObject basicAbility, traitAbility, skillAbility, burstAbility;
     public int CategoryCount ()
     {

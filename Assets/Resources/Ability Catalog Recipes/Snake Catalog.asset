@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Snake Catalog
   m_EditorClassIdentifier: 
   entries:
+  - Bite
   - Venom

@@ -30,7 +30,7 @@ public class MoveTargetState : BattleState
         board.UnhighlightTiles(tiles);
         board.UntargetTiles(pathTiles);
         tiles = null;
-        statPanelController.HidePrimary();
+        // statPanelController.HidePrimary();
         panelController.HidePrimary();
     } 
 
@@ -38,7 +38,7 @@ public class MoveTargetState : BattleState
         if(!updating)
             return;
         // Debug.Log("movestate updating");
-        
+
         SelectTile(board.selectedPoint);
         TargetTiles();
     }

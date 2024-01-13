@@ -22,10 +22,10 @@ public class PanelController : MonoBehaviour
     }
     #endregion
     #region Public
-    public void ShowPrimary (GameObject obj){
+    public void ShowPrimary (GameObject unit){
         // basePanel.Display(obj);
         // basePanel.ShowPanel();
-        primaryPanel.Display(obj);
+        primaryPanel.Display(unit);
         primaryPanel.ShowPanel();
     }
     public void HidePrimary (){
@@ -33,8 +33,8 @@ public class PanelController : MonoBehaviour
         primaryPanel.HidePanel();
     }
     
-    public void ShowSecondary (GameObject obj){
-        secondaryPanel.Display(obj);
+    public void ShowSecondary (GameObject unit){
+        secondaryPanel.Display(unit);
         secondaryPanel.ShowPanel();
     }
     public void HideSecondary (){

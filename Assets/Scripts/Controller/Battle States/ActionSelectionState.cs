@@ -9,20 +9,21 @@ public class ActionSelectionState : BaseAbilityMenuState
     string[] blackMagicOptions = new string[] { "Fire", "Ice", "Lightning" };
     AbilityCatalog catalog;
     public override void Enter (){
+        Debug.Log("entering action state");
         base.Enter ();
-        statPanelController.ShowPrimary(turn.actingUnit.gameObject);
+        // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         panelController.ShowPrimary(turn.actingUnit.gameObject);
     }
     public override void Exit (){
+        Debug.Log("exiting action state");
         base.Exit ();
-        statPanelController.HidePrimary();
+        // statPanelController.HidePrimary();
         panelController.HidePrimary();
     }
     protected override void LoadMenu ()
     {
         catalog = turn.actingUnit.GetComponentInChildren<AbilityCatalog>();
         GameObject container = catalog.GetCategory(category);
-        menuTitle = container.name;
         int count = catalog.AbilityCount(container);
         if (menuOptions == null)
             menuOptions = new List<string>(count);
@@ -39,7 +40,7 @@ public class ActionSelectionState : BaseAbilityMenuState
                 menuOptions.Add(ability.name);
             locks[i] = !ability.CanPerform();
         }
-        abilityMenuPanelController.Show(menuTitle, menuOptions);
+        // abilityMenuPanelController.Show(menuTitle, menuOptions);
         abilityPanelController.Show(menuOptions);
         for (int i = 0; i < count; ++i){
             abilityMenuPanelController.SetLocked(i, locks[i]);
@@ -47,12 +48,13 @@ public class ActionSelectionState : BaseAbilityMenuState
 
         }
     }
-    protected override void Confirm ()
-    {
-        turn.selectedAbility = catalog.GetAbility(category, abilityMenuPanelController.selection);
-        turn.selectedAbility = catalog.GetAbility(category, abilityPanelController.currentSelection);
-        owner.ChangeState<AbilityTargetState>();
-    }
+    // protected override void Confirm ()
+    // {
+    //     turn.selectedAbility = catalog.GetAbility(category, abilityMenuPanelController.selection);
+    //     turn.selectedAbility = catalog.GetAbility(category, abilityPanelController.currentSelection);
+    //     owner.ChangeState<AbilityTargetState>();
+    // }
+
 
     // protected override void LoadMenu () {
     //     if (menuOptions == null)

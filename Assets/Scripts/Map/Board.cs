@@ -26,6 +26,11 @@ public class Board : MonoBehaviour
     public Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile>();
 
     public Point selectedPoint;
+    public Tile selectedTile{
+        get{
+            return GetTile(selectedPoint);
+        }
+    }
     Point[] dirs = new Point[4]{
         new Point(0, 1),
         new Point(0, -1),

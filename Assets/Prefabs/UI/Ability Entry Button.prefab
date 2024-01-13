@@ -58,6 +58,7 @@ MonoBehaviour:
   selectedSprite: {fileID: 0}
   disabledSprite: {fileID: 0}
   label: {fileID: 5303026404453740952}
+  button: {fileID: 0}
   normalColor: {r: 0.62352943, g: 0.5058824, b: 0, a: 1}
   highlightedColor: {r: 1, g: 0.7960785, b: 0, a: 1}
   pressedColor: {r: 0.30980393, g: 0.2509804, b: 0, a: 1}
@@ -83,11 +84,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7568628, g: 0.7686275, b: 0.87843144, a: 1}
-    m_HighlightedColor: {r: 0.4509804, g: 0.6002467, b: 0.7176471, a: 1}
-    m_PressedColor: {r: 0.20692416, g: 0.23028658, b: 0.4716981, a: 1}
-    m_SelectedColor: {r: 0.45098042, g: 0.6, b: 0.7176471, a: 1}
-    m_DisabledColor: {r: 0.06243324, g: 0.07767032, b: 0.21698111, a: 0.5019608}
+    m_NormalColor: {r: 0.7688679, g: 0.78862286, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.48504806, g: 0.5256612, b: 0.9433962, a: 1}
+    m_PressedColor: {r: 0.3794055, g: 0.42599726, b: 0.9245283, a: 1}
+    m_SelectedColor: {r: 0.48627454, g: 0.5254902, b: 0.9450981, a: 1}
+    m_DisabledColor: {r: 0.377314, g: 0.3963676, b: 0.5754717, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

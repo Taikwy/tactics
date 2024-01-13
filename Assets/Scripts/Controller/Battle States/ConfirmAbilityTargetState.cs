@@ -43,8 +43,8 @@ public class ConfirmAbilityTargetState : BattleState
         areaScript.targets.Clear();
         board.UnhighlightTiles(targetedTiles);
         board.UntargetTiles(targetedTiles);
-        statPanelController.HidePrimary();
-        statPanelController.HideSecondary();
+        // statPanelController.HidePrimary();
+        // statPanelController.HideSecondary();
         panelController.HidePrimary();
 
         forecastPanel.Hide();

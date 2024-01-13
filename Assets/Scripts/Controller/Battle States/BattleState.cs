@@ -16,7 +16,7 @@ public abstract class BattleState : State
     public List<Unit> units { get { return owner.units; }}
 
 
-    public StatPanelController statPanelController { get { return owner.statPanelController; }}
+    // public StatPanelController statPanelController { get { return owner.statPanelController; }}
     public PanelController panelController { get { return owner.panelController; }}
 
     public ForecastPanel forecastPanel { get { return owner.forecastPanel; }}

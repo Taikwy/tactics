@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AbilityTargetState : BattleState 
 {
+    bool updating = false;
     List<Tile> highlightedTiles, targetedTiles, selectedTiles;
     AbilityRange rangeScript;
     AbilityArea areaScript;
@@ -18,6 +19,7 @@ public class AbilityTargetState : BattleState
         areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);
         HighlightTiles ();
+        selectedTiles = new List<Tile>();
         // TargetTiles();
         // SelectTiles();
         
@@ -26,8 +28,11 @@ public class AbilityTargetState : BattleState
         panelController.ShowSecondary(turn.actingUnit.gameObject);
         if (rangeScript.directionOriented)
             RefreshSecondaryPanel(selectPos);
+        
+        updating = true;
     }
     public override void Exit (){
+        updating = false;
         // Debug.Log("exitingggg");
         base.Exit ();
         board.UnhighlightTiles(highlightedTiles);
@@ -35,9 +40,20 @@ public class AbilityTargetState : BattleState
         selectedTiles.Add(turn.actingUnit.tile);
         board.UnselectTiles(selectedTiles);
         panelController.HidePrimary();
-        statPanelController.HidePrimary();
-        statPanelController.HideSecondary();
+        // statPanelController.HidePrimary();
+        // statPanelController.HideSecondary();
     }
+
+    protected void Update(){
+        if(!updating || !highlightedTiles.Contains(board.selectedTile))
+            return;
+        // Debug.Log("abilitytarget updating");
+        
+        RefreshSecondaryPanel(board.selectedPoint);
+        SelectTile(board.selectedPoint);
+        TargetTiles();
+    }
+
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
         if (rangeScript.directionOriented){
             ChangeDirection(e.info);
@@ -65,8 +81,10 @@ public class AbilityTargetState : BattleState
                 return;
             }
             areaScript.targets.Add(owner.selectedTile);
-            if(areaScript.targets.Count >= areaScript.numTargets)
+            if(areaScript.targets.Count >= areaScript.numTargets){
                 owner.ChangeState<ConfirmAbilityTargetState>();
+                return;
+            }
         }
         else{
             if(areaScript.targets.Count > 0){
@@ -76,7 +94,9 @@ public class AbilityTargetState : BattleState
             }
             else
                 owner.ChangeState<CategorySelectionState>();
+            return;
         }
+        Debug.Log("post on fire");
         TargetTiles();
         SelectTiles();
     }

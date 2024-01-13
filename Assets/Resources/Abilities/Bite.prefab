@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 3484823612947708004}
   - component: {fileID: 3954202826209727461}
   m_Layer: 0
-  m_Name: Venom
+  m_Name: Bite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f15774e5b48f43a605f3046a8525f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   primaryEffectZone: {fileID: 7519107851123608219}
   primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 2
+  range: 1
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &3954202826209727461

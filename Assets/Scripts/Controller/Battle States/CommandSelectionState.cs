@@ -10,7 +10,7 @@ public class CommandSelectionState : BaseAbilityMenuState
     public override void Enter (){
         Debug.Log("enter command selection  state");
         base.Enter ();
-        statPanelController.ShowPrimary(turn.actingUnit.gameObject);
+        // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         panelController.ShowPrimary(turn.actingUnit.gameObject);
 
         
@@ -23,7 +23,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         updating = false;
 
         base.Exit ();
-        statPanelController.HidePrimary();
+        // statPanelController.HidePrimary();
         panelController.HidePrimary();
     }
     protected void Update(){
@@ -38,7 +38,6 @@ public class CommandSelectionState : BaseAbilityMenuState
     protected override void LoadMenu () {
         // Debug.Log("loading default commands");
         if (menuOptions == null){
-            menuTitle = "Commands";
             menuOptions = new List<string>(4){
                 "MOVE",
                 "ACTION",
@@ -79,29 +78,6 @@ public class CommandSelectionState : BaseAbilityMenuState
         owner.ChangeState<SelectUnitState>();
     }
 
-    //for when confirm is pressed
-    protected override void Confirm ()
-    {
-        switch (abilityPanelController.currentSelection)
-        {
-            case 0: // Move
-                // Debug.Log("move pressed");
-                owner.ChangeState<MoveTargetState>();
-                break;
-            case 1: // Action
-                // Debug.Log("act pressed");
-                owner.ChangeState<CategorySelectionState>();
-                break;
-            case 2: // Defend, add state later
-                // Debug.Log("defend pressed");
-                owner.ChangeState<SelectUnitState>();
-                break;
-            case 3: // Pass
-                // Debug.Log("pass pressed");
-                owner.ChangeState<SelectUnitState>();
-                break;
-        }
-    }
 
     //goes to the previous state. pressing cancel or RMB triggers this
     protected override void Cancel (){

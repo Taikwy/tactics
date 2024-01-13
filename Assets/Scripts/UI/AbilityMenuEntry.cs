@@ -15,7 +15,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] TMP_Text label;
 
     private TextMeshProUGUI txt;
-    private Button button;
+    public Button button;
 
     public Color normalColor;
     public Color highlightedColor;
@@ -132,6 +132,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
         State = States.None;
         isHighlightDesired = false;
         isPressedDesired = false;
+        button.interactable = true;
     }
 
 
