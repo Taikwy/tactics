@@ -60,7 +60,7 @@ public abstract class BattleState : State
     }
 
     protected virtual void RefreshPrimaryPanel (Point p){
-        Debug.Log("refreshing primary panel");
+        // Debug.Log("refreshing primary panel");
         Unit target = GetUnit(p);
         if (target != null){
             // statPanelController.ShowPrimary(target.gameObject);
@@ -72,7 +72,7 @@ public abstract class BattleState : State
         }
     }
     protected virtual void RefreshSecondaryPanel (Point p){
-        Debug.Log("refreshing second panel");
+        // Debug.Log("refreshing second panel");
         Unit target = GetUnit(p);
         // Debug.Log(target);
         if (target != null){

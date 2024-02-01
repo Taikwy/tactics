@@ -34,7 +34,7 @@ public class ForecastPanel : MonoBehaviour
       actionName.text = ability.name;
       
       damage.text = string.Format("DMG {0} pts", amount);
-      hitrate.text = string.Format("HIT {0} %", (int)(chance*100));
+      hitrate.text = string.Format("HIT {0} %", (int)(chance));
       // Debug.Log(chance);
       // Debug.Log(hitrate.text);
   }

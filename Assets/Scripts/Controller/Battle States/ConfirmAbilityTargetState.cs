@@ -96,6 +96,33 @@ public class ConfirmAbilityTargetState : BattleState
         }
     }
 
+    void UpdateForecastPanel(){
+        Debug.Log("updating forecast panel");
+		float hitrate = 0;
+		int amount = 0;
+		Tile target = turn.targets[currentTarget];
+
+		Transform obj = turn.selectedAbility.transform;
+		for (int i = 0; i < obj.childCount; ++i)
+		{
+			AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
+			if (targeter.IsTarget(target))
+			{
+                // Debug.Log("targets");
+				HitRate hitRate = targeter.GetComponent<HitRate>();
+				hitrate = hitRate.CalculateHitRate(target);
+
+				BaseAbilityEffect effect = targeter.GetComponent<BaseAbilityEffect>();
+				amount = effect.Predict(target);
+                
+                // Debug.Log("predicted damage " + amount);
+				break;
+			}
+		}
+
+		forecastPanel.SetStats(turn.actingUnit, target.content, turn.selectedAbility.gameObject, hitrate, amount);
+    }
+
     void UpdateHitSuccessIndicator ()
 	{
         Debug.Log("updating hit success indicator");
