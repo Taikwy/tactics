@@ -32,8 +32,9 @@ public class ExploreState : BattleState
     protected void Update(){
         if(!updating)
             return;
-        // Debug.Log("explore updating");
+        Debug.Log("explore updating");
         
+        RefreshPrimaryPanel(board.selectedPoint);
         SelectTile(board.selectedPoint);
     }
 }

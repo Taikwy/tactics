@@ -12,11 +12,10 @@ public class CommandSelectionState : BaseAbilityMenuState
         base.Enter ();
         // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         panelController.ShowPrimary(turn.actingUnit.gameObject);
-
-        
         SelectTile(turn.actingUnit.tile.position);
 
         updating = true;
+
     }
     public override void Exit (){
         Debug.Log("exiting command selection state");
@@ -59,6 +58,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         //logic for setting stuff as locked depending on actions the playe rhas taken
         abilityPanelController.SetLocked(0, turn.hasUnitMoved || turn.hasUnitActed);                             //disable movement if already moved or acted
         abilityPanelController.SetLocked(1, turn.hasUnitActed);                             //disable action if already acted
+        // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             //disable action if already acted
         // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             
 
     }

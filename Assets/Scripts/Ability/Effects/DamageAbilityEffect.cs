@@ -19,6 +19,29 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
 
 		// Calculate base damage
+		int damage = attack - defense;
+		damage = Mathf.Max(damage, 1);
+
+		// Clamp the damage to a range, just for edge cases
+		damage = Mathf.Clamp(damage, 0, maxDamage);
+		return -damage;
+	}
+
+	public int OldPredict (Tile target)
+	{
+		Debug.Log("predicting damage ability effect");
+		Unit attacker = GetComponentInParent<Unit>();
+		Unit defender = target.content.GetComponent<Unit>();
+
+		// Get the attackers base attack stat considering
+		// mission items, support check, status check, and equipment, etc
+		int attack = GetStat(attacker, defender, GetAttackEvent, 0);
+
+		// Get the targets base defense stat considering
+		// mission items, support check, status check, and equipment, etc
+		int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
+
+		// Calculate base damage
 		int damage = attack - (defense / 2);
 		damage = Mathf.Max(damage, 1);
 
