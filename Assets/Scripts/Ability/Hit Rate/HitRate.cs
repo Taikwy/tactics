@@ -68,8 +68,8 @@ public abstract class HitRate : MonoBehaviour
 		return args.arg2;
 	}
 
-	protected virtual int Final (int evade)
-	{
-		return 100 - evade;
-	}
+	// protected virtual int Final (int evade)
+	// {
+	// 	return 100 - evade;
+	// }
 }
