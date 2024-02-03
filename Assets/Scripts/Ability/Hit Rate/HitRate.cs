@@ -24,6 +24,7 @@ public abstract class HitRate : MonoBehaviour
 	public virtual bool IsAngleBased { get { return true; }}
 	protected Unit attacker;
     public bool guaranteed = false;
+    public float abilityHitRate;
 
 	protected virtual void Start ()
 	{

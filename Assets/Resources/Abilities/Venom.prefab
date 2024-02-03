@@ -100,8 +100,8 @@ GameObject:
   - component: {fileID: 7087469409747505629}
   - component: {fileID: 3250056612345073891}
   - component: {fileID: 8113753804373041160}
-  - component: {fileID: 8201835707468967331}
   - component: {fileID: 7519107851123608219}
+  - component: {fileID: 8201835707468967331}
   m_Layer: 0
   m_Name: Sub Poison
   m_TagString: Untagged
@@ -149,6 +149,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7519107851123608219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542779501234916191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splashRange: 0
 --- !u!114 &8201835707468967331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,19 +179,6 @@ MonoBehaviour:
   statusEffect: {fileID: 7808233544354755189, guid: 2b197cb78f6e6bc4b8ae475a90e077ff, type: 3}
   statusName: PoisonStatusEffect
   duration: 3
---- !u!114 &7519107851123608219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542779501234916191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splashRange: 0
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0

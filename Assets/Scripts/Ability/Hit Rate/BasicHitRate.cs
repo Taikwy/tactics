@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BasicHitRate : HitRate
 {
-    public float abilityHitRate;
 
     //returns hit rate as percentage - 50%
     public override float CalculateHitRate (Tile target)

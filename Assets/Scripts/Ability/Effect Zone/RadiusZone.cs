@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RadiusZone : EffectZone
 {
-    public int splashRange;
     public override List<Tile> ShowTilesInZone (Board board, Point pos){
         // List<Tile> tiles = new List<Tile>();
         // tiles.Add(board.GetTile(pos));
@@ -16,6 +15,6 @@ public class RadiusZone : EffectZone
 
     bool ExpandSearch (Tile from, Tile to)
     {
-        return (from.distance + 1) <= splashRange;
+        return (from.distance + 1) <= range;
     }
 }
