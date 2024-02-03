@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DamageAbilityEffect : BaseAbilityEffect 
 {
+	public int attackModifier = 0;						//percentage out of 100. scales the unit's attack stat
+
 	public override int Predict (Tile target)
 	{
-		Debug.Log("predicting damage ability effect");
 		Unit attacker = GetComponentInParent<Unit>();
 		Unit defender = target.content.GetComponent<Unit>();
 
@@ -18,12 +19,20 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		// mission items, support check, status check, and equipment, etc
 		int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
 
-		// Calculate base damage
-		int damage = attack - defense;
+
+		//terrain and weapon bonus logic needs to be added
+		int terrainBonus = 0;
+		int weaponBonus = 0;
+
+		//base damage calc
+		int attackingDamage = attackModifier * (attack + terrainBonus) + weaponBonus;
+		int damage = attackingDamage - defense;
 		damage = Mathf.Max(damage, 1);
 
 		// Clamp the damage to a range, just for edge cases
 		damage = Mathf.Clamp(damage, 0, maxDamage);
+		
+		Debug.Log("predicting damage ability effect " + damage);
 		return -damage;
 	}
 

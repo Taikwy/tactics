@@ -14,12 +14,12 @@ GameObject:
   - component: {fileID: 4742295797092695002}
   - component: {fileID: 6950046999304816923}
   m_Layer: 0
-  m_Name: Primary Damage
+  m_Name: Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6966475923109113812
 Transform:
   m_ObjectHideFlags: 0
@@ -31,10 +31,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7087469409747505629}
+  m_Children: []
   m_Father: {fileID: 7693599255702816309}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8057749461146149293
 MonoBehaviour:
@@ -74,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splashRange: 0
+  range: 0
 --- !u!114 &6950046999304816923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSubEffects: 1
   subEffects: []
+  attackModifier: 100
 --- !u!1 &5542779501234916191
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,12 +98,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7087469409747505629}
-  - component: {fileID: 3250056612345073891}
   - component: {fileID: 8113753804373041160}
+  - component: {fileID: 3599404073021863626}
   - component: {fileID: 7519107851123608219}
   - component: {fileID: 8201835707468967331}
   m_Layer: 0
-  m_Name: Sub Poison
+  m_Name: Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,22 +121,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6966475923109113812}
+  m_Father: {fileID: 7693599255702816309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3250056612345073891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542779501234916191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c269eea5ec8f74a9d4e1b85d5c742e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guaranteed: 1
 --- !u!114 &8113753804373041160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +136,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3599404073021863626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542779501234916191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89723b932ae18604998209ae72e70442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guaranteed: 0
+  abilityHitRate: 75
 --- !u!114 &7519107851123608219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splashRange: 0
+  range: 1
 --- !u!114 &8201835707468967331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +211,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7087469409747505629}
   - {fileID: 6966475923109113812}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -226,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f15774e5b48f43a605f3046a8525f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   primaryEffectZone: {fileID: 7519107851123608219}
   primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}
@@ -261,4 +263,3 @@ MonoBehaviour:
   canTargetSelf: 0
   numTargets: 1
   targets: []
-  range: 0
