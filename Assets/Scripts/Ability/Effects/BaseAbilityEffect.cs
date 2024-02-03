@@ -33,6 +33,8 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 			// }
 		}
 	}
+
+	//needs a new way to handle status effect to show in forecast
 	public abstract int Predict (Tile target);
 
     //handles applying the effect, checks if it can hit and raises events for the result

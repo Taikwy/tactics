@@ -9,6 +9,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 	public string statusName;
 	public int duration;
 
+	//returns 0 cuz no damage
 	public override int Predict (Tile target)
 	{
         Debug.Log("predicting inflict " + statusName);

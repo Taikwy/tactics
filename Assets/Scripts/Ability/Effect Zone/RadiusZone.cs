@@ -5,10 +5,6 @@ using UnityEngine;
 public class RadiusZone : EffectZone
 {
     public override List<Tile> ShowTilesInZone (Board board, Point pos){
-        // List<Tile> tiles = new List<Tile>();
-        // tiles.Add(board.GetTile(pos));
-        // return tiles;
-
         Tile tile = board.GetTile(pos);
         return board.Search(tile, ExpandSearch);
     }
