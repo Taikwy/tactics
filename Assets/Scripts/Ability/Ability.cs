@@ -10,6 +10,7 @@ public class Ability : MonoBehaviour
     public AbilityTypes type;
     public EffectZone primaryEffectZone, primarySubEffectZone;
     public EffectZone secondaryEffectZone, secondarySubEffectZone;
+	
     //replaced the logic i originally had in confirmtargetstate
     //may need to update this logic to accomdate more cmplex abilities with multiple component stuff
 	public bool IsTarget (Tile tile){

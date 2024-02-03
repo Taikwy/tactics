@@ -100,6 +100,8 @@ public class AbilityTargetState : BattleState
         TargetTiles();
         SelectTiles();
     }
+
+    //unused rn
     void ChangeDirection (Point p){
         Directions dir = p.GetDirection();
         if (turn.actingUnit.dir != dir){
@@ -116,23 +118,26 @@ public class AbilityTargetState : BattleState
         // board.HighlightAttackTiles(highlightedTiles);
         board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
     }
+
     void TargetTiles (){
         // targetedTiles = rangeScript.GetTargetsInRange(board);
         if(targetedTiles != null)
             board.UntargetTiles(targetedTiles);
 
+        //gets all the currently targeted tiles
         List<Tile> centerTiles = areaScript.ShowTargetedTiles(board);
         if(!centerTiles.Contains(owner.selectedTile))
-            // centerTiles.Add(board.GetTile(selectPos));
             centerTiles.Add(owner.selectedTile);
         
         targetedTiles = new List<Tile>();
+        //adds the zone like the splash zones of any targeted tiles
         foreach(Tile centerTile in centerTiles){
             targetedTiles.AddRange(zoneScript.ShowTilesInZone(board, centerTile.position));
         }
         // Debug.Log("targeting " + targetedTiles.Count);
         board.TargetTiles(targetedTiles, Board.OverlayColor.ATTACK);
     }
+
     void SelectTiles(){
         if(selectedTiles != null)
             board.UnselectTiles(selectedTiles);
