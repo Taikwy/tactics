@@ -10,9 +10,6 @@ public class ForecastPanel : MonoBehaviour
   const string HideKey = "Hide";
   [SerializeField] GameObject forecastPanel;
 //   [SerializeField] Image arrow;
-  [SerializeField] TMP_Text actorName;
-  [SerializeField] TMP_Text targetName;
-  public Image actorPortrait, targetPortrait;
   [SerializeField] TMP_Text actionName;
   [SerializeField] TMP_Text abilityEffect;         //used to be damage, indicates ability's effect in the forecast
   [SerializeField] TMP_Text abilityHitrate;
@@ -23,18 +20,11 @@ public class ForecastPanel : MonoBehaviour
     forecastPanel.SetActive(false);
   }
   public void SetStats (Unit actor, GameObject target, GameObject ability, float chance, int amount)
-  {
-      actorPortrait.sprite = actor.portrait;
-      targetPortrait.sprite = target.GetComponent<Unit>().portrait;
-      // arrow.fillAmount = chance / 100f;
-
-      actorName.text = actor.name;
-      if(target.GetComponent<Unit>() != null)
-        targetName.text = target.name;
-      
+  {      
       actionName.text = ability.name;
 
-      string effect= "effect";
+      string effect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectType;
+      // string effect = "effect";
       
       abilityEffect.text = string.Format("{0} : {1} pts", effect, amount);
       abilityHitrate.text = string.Format("HIT : {0} %", (int)(chance));

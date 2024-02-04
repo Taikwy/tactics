@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityEffectType: 
   hasSubEffects: 0
   subEffects: []
   attackModifier: 75
@@ -137,6 +138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  primaryEffect: {fileID: 4861301945464717442}
+  primarySubEffect: {fileID: 0}
+  secondaryEffect: {fileID: 0}
+  secondarySubEffect: {fileID: 0}
   primaryEffectZone: {fileID: 4742295797092695002}
   primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}

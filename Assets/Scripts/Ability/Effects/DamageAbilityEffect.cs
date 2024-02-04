@@ -6,6 +6,9 @@ public class DamageAbilityEffect : BaseAbilityEffect
 {
 	public int attackModifier = 0;						//percentage out of 100. scales the unit's attack stat
 
+	void Start(){
+		abilityEffectType = "DAMAGE";
+	}
 	public override int Predict (Tile target)
 	{
 		Unit attacker = GetComponentInParent<Unit>();

@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityEffectType: 
   hasSubEffects: 1
   subEffects: []
   attackModifier: 100
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityEffectType: SUB POISON
   hasSubEffects: 0
   subEffects: []
   statusEffect: {fileID: 7808233544354755189, guid: 2b197cb78f6e6bc4b8ae475a90e077ff, type: 3}
@@ -233,6 +235,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  primaryEffect: {fileID: 4861301945464717442}
+  primarySubEffect: {fileID: 5542779501234916191}
+  secondaryEffect: {fileID: 0}
+  secondarySubEffect: {fileID: 0}
   primaryEffectZone: {fileID: 4742295797092695002}
   primarySubEffectZone: {fileID: 7519107851123608219}
   secondaryEffectZone: {fileID: 0}

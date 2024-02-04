@@ -14,7 +14,8 @@ public class AbilityTargetState : BattleState
         base.Enter ();
         rangeScript = turn.selectedAbility.GetComponent<AbilityRange>();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
-        zoneScript = turn.selectedAbility.primaryEffectZone;
+        // zoneScript = turn.selectedAbility.primaryEffectZone;
+        zoneScript = turn.selectedAbility.primaryEffect.GetComponent<EffectZone>();
 
         areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);

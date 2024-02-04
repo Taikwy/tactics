@@ -8,6 +8,8 @@ public class Ability : MonoBehaviour
     public const string FailedNotification = "Ability.FailedNotification";
     public const string DidPerformNotification = "Ability.DidPerformNotification";
     public AbilityTypes type;
+	public GameObject primaryEffect, primarySubEffect;
+	public GameObject secondaryEffect, secondarySubEffect;
     public EffectZone primaryEffectZone, primarySubEffectZone;
     public EffectZone secondaryEffectZone, secondarySubEffectZone;
 	
