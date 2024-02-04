@@ -14,8 +14,9 @@ public class ForecastPanel : MonoBehaviour
   [SerializeField] TMP_Text targetName;
   public Image actorPortrait, targetPortrait;
   [SerializeField] TMP_Text actionName;
-  [SerializeField] TMP_Text damage;
-  [SerializeField] TMP_Text hitrate;
+  [SerializeField] TMP_Text abilityEffect;         //used to be damage, indicates ability's effect in the forecast
+  [SerializeField] TMP_Text abilityHitrate;
+
 //   Tweener transition;
   void Start ()
   {
@@ -32,9 +33,11 @@ public class ForecastPanel : MonoBehaviour
         targetName.text = target.name;
       
       actionName.text = ability.name;
+
+      string effect= "effect";
       
-      damage.text = string.Format("DMG {0} pts", amount);
-      hitrate.text = string.Format("HIT {0} %", (int)(chance));
+      abilityEffect.text = string.Format("{0} : {1} pts", effect, amount);
+      abilityHitrate.text = string.Format("HIT : {0} %", (int)(chance));
       // Debug.Log(chance);
       // Debug.Log(hitrate.text);
   }
