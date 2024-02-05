@@ -10,15 +10,16 @@ public class SelectUnitState : BattleState
     }
     public override void Exit (){
         base.Exit ();
-        // statPanelController.HidePrimary();
-        panelController.HidePrimary();
+        // panelController.HidePrimary();
+        panelController.HideStatus();
     }
 
     //logic for cycling thru and selecting the next acting unit
     IEnumerator ChangeCurrentUnit (){
         owner.round.MoveNext();
         SelectTile(turn.actingUnit.tile.position);
-        RefreshPrimaryPanel(selectPos);
+        // RefreshPrimaryPanel(selectPos);
+        RefreshPrimaryStatusPanel(selectPos);
         yield return null;
         owner.ChangeState<CommandSelectionState>();
     }

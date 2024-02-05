@@ -7,21 +7,16 @@ using TMPro;
 public class StatusPanel : MonoBehaviour 
 {
     public GameObject statusBG;
+    public GameObject statusLabelPrefab;
+    [Space(2)][Header("Unit stuff")]
     public Image background;
     public Image portrait;
     public Sprite unitBackground;
+    [Space(2)][Header("Unit Stats")]
     public TMP_Text nameLabel;
-    public TMP_Text lvLabel;
-    public TMP_Text xpLabel;
-    public TMP_Text hpLabel;
-    public TMP_Text bpLabel;
-    public TMP_Text skpLabel;
-    public TMP_Text atLabel;
-    public TMP_Text dfLabel;
-    public TMP_Text spLabel;
-    public TMP_Text cpLabel;
-    public TMP_Text cdLabel;
-    public GameObject statusLabelPrefab;
+    public TMP_Text lvLabel, xpLabel, hpLabel, bpLabel;
+    public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
+    public GameObject statusHolder;
     
     //takes in unit gaemeobject
     public void Display (GameObject unit)
@@ -45,6 +40,21 @@ public class StatusPanel : MonoBehaviour
             spLabel.text = string.Format( "SPEED {0}", stats[StatTypes.SP]);
             cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CP]);
             cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
+        }
+        foreach(Transform label in statusHolder.transform){
+            Destroy(label.gameObject);
+        }
+        Status status = unit.GetComponent<Status>();
+        if(status){
+            
+            foreach(GameObject effect in status.statuses){
+		        GameObject statusLabel = Instantiate(statusLabelPrefab, statusHolder.transform);
+                TMP_Text effectLabel = statusLabel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+                TMP_Text durationLabel = statusLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+
+                effectLabel.text = string.Format( "{0} EFFECT", effect.GetComponent<StatusEffect>().statusName);
+                durationLabel.text = string.Format( "{0} TURNS LEFT", effect.GetComponent<DurationStatusCondition>().duration);
+            }
         }
     }
 

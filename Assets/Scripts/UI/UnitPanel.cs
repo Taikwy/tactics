@@ -7,20 +7,14 @@ using TMPro;
 public class UnitPanel : MonoBehaviour 
 {
     public GameObject panelBG;
+    [Space(2)][Header("Unit stuff")]
     public Image background;
     public Image portrait;
     public Sprite unitBackground;
+    [Space(2)][Header("Unit Stats")]
     public TMP_Text nameLabel;
-    public TMP_Text lvLabel;
-    public TMP_Text xpLabel;
-    public TMP_Text hpLabel;
-    public TMP_Text bpLabel;
-    public TMP_Text skpLabel;
-    public TMP_Text atLabel;
-    public TMP_Text dfLabel;
-    public TMP_Text spLabel;
-    public TMP_Text cpLabel;
-    public TMP_Text cdLabel;
+    public TMP_Text lvLabel, xpLabel, hpLabel, bpLabel;
+    public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
     
     //takes in unit gaemeobject
     public void Display (GameObject unit)
