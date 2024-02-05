@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 43699261}
   - component: {fileID: 43699260}
   m_Layer: 5
-  m_Name: Statuses
+  m_Name: Afflictions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'STATUSES
+  m_text: 'AFFLICTIONS
 
 '
   m_isRightToLeft: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -3.7757998, w: 0}
+  m_margin: {x: -4.1406975, y: 0, z: -7.9164953, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6941,6 +6941,9 @@ MonoBehaviour:
   primaryPanel: {fileID: 1856305562}
   secondaryPanel: {fileID: 1632149149}
   primaryStatusPanel: {fileID: 432285246}
+  showingPrimary: 0
+  showingPrimaryStatus: 0
+  showingSecondary: 0
 --- !u!1 &1280479880
 GameObject:
   m_ObjectHideFlags: 0

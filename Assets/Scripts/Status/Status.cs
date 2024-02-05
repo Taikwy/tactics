@@ -41,6 +41,7 @@ public class Status : MonoBehaviour
 	// 	}
 	// }
 
+	//Currently unused
 	public void Add(){
 		StatusEffect effect = GetComponentInChildren<StatusEffect>();
 		if(effect != null)
@@ -54,11 +55,12 @@ public class Status : MonoBehaviour
 		}
 	}
 	public void Add(GameObject statusPrefab){
-		
 		// Debug.Log("adding status");
 		GameObject statusObj = Instantiate(statusPrefab, gameObject.transform);
+		statuses.Add(statusObj);
 		this.PostEvent(AddedNotification, statusObj.GetComponent<StatusEffect>());
 
+		//no fucking clue wtf this does, i think its old logic that also handles adding the same status effect
 		// StatusEffect effect = GetComponentInChildren<StatusEffect>();
 		// if(effect != null)
 		// 	CheckStatus();
@@ -72,6 +74,7 @@ public class Status : MonoBehaviour
 	}
 	public void Remove(StatusCondition condition){
 		StatusEffect effect = condition.GetComponentInChildren<StatusEffect>();
+		statuses.Remove(effect.gameObject);
 		
 		effect.transform.SetParent(null);
 		condition.transform.SetParent(null);

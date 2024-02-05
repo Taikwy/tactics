@@ -21,6 +21,7 @@ public class StatusPanel : MonoBehaviour
     public TMP_Text spLabel;
     public TMP_Text cpLabel;
     public TMP_Text cdLabel;
+    public GameObject statusLabelPrefab;
     
     //takes in unit gaemeobject
     public void Display (GameObject unit)

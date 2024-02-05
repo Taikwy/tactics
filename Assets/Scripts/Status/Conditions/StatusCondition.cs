@@ -6,8 +6,8 @@ public class StatusCondition : MonoBehaviour
 {
     public virtual void Remove ()
     {
-        Status s = GetComponentInParent<Status>();
-        if (s)
-            s.Remove(this);
+        Status status = GetComponentInParent<Status>();
+        if (status)
+            status.Remove(this);
     }
 }
