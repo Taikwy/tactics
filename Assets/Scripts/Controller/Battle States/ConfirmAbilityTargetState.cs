@@ -91,7 +91,7 @@ public class ConfirmAbilityTargetState : BattleState
 
         if (turn.targets.Count > 0){
             RefreshSecondaryPanel(turn.targets[currentTarget].position);
-            UpdateHitSuccessIndicator ();
+            UpdateForecastPanel ();
             SelectTile(turn.targets[currentTarget].position);
         }
     }
@@ -100,21 +100,30 @@ public class ConfirmAbilityTargetState : BattleState
         Debug.Log("updating forecast panel");
 		float hitrate = 0;
 		int amount = 0;
+        float subHitrate;
+        int subAmount;
 		Tile target = turn.targets[currentTarget];
 
 		Transform obj = turn.selectedAbility.transform;
 		for (int i = 0; i < obj.childCount; ++i)
 		{
 			AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
+            //loops thru the possible targets the ability can have to check and calculate hitrate and effect
 			if (targeter.IsTarget(target))
 			{
-                // Debug.Log("targets");
 				HitRate hitRate = targeter.GetComponent<HitRate>();
 				hitrate = hitRate.CalculateHitRate(target);
 
 				BaseAbilityEffect effect = targeter.GetComponent<BaseAbilityEffect>();
 				amount = effect.Predict(target);
                 
+                // if(effect.hasSubEffects){
+                //     HitRate hitRate = targeter.GetComponent<HitRate>();
+				//     hitrate = hitRate.CalculateHitRate(target);
+
+                //     BaseAbilityEffect effect = targeter.GetComponent<BaseAbilityEffect>();
+                //     amount = effect.Predict(target);
+                // }
                 // Debug.Log("predicted damage " + amount);
 				break;
 			}
@@ -123,6 +132,7 @@ public class ConfirmAbilityTargetState : BattleState
 		forecastPanel.SetStats(turn.actingUnit, target.content, turn.selectedAbility.gameObject, hitrate, amount);
     }
 
+    //old updateforecastpanel, unused
     void UpdateHitSuccessIndicator ()
 	{
         Debug.Log("updating hit success indicator");

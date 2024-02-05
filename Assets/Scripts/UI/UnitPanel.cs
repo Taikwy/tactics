@@ -7,6 +7,7 @@ using TMPro;
 public class UnitPanel : MonoBehaviour 
 {
     public GameObject panelBG;
+    public GameObject statusBG;
     public Image background;
     public Image portrait;
     public Sprite unitBackground;
@@ -48,9 +49,17 @@ public class UnitPanel : MonoBehaviour
     }
 
     public void ShowPanel(){
+        HideStatus();
         panelBG.SetActive(true);
     }
     public void HidePanel(){
         panelBG.SetActive(false);
+    }
+    public void ShowStatus(){
+        HidePanel();
+        statusBG.SetActive(true);
+    }
+    public void HideStatus(){
+        statusBG.SetActive(false);
     }
 }

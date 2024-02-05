@@ -18,6 +18,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	
 	public string abilityEffectType;
     public bool hasSubEffects;                    //this thing is mine
+	// public BaseAbilityEffect subEffect;
 	public List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();
 
 	void Awake(){
