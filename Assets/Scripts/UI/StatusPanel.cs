@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UnitPanel : MonoBehaviour 
+public class StatusPanel : MonoBehaviour 
 {
-    public GameObject panelBG;
+    public GameObject statusBG;
     public Image background;
     public Image portrait;
     public Sprite unitBackground;
@@ -47,10 +47,10 @@ public class UnitPanel : MonoBehaviour
         }
     }
 
-    public void ShowPanel(){
-        panelBG.SetActive(true);
+    public void ShowStatus(){
+        statusBG.SetActive(true);
     }
-    public void HidePanel(){
-        panelBG.SetActive(false);
+    public void HideStatus(){
+        statusBG.SetActive(false);
     }
 }

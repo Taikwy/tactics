@@ -71,6 +71,16 @@ public abstract class BattleState : State
             panelController.HidePrimary();
         }
     }
+    protected virtual void RefreshPrimaryStatusPanel (Point p){
+        // Debug.Log("refreshing primary panel");
+        Unit target = GetUnit(p);
+        if (target != null){
+            panelController.ShowStatus(target.gameObject);
+        }
+        else{
+            panelController.HideStatus();
+        }
+    }
     protected virtual void RefreshSecondaryPanel (Point p){
         // Debug.Log("refreshing second panel");
         Unit target = GetUnit(p);

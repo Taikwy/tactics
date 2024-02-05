@@ -10,9 +10,10 @@ public class PanelController : MonoBehaviour
     #endregion
     #region Fields
     [SerializeField] BasePanel basePanel;
-    [SerializeField] UnitPanel primaryPanel;                //selected unit
-    [SerializeField] UnitPanel secondaryPanel;              //targeted unit
+    [SerializeField] UnitPanel primaryPanel, secondaryPanel;              //selected and targeted unit
+    [SerializeField] StatusPanel primaryStatusPanel;              //selected and targeted unit
     // [SerializeField] AbilityMenu abilityMenu;
+    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary = false;
     
     #endregion
     #region MonoBehaviour
@@ -23,21 +24,33 @@ public class PanelController : MonoBehaviour
     #endregion
     #region Public
     public void ShowPrimary (GameObject unit){
-        // basePanel.Display(obj);
-        // basePanel.ShowPanel();
+        HideStatus();
+        showingPrimary = true;
         primaryPanel.Display(unit);
         primaryPanel.ShowPanel();
     }
     public void HidePrimary (){
-        // basePanel.HidePanel();
+        showingPrimary = false;
         primaryPanel.HidePanel();
+    }
+    public void ShowStatus (GameObject unit){
+        HidePrimary();
+        showingPrimaryStatus = true;
+        primaryStatusPanel.Display(unit);
+        primaryStatusPanel.ShowStatus();
+    }
+    public void HideStatus (){
+        showingPrimaryStatus = false;
+        primaryStatusPanel.HideStatus();
     }
     
     public void ShowSecondary (GameObject unit){
+        showingSecondary = true;
         secondaryPanel.Display(unit);
         secondaryPanel.ShowPanel();
     }
     public void HideSecondary (){
+        showingSecondary = false;
         secondaryPanel.HidePanel();
     }
 

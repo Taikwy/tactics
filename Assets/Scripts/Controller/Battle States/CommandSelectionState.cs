@@ -10,8 +10,8 @@ public class CommandSelectionState : BaseAbilityMenuState
     public override void Enter (){
         Debug.Log("enter command selection  state");
         base.Enter ();
-        // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
-        panelController.ShowPrimary(turn.actingUnit.gameObject);
+        panelController.ShowStatus(turn.actingUnit.gameObject);
+        // panelController.ShowPrimary(turn.actingUnit.gameObject);
         SelectTile(turn.actingUnit.tile.position);
 
         updating = true;
@@ -22,8 +22,8 @@ public class CommandSelectionState : BaseAbilityMenuState
         updating = false;
 
         base.Exit ();
-        // statPanelController.HidePrimary();
-        panelController.HidePrimary();
+        // panelController.HidePrimary();
+        panelController.HideStatus();
     }
     protected void Update(){
         if(!updating)
@@ -40,12 +40,14 @@ public class CommandSelectionState : BaseAbilityMenuState
             menuOptions = new List<string>(4){
                 "MOVE",
                 "ACTION",
-                "STATUS",
+                // "STATUS",
+                "DEFEND",
                 "PASS"
             };
             menuFunctions = new List<UnityEngine.Events.UnityAction>(4){
                 delegate { Move(); },
                 delegate { Act(); },
+                // delegate { Status(); },
                 delegate { Defend(); },
                 delegate { Pass(); }
             };
@@ -70,6 +72,9 @@ public class CommandSelectionState : BaseAbilityMenuState
     }protected void Act(){
         Debug.Log("act clicked!");
         owner.ChangeState<CategorySelectionState>();
+    }protected void Status(){
+        Debug.Log("status clicked!");
+        owner.ChangeState<SelectUnitState>();
     }protected void Defend(){
         Debug.Log("defend clicked!");
         owner.ChangeState<SelectUnitState>();

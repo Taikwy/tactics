@@ -16,7 +16,6 @@ public class ExploreState : BattleState
         updating = false;
 
         base.Exit ();
-        // statPanelController.HidePrimary();
         panelController.HidePrimary();
     }
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
@@ -25,16 +24,32 @@ public class ExploreState : BattleState
     }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
-        if (e.info == 0)
-            owner.ChangeState<CommandSelectionState>();
+        //exits back to acting unit, or selects the currently targeted unit to show status info
+        if(!panelController.showingPrimaryStatus){
+            if (e.info == 0){
+                RefreshPrimaryStatusPanel(board.selectedPoint);
+            }
+            if (e.info == 1){
+                owner.ChangeState<CommandSelectionState>();
+            }
+        }
+        //if currently showing status info, right click goes back to default explore state
+        else{
+            if (e.info == 1){
+                panelController.HideStatus();
+            }
+        }
+        
     }
 
     protected void Update(){
         if(!updating)
             return;
         Debug.Log("explore updating");
-        
-        RefreshPrimaryPanel(board.selectedPoint);
-        SelectTile(board.selectedPoint);
+        //only updates primary panel if in default explore state and not currently showing statuses
+        if(!panelController.showingPrimaryStatus){
+            RefreshPrimaryPanel(board.selectedPoint);
+            SelectTile(board.selectedPoint);
+        }
     }
 }
