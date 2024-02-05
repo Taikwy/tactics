@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TurnOrderController : MonoBehaviour 
 {
-
-
     const int baseActionGauge = 10000;
     const int moveCost = 2000;
     const int actionCost = 3000;

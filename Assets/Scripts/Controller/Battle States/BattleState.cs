@@ -75,6 +75,7 @@ public abstract class BattleState : State
         // Debug.Log("refreshing primary panel");
         Unit target = GetUnit(p);
         if (target != null){
+            Debug.Log("showing status");
             panelController.ShowStatus(target.gameObject);
         }
         else{

@@ -19,6 +19,7 @@ public class PanelController : MonoBehaviour
     #region MonoBehaviour
     void Start (){
         HidePrimary();
+        HideStatus();
         HideSecondary();
     }
     #endregion

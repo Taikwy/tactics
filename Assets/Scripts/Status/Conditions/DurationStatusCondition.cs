@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class DurationStatusCondition : StatusCondition 
 {
-    public int duration = 3;
-    void OnEnable (){
+    public int duration = 0;
+    protected virtual void OnEnable (){
         this.AddObserver(OnNewTurn, TurnOrderController.RoundBeganEvent);
     }
-    void OnDisable (){
+    protected virtual void OnDisable (){
         this.RemoveObserver(OnNewTurn, TurnOrderController.RoundBeganEvent);
     }
-    void OnNewTurn (object sender, object args){
+    protected virtual void OnNewTurn (object sender, object args){
+        duration--;
         if (duration <= 0)
             Remove();
-        
-        duration--;
     }
 }

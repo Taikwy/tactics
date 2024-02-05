@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitDurationStatusCondition : StatusCondition 
+public class UnitDurationStatusCondition : DurationStatusCondition 
 {
-    public int duration = 3;
-    void OnEnable (){
-        // this.AddObserver(OnNewTurn, TurnOrderController.RoundBeganNotification);
+    protected override void OnEnable (){
+        this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
     }
-    void OnDisable (){
-        // this.RemoveObserver(OnNewTurn, TurnOrderController.RoundBeganNotification);
+    protected override void OnDisable (){
+        this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
     }
-    void OnNewTurn (object sender, object args){
+    protected override void OnNewTurn (object sender, object args){
+        //makes it so its updating when its the new turn of the inflicted unit and not just any unit
+        if(!sender.Equals(transform.parent.GetComponent<Unit>()))
+            return;
         duration--;
         if (duration <= 0)
             Remove();
