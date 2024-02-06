@@ -16,7 +16,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	public const string HitEvent = "BaseAbilityEffect.HitEvent";
 	public const string MissedEvent = "BaseAbilityEffect.MissedEvent";
 	
-	public string abilityEffectType;
+	public string abilityEffectName;
     public bool hasSubEffects;                    //this thing is mine
 	// public BaseAbilityEffect subEffect;
 	public List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();

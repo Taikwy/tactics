@@ -182,8 +182,12 @@ MonoBehaviour:
   hasSubEffects: 0
   subEffects: []
   statusEffect: {fileID: 7808233544354755189, guid: 2d451196a0b939c4db15886895ba1ef1, type: 3}
-  statusName: BreakStatusEffect
+  effectName: 
+  conditionName: 
   duration: 1
+  flatDMG: 0
+  percentDMG: 0
+  statChange: 0
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,5 +272,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 2
+  numTargets: 1
   targets: []

@@ -86,10 +86,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectType: 
-  hasSubEffects: 1
-  subEffects:
-  - {fileID: 8201835707468967331}
+  abilityEffectName: 
+  hasSubEffects: 0
+  subEffects: []
   attackPercentModifier: 0
 --- !u!1 &5542779501234916191
 GameObject:
@@ -177,12 +176,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectType: BURN
+  abilityEffectName: BURN
   hasSubEffects: 0
   subEffects: []
   statusEffect: {fileID: 7808233544354755189, guid: 204e2ea415dfb9643ae0703c4ac51d53, type: 3}
-  statusName: BurnStatusEffect
-  duration: 1
+  effectName: FlatDamageStatusEffect
+  conditionName: UnitDurationStatusCondition
+  duration: 2
+  flatDMG: 2
+  percentDMG: 0
+  statChange: 0
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,5 +271,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 2
+  numTargets: 1
   targets: []

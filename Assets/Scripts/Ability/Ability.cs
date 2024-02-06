@@ -47,7 +47,9 @@ public class Ability : MonoBehaviour
 
 	void Perform (Tile target){
         //loops thru the ability effects
+		Debug.Log(transform.childCount + " children");
 		for (int i = 0; i < transform.childCount; ++i){
+			Debug.Log("perform looping " + i + " " + transform.childCount + " ");
 			Transform child = transform.GetChild(i);
 			BaseAbilityEffect effect = child.GetComponent<BaseAbilityEffect>();
 			effect.Apply(target);

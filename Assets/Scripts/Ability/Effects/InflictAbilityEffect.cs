@@ -6,58 +6,78 @@ using System.Reflection;
 public class InflictAbilityEffect : BaseAbilityEffect 
 {
     public GameObject statusEffect;
-	public string statusName;
+	public string effectName, conditionName;
+	[Space(2)][Header("Condition stuff")]
 	public int duration;
+	[Space(2)][Header("Effect stuff")]
+	public int flatDMG;
+	public int percentDMG;
+	public int statChange;
 
 	//returns 0 cuz no damage
 	public override int Predict (Tile target)
 	{
-        Debug.Log("predicting inflict " + statusName);
+        Debug.Log("predicting inflict " + effectName);
 		return 0;
 	}
 
-    protected override int OnApply (Tile target){
-        Debug.Log("new inflicting status " + statusName);
+    protected int NewOnApply (Tile target){
+        Debug.Log("new inflicting status " + effectName);
         Status status = target.content.GetComponent<Status>();
-        status.Add(statusEffect);
+        // status.Add(statusEffect);
         return 0;
 
-        //checks if there is a calss with the statusname
-		Type statusType = Type.GetType(statusName);
-		if (statusType == null || !statusType.IsSubclassOf(typeof(StatusEffect))){
-			Debug.LogError("Invalid Status Type");
-			return 0;
-		}
-
-		MethodInfo mi = typeof(Status).GetMethod("Add");
-		Type[] types = new Type[]{ statusType, typeof(DurationStatusCondition) };
-		MethodInfo constructed = mi.MakeGenericMethod(types);
-
-		Status status = target.content.GetComponent<Status>();
-		object retValue = constructed.Invoke(status, null);
-
-		DurationStatusCondition condition = retValue as DurationStatusCondition;
-		condition.duration = duration;
-		return 0;
 	}
 
-	protected  int OldOnApply (Tile target){
-        Debug.Log("inflicting status " + statusName);
-		Type statusType = Type.GetType(statusName);
-		if (statusType == null || !statusType.IsSubclassOf(typeof(StatusEffect))){
-			Debug.LogError("Invalid Status Type");
+	protected override int OnApply (Tile target){
+        Debug.Log("new inflicting status " + effectName);
+        //checks if there is a calss with the statusname
+		Type effectType = Type.GetType(effectName);
+		Type conditionType = Type.GetType(conditionName);
+		if (effectType == null || !effectType.IsSubclassOf(typeof(StatusEffect))){
+			Debug.LogError("Invalid Status Effect Type");
+			return 0;
+		}
+		if (conditionType == null || !conditionType.IsSubclassOf(typeof(StatusCondition))){
+			Debug.LogError("Invalid Status Condition Type");
 			return 0;
 		}
 
+		//mi is status.add
 		MethodInfo mi = typeof(Status).GetMethod("Add");
-		Type[] types = new Type[]{ statusType, typeof(DurationStatusCondition) };
+		Type[] types = new Type[]{ effectType, conditionType };
 		MethodInfo constructed = mi.MakeGenericMethod(types);
 
 		Status status = target.content.GetComponent<Status>();
-		object retValue = constructed.Invoke(status, null);
+		GameObject statusObj = constructed.Invoke(status, null) as GameObject;
+		statusObj.name = abilityEffectName;
 
-		DurationStatusCondition condition = retValue as DurationStatusCondition;
-		condition.duration = duration;
+		StatusEffect effect = statusObj.GetComponent<StatusEffect>();
+		StatusCondition condition = statusObj.GetComponent<StatusCondition>();
+		
+		switch(condition){
+			case GlobalDurationStatusCondition:
+				(condition as GlobalDurationStatusCondition).duration = duration;
+				break;
+			case UnitDurationStatusCondition:
+				(condition as UnitDurationStatusCondition).duration = duration;
+				break;
+			case InfiniteStatusCondition:
+				break;
+		}
+
+		switch(effect){
+			case FlatDamageStatusEffect:
+				(effect as FlatDamageStatusEffect).damage = flatDMG;
+				break;
+			case PercentDamageStatusEffect:
+				(effect as PercentDamageStatusEffect).percent = percentDMG;
+				break;
+			case StatChangeStatusEffect:
+				(effect as StatChangeStatusEffect).amountChanged = statChange;
+				break;
+		}
+
 		return 0;
 	}
 	

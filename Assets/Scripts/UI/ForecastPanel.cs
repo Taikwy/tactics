@@ -25,8 +25,8 @@ public class ForecastPanel : MonoBehaviour
   {      
       actionName.text = ability.name;
 
-      string effect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectType;
-      string subEffect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectType;
+      string effect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectName;
+      string subEffect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectName;
       
       abilityEffect.text = string.Format("{0} : {1} pts", effect, amount);
       abilityHitrate.text = string.Format("HIT : {0} %", (int)chance);
@@ -38,7 +38,7 @@ public class ForecastPanel : MonoBehaviour
   {      
       actionName.text = ability.name;
 
-      string effect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectType;
+      string effect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectName;
       
       abilityEffect.text = string.Format("{0} : {1} pts", effect, amount);
       abilityHitrate.text = string.Format("HIT : {0} %", (int)(chance));
