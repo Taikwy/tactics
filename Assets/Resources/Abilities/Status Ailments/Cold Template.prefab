@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusName: Cold
   statType: 11
+  amountChanged: 0
 --- !u!114 &4424806354233700269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,4 +60,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df89a14023901934796939677da52b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 0

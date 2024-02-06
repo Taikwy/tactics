@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5abbaefbc901eb748ad7867c36863d37, type: 3}
-  m_Name: Snake Catalog
+  m_Name: Paladin Catalog
   m_EditorClassIdentifier: 
   entries:
   - Slash
+  - Shield Bash

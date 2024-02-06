@@ -11,19 +11,19 @@ public class StatChangeStatusEffect : StatusEffect
 	void OnEnable ()
 	{
 		myStats = GetComponentInParent<Stats>();
-		// if (myStats)
-		// 	this.AddObserver( OnCounterWillChange, Stats.WillChangeNotification(StatTypes.CTR), myStats );
+		if (myStats)
+			this.AddObserver( OnCounterWillChange, Stats.WillChangeNotification(statType), myStats );
 	}
 
 	void OnDisable ()
 	{
-		// this.RemoveObserver( OnCounterWillChange, Stats.WillChangeNotification(StatTypes.CTR), myStats );
+		this.RemoveObserver( OnCounterWillChange, Stats.WillChangeNotification(statType), myStats );
 	}
 
 	void OnCounterWillChange (object sender, object args)
 	{
 		ValueChangeException exc = args as ValueChangeException;
-		MultDeltaModifier m = new MultDeltaModifier(0, 2);
-		exc.AddModifier(m);
+		AddValueModifier a = new AddValueModifier(0, amountChanged);
+		exc.AddModifier(a);
 	}
 }

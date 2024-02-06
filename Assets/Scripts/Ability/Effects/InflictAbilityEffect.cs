@@ -22,23 +22,23 @@ public class InflictAbilityEffect : BaseAbilityEffect
         status.Add(statusEffect);
         return 0;
 
-        
-		// Type statusType = Type.GetType(statusName);
-		// if (statusType == null || !statusType.IsSubclassOf(typeof(StatusEffect))){
-		// 	Debug.LogError("Invalid Status Type");
-		// 	return 0;
-		// }
+        //checks if there is a calss with the statusname
+		Type statusType = Type.GetType(statusName);
+		if (statusType == null || !statusType.IsSubclassOf(typeof(StatusEffect))){
+			Debug.LogError("Invalid Status Type");
+			return 0;
+		}
 
-		// MethodInfo mi = typeof(Status).GetMethod("Add");
-		// Type[] types = new Type[]{ statusType, typeof(DurationStatusCondition) };
-		// MethodInfo constructed = mi.MakeGenericMethod(types);
+		MethodInfo mi = typeof(Status).GetMethod("Add");
+		Type[] types = new Type[]{ statusType, typeof(DurationStatusCondition) };
+		MethodInfo constructed = mi.MakeGenericMethod(types);
 
-		// Status status = target.content.GetComponent<Status>();
-		// object retValue = constructed.Invoke(status, null);
+		Status status = target.content.GetComponent<Status>();
+		object retValue = constructed.Invoke(status, null);
 
-		// DurationStatusCondition condition = retValue as DurationStatusCondition;
-		// condition.duration = duration;
-		// return 0;
+		DurationStatusCondition condition = retValue as DurationStatusCondition;
+		condition.duration = duration;
+		return 0;
 	}
 
 	protected  int OldOnApply (Tile target){

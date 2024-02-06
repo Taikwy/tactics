@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageAbilityEffect : BaseAbilityEffect 
 {
-	public int attackModifier = 0;						//percentage out of 100. scales the unit's attack stat
+	public int attackPercentModifier = 0;						//percentage out of 100. scales the unit's attack stat
 
 	void Start(){
 		abilityEffectType = "DAMAGE";
@@ -28,7 +28,7 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		int weaponBonus = 0;
 
 		//base damage calc
-		int attackingDamage = attackModifier * (attack + terrainBonus) + weaponBonus;
+		int attackingDamage = attackPercentModifier * (attack + terrainBonus) + weaponBonus;
 		int damage = attackingDamage - defense;
 		damage = Mathf.Max(damage, 1);
 

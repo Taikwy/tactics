@@ -19,6 +19,6 @@ MonoBehaviour:
   statData: {fileID: 11400000, guid: 2d96c613e20d04f4fa5bc695c9156ffa, type: 2}
   job: 
   attack: 
-  abilityCatalog: Dummy Catalog
+  abilityCatalog: Paladin Catalog
   movementType: 0
   alliance: 2
