@@ -87,105 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityEffectName: 
-  hasSubEffects: 0
-  subEffects: []
   attackPercentModifier: 0
---- !u!1 &5542779501234916191
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7087469409747505629}
-  - component: {fileID: 8113753804373041160}
-  - component: {fileID: 6947753388672526548}
-  - component: {fileID: 7519107851123608219}
-  - component: {fileID: 8201835707468967331}
-  m_Layer: 0
-  m_Name: Burn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7087469409747505629
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542779501234916191}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7693599255702816309}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8113753804373041160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542779501234916191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6947753388672526548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542779501234916191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2ca026f6d009ea4bb7d29c3aec2d079, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guaranteed: 1
-  abilityHitRate: 0
---- !u!114 &7519107851123608219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542779501234916191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
---- !u!114 &8201835707468967331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542779501234916191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityEffectName: BURN
-  hasSubEffects: 0
-  subEffects: []
-  statusEffect: {fileID: 7808233544354755189, guid: 204e2ea415dfb9643ae0703c4ac51d53, type: 3}
-  effectName: FlatDamageStatusEffect
-  conditionName: UnitDurationStatusCondition
-  duration: 2
-  flatDMG: 2
-  percentDMG: 0
-  statChange: 0
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +120,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6966475923109113812}
-  - {fileID: 7087469409747505629}
+  - {fileID: 3347629336638676858}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,11 +138,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   primaryEffect: {fileID: 4861301945464717442}
-  primarySubEffect: {fileID: 5542779501234916191}
+  primarySubEffect: {fileID: 55587267428238840}
   secondaryEffect: {fileID: 0}
   secondarySubEffect: {fileID: 0}
   primaryEffectZone: {fileID: 4742295797092695002}
-  primarySubEffectZone: {fileID: 7519107851123608219}
+  primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}
   secondarySubEffectZone: {fileID: 0}
 --- !u!114 &3484823612947708004
@@ -273,3 +175,70 @@ MonoBehaviour:
   canTargetSelf: 0
   numTargets: 1
   targets: []
+--- !u!1001 &5578306112918417946
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7693599255702816309}
+    m_Modifications:
+    - target: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_Name
+      value: Inflict Burn Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+--- !u!1 &55587267428238840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+  m_PrefabInstance: {fileID: 5578306112918417946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3347629336638676858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+  m_PrefabInstance: {fileID: 5578306112918417946}
+  m_PrefabAsset: {fileID: 0}

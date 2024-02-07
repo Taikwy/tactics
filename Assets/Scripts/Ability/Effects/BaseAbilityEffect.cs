@@ -17,22 +17,16 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	public const string MissedEvent = "BaseAbilityEffect.MissedEvent";
 	
 	public string abilityEffectName;
-    public bool hasSubEffects;                    //this thing is mine
+    // public bool hasSubEffects;                    //this thing is mine
 	// public BaseAbilityEffect subEffect;
-	public List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();
+	List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();
 
 	void Awake(){
-		//checks if ability has subeffects, if so, it adds them to the list
-		if(hasSubEffects){
-
-			foreach(Transform child in transform){
-				BaseAbilityEffect subEffect = child.gameObject.GetComponent<BaseAbilityEffect>();
-				if(subEffect != null)
-					subEffects.Add(subEffect);
-			}
-			// foreach(BaseAbilityEffect subEffect in gameObject.transform.GetComponentsInChildren<BaseAbilityEffect>()){
-			// 	subEffects.Add(subEffect);
-			// }
+		//auto adds the sub effects into the script's list
+		foreach(Transform child in transform){
+			BaseAbilityEffect subEffect = child.gameObject.GetComponent<BaseAbilityEffect>();
+			if(subEffect != null)
+				subEffects.Add(subEffect);
 		}
 	}
 

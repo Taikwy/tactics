@@ -5,11 +5,13 @@ using System.Reflection;
 
 public class InflictAbilityEffect : BaseAbilityEffect 
 {
-    public GameObject statusEffect;
-	public string effectName, conditionName;
-	[Space(2)][Header("Condition stuff")]
+    // public GameObject statusEffect;
+	[Header("Ailment Types (Class Names)")]
+	public string effectName;
+	public string conditionName;
+	[Header("Ailment Condition")]
 	public int duration;
-	[Space(2)][Header("Effect stuff")]
+	[Header("Ailment Effect Numbers")]
 	public int flatDMG;
 	public int percentDMG;
 	public int statChange;
@@ -53,6 +55,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		statusObj.name = abilityEffectName;
 
 		StatusEffect effect = statusObj.GetComponent<StatusEffect>();
+		effect.statusName = abilityEffectName;
 		StatusCondition condition = statusObj.GetComponent<StatusCondition>();
 		
 		switch(condition){

@@ -39,38 +39,38 @@ public class PerformAbilityState : BattleState
 
     void OldApplyAbility ()
     {
-        BaseAbilityEffect[] effects = turn.selectedAbility.GetComponentsInChildren<BaseAbilityEffect>();
-        bool[] effectHit = new bool[effects.Length];
-        for (int i = 0; i < turn.targets.Count; ++i)
-        {
-            Tile target = turn.targets[i];
-            for (int j = 0; j < effects.Length; ++j)
-            {
-                BaseAbilityEffect currentEffect = effects[j];
-                AbilityEffectTarget targeter = currentEffect.GetComponent<AbilityEffectTarget>();
-                if (targeter.IsTarget(target))
-                {
-                    if(currentEffect.hasSubEffects){
-                        //Checks if the previous, ie main effect hit successfully
-                        if(!effectHit[j-1]){
-                            //previous effect did not hit, skip the bonus effect
-                            continue;
-                        }
-                    }
-                    HitRate rate = currentEffect.GetComponent<HitRate>();
-                    float chance = rate.CalculateHitRate(target);
-                    Debug.Log("chance : " + chance);
-                    if (Random.Range(0, 1f) > chance)
-                    {
-                        // A Miss!
-                        Debug.Log("ability missed!");
-                        continue;
-                    }
-                    Debug.Log("ability hit!");
-                    effectHit[j] = true;
-                    currentEffect.Apply(target);
-                }
-            }
-        }
+        // BaseAbilityEffect[] effects = turn.selectedAbility.GetComponentsInChildren<BaseAbilityEffect>();
+        // bool[] effectHit = new bool[effects.Length];
+        // for (int i = 0; i < turn.targets.Count; ++i)
+        // {
+        //     Tile target = turn.targets[i];
+        //     for (int j = 0; j < effects.Length; ++j)
+        //     {
+        //         BaseAbilityEffect currentEffect = effects[j];
+        //         AbilityEffectTarget targeter = currentEffect.GetComponent<AbilityEffectTarget>();
+        //         if (targeter.IsTarget(target))
+        //         {
+        //             if(currentEffect.hasSubEffects){
+        //                 //Checks if the previous, ie main effect hit successfully
+        //                 if(!effectHit[j-1]){
+        //                     //previous effect did not hit, skip the bonus effect
+        //                     continue;
+        //                 }
+        //             }
+        //             HitRate rate = currentEffect.GetComponent<HitRate>();
+        //             float chance = rate.CalculateHitRate(target);
+        //             Debug.Log("chance : " + chance);
+        //             if (Random.Range(0, 1f) > chance)
+        //             {
+        //                 // A Miss!
+        //                 Debug.Log("ability missed!");
+        //                 continue;
+        //             }
+        //             Debug.Log("ability hit!");
+        //             effectHit[j] = true;
+        //             currentEffect.Apply(target);
+        //         }
+        //     }
+        // }
     }
 }
