@@ -35,9 +35,28 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 
     //handles applying the effect, checks if it can hit and raises events for the result
 	public void Apply (Tile target){
+		// Debug.Log("applying");
         //checks if the target can get affected by the ability or not
 		if (GetComponent<AbilityEffectTarget>().IsTarget(target) == false)
 			return;
+
+		if (GetComponent<HitRate>().RollForHit(target)){
+            Debug.Log("HIT! " + abilityEffectName);
+			this.PostEvent(HitEvent, OnApply(target));
+			foreach(BaseAbilityEffect effect in subEffects){
+				effect.SubApply(target);
+			}
+        }
+		else{
+            Debug.Log("MISS! " + abilityEffectName);
+			this.PostEvent(MissedEvent);
+        }
+	}
+	public void SubApply (Tile target){
+		// Debug.Log("ub applying");
+        //logic here for in case a unit is immune to a status effect or smt
+		// if (GetComponent<AbilityEffectTarget>().IsTarget(target) == false)
+		// 	return;
 
 		if (GetComponent<HitRate>().RollForHit(target)){
             Debug.Log("HIT! " + abilityEffectName);

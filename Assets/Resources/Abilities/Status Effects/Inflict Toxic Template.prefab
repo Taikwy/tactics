@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ca026f6d009ea4bb7d29c3aec2d079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guaranteed: 1
+  guaranteed: 0
   abilityHitRate: 0
 --- !u!114 &8112756447783014686
 MonoBehaviour:
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityEffectName: TOXIC
+  subEffects: []
   effectName: FlatDamageStatusEffect
   conditionName: UnitDurationStatusCondition
   duration: 0

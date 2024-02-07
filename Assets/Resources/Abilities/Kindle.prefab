@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6966475923109113812}
   - component: {fileID: 1918677148183206524}
-  - component: {fileID: 943302544963065149}
   - component: {fileID: 4742295797092695002}
+  - component: {fileID: 943302544963065149}
   - component: {fileID: 6950046999304816923}
   m_Layer: 0
   m_Name: Damage
@@ -48,6 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4742295797092695002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861301945464717442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
 --- !u!114 &943302544963065149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,19 +75,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guaranteed: 0
   abilityHitRate: 80
---- !u!114 &4742295797092695002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861301945464717442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
 --- !u!114 &6950046999304816923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +189,14 @@ PrefabInstance:
     - target: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_Name
       value: Inflict Burn Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003075404764746857, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: guaranteed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003075404764746857, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: abilityHitRate
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_RootOrder

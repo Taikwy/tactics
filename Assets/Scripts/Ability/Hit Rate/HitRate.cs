@@ -43,7 +43,7 @@ public abstract class HitRate : MonoBehaviour
 			return true;
 		// float roll = Random.Range(0, 1f);
 		float roll = Random.Range(0, 1f);
-		float chance = CalculateHitRate(target);
+		float chance = CalculateHitRate(target)/100.0f;
         Debug.Log("rolled for hit " + roll + " " + chance);
 		return roll <= chance;
 	}

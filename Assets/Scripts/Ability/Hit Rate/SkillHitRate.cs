@@ -26,7 +26,7 @@ public class SkillHitRate : HitRate
         finalHitRate = baseHitRate;
 
         // Debug.Log("ability hit rate " + abilityHitRate + " attacker stats " + AS + " defender stats " + DS + " speed " + speed);
-        // Debug.Log("hitrate = " + finalHitRate);
+        Debug.Log("hitrate = " + finalHitRate);
         return finalHitRate;
     }
 
