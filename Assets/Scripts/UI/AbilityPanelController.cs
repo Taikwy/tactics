@@ -78,7 +78,7 @@ public class AbilityPanelController : MonoBehaviour
 
     
     public void Hide (){
-        Debug.Log("hiding panel controller");
+        // Debug.Log("hiding panel controller");
         Clear();
         menuPanel.SetActive(false);
     }

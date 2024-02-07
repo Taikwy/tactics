@@ -8,7 +8,7 @@ public class CommandSelectionState : BaseAbilityMenuState
 {
     bool updating = false;
     public override void Enter (){
-        Debug.Log("enter command selection  state");
+        // Debug.Log("enter command selection  state");
         base.Enter ();
         panelController.ShowStatus(turn.actingUnit.gameObject);
         // panelController.ShowPrimary(turn.actingUnit.gameObject);
@@ -18,7 +18,7 @@ public class CommandSelectionState : BaseAbilityMenuState
 
     }
     public override void Exit (){
-        Debug.Log("exiting command selection state");
+        // Debug.Log("exiting command selection state");
         updating = false;
 
         base.Exit ();

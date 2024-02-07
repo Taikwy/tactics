@@ -19,15 +19,15 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	public string abilityEffectName;
     // public bool hasSubEffects;                    //this thing is mine
 	// public BaseAbilityEffect subEffect;
-	List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();
+	public List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();
 
 	void Awake(){
 		//auto adds the sub effects into the script's list
-		foreach(Transform child in transform){
-			BaseAbilityEffect subEffect = child.gameObject.GetComponent<BaseAbilityEffect>();
-			if(subEffect != null)
-				subEffects.Add(subEffect);
-		}
+		// foreach(Transform child in transform){
+		// 	BaseAbilityEffect subEffect = child.gameObject.GetComponent<BaseAbilityEffect>();
+		// 	if(subEffect != null)
+		// 		subEffects.Add(subEffect);
+		// }
 	}
 
 	//needs a new way to handle status effect to show in forecast
@@ -40,14 +40,14 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 			return;
 
 		if (GetComponent<HitRate>().RollForHit(target)){
-            Debug.Log("HIT!");
+            Debug.Log("HIT! " + abilityEffectName);
 			this.PostEvent(HitEvent, OnApply(target));
 			foreach(BaseAbilityEffect effect in subEffects){
 				effect.Apply(target);
 			}
         }
 		else{
-            Debug.Log("MISS!");
+            Debug.Log("MISS! " + abilityEffectName);
 			this.PostEvent(MissedEvent);
         }
 	}

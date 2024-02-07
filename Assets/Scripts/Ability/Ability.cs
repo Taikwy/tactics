@@ -8,8 +8,10 @@ public class Ability : MonoBehaviour
     public const string FailedNotification = "Ability.FailedNotification";
     public const string DidPerformNotification = "Ability.DidPerformNotification";
     public AbilityTypes type;
+	public List<GameObject> primaryEffects = new List<GameObject>();
 	public GameObject primaryEffect, primarySubEffect;
 	public GameObject secondaryEffect, secondarySubEffect;
+	[Space(1)]
     public EffectZone primaryEffectZone, primarySubEffectZone;
     public EffectZone secondaryEffectZone, secondarySubEffectZone;
 	
@@ -47,12 +49,21 @@ public class Ability : MonoBehaviour
 
 	void Perform (Tile target){
         //loops thru the ability effects
-		Debug.Log(transform.childCount + " children");
-		for (int i = 0; i < transform.childCount; ++i){
-			Debug.Log("perform looping " + i + " " + transform.childCount + " ");
-			Transform child = transform.GetChild(i);
-			BaseAbilityEffect effect = child.GetComponent<BaseAbilityEffect>();
+		// Debug.Log(transform.childCount + " children");
+		// for (int i = 0; i < transform.childCount; ++i){
+		// 	Debug.Log("perform looping " + i + " " + transform.childCount + " ");
+		// 	Transform child = transform.GetChild(i);
+		// 	BaseAbilityEffect effect = child.GetComponent<BaseAbilityEffect>();
+		// 	effect.Apply(target);
+		// }
+
+		foreach(GameObject primaryEffect in primaryEffects){
+			BaseAbilityEffect effect = primaryEffect.GetComponent<BaseAbilityEffect>();
 			effect.Apply(target);
 		}
+
+		// BaseAbilityEffect effect = primaryEffect.GetComponent<BaseAbilityEffect>();
+		// effect.Apply(target);
+
 	}
 }

@@ -31,18 +31,19 @@ public class ConfirmAbilityTargetState : BattleState
             SetTarget(0);
         }
 
-        if (turn.targets.Count > 0)
-		{
-			// if (driver.Current == Drivers.Human)
-			// 	hitSuccessIndicator.Show();
-			SetTarget(0);
-		}
+        //no clue wtf thsi is, but its a duplicate for some reason
+        // if (turn.targets.Count > 0)
+		// {
+		// 	// if (driver.Current == Drivers.Human)
+		// 	// 	hitSuccessIndicator.Show();
+		// 	SetTarget(0);
+		// }
 		// if (driver.Current == Drivers.Computer)
 		// 	StartCoroutine(ComputerDisplayAbilitySelection());
     }
 
     public override void Exit (){
-        Debug.Log("exiting");
+        Debug.Log("exiting confirm ability state");
         base.Exit ();
         areaScript.targets.Clear();
         // Debug.Log(highlightedTiles + "        | " + highlightedTiles.Count);

@@ -51,7 +51,7 @@ public class Board : MonoBehaviour
         _min = new Point(int.MaxValue, int.MaxValue);
         _max = new Point(int.MinValue, int.MinValue);
         for (int i = 0; i < data.tileTypes.Count; ++i){
-            GameObject tileInstance = new GameObject();
+            GameObject tileInstance;
             switch(data.tileTypes[i]){
                 case Tile.TILETYPE.GROUND:
                     tileInstance = Instantiate(groundTilePrefab, gameObject.transform);
@@ -64,6 +64,9 @@ public class Board : MonoBehaviour
                     break;
                 case Tile.TILETYPE.WALL:
                     tileInstance = Instantiate(wallTilePrefab, gameObject.transform);
+                    break;
+                default:
+                    tileInstance = new GameObject();
                     break;
             }
 

@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3347629336638676858}
   m_Father: {fileID: 7693599255702816309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -87,6 +88,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityEffectName: 
+  subEffects:
+  - {fileID: 4466536032333570820}
   attackPercentModifier: 0
 --- !u!1 &8935371756486926109
 GameObject:
@@ -120,7 +123,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6966475923109113812}
-  - {fileID: 3347629336638676858}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,11 +139,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  primaryEffects:
+  - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 4861301945464717442}
   primarySubEffect: {fileID: 55587267428238840}
   secondaryEffect: {fileID: 0}
   secondarySubEffect: {fileID: 0}
-  primaryEffectZone: {fileID: 4742295797092695002}
+  primaryEffectZone: {fileID: 0}
   primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}
   secondarySubEffectZone: {fileID: 0}
@@ -180,7 +184,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7693599255702816309}
+    m_TransformParent: {fileID: 6966475923109113812}
     m_Modifications:
     - target: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_Name
@@ -188,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,3 +246,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
   m_PrefabInstance: {fileID: 5578306112918417946}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4466536032333570820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+  m_PrefabInstance: {fileID: 5578306112918417946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55587267428238840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

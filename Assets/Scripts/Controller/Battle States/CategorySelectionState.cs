@@ -5,13 +5,13 @@ using UnityEngine;
 public class CategorySelectionState : BaseAbilityMenuState 
 {
     public override void Enter (){
-        Debug.Log("entering category state");
+        // Debug.Log("entering category state");
         base.Enter ();
         // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
         panelController.ShowPrimary(turn.actingUnit.gameObject);
     }
     public override void Exit (){
-        Debug.Log("exiting category state");
+        // Debug.Log("exiting category state");
         base.Exit ();
         // statPanelController.HidePrimary();
         panelController.HidePrimary();
