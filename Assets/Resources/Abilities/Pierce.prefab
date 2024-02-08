@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6966475923109113812}
   - component: {fileID: 1918677148183206524}
-  - component: {fileID: 616511774074537263}
+  - component: {fileID: 943302544963065149}
   - component: {fileID: 4742295797092695002}
   - component: {fileID: 6950046999304816923}
   m_Layer: 0
@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7087469409747505629}
   m_Father: {fileID: 7693599255702816309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &616511774074537263
+--- !u!114 &943302544963065149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,11 +57,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861301945464717442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571dd3124515bf04d9fa18eed365ec64, type: 3}
+  m_Script: {fileID: 11500000, guid: b61ef3bf05f93a541be4e5cbe0471469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guaranteed: 1
-  abilityHitRate: 0
+  guaranteed: 0
+  abilityHitRate: 80
 --- !u!114 &4742295797092695002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,8 +88,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityEffectName: 
-  subEffects: []
+  subEffects:
+  - {fileID: 8201835707468967331}
   attackPercentModifier: 0
+--- !u!1 &5542779501234916191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7087469409747505629}
+  - component: {fileID: 8113753804373041160}
+  - component: {fileID: 6947753388672526548}
+  - component: {fileID: 7519107851123608219}
+  - component: {fileID: 8201835707468967331}
+  m_Layer: 0
+  m_Name: Break
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7087469409747505629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542779501234916191}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6966475923109113812}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8113753804373041160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542779501234916191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6947753388672526548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542779501234916191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ca026f6d009ea4bb7d29c3aec2d079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guaranteed: 1
+  abilityHitRate: 0
+--- !u!114 &7519107851123608219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542779501234916191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+--- !u!114 &8201835707468967331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542779501234916191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityEffectName: 
+  subEffects: []
+  effectName: 
+  conditionName: 
+  duration: 1
+  flatDMG: 0
+  percentDMG: 0
+  statChange: 0
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +198,7 @@ GameObject:
   - component: {fileID: 3484823612947708004}
   - component: {fileID: 3954202826209727461}
   m_Layer: 0
-  m_Name: Strike
+  m_Name: Pierce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,14 +232,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f15774e5b48f43a605f3046a8525f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   primaryEffects: []
   primaryEffect: {fileID: 4861301945464717442}
-  primarySubEffect: {fileID: 0}
+  primarySubEffect: {fileID: 5542779501234916191}
   secondaryEffect: {fileID: 0}
   secondarySubEffect: {fileID: 0}
   primaryEffectZone: {fileID: 4742295797092695002}
-  primarySubEffectZone: {fileID: 0}
+  primarySubEffectZone: {fileID: 7519107851123608219}
   secondaryEffectZone: {fileID: 0}
   secondarySubEffectZone: {fileID: 0}
 --- !u!114 &3484823612947708004
@@ -158,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1
+  range: 3
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &3954202826209727461
