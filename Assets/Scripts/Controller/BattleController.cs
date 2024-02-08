@@ -21,6 +21,7 @@ public class BattleController : StateMachine
 
     public StatPanelController statPanelController;
     public PanelController panelController;
+    [HideInInspector]public TurnOrderController turnController;
     public IEnumerator round;
     
     public ForecastPanel forecastPanel;

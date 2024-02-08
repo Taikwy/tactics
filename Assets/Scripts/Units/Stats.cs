@@ -71,5 +71,6 @@ public class Stats : MonoBehaviour
             SetValue(type, statData.baseStats[i], false);
         }
         SetValue(StatTypes.HP, this[StatTypes.MHP], false);
+        SetValue(StatTypes.BP, this[StatTypes.MBP], false);
     }
 }

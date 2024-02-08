@@ -22,7 +22,7 @@ public class UnitStatData : ScriptableObject
     public static readonly StatTypes[] statOrder = new StatTypes[]
     {
         StatTypes.MHP,
-        StatTypes.BP,
+        StatTypes.MBP,
         StatTypes.SKP,
         StatTypes.MV,
 

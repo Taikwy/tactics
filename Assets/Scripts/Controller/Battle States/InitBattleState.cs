@@ -12,6 +12,9 @@ public class InitBattleState : BattleState
     }
     
     IEnumerator Init (){
+        owner.turnController = owner.gameObject.AddComponent<TurnOrderController>();
+        owner.round = owner.turnController.Round();
+        
         board.Load( levelData );
         Point p = new Point((int)levelData.tilePositions[0].x, (int)levelData.tilePositions[0].y);
         SelectTile(p);
@@ -19,7 +22,6 @@ public class InitBattleState : BattleState
         SpawnFactory();
         
         yield return null;
-        owner.round = owner.gameObject.AddComponent<TurnOrderController>().Round();
 
         owner.ChangeState<SelectUnitState>(); // This is changed
     }
@@ -53,6 +55,7 @@ public class InitBattleState : BattleState
             GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
             Unit unitScript = instance.GetComponent<Unit>();
             unitScript.Init(board.GetTile(spawnLocations[i]));
+            owner.turnController.CalculateAV(unitScript);
 
             units.Add(unitScript);
         }

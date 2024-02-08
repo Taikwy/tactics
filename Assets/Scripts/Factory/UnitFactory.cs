@@ -64,10 +64,11 @@ public static class UnitFactory
 		unitScript.portrait = recipe.portrait;
 	}
 
-	static Stats AddStats (GameObject obj, UnitStatData data){
-		Stats s = obj.AddComponent<Stats>();
+	static Stats AddStats (GameObject unit, UnitStatData data){
+		Stats s = unit.AddComponent<Stats>();
 		s.statData = data;
 		s.InitBaseStats();
+		// TurnOrderController.CalculateAV(unit.GetComponent<Unit>());
 		return s;
 	}
 

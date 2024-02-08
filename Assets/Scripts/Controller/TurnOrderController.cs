@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TurnOrderController : MonoBehaviour 
 {
-    const int baseActionGauge = 10000;
+    //total baseactiongauge is 8000, adjusted for moving. 
+    const int baseActionGauge = 8000;
     const int moveCost = 2000;
-    const int actionCost = 3000;
+    const int actionCost = 2000;
 
 
     const int turnActivation = 1000;
@@ -25,19 +26,20 @@ public class TurnOrderController : MonoBehaviour
             List<Unit> units = new List<Unit>( battleController.units );
             SortUnitsTurnOrder(units);
 
-            //if the first unit value is not 0 yet
+            //if the first unit value is not 0 yet, decrements all units by the first unit's remaining AV so the first unit can take a turn and al other units move up the timeline
             if(!CanAct(units[0])){
                 int decrementAV = units[0].GetComponent<Stats>()[StatTypes.AV];
-                //decrement unit action value by the first unit's remaining AV
+                //decrement unit action value by the first unit's remaining AV. works bc the first unit is the soonest to act
                 for (int i = 0; i < units.Count; ++i) {
                     Stats s = units[i].GetComponent<Stats>();
                     s[StatTypes.AV] -= decrementAV;
                 }
+                //in case a unit's speed or anything was affected. sorts everything so units with the least AV remaining are first
                 SortUnitsTurnOrder(units);
-            }
+            }           
 
 
-            //Loops thru all 
+            //Loops thru all units that can act
             for (int i = units.Count - 1; i >= 0; --i){
                 //If the current units AV is below 0, it can act and will change to its turn
                 if (CanAct(units[i])){
@@ -45,29 +47,39 @@ public class TurnOrderController : MonoBehaviour
 					units[i].PostEvent(TurnBeganEvent);
                     yield return units[i];
 
-                    //Calculation for setting the new AV
+                    //Adjusts actiongauge for calculation based on unit actiosn during the turn
                     Stats statsScript = units[i].GetComponent<Stats>();
                     int actionGauge = baseActionGauge;
                     if (battleController.turn.hasUnitMoved)
                         actionGauge += moveCost;
                     if (battleController.turn.hasUnitActed)
-                        actionGauge += battleController.turn.actionCost;
+                        actionGauge += actionCost;
+                        // actionGauge += battleController.turn.actionCost;
+                    
                     
                     float AV = actionGauge / Mathf.Clamp(statsScript[StatTypes.SP], 50, 200) ;
 
                     //Sets the current unit its new AV
                     statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
+                    // Debug.Log(statsScript.gameObject.name + "'s AV = "+ AV);
 
 					units[i].PostEvent(TurnCompletedEvent);
                 }
             }
         }
     }
-    
 
     //Sorts unit by remaining Action Value
     public void SortUnitsTurnOrder(List<Unit> units){
         units.Sort( (a,b) => GetAV(a).CompareTo(GetAV(b)) );
+    }
+
+    public void CalculateAV(Unit unit){
+        Stats statsScript = unit.GetComponent<Stats>();
+        float AV = baseActionGauge / Mathf.Clamp(statsScript[StatTypes.SP], 50, 200) ;
+
+        statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
+        // Debug.Log("calculating " + statsScript.gameObject.name + "'s AV = "+ AV);
     }
 
     public void RecalculateAV(Unit unit){
