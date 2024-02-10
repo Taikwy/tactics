@@ -86,7 +86,7 @@ public class Timeline : MonoBehaviour
         } 
         turnIndicators.Clear();
     }
-    public void AddUnit(){}
+    // public void AddUnit(){}
     public void RemoveUnit(TurnIndicator indicator){
         Destroy(indicator.gameObject);
     }
