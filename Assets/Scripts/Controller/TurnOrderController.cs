@@ -50,7 +50,7 @@ public class TurnOrderController : MonoBehaviour
 
                 //decremets av counter
                 AVCounter -= decrementAV;
-                Debug.Log(AVCounter);
+                // Debug.Log(AVCounter);
                 
             }           
 
