@@ -47,7 +47,7 @@ public class ExploreState : BattleState
             return;
         //only updates primary panel if in default explore state and not currently showing statuses
         if(!panelController.showingPrimaryStatus){
-            Debug.Log("explore updating");
+            // Debug.Log("explore updating");
             RefreshPrimaryPanel(board.selectedPoint);
             SelectTile(board.selectedPoint);
         }
