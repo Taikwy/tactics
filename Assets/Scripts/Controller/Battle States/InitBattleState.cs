@@ -12,7 +12,7 @@ public class InitBattleState : BattleState
     }
     
     IEnumerator Init (){
-        owner.turnController = owner.gameObject.AddComponent<TurnOrderController>();
+        // owner.turnController = owner.gameObject.AddComponent<TurnOrderController>();
         owner.round = owner.turnController.Round();
         
         board.Load( levelData );
@@ -91,28 +91,8 @@ public class InitBattleState : BattleState
             units.Add(unitScript);
         }
         
-        OldSpawnUnits();
+        // OldSpawnUnits();
         SelectTile(units[0].tile.position);
     }
 
-    void OldSpawnUnits(){
-        string[] jobs = new string[]{"Rogue", "Warriro"};
-        
-        for (int i = 0; i < jobs.Length; ++i){
-            GameObject unit = Instantiate(owner.playerPrefab);
-            unit.name = jobs[i];
-            
-
-            Point p = new Point((int)levelData.tilePositions[i].x + 2, (int)levelData.tilePositions[i].y + 1);
-            Unit unitScript = unit.GetComponent<Unit>();
-            unitScript.Init(board.GetTile(p));
-
-            // unit.AddComponent<WalkMovement>();
-            units.Add(unitScript);
-
-            //    Rank rank = instance.AddComponent<Rank>();
-            //    rank.Init (10);
-        }
-        
-    }
 }

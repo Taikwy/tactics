@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class BattleController : StateMachine 
 {
+    [Header("")]
     public CameraRig cameraRig;
+    
+    [Header("Level and Board")]
     public Board board;
     public LevelData levelData;
     public Transform tileSelectionIndicator;
     public Point selectPos;
-
-    public GameObject playerPrefab;
-    public Unit currentUnit;
     public Tile selectedTile { get { return board.GetTile(selectPos); }}
-
-    public AbilityMenuPanelController abilityMenuPanelController;
-    public AbilityPanelController abilityPanelController;
+    [Header("Unit Stuff")]
+    public Unit currentUnit;
     public Turn turn = new Turn();
     public List<Unit> units = new List<Unit>();
 
+    [Header("Controller Scripts")]
+    public AbilityMenuPanelController abilityMenuPanelController;
+    public AbilityPanelController abilityPanelController;
     public StatPanelController statPanelController;
     public PanelController panelController;
-    [HideInInspector]public TurnOrderController turnController;
+    public TurnOrderController turnController;
+    public ForecastPanel forecastPanel;
     public IEnumerator round;
     
-    public ForecastPanel forecastPanel;
 
     void Start ()
     {
