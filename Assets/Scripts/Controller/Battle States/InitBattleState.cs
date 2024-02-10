@@ -12,7 +12,7 @@ public class InitBattleState : BattleState
     }
     
     IEnumerator Init (){
-        // owner.turnController = owner.gameObject.AddComponent<TurnOrderController>();
+        owner.turnController = owner.gameObject.AddComponent<TurnOrderController>();
         owner.round = owner.turnController.Round();
         
         board.Load( levelData );
