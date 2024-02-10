@@ -66,33 +66,33 @@ public class InitBattleState : BattleState
 
     void SpawnTestUnits ()    //curerently unused, i think this was the old version of spawnfactory?
     {
-        string[] unitRecipes = new string[]{
-            // "Paladin",
-            // "Wizard",
-            // "Slime",
-            // "Mushroom",
-            "Snake"
-        };
-        //List of all locations on map
-        List<Tile> locations = new List<Tile>(board.tiles.Values);
-        for (int i = 0; i < unitRecipes.Length; ++i)
-        {
-            int level = 0;
-            GameObject instance = UnitFactory.Create(unitRecipes[i], level);
+        // string[] unitRecipes = new string[]{
+        //     // "Paladin",
+        //     // "Wizard",
+        //     // "Slime",
+        //     // "Mushroom",
+        //     "Snake"
+        // };
+        // //List of all locations on map
+        // List<Tile> locations = new List<Tile>(board.tiles.Values);
+        // for (int i = 0; i < unitRecipes.Length; ++i)
+        // {
+        //     int level = 0;
+        //     GameObject instance = UnitFactory.Create(unitRecipes[i], level);
 
-            //Finds random point to spawn the unit
-            int random = Random.Range(0, locations.Count);
-            Tile randomTile = locations[random];
-            locations.RemoveAt(random);
+        //     //Finds random point to spawn the unit
+        //     int random = Random.Range(0, locations.Count);
+        //     Tile randomTile = locations[random];
+        //     locations.RemoveAt(random);
 
-            Unit unitScript = instance.GetComponent<Unit>();
-            unitScript.Init(randomTile);
+        //     Unit unitScript = instance.GetComponent<Unit>();
+        //     unitScript.Init(randomTile);
 
-            units.Add(unitScript);
-        }
+        //     units.Add(unitScript);
+        // }
         
-        // OldSpawnUnits();
-        SelectTile(units[0].tile.position);
+        // // OldSpawnUnits();
+        // SelectTile(units[0].tile.position);
     }
 
 }
