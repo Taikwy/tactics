@@ -8,7 +8,9 @@ public class TurnOrderController : MonoBehaviour
     const int baseActionGauge = 8000;
     const int moveCost = 2000;
     const int actionCost = 2000;
-
+    const int roundAVCost = 100;
+    int AVCounter = 0;
+    int currentRound = 0;
 
     const int turnActivation = 1000;
     const int turnCost = 500;
@@ -22,9 +24,18 @@ public class TurnOrderController : MonoBehaviour
     public IEnumerator Round (){
         BattleController battleController = GetComponent<BattleController>();
         while (true){
-			this.PostEvent(RoundBeganEvent);
+			// this.PostEvent(RoundBeganEvent);
+            // Debug.Log("new round");
             List<Unit> units = new List<Unit>( battleController.units );
             SortUnitsTurnOrder(units);
+
+            //if more than 100 AV has passed, a new round has passed
+            if(AVCounter <= 0){
+                AVCounter = 100;
+                currentRound++;
+                this.PostEvent(RoundBeganEvent);
+                Debug.Log("new round " + currentRound);
+            }
 
             //if the first unit value is not 0 yet, decrements all units by the first unit's remaining AV so the first unit can take a turn and al other units move up the timeline
             if(!CanAct(units[0])){
@@ -36,6 +47,11 @@ public class TurnOrderController : MonoBehaviour
                 }
                 //in case a unit's speed or anything was affected. sorts everything so units with the least AV remaining are first
                 SortUnitsTurnOrder(units);
+
+                //decremets av counter
+                AVCounter -= decrementAV;
+                Debug.Log(AVCounter);
+                
             }           
 
 
@@ -45,6 +61,7 @@ public class TurnOrderController : MonoBehaviour
                 if (CanAct(units[i])){
                     battleController.turn.Change(units[i]);
 					units[i].PostEvent(TurnBeganEvent);
+                    // Debug.Log("new turn");
                     yield return units[i];
 
                     //Adjusts actiongauge for calculation based on unit actiosn during the turn

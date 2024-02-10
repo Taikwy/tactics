@@ -20,6 +20,7 @@ public class SelectUnitState : BattleState
         SelectTile(turn.actingUnit.tile.position);
         // RefreshPrimaryPanel(selectPos);
         RefreshPrimaryStatusPanel(selectPos);
+        
         yield return null;
         owner.ChangeState<CommandSelectionState>();
     }

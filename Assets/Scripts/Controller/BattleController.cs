@@ -21,11 +21,11 @@ public class BattleController : StateMachine
     [Header("Controller Scripts")]
     public AbilityMenuPanelController abilityMenuPanelController;
     public AbilityPanelController abilityPanelController;
-    public StatPanelController statPanelController;
     public PanelController panelController;
-    public TurnOrderController turnController;
     public ForecastPanel forecastPanel;
+    public TurnOrderController turnOrderController;
     public IEnumerator round;
+    public Timeline timeline;
     
 
     void Start ()

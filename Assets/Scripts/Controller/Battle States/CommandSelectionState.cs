@@ -67,19 +67,19 @@ public class CommandSelectionState : BaseAbilityMenuState
 
     //for when a button is clicked
     protected void Move(){
-        Debug.Log("move clicked! " + owner);
+        // Debug.Log("move clicked! " + owner);
         owner.ChangeState<MoveTargetState>();
     }protected void Act(){
-        Debug.Log("act clicked!");
+        // Debug.Log("act clicked!");
         owner.ChangeState<CategorySelectionState>();
     }protected void Status(){
-        Debug.Log("status clicked!");
+        // Debug.Log("status clicked!");
         owner.ChangeState<SelectUnitState>();
     }protected void Defend(){
-        Debug.Log("defend clicked!");
+        // Debug.Log("defend clicked!");
         owner.ChangeState<SelectUnitState>();
     }protected void Pass(){
-        Debug.Log("pass clicked!");
+        // Debug.Log("pass clicked!");
         owner.ChangeState<SelectUnitState>();
     }
 

@@ -1,18 +1,93 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System;
+using System.ComponentModel;
 
 public class Timeline : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    //refs to the actual prefabs of the indicators
+    public GameObject container;
+    public GameObject indicatorPrefab;
+    public List<TurnIndicator> turnIndicators = new List<TurnIndicator>();
+
+    void OnEnable (){        
+        this.AddObserver(UpdateTimeline, TurnOrderController.TurnBeganEvent);
+	}
+
+	void OnDisable (){
+		this.RemoveObserver(UpdateTimeline, TurnOrderController.TurnBeganEvent);
+	}
+
+    //initial stuff, sets things up like adding the round stuff
+    public void PopulateTimeline(List<Unit> units){
+        turnIndicators = new List<TurnIndicator>();
+        foreach(Unit unit in units){
+            turnIndicators.Add(CreateUnitIndicator(unit));
+        }
+        CreateRoundIndicator();
+
+        //sort all the indicators
+        UpdateTimeline(null, null);             //just fucking duct tape. no clue how to use events properly but hopefully this works 
+    }
+    
+    public TurnIndicator CreateUnitIndicator(Unit unit){
+        GameObject obj = Instantiate(indicatorPrefab, container.transform);
+        // obj.transform.SetAsFirstSibling();
+		obj.name = unit.name;
+
+        TurnIndicator indicator = obj.GetComponent<TurnIndicator>();
+        indicator.statsScript = unit.statsScript;
+        // indicator.unitScript = unit;
+        indicator.icon.sprite = unit.portrait;
+        indicator.icon.color = Color.white;
+
+        indicator.counter.text = GetAV(indicator).ToString();
         
+        return indicator;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void CreateRoundIndicator(){}
+    //when units or turn or round has changed, update the timeline. handles cases and removes or adds and updates however it sees fit
+    public void UpdateTimeline(object sender, object args){
+        // Debug.Log("updating timeline");
+        foreach(TurnIndicator indicator in turnIndicators){
+            indicator.counter.text = GetAV(indicator).ToString();
+        }
+        SortTimeline();
+
+        //updates sibling order of indicators based on AV
+        foreach(TurnIndicator indicator in turnIndicators){
+            // Debug.Log(indicator.counter.text);
+            indicator.gameObject.transform.SetAsFirstSibling();
+        }
+    }
+    //sorts all indicators by ascending AV count, so smallest first
+    public void SortTimeline(){
+        turnIndicators.Sort( (a,b) => GetAV(b).CompareTo(GetAV(a)) );
+        // Debug.Log("sorted");
+    }
+    //returns the raw AV from the stats script
+    int GetAV(TurnIndicator indicator){
+        // return indicator.unitScript.gameObject.GetComponent<Stats>()[StatTypes.AV];
+        return indicator.statsScript[StatTypes.AV];
+    }
+    //returns the actual display of the turn indicator
+    int GetCounter(TurnIndicator indicator){
+        return int.Parse(indicator.counter.text);
+    }
+
+    //empties timeline and removes all the indicators
+    public void EmptyTimeline(){
+        foreach(TurnIndicator indicator in turnIndicators){
+            RemoveUnit(indicator);
+        } 
+        turnIndicators.Clear();
+    }
+    public void AddUnit(){}
+    public void RemoveUnit(TurnIndicator indicator){
+        Destroy(indicator.gameObject);
     }
 }

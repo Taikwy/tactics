@@ -12,8 +12,8 @@ public class InitBattleState : BattleState
     }
     
     IEnumerator Init (){
-        owner.turnController = owner.gameObject.AddComponent<TurnOrderController>();
-        owner.round = owner.turnController.Round();
+        owner.turnOrderController = owner.gameObject.AddComponent<TurnOrderController>();
+        owner.round = owner.turnOrderController.Round();
         
         board.Load( levelData );
         Point p = new Point((int)levelData.tilePositions[0].x, (int)levelData.tilePositions[0].y);
@@ -55,13 +55,14 @@ public class InitBattleState : BattleState
             GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
             Unit unitScript = instance.GetComponent<Unit>();
             unitScript.Init(board.GetTile(spawnLocations[i]));
-            owner.turnController.CalculateAV(unitScript);
+            turnOrderController.CalculateAV(unitScript);
+            // Debug.Log(unitScript.name + " AV " + unitScript.gameObject.GetComponent<Stats>()[StatTypes.AV]);
 
             units.Add(unitScript);
         }
+        owner.timeline.PopulateTimeline(units);
         
-        
-        SelectTile(units[0].tile.position);
+        // SelectTile(units[0].tile.position);                  //this is prob unneeded, since i already select a tile later in select unit state. ig this is jsut for the intiial tile indicator "before" i make a unit take action?
     }
 
     void SpawnTestUnits ()    //curerently unused, i think this was the old version of spawnfactory?
