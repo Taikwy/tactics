@@ -23,6 +23,7 @@ public class Timeline : MonoBehaviour
 
     //initial stuff, sets things up like adding the round stuff
     public void PopulateTimeline(List<Unit> units){
+        
         turnIndicators = new List<TurnIndicator>();
         foreach(Unit unit in units){
             turnIndicators.Add(CreateUnitIndicator(unit));
@@ -31,6 +32,10 @@ public class Timeline : MonoBehaviour
 
         //sort all the indicators
         UpdateTimeline(null, null);             //just fucking duct tape. no clue how to use events properly but hopefully this works 
+
+        string result = "Units after timeline: ";
+        foreach (var item in units){ result += item.ToString() + ", "; }
+        // Debug.Log(result);
     }
     
     public TurnIndicator CreateUnitIndicator(Unit unit){

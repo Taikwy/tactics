@@ -20,10 +20,12 @@ public class InitBattleState : BattleState
         SelectTile(p);
         // SpawnTestUnits(); // This is new
         SpawnFactory();
+		AddVictoryCondition();
         
         yield return null;
 
-        owner.ChangeState<SelectUnitState>(); // This is changed
+		// owner.ChangeState<CutSceneState>();
+        owner.ChangeState<SelectUnitState>();
     }
 
     //TEst the factory stuff
@@ -50,9 +52,15 @@ public class InitBattleState : BattleState
             new Point(5,8),
             // new Point(6,8),
         };
+
+        GameObject unitContainer = new GameObject("Units");
+		unitContainer.transform.SetParent(owner.transform);
+
         for (int i = 0; i < unitRecipes.Length; ++i)
         {
             GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
+            instance.transform.SetParent(unitContainer.transform);
+
             Unit unitScript = instance.GetComponent<Unit>();
             unitScript.Init(board.GetTile(spawnLocations[i]));
             turnOrderController.CalculateAV(unitScript);
@@ -60,40 +68,25 @@ public class InitBattleState : BattleState
 
             units.Add(unitScript);
         }
+        string result = "Units: ";
+        foreach (var item in units){ result += item.ToString() + ", "; }
+        // Debug.Log(result);
+
         owner.timeline.PopulateTimeline(units);
         
         // SelectTile(units[0].tile.position);                  //this is prob unneeded, since i already select a tile later in select unit state. ig this is jsut for the intiial tile indicator "before" i make a unit take action?
     }
 
-    void SpawnTestUnits ()    //curerently unused, i think this was the old version of spawnfactory?
-    {
-        // string[] unitRecipes = new string[]{
-        //     // "Paladin",
-        //     // "Wizard",
-        //     // "Slime",
-        //     // "Mushroom",
-        //     "Snake"
-        // };
-        // //List of all locations on map
-        // List<Tile> locations = new List<Tile>(board.tiles.Values);
-        // for (int i = 0; i < unitRecipes.Length; ++i)
-        // {
-        //     int level = 0;
-        //     GameObject instance = UnitFactory.Create(unitRecipes[i], level);
+    void AddVictoryCondition (){
+        string result = "Victory Units: ";
+        foreach (var item in units){ result += item.ToString() + ", "; }
+        // Debug.Log(result);
 
-        //     //Finds random point to spawn the unit
-        //     int random = Random.Range(0, locations.Count);
-        //     Tile randomTile = locations[random];
-        //     locations.RemoveAt(random);
 
-        //     Unit unitScript = instance.GetComponent<Unit>();
-        //     unitScript.Init(randomTile);
-
-        //     units.Add(unitScript);
-        // }
-        
-        // // OldSpawnUnits();
-        // SelectTile(units[0].tile.position);
-    }
-
+		DefeatTargetVictoryCondition victoryCondition = owner.gameObject.AddComponent<DefeatTargetVictoryCondition>();
+		Unit enemy = units[ 5 ];
+		victoryCondition.target = enemy;
+		Health health = enemy.GetComponent<Health>();
+		health.MinHP = 10;
+	}
 }

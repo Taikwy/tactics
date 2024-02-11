@@ -68,6 +68,10 @@ public static class UnitFactory
 		Stats s = unit.AddComponent<Stats>();
 		s.statData = data;
 		s.InitBaseStats();
+
+		Health health = unit.AddComponent<Health>();
+		health.MinHP = data.minHP;
+
 		// TurnOrderController.CalculateAV(unit.GetComponent<Unit>());
 		return s;
 	}

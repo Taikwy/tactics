@@ -44,6 +44,8 @@ public class UnitStatData : ScriptableObject
     // Stats statsScript;
     // public String unitName;
 
+    public int minHP = 0;
+
 
     public int minLevel = 1;
     public int maxLevel = 20;
