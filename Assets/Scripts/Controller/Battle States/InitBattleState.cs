@@ -84,9 +84,10 @@ public class InitBattleState : BattleState
 
 
 		DefeatTargetVictoryCondition victoryCondition = owner.gameObject.AddComponent<DefeatTargetVictoryCondition>();
-		Unit enemy = units[ 5 ];
+		Unit enemy = units[ 3 ];
 		victoryCondition.target = enemy;
-		Health health = enemy.GetComponent<Health>();
-		health.MinHP = 10;
+		// Health health = enemy.GetComponent<Health>();
+		// health.MinHP = 0;
+
 	}
 }

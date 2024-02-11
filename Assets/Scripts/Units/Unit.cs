@@ -67,12 +67,14 @@ public class Unit : MonoBehaviour
 
     //will need to change this when i actually deal with unit death
     public void OnDeath(){
+        // Debug.Log("ondeath");
         Feature[] features = GetComponentsInChildren<Feature>();
 		for (int i = 0; i < features.Length; ++i)
 			features[i].Deactivate();
 
 		this.RemoveObserver(GetComponent<UnitLevel>().OnLvlChangeNotification, Stats.DidChangeNotification(StatTypes.LV), statsScript);
 		statsScript = null;
+        Destroy(gameObject);
     }
     // public virtual void OnLvlChangeNotification (object sender, object args){
 	// 	int oldValue = (int)args;

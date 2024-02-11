@@ -4,11 +4,8 @@ using UnityEngine;
 
 public abstract class Feature : MonoBehaviour
 {
-    #region Fields / Properties
     protected GameObject _target { get; private set; }
-    #endregion
-    
-    #region Public
+
     public void Activate (GameObject target){
         if (_target == null){
             _target = target;
@@ -26,10 +23,6 @@ public abstract class Feature : MonoBehaviour
         OnApply();
         _target = null;
     }
-    #endregion
-
-    #region Private
     protected abstract void OnApply ();
     protected virtual void OnRemove () {}
-    #endregion
 }

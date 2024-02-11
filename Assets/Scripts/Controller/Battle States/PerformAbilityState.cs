@@ -13,18 +13,19 @@ public class PerformAbilityState : BattleState
     }
     
     IEnumerator Animate (){
-        // TODO play animations, etc
         yield return null;
-        // TODO apply ability effect, etc
-        // TemporaryAttackExample();
-        ApplyAbility();
-        
-        // if (turn.hasUnitMoved){
-        //     owner.ChangeState<SelectUnitState>();
-        // }
-        //     // owner.ChangeState<EndFacingState>();
-        // else
-            owner.ChangeState<CommandSelectionState>();
+		ApplyAbility();
+		
+		if (IsBattleOver())
+			owner.ChangeState<EndBattleState>();
+		// else if (!UnitHasDied())
+		// 	owner.ChangeState<SelectUnitState>();
+		else
+			owner.ChangeState<CommandSelectionState>();
+    }
+
+    bool UnitHasDied (){
+        return turn.actingUnit.GetComponentInChildren<DeadStatusEffect>() == null;
     }
 
     void ApplyAbility (){

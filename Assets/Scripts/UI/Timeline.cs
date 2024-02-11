@@ -45,7 +45,7 @@ public class Timeline : MonoBehaviour
 
         TurnIndicator indicator = obj.GetComponent<TurnIndicator>();
         indicator.statsScript = unit.statsScript;
-        // indicator.unitScript = unit;
+        indicator.unitScript = unit;
         indicator.icon.sprite = unit.portrait;
         indicator.icon.color = Color.white;
 
@@ -87,12 +87,25 @@ public class Timeline : MonoBehaviour
     //empties timeline and removes all the indicators
     public void EmptyTimeline(){
         foreach(TurnIndicator indicator in turnIndicators){
-            RemoveUnit(indicator);
+            RemoveIndicator(indicator);
         } 
         turnIndicators.Clear();
     }
     // public void AddUnit(){}
-    public void RemoveUnit(TurnIndicator indicator){
+    public void RemoveIndicator(TurnIndicator indicator){
+        // Debug.Log("removing indicator");
+        turnIndicators.Remove(indicator);
         Destroy(indicator.gameObject);
+    }
+    public void RemoveUnit(Unit unit){
+        int index = -1;
+        for(int i = 0; i < turnIndicators.Count; i++){
+            if(turnIndicators[i].unitScript.Equals(unit)){
+                index = i;
+            }
+        }
+        if(index != -1)
+            RemoveIndicator(turnIndicators[index]);
+
     }
 }

@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class DefeatTargetVictoryCondition : BaseVictoryCondition 
 {
@@ -8,7 +9,9 @@ public class DefeatTargetVictoryCondition : BaseVictoryCondition
 	protected override void CheckForGameOver ()
 	{
 		base.CheckForGameOver ();
-		if (Victor == Alliances.None && IsDefeated(target))
+		if (Victor == Alliances.None && IsDefeated(target)){
 			Victor = Alliances.Ally;
+			Debug.Log("ALLIES WIN!");
+		}
 	}
 }

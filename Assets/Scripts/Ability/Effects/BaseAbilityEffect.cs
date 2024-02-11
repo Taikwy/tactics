@@ -35,7 +35,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 
     //handles applying the effect, checks if it can hit and raises events for the result
 	public void Apply (Tile target){
-		Debug.Log("applying");
+		// Debug.Log("applying");
         //checks if the target can get affected by the ability or not
 		if (GetComponent<AbilityEffectTarget>().IsTarget(target) == false)
 			return;

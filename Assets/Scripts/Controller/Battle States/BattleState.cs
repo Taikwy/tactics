@@ -92,4 +92,11 @@ public abstract class BattleState : State
             panelController.HideSecondary();
         }
     }
+
+    protected virtual bool DidPlayerWin (){
+        return owner.GetComponentInChildren<BaseVictoryCondition>().Victor == Alliances.Ally;
+    }
+    protected virtual bool IsBattleOver (){
+        return owner.GetComponentInChildren<BaseVictoryCondition>().Victor != Alliances.None;
+    }
 }

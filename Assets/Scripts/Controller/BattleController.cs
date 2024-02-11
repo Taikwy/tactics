@@ -28,8 +28,7 @@ public class BattleController : StateMachine
     public Timeline timeline;
     
 
-    void Start ()
-    {
+    void Start (){
         ChangeState<InitBattleState>();
     }
 }
