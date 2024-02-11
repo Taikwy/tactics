@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7087469409747505629}
+  m_Children: []
   m_Father: {fileID: 7693599255702816309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -87,8 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectType: 
-  hasSubEffects: 1
+  abilityEffectName: 
   subEffects:
   - {fileID: 8201835707468967331}
   attackPercentModifier: 0
@@ -124,8 +122,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6966475923109113812}
-  m_RootOrder: 0
+  m_Father: {fileID: 7693599255702816309}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8113753804373041160
 MonoBehaviour:
@@ -178,10 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectType: COLD
-  hasSubEffects: 0
+  abilityEffectName: 
   subEffects: []
-  statusEffect: {fileID: 7808233544354755189, guid: a23045ec0a674334f84d5c7d1b9eef40, type: 3}
   effectName: 
   conditionName: 
   duration: 2
@@ -220,6 +216,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6966475923109113812}
+  - {fileID: 7087469409747505629}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,12 +233,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  primaryEffect: {fileID: 4861301945464717442}
-  primarySubEffect: {fileID: 5542779501234916191}
+  primaryEffects:
+  - {fileID: 4861301945464717442}
+  - {fileID: 5542779501234916191}
+  primaryEffect: {fileID: 0}
+  primarySubEffect: {fileID: 0}
   secondaryEffect: {fileID: 0}
   secondarySubEffect: {fileID: 0}
-  primaryEffectZone: {fileID: 4742295797092695002}
-  primarySubEffectZone: {fileID: 7519107851123608219}
+  primaryEffectZone: {fileID: 0}
+  primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}
   secondarySubEffectZone: {fileID: 0}
 --- !u!114 &3484823612947708004

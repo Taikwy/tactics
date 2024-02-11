@@ -43,7 +43,7 @@ public class ConfirmAbilityTargetState : BattleState
     }
 
     public override void Exit (){
-        Debug.Log("exiting confirm ability state");
+        // Debug.Log("exiting confirm ability state");
         base.Exit ();
         areaScript.targets.Clear();
         // Debug.Log(highlightedTiles + "        | " + highlightedTiles.Count);

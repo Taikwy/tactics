@@ -24,14 +24,14 @@ public class DeadStatusEffect : StatusEffect
 	}
 	
 	void OnTurnCheck (object sender, object args){
-		// Dont allow a KO'd unit to take turns
+		// Dont allow a dead unit to take turns
 		BaseException exc = args as BaseException;
 		if (exc.defaultToggle == true)
 			exc.FlipToggle();
 	}
 	
 	void OnStatCounterWillChange (object sender, object args){
-		// Dont allow a KO'd unit to increment the turn order counter
+		// Dont allow a dead unit to increment the turn order counter
 		ValueChangeException exc = args as ValueChangeException;
 		if (exc.toValue > exc.fromValue)
 			exc.FlipToggle();

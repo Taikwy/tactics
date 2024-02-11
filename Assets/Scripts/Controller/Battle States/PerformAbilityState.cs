@@ -27,8 +27,7 @@ public class PerformAbilityState : BattleState
             owner.ChangeState<CommandSelectionState>();
     }
 
-    void ApplyAbility ()
-	{
+    void ApplyAbility (){
 		turn.selectedAbility.Perform(turn.targets);
 	}
 	

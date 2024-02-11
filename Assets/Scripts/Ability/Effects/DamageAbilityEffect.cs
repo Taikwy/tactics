@@ -16,11 +16,14 @@ public class DamageAbilityEffect : BaseAbilityEffect
 
 		// Get the attackers base attack stat considering
 		// mission items, support check, status check, and equipment, etc
-		int attack = GetStat(attacker, defender, GetAttackEvent, 0);
+		// int attack = GetStat(attacker, defender, GetAttackEvent, 0);
+		int attack = attacker.GetComponentInParent<Stats>()[StatTypes.AT];
 
 		// Get the targets base defense stat considering
 		// mission items, support check, status check, and equipment, etc
-		int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
+		// int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
+		int defense = defender.GetComponent<Stats>()[StatTypes.DF];
+
 
 
 		//terrain and weapon bonus logic needs to be added
@@ -28,15 +31,15 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		int weaponBonus = 0;
 
 		//base damage calc
-		int attackingDamage = attackPercentModifier * (attack + terrainBonus) + weaponBonus;
-		int damage = attackingDamage - defense;
+		float attackingDamage = attackPercentModifier/100.0f * (attack + terrainBonus) + weaponBonus;
+		float damage = attackingDamage - defense;
 		damage = Mathf.Max(damage, 1);
 
 		// Clamp the damage to a range, just for edge cases
 		damage = Mathf.Clamp(damage, 0, maxDamage);
 		
-		// Debug.Log("predicting damage ability effect " + damage);
-		return -damage;
+		Debug.Log("predicting damage ability effect  dmg[ " + "percent[" + attackPercentModifier + "] * (attack[" + attack + "] + terrain0[]) + weapon[0]"+ " ] - def["+ defense + "] - " + damage);
+		return -(int)damage;
 	}
 
 	public int OldPredict (Tile target)
@@ -75,7 +78,7 @@ public class DamageAbilityEffect : BaseAbilityEffect
 	
 	//will need to change this to work with things other than units
 	protected override int OnApply (Tile target){
-		// Debug.Log("applying damage effect");
+		Debug.Log("applying damage effect");
 		Unit defender = target.content.GetComponent<Unit>();
 		// Start with the predicted damage value
 		int value = Predict(target);

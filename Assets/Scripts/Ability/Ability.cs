@@ -14,6 +14,10 @@ public class Ability : MonoBehaviour
 	[Space(1)]
     public EffectZone primaryEffectZone, primarySubEffectZone;
     public EffectZone secondaryEffectZone, secondarySubEffectZone;
+
+	void Awake(){
+		primaryEffect = primaryEffects[0];
+	}
 	
     //replaced the logic i originally had in confirmtargetstate
     //may need to update this logic to accomdate more cmplex abilities with multiple component stuff
@@ -40,7 +44,7 @@ public class Ability : MonoBehaviour
 			this.PostEvent(FailedNotification);
 			return;
 		}
-
+		
 		for (int i = 0; i < targets.Count; ++i)
 			Perform(targets[i]);
 
@@ -56,6 +60,7 @@ public class Ability : MonoBehaviour
 		// 	BaseAbilityEffect effect = child.GetComponent<BaseAbilityEffect>();
 		// 	effect.Apply(target);
 		// }
+		
 
 		foreach(GameObject primaryEffect in primaryEffects){
 			BaseAbilityEffect effect = primaryEffect.GetComponent<BaseAbilityEffect>();

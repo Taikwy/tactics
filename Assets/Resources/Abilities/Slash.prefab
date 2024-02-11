@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 616511774074537263}
   - component: {fileID: 4742295797092695002}
   - component: {fileID: 6950046999304816923}
+  - component: {fileID: 4116048256178975284}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -86,10 +87,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectType: 
-  hasSubEffects: 0
+  abilityEffectName: 
   subEffects: []
-  attackModifier: 75
+  attackPercentModifier: 80
+--- !u!114 &4116048256178975284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861301945464717442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf31c97d25ad34848b4fdcecbfc5a0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentModifer: 0
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,11 +151,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  primaryEffect: {fileID: 4861301945464717442}
+  primaryEffects:
+  - {fileID: 4861301945464717442}
+  primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   secondaryEffect: {fileID: 0}
   secondarySubEffect: {fileID: 0}
-  primaryEffectZone: {fileID: 4742295797092695002}
+  primaryEffectZone: {fileID: 0}
   primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}
   secondarySubEffectZone: {fileID: 0}

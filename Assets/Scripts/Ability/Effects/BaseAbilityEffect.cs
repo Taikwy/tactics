@@ -35,7 +35,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 
     //handles applying the effect, checks if it can hit and raises events for the result
 	public void Apply (Tile target){
-		// Debug.Log("applying");
+		Debug.Log("applying");
         //checks if the target can get affected by the ability or not
 		if (GetComponent<AbilityEffectTarget>().IsTarget(target) == false)
 			return;
@@ -92,7 +92,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	protected abstract void OnPrimaryMiss(object sender, object args);
     //
 	protected virtual int GetStat (Unit attacker, Unit target, string eventName, int startValue){
-        // Debug.Log("getting base stats");
+        Debug.Log("getting base stats");
 		var modifiers = new List<ValueModifier>();
 		var info = new Info<Unit, Unit, List<ValueModifier>>(attacker, target, modifiers);
 		this.PostEvent(eventName, info);

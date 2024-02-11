@@ -13,11 +13,13 @@ public class AutoStatusController : MonoBehaviour
 	
 	void OnHPDidChangeNotification (object sender, object args){
 		Stats stats = sender as Stats;
-		if (stats[StatTypes.HP] == 0){
+		Health health = stats.GetComponentInChildren<Health>();
+		if (health)
+		if (stats[StatTypes.HP] == health.MinHP){
 			Status status = stats.GetComponentInChildren<Status>();
             StatComparisonCondition statComparisonCondition = status.Add<DeadStatusEffect, StatComparisonCondition>().GetComponent<StatComparisonCondition>();
-            statComparisonCondition.Setup(StatTypes.HP, 0, statComparisonCondition.EqualTo);
-            Debug.Log("hp has reached 0");
+            statComparisonCondition.Setup(StatTypes.HP, health.MinHP, statComparisonCondition.EqualTo);
+            Debug.Log("hp has reached " + health.MinHP);
 		}
 	}
 }
