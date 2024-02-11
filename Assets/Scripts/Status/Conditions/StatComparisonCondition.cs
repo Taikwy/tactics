@@ -18,8 +18,7 @@ public class StatComparisonCondition : StatusCondition
 	}
 	
     //
-	public void Setup (StatTypes type, int value, Func<bool> condition)
-	{
+	public void Setup (StatTypes type, int value, Func<bool> condition){
 		this.type = type;
 		this.value = value;
 		this.condition = condition;

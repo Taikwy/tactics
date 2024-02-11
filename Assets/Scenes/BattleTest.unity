@@ -3171,6 +3171,7 @@ GameObject:
   - component: {fileID: 431054550}
   - component: {fileID: 431054552}
   - component: {fileID: 431054553}
+  - component: {fileID: 431054554}
   m_Layer: 0
   m_Name: BattleController
   m_TagString: Untagged
@@ -3250,6 +3251,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec0f9408a50be97439e8ad462524b59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &431054554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431054549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70880ccd5dd0e34eab92b4aa79c0ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &432285244

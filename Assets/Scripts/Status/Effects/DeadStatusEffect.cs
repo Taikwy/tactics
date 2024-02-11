@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class KnockOutStatusEffect : StatusEffect
+public class DeadStatusEffect : StatusEffect
 {
 	Unit owner;
 	Stats stats;
