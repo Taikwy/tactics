@@ -15,7 +15,7 @@ public class PanelController : MonoBehaviour
     void Start (){
         HidePrimary();
         HideStatus();
-        HideSecondary();
+        HideSecondary(); 
     }
     public void ShowPrimary (GameObject unit){
         HideStatus();

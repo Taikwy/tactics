@@ -2924,6 +2924,7 @@ MonoBehaviour:
   panelController: {fileID: 1274223312}
   forecastPanel: {fileID: 210886686}
   turnOrderController: {fileID: 0}
+  guiController: {fileID: 439395760}
   timeline: {fileID: 1074842531}
 --- !u!4 &431054551
 Transform:
@@ -3055,7 +3056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &439395757
 Transform:
   m_ObjectHideFlags: 0

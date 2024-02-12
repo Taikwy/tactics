@@ -30,6 +30,7 @@ public class BattleController : StateMachine
     
 
     void Start (){
+        guiController.gameObject.SetActive(true);
         ChangeState<InitBattleState>();
     }
 }
