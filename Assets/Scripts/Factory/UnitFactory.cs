@@ -8,9 +8,19 @@ public static class UnitFactory
 	public static GameObject Create (string name, int level){
 		UnitRecipe recipe = Resources.Load<UnitRecipe>("Unit Recipes/" + name);
 		if (recipe == null){
-			Debug.LogError("No Unit Recipe for name: " + name);
-			return null;
+			recipe = Resources.Load<UnitRecipe>("Unit Recipes/Allies/" + name);
+			if(recipe == null){
+				recipe = Resources.Load<UnitRecipe>("Unit Recipes/Enemies/" + name);
+				if(recipe == null){
+					recipe = Resources.Load<UnitRecipe>("Unit Recipes/Neutrals/" + name);
+					if(recipe == null){
+						Debug.LogError("No Unit Recipe for name: " + name);
+						return null;
+					}
+				}
+			}
 		}
+		Debug.Log("not empty");
 		return Create(recipe, level);
 	}
 
@@ -20,25 +30,20 @@ public static class UnitFactory
 		unit.name = recipe.name;
 		unit.GetComponent<SpriteRenderer>().sprite = recipe.sprite;
 
-		// Unit unitScript = unit.AddComponent<Unit>();
-		// unitScript.statData = recipe.statData;
-		// unitScript.xpData = recipe.xpData;
-		// unitScript.portrait = recipe.portrait;
 		InitUnit(unit, recipe);
 		AddStats(unit, recipe.statData);
-		
-		AddMovement(unit, recipe.movementType);
+		AddHealth(unit, recipe.statData.minHP);
+		AddBurst(unit, recipe.statData.minBP);
+		AddLevel(unit, level, recipe.xpData);
+
 		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
+		AddAlliance(unit, recipe.alliance);
+		AddMovement(unit, recipe.movementType);
 		// AddJob(unit, recipe.job);
-
-		AddLevel(unit, level, recipe.xpData);
-		// unit.AddComponent<Health>();
-		// unit.AddComponent<Mana>();
 
 		// AddAttack(unit, recipe.attack);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
-		AddAlliance(unit, recipe.alliance);
 
 		// AddAttackPattern(unit, recipe.strategy);
 		return unit;
@@ -59,8 +64,6 @@ public static class UnitFactory
 
 	static void InitUnit(GameObject unit, UnitRecipe recipe){
 		Unit unitScript = unit.AddComponent<Unit>();
-		// unitScript.statData = recipe.statData;
-		// unitScript.xpData = recipe.xpData;
 		unitScript.portrait = recipe.portrait;
 	}
 
@@ -68,22 +71,26 @@ public static class UnitFactory
 		Stats s = unit.AddComponent<Stats>();
 		s.statData = data;
 		s.InitBaseStats();
-
-		Health health = unit.AddComponent<Health>();
-		health.MinHP = data.minHP;
-
-		// TurnOrderController.CalculateAV(unit.GetComponent<Unit>());
 		return s;
 	}
-
-	static void AddJob (GameObject obj, string name){
-		GameObject instance = InstantiatePrefab("Jobs/" + name);
-		instance.transform.SetParent(obj.transform);
-		Job job = instance.GetComponent<Job>();
-		job.Employ();
-		job.LoadDefaultStats();
+	static Health AddHealth(GameObject unit, int minHP){
+		Health health = unit.AddComponent<Health>();
+		health.MinHP = minHP;
+		return health;
+	}	
+	static Burst AddBurst(GameObject unit, int minBP){
+		Burst burst = unit.AddComponent<Burst>();
+		burst.MinBP = minBP;
+		return burst;
 	}
-
+	static void AddLevel (GameObject obj, int level, XPCurveData data){
+		UnitLevel unitLevel = obj.AddComponent<UnitLevel>();
+		unitLevel.Init(level, data);
+	}
+	static void AddAlliance (GameObject obj, Alliances type){
+		Alliance alliance = obj.AddComponent<Alliance>();
+		alliance.type = type;
+	}
 	static void AddMovement(GameObject obj, MovementTypes type){
 		switch (type){
             case MovementTypes.Walk:
@@ -98,19 +105,13 @@ public static class UnitFactory
 		}
 	}
 
-	static void AddAlliance (GameObject obj, Alliances type){
-		Alliance alliance = obj.AddComponent<Alliance>();
-		alliance.type = type;
-	}
-
-	static void AddLevel (GameObject obj, int level, XPCurveData data){
-		UnitLevel unitLevel = obj.AddComponent<UnitLevel>();
-		unitLevel.Init(level, data);
-	}
-
-	static void AddAttack (GameObject obj, string name){
-		GameObject instance = InstantiatePrefab("Abilities/" + name);
+	//currently unused, idk if im gonna have jobs
+	static void AddJob (GameObject obj, string name){
+		GameObject instance = InstantiatePrefab("Jobs/" + name);
 		instance.transform.SetParent(obj.transform);
+		Job job = instance.GetComponent<Job>();
+		job.Employ();
+		job.LoadDefaultStats();
 	}
 
 	static void AddAbilityCatalog (GameObject obj, string name){

@@ -45,6 +45,7 @@ public class UnitStatData : ScriptableObject
     // public String unitName;
 
     public int minHP = 0;
+    public int minBP = 0;
 
 
     public int minLevel = 1;

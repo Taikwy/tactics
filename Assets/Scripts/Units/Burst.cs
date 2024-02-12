@@ -3,56 +3,44 @@ using System.Collections;
 
 public class Burst : MonoBehaviour 
 {
-	#region Fields & Properties
-	public int HP
-	{
-		get { return stats[StatTypes.HP]; }
-		set { stats[StatTypes.HP] = value; }
+	public int BP{
+		get { return stats[StatTypes.BP]; }
+		set { stats[StatTypes.BP] = value; }
 	}
 	
-	public int MHP
-	{
-		get { return stats[StatTypes.MHP]; }
-		set { stats[StatTypes.MHP] = value; }
+	public int MBP{
+		get { return stats[StatTypes.MBP]; }
+		set { stats[StatTypes.MBP] = value; }
 	}
 	
-	public int MinHP = 0;
+	public int MinBP = 0;
 	Stats stats;
-	#endregion
 	
-	#region MonoBehaviour
-	void Awake ()
-	{
+	void Awake (){
 		stats = GetComponent<Stats>();
 	}
 	
-	void OnEnable ()
-	{
-		this.AddObserver(OnHPWillChange, Stats.WillChangeNotification(StatTypes.HP), stats);
-		this.AddObserver(OnMHPDidChange, Stats.DidChangeNotification(StatTypes.MHP), stats);
+	void OnEnable (){
+		this.AddObserver(OnBPWillChange, Stats.WillChangeNotification(StatTypes.BP), stats);
+		this.AddObserver(OnMBPDidChange, Stats.DidChangeNotification(StatTypes.MBP), stats);
 	}
 	
-	void OnDisable ()
-	{
-		this.RemoveObserver(OnHPWillChange, Stats.WillChangeNotification(StatTypes.HP), stats);
-		this.RemoveObserver(OnMHPDidChange, Stats.DidChangeNotification(StatTypes.MHP), stats);
+	void OnDisable (){
+		this.RemoveObserver(OnBPWillChange, Stats.WillChangeNotification(StatTypes.BP), stats);
+		this.RemoveObserver(OnMBPDidChange, Stats.DidChangeNotification(StatTypes.MBP), stats);
 	}
-	#endregion
 	
-	#region Event Handlers
-	void OnHPWillChange (object sender, object args)
-	{
+	void OnBPWillChange (object sender, object args){
 		ValueChangeException vce = args as ValueChangeException;
-		vce.AddModifier(new ClampValueModifier(int.MaxValue, MinHP, stats[StatTypes.MHP]));
+		vce.AddModifier(new ClampValueModifier(int.MaxValue, MinBP, stats[StatTypes.MBP]));
 	}
 	
-	void OnMHPDidChange (object sender, object args)
-	{
-		int oldMHP = (int)args;
-		if (MHP > oldMHP)
-			HP += MHP - oldMHP;
+	void OnMBPDidChange (object sender, object args){
+		int oldMBP = (int)args;
+        //increases current health by how much max hp adds
+		if (MBP > oldMBP)
+			BP += MBP - oldMBP;
 		else
-			HP = Mathf.Clamp(HP, MinHP, MHP);
+			BP = Mathf.Clamp(BP, MinBP, MBP);
 	}
-	#endregion
 }

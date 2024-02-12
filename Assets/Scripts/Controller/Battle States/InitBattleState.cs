@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
@@ -53,23 +54,42 @@ public class InitBattleState : BattleState
             // new Point(6,8),
         };
 
+        //create containers for units based on aliance
         GameObject unitContainer = new GameObject("Units");
 		unitContainer.transform.SetParent(owner.transform);
+        GameObject allyContainer = new GameObject("Allies");
+		allyContainer.transform.SetParent(unitContainer.transform);
+        GameObject enemyContainer = new GameObject("Enemies");
+		enemyContainer.transform.SetParent(unitContainer.transform);
+        GameObject neutralContainer = new GameObject("Neutrals");
+		neutralContainer.transform.SetParent(unitContainer.transform);
 
         for (int i = 0; i < unitRecipes.Length; ++i)
         {
             GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
-            instance.transform.SetParent(unitContainer.transform);
-
             Unit unitScript = instance.GetComponent<Unit>();
             unitScript.Init(board.GetTile(spawnLocations[i]));
             turnOrderController.CalculateAV(unitScript);
-            // Debug.Log(unitScript.name + " AV " + unitScript.gameObject.GetComponent<Stats>()[StatTypes.AV]);
 
+            switch(instance.GetComponent<Alliance>().type){
+                default:
+                    instance.transform.SetParent(unitContainer.transform);
+                    Debug.Log("Unit has no alliance set");
+                    break;
+                case Alliances.Ally:
+                    instance.transform.SetParent(allyContainer.transform);
+                    break;
+                case Alliances.Enemy:
+                    instance.transform.SetParent(enemyContainer.transform);
+                    break;
+                case Alliances.Neutral:
+                    instance.transform.SetParent(neutralContainer.transform);
+                    break;
+            }
             units.Add(unitScript);
         }
-        string result = "Units: ";
-        foreach (var item in units){ result += item.ToString() + ", "; }
+        // string result = "Units: ";
+        // foreach (var item in units){ result += item.ToString() + ", "; }
         // Debug.Log(result);
 
         owner.timeline.PopulateTimeline(units);
