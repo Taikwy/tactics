@@ -98,14 +98,13 @@ public class InitBattleState : BattleState
     }
 
     void AddVictoryCondition (){
-        string result = "Victory Units: ";
-        foreach (var item in units){ result += item.ToString() + ", "; }
+        // string result = "Victory Units: ";
+        // foreach (var item in units){ result += item.ToString() + ", "; }
         // Debug.Log(result);
 
-
 		// AddDefeatAll();
-        // AddTarget();
-        AddSurvive();
+        AddTarget();
+        // AddSurvive();
 	}
     void AddDefeatAll(){
         DefeatAllVictoryCondition victoryCondition = owner.gameObject.AddComponent<DefeatAllVictoryCondition>();

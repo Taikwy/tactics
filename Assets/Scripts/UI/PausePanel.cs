@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class PausePanel : MonoBehaviour
 {
     public GameObject pauseMenu;
     public static bool isPaused = false;
-    void Start(){
-        pauseMenu.SetActive(false);
-    }
-    public void PauseGame(){
-        pauseMenu.SetActive(true);
+
+    public void ShowPanel(){
         isPaused = true;
+        pauseMenu.SetActive(true);
     }
-    public void ResumeGame(){
-        pauseMenu.SetActive(false);
+    public void HidePanel(){
         isPaused = false;
+        pauseMenu.SetActive(false);
     }
+
     public void MainMenu(){
         SceneManager.LoadScene("TestMainMenu");
     }

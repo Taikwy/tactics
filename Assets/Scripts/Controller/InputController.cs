@@ -14,17 +14,19 @@ public class InputController : MonoBehaviour
 
     string[] _buttons = new string[] {"Fire1", "Fire2", "Fire3"};
 
+    GameUIController guiController;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        guiController = GetComponent<BattleController>().guiController;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PauseMenu.isPaused)
+        if(guiController.showingGameOver || guiController.showingPause)
             return;
         int x = _hor.Update();
         int y = _ver.Update();

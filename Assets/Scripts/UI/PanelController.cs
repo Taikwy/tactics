@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class PanelController : MonoBehaviour 
 {
-    #region Const
     const string ShowKey = "Show";
     const string HideKey = "Hide";
-    #endregion
-    #region Fields
     [SerializeField] BasePanel basePanel;
     [SerializeField] UnitPanel primaryPanel, secondaryPanel;              //selected and targeted unit
     [SerializeField] StatusPanel primaryStatusPanel;              //selected and targeted unit
     // [SerializeField] AbilityMenu abilityMenu;
     [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary = false;
     
-    #endregion
-    #region MonoBehaviour
     void Start (){
         HidePrimary();
         HideStatus();
         HideSecondary();
     }
-    #endregion
-    #region Public
     public void ShowPrimary (GameObject unit){
         HideStatus();
         showingPrimary = true;
@@ -55,8 +48,6 @@ public class PanelController : MonoBehaviour
         secondaryPanel.HidePanel();
     }
 
-    #endregion
-    #region Private
     // void MovePanel (StatPanel obj, string pos) {
     //     Panel.Position target = obj.panel[pos];
     //     if (obj.panel.CurrentPosition != target)
@@ -68,5 +59,4 @@ public class PanelController : MonoBehaviour
     //     t.easingControl.equation = EasingEquations.EaseOutQuad;
     //     }
     // }
-    #endregion
 }

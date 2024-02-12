@@ -24,6 +24,7 @@ public class BattleController : StateMachine
     public PanelController panelController;
     public ForecastPanel forecastPanel;
     public TurnOrderController turnOrderController;
+    public GameUIController guiController;
     public IEnumerator round;
     public Timeline timeline;
     

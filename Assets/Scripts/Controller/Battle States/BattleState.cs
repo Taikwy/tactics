@@ -18,6 +18,7 @@ public abstract class BattleState : State
     public PanelController panelController { get { return owner.panelController; }}
     public ForecastPanel forecastPanel { get { return owner.forecastPanel; }}
     public TurnOrderController turnOrderController { get { return owner.turnOrderController; }}
+    public GameUIController guiController { get { return owner.guiController; }}
     // public bool currentlyActive = false;                    //used for update functions of the different states
 
     protected virtual void Awake (){
