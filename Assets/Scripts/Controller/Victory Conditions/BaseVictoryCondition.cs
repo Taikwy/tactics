@@ -16,17 +16,25 @@ public abstract class BaseVictoryCondition : MonoBehaviour
 		bc = GetComponent<BattleController>();
 	}	
 	protected virtual void OnEnable (){
+		this.AddObserver(OnTurnDidCompleteNotification, TurnOrderController.RoundEndedEvent);
 		this.AddObserver(OnHPDidChangeNotification, Stats.DidChangeNotification(StatTypes.HP));
 	}	
 	protected virtual void OnDisable (){
+		this.RemoveObserver(OnTurnDidCompleteNotification, TurnOrderController.RoundEndedEvent);
 		this.RemoveObserver(OnHPDidChangeNotification, Stats.DidChangeNotification(StatTypes.HP));
 	}
 	protected virtual void OnHPDidChangeNotification (object sender, object args){
 		CheckForGameOver();
 	}
+	protected virtual void OnTurnDidCompleteNotification (object sender, object args){
+		CheckForGameOver();
+	}
+	
 	protected virtual void CheckForGameOver (){
-		if (PartyDefeated(Alliances.Ally))
+		if (PartyDefeated(Alliances.Ally)){
 			Victor = Alliances.Enemy;
+			Debug.Log("PARTY DEFEATED!! :(");
+		}
 	}
 	
 	protected virtual bool PartyDefeated (Alliances type){

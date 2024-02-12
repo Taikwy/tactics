@@ -9,8 +9,8 @@ public class TurnOrderController : MonoBehaviour
     const int moveCost = 2000;
     const int actionCost = 2000;
     const int roundAVCost = 100;
-    int AVCounter = 0;
-    int currentRound = 0;
+    int AVCounter = 100;
+    public int currentRound = 1;
 
     const int turnActivation = 1000;
     const int turnCost = 500;
@@ -20,23 +20,21 @@ public class TurnOrderController : MonoBehaviour
 	public const string TurnBeganEvent = "TurnOrderController.turnBegan";
 	public const string TurnCompletedEvent = "TurnOrderController.turnCompleted";
 	public const string RoundEndedEvent = "TurnOrderController.roundEnded";
+    
 
     public IEnumerator Round (){
         BattleController battleController = GetComponent<BattleController>();
         while (true){
-			// this.PostEvent(RoundBeganEvent);
-            // Debug.Log("new round");
-            List<Unit> units = new List<Unit>( battleController.units );
-            SortUnitsTurnOrder(units);
-
-            //if more than 100 AV has passed, a new round has passed
-            if(AVCounter <= 0){
-                AVCounter = 100;
+            //if AV is at 100, then a new round has started
+            if(AVCounter == 100){
                 currentRound++;
-                this.PostEvent(RoundBeganEvent);
                 Debug.Log("new round " + currentRound);
+                this.PostEvent(RoundBeganEvent);
             }
 
+            List<Unit> units = new List<Unit>( battleController.units );
+            SortUnitsTurnOrder(units);
+            
             //if the first unit value is not 0 yet, decrements all units by the first unit's remaining AV so the first unit can take a turn and al other units move up the timeline
             if(!CanAct(units[0])){
                 int decrementAV = units[0].GetComponent<Stats>()[StatTypes.AV];
@@ -51,7 +49,6 @@ public class TurnOrderController : MonoBehaviour
                 //decremets av counter
                 AVCounter -= decrementAV;
                 // Debug.Log(AVCounter);
-                
             }           
 
 
@@ -83,6 +80,14 @@ public class TurnOrderController : MonoBehaviour
 					units[i].PostEvent(TurnCompletedEvent);
                 }
             }
+            //if av has gone below 0, means that 100Av has passed and the round has ended. AFTER units have acted, since 100AV on turn 1 still lets u act once before a new turn
+            if(AVCounter <= 0){
+                Debug.Log("round " + currentRound + " ended");
+                this.PostEvent(RoundEndedEvent);
+                AVCounter = 100;
+            }
+
+            
         }
     }
 

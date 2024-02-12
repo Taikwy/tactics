@@ -6,7 +6,12 @@ public class SelectUnitState : BattleState
 {
     public override void Enter (){
         base.Enter ();
-        StartCoroutine("ChangeCurrentUnit");
+        if (IsBattleOver()){
+            Debug.Log("selecting says battle is over BEFORE roling over");
+			owner.ChangeState<EndBattleState>();
+        }
+        else
+            StartCoroutine("ChangeCurrentUnit");
     }
     public override void Exit (){
         base.Exit ();
@@ -16,12 +21,21 @@ public class SelectUnitState : BattleState
 
     //logic for cycling thru and selecting the next acting unit
     IEnumerator ChangeCurrentUnit (){
+        // if (IsBattleOver()){
+        //     Debug.Log("selecting says battle is over AGAIN");
+		// 	owner.ChangeState<EndBattleState>();
+        // }
         owner.round.MoveNext();
         SelectTile(turn.actingUnit.tile.position);
         // RefreshPrimaryPanel(selectPos);
         RefreshPrimaryStatusPanel(selectPos);
         
         yield return null;
+        if (IsBattleOver()){
+            Debug.Log("selecting says battle is over PLEASE");
+			owner.ChangeState<EndBattleState>();
+        }
+        else
         owner.ChangeState<CommandSelectionState>();
     }
 }

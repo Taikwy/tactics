@@ -36,7 +36,7 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		damage = Mathf.Max(damage, 1);
 
 		// Clamp the damage to a range, just for edge cases
-		damage = Mathf.Clamp(damage, 0, maxDamage);
+		damage = Mathf.Clamp(damage, 0, maxDamage); 
 		
 		Debug.Log("predicting damage ability effect  dmg[ " + "percent[" + attackPercentModifier + "] * (attack[" + attack + "] + terrain0[]) + weapon[0]"+ " ] - def["+ defense + "] - " + damage);
 		return -(int)damage;
@@ -78,7 +78,7 @@ public class DamageAbilityEffect : BaseAbilityEffect
 	
 	//will need to change this to work with things other than units
 	protected override int OnApply (Tile target){
-		Debug.Log("applying damage effect");
+		// Debug.Log("applying damage effect");
 		Unit defender = target.content.GetComponent<Unit>();
 		// Start with the predicted damage value
 		int value = Predict(target);

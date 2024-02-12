@@ -8,5 +8,7 @@ public class DefeatAllVictoryCondition : BaseVictoryCondition
 		base.CheckForGameOver();
 		if (Victor == Alliances.None && PartyDefeated(Alliances.Enemy))
 			Victor = Alliances.Ally;
+			Debug.Log("all enemies defeated");
+			Debug.Log("ALLIES WIN!");
 	}
 }

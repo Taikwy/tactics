@@ -72,11 +72,11 @@ public static class UnitFactory
 				break;
 			case Alliances.Ally:
 				unitScript.portraitColor = new Color32 (0,255,248,255);
-				Debug.Log("setting ally color as "+ unitScript.portraitColor);
+				// Debug.Log("setting ally color as "+ unitScript.portraitColor);
 				break;
 			case Alliances.Enemy:
 				unitScript.portraitColor = new Color32 (255,0,124,255);
-				Debug.Log("setting enemy color as "+ unitScript.portraitColor);
+				// Debug.Log("setting enemy color as "+ unitScript.portraitColor);
 				break;
 			case Alliances.Neutral:
 				unitScript.portraitColor = Color.green;

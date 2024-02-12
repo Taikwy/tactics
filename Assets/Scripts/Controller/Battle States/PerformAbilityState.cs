@@ -16,8 +16,11 @@ public class PerformAbilityState : BattleState
         yield return null;
 		ApplyAbility();
 		
-		if (IsBattleOver())
+		if (IsBattleOver()){
+            Debug.Log("changing to end");
 			owner.ChangeState<EndBattleState>();
+
+        }
 		// else if (!UnitHasDied())
 		// 	owner.ChangeState<SelectUnitState>();
 		else

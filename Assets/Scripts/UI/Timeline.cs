@@ -33,8 +33,8 @@ public class Timeline : MonoBehaviour
         //sort all the indicators
         UpdateTimeline(null, null);             //just fucking duct tape. no clue how to use events properly but hopefully this works 
 
-        string result = "Units after timeline: ";
-        foreach (var item in units){ result += item.ToString() + ", "; }
+        // string result = "Units after timeline: ";
+        // foreach (var item in units){ result += item.ToString() + ", "; }
         // Debug.Log(result);
     }
     
@@ -48,7 +48,7 @@ public class Timeline : MonoBehaviour
         indicator.unitScript = unit;
         indicator.icon.sprite = unit.portrait;
         indicator.icon.color = unit.GetComponent<Unit>().portraitColor;
-        Debug.Log("setting timeline color as "+ indicator.icon.color);
+        // Debug.Log("setting timeline color as "+ indicator.icon.color);
 
         indicator.counter.text = GetAV(indicator).ToString();
         
@@ -68,7 +68,7 @@ public class Timeline : MonoBehaviour
         foreach(TurnIndicator indicator in turnIndicators){
             // Debug.Log(indicator.counter.text);
             indicator.gameObject.transform.SetAsFirstSibling();
-            Debug.Log("timeline color is "+ indicator.icon.color);
+            // Debug.Log("timeline color is "+ indicator.icon.color);
         }
         
     }

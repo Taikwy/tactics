@@ -97,6 +97,7 @@ public abstract class BattleState : State
         return owner.GetComponentInChildren<BaseVictoryCondition>().Victor == Alliances.Ally;
     }
     protected virtual bool IsBattleOver (){
+        // Debug.Log("checking if battle is over " + (owner.GetComponentInChildren<BaseVictoryCondition>().Victor != Alliances.None));
         return owner.GetComponentInChildren<BaseVictoryCondition>().Victor != Alliances.None;
     }
 }

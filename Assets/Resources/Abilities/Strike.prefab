@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityEffectName: 
   subEffects: []
-  attackPercentModifier: 0
+  attackPercentModifier: 20
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,13 +136,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f15774e5b48f43a605f3046a8525f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  primaryEffects: []
-  primaryEffect: {fileID: 4861301945464717442}
+  type: 2
+  primaryEffects:
+  - {fileID: 4861301945464717442}
+  primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   secondaryEffect: {fileID: 0}
   secondarySubEffect: {fileID: 0}
-  primaryEffectZone: {fileID: 4742295797092695002}
+  primaryEffectZone: {fileID: 0}
   primarySubEffectZone: {fileID: 0}
   secondaryEffectZone: {fileID: 0}
   secondarySubEffectZone: {fileID: 0}

@@ -41,7 +41,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 			return;
 
 		if (GetComponent<HitRate>().RollForHit(target)){
-            Debug.Log("HIT! " + abilityEffectName);
+            // Debug.Log("HIT! " + abilityEffectName);
 			this.PostEvent(HitEvent, OnApply(target));
 			foreach(BaseAbilityEffect effect in subEffects){
 				effect.SubApply(target);

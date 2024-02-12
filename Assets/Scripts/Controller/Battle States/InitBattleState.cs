@@ -103,11 +103,21 @@ public class InitBattleState : BattleState
         // Debug.Log(result);
 
 
-		DefeatTargetVictoryCondition victoryCondition = owner.gameObject.AddComponent<DefeatTargetVictoryCondition>();
+		// AddDefeatAll();
+        // AddTarget();
+        AddSurvive();
+	}
+    void AddDefeatAll(){
+        DefeatAllVictoryCondition victoryCondition = owner.gameObject.AddComponent<DefeatAllVictoryCondition>();
+    }
+    void AddTarget(){
+        DefeatTargetVictoryCondition victoryCondition = owner.gameObject.AddComponent<DefeatTargetVictoryCondition>();
 		Unit enemy = units[ 3 ];
 		victoryCondition.target = enemy;
-		// Health health = enemy.GetComponent<Health>();
-		// health.MinHP = 0;
+    }
+    void AddSurvive(){
+        SurviveRoundsVictoryCondition victoryCondition = owner.gameObject.AddComponent<SurviveRoundsVictoryCondition>();
+		victoryCondition.roundsToSurvive = 5;
+    }
 
-	}
 }

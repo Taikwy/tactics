@@ -11,6 +11,7 @@ public class DefeatTargetVictoryCondition : BaseVictoryCondition
 		base.CheckForGameOver ();
 		if (Victor == Alliances.None && IsDefeated(target)){
 			Victor = Alliances.Ally;
+            Debug.Log(target + " defeated");
 			Debug.Log("ALLIES WIN!");
 		}
 	}
