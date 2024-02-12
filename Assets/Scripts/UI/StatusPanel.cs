@@ -27,6 +27,7 @@ public class StatusPanel : MonoBehaviour
         // portrait.sprite = null; Need a component which provides this data
         nameLabel.text = unit.GetComponent<Unit>().name;
         portrait.sprite = unit.GetComponent<Unit>().portrait;
+        portrait.color = unit.GetComponent<Unit>().portraitColor;
         Stats stats = unit.GetComponent<Stats>();
         if (stats) {
             lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LV]);

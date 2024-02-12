@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour
     // public XPCurveData xpData;
     // public UnitStatData statData;
     public Sprite portrait;
+    public Color portraitColor;
 
     [HideInInspector] public Stats statsScript;
     [HideInInspector] public UnitLevel levelScript;

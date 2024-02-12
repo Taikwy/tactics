@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitBase: Unit Base
   sprite: {fileID: 21300000, guid: 79fad0cf55f37694aaf605497f8c9942, type: 3}
-  portrait: {fileID: 21300000, guid: e01479301fafbc847a97ccd22cd85c99, type: 3}
+  portrait: {fileID: 21300000, guid: 31e80386b7fb9fa46a93733cdf293c47, type: 3}
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: b80107f6661a2eb4092dea973d8d354b, type: 2}
   job: 

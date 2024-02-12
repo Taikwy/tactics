@@ -30,7 +30,7 @@ public static class UnitFactory
 		unit.name = recipe.name;
 		unit.GetComponent<SpriteRenderer>().sprite = recipe.sprite;
 
-		InitUnit(unit, recipe);
+		InitUnitScript(unit, recipe);
 		AddStats(unit, recipe.statData);
 		AddHealth(unit, recipe.statData.minHP);
 		AddBurst(unit, recipe.statData.minBP);
@@ -39,6 +39,7 @@ public static class UnitFactory
 		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
 		AddAlliance(unit, recipe.alliance);
+
 		AddMovement(unit, recipe.movementType);
 		// AddJob(unit, recipe.job);
 
@@ -62,9 +63,26 @@ public static class UnitFactory
 		return instance;
 	}
 
-	static void InitUnit(GameObject unit, UnitRecipe recipe){
+	static Unit InitUnitScript(GameObject unit, UnitRecipe recipe){
 		Unit unitScript = unit.AddComponent<Unit>();
 		unitScript.portrait = recipe.portrait;
+		switch(recipe.alliance){
+			default:
+				unitScript.portraitColor = Color.white;
+				break;
+			case Alliances.Ally:
+				unitScript.portraitColor = new Color32 (0,255,248,255);
+				Debug.Log("setting ally color as "+ unitScript.portraitColor);
+				break;
+			case Alliances.Enemy:
+				unitScript.portraitColor = new Color32 (255,0,124,255);
+				Debug.Log("setting enemy color as "+ unitScript.portraitColor);
+				break;
+			case Alliances.Neutral:
+				unitScript.portraitColor = Color.green;
+				break;
+		}
+		return unitScript;
 	}
 
 	static Stats AddStats (GameObject unit, UnitStatData data){
@@ -87,9 +105,10 @@ public static class UnitFactory
 		UnitLevel unitLevel = obj.AddComponent<UnitLevel>();
 		unitLevel.Init(level, data);
 	}
-	static void AddAlliance (GameObject obj, Alliances type){
+	static Alliances AddAlliance (GameObject obj, Alliances type){
 		Alliance alliance = obj.AddComponent<Alliance>();
 		alliance.type = type;
+		return type;
 	}
 	static void AddMovement(GameObject obj, MovementTypes type){
 		switch (type){
@@ -113,7 +132,11 @@ public static class UnitFactory
 		job.Employ();
 		job.LoadDefaultStats();
 	}
-
+	//unused, i think this is for when i used to have ability menus in the ability menu
+	static void AddAttack (GameObject obj, string name){
+		GameObject instance = InstantiatePrefab("Abilities/" + name);
+		instance.transform.SetParent(obj.transform);
+	}
 	static void AddAbilityCatalog (GameObject obj, string name){
 		GameObject catalog = new GameObject("Ability Catalog");
 		catalog.transform.SetParent(obj.transform);

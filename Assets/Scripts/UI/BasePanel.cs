@@ -18,19 +18,20 @@ public class BasePanel : MonoBehaviour
     public TMP_Text hpLabel;
     public TMP_Text enLabel;
     
-    public void Display (GameObject obj)
+    public void Display (GameObject unit)
     {
         // Temp until I add a component to determine unit alliances
         // background.sprite = Random.value > 0.5f? enemyBackground : allyBackground;
         
         // portrait.sprite = null; Need a component which provides this data
-        nameLabel.text = obj.GetComponent<Unit>().name;
-        portrait.sprite = obj.GetComponent<Unit>().portrait;
-        Stats stats = obj.GetComponent<Stats>();
+        nameLabel.text = unit.GetComponent<Unit>().name;
+        portrait.sprite = unit.GetComponent<Unit>().portrait;
+        portrait.color = unit.GetComponent<Unit>().portraitColor;
+        Stats stats = unit.GetComponent<Stats>();
         if (stats) {
             lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LV]);
             // xpLabel.text = string.Format( "XP. {0}", stats[StatTypes.XP]);
-            xpLabel.text = string.Format( "XP. {0} / {1}", stats.GetCurrentXP(), obj.GetComponent<UnitLevel>().xpData.experiencePerLevel[stats[StatTypes.LV]]);
+            xpLabel.text = string.Format( "XP. {0} / {1}", stats.GetCurrentXP(), unit.GetComponent<UnitLevel>().xpData.experiencePerLevel[stats[StatTypes.LV]]);
             hpLabel.text = string.Format( "HEALTH {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
             enLabel.text = string.Format( "ENERGY {0} / {1}", stats[StatTypes.EN], stats[StatTypes.MEN] );
         }
