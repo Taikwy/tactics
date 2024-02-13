@@ -64,7 +64,7 @@ public class Stats : MonoBehaviour
     
     //originally in unit.cs, moved here to simplify unit script. loads in and sets all the default stats for unit during spawning
     public void InitBaseStats (){
-		SetValue(StatTypes.LV, 1, false);
+		// SetValue(StatTypes.LV, 1, false);
         for (int i = 0; i < UnitStatData.statOrder.Length; ++i)
         {
             StatTypes type = UnitStatData.statOrder[i];

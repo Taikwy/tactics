@@ -32,12 +32,12 @@ public static class UnitFactory
 
 		InitUnitScript(unit, recipe);
 		AddStats(unit, recipe.statData);
-		AddHealth(unit, recipe.statData.minHP);
-		AddBurst(unit, recipe.statData.minBP);
 		AddLevel(unit, level, recipe.xpData);
-
 		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
+
+		AddHealth(unit, recipe.statData.minHP);
+		AddBurst(unit, recipe.statData.minBP);
 		AddAlliance(unit, recipe.alliance);
 		AddMovement(unit, recipe.movementType);
 		// AddJob(unit, recipe.job);
@@ -91,6 +91,11 @@ public static class UnitFactory
 		s.InitBaseStats();
 		return s;
 	}
+	static void AddLevel (GameObject obj, int level, XPCurveData data){
+		UnitLevel unitLevel = obj.AddComponent<UnitLevel>();
+		unitLevel.Init(level, data);
+	}
+	//=================================================================================================================================
 	static Health AddHealth(GameObject unit, int minHP){
 		Health health = unit.AddComponent<Health>();
 		health.MinHP = minHP;
@@ -100,10 +105,6 @@ public static class UnitFactory
 		Burst burst = unit.AddComponent<Burst>();
 		burst.MinBP = minBP;
 		return burst;
-	}
-	static void AddLevel (GameObject obj, int level, XPCurveData data){
-		UnitLevel unitLevel = obj.AddComponent<UnitLevel>();
-		unitLevel.Init(level, data);
 	}
 	static Alliances AddAlliance (GameObject obj, Alliances type){
 		Alliance alliance = obj.AddComponent<Alliance>();

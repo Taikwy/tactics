@@ -88,6 +88,20 @@ public class UnitLevel : MonoBehaviour
 		for (int i = oldValue; i < newValue; ++i)
 			LevelUp();
 	}
+    public void GainExperience(int xpGained){
+        XP += xpGained;
+        while(XP >= xpData.experiencePerLevel[LV]){
+            if(LV >= xpData.maxLevel){
+                XP = 0;
+                return;
+            }
+            else{
+                XP -= xpData.experiencePerLevel[LV];
+                statsScript.SetValue(StatTypes.LV, LV+1, false);
+            }
+            LevelUp();
+        }
+    }
     public void LevelUp(){
         Debug.Log("levelling up! currently lv " + LV + " out of " + xpData.maxLevel);
         for (int i = 0; i < UnitStatData.statOrder.Length; ++i)

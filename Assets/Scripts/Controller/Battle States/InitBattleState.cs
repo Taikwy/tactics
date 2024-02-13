@@ -66,7 +66,7 @@ public class InitBattleState : BattleState
 
         for (int i = 0; i < unitRecipes.Length; ++i)
         {
-            GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
+            GameObject instance = UnitFactory.Create(unitRecipes[i], Random.Range(1, 11));
             Unit unitScript = instance.GetComponent<Unit>();
             unitScript.Init(board.GetTile(spawnLocations[i]));
             turnOrderController.CalculateAV(unitScript);
