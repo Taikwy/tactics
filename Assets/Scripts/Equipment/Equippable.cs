@@ -6,7 +6,7 @@ public class Equippable : MonoBehaviour
 {
     public EquipSlots defaultSlots;
     // public EquipSlots secondarySlots;
-    public EquipSlots slots;
+    [HideInInspector]public EquipSlots equippedSlot;
     bool _isEquipped;
     public void OnEquip (){
         if (_isEquipped)

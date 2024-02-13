@@ -142,6 +142,7 @@ public static class UnitFactory
         Equipment equipmentScript = unit.GetComponent<Equipment>();
 		foreach(GameObject equipmentPiece in equipment){
 			Equippable toEquip = GameObject.Instantiate(equipmentPiece).GetComponent<Equippable>();
+			toEquip.name = equipmentPiece.name;
 			equipmentScript.Equip (toEquip, toEquip.defaultSlots);
 		}
 	}

@@ -22,4 +22,7 @@ MonoBehaviour:
   abilityCatalog: Lancer Catalog
   movementType: 0
   alliance: 2
-  equipment: []
+  equipment:
+  - {fileID: 7959649910702502881, guid: 99fc00fd8f7cfe449b131711111dd405, type: 3}
+  - {fileID: 3769282613241408921, guid: 3699739fed04dc943aec0ca9da9068d9, type: 3}
+  - {fileID: 7600963639326060574, guid: dc09af12d41e3024f8edf07b711c13bb, type: 3}
