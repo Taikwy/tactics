@@ -33,12 +33,22 @@ public class UnitLevel : MonoBehaviour
 
     //subscribes xpwillchange and xpdidchange methods to stats script's notification 
     void OnEnable (){
-		this.AddObserver(OnExpWillChange, Stats.WillChangeNotification(StatTypes.XP), statsScript);
-		this.AddObserver(OnExpDidChange, Stats.DidChangeNotification(StatTypes.XP), statsScript);
+		this.AddObserver(OnExpWillChange, Stats.willChangeEvent(StatTypes.XP), statsScript);
+		this.AddObserver(OnExpDidChange, Stats.DidChangeEvent(StatTypes.XP), statsScript);
+
+		this.AddObserver(OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
+        Feature[] features = GetComponentsInChildren<Feature>();
+		for (int i = 0; i < features.Length; ++i)
+			features[i].Activate(gameObject);
 	}
 	void OnDisable (){
-		this.RemoveObserver(OnExpWillChange, Stats.WillChangeNotification(StatTypes.XP), statsScript);
-		this.RemoveObserver(OnExpDidChange, Stats.DidChangeNotification(StatTypes.XP), statsScript);
+		this.RemoveObserver(OnExpWillChange, Stats.willChangeEvent(StatTypes.XP), statsScript);
+		this.RemoveObserver(OnExpDidChange, Stats.DidChangeEvent(StatTypes.XP), statsScript);
+
+        Feature[] features = GetComponentsInChildren<Feature>();
+		for (int i = 0; i < features.Length; ++i)
+			features[i].Deactivate();
+		this.RemoveObserver(OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
 	}
 
     void OnExpWillChange (object sender, object args){
@@ -48,8 +58,25 @@ public class UnitLevel : MonoBehaviour
 	}
 	
 	void OnExpDidChange (object sender, object args){
+        // Debug.Log("xp change noti");
 		statsScript.SetValue(StatTypes.LV, LevelForExperience(XP), false);
 	}
+    public virtual void OnLvChangeEvent (object sender, object args){
+        // Debug.Log("lv change noti");
+		int oldValue = (int)args;
+		int newValue = LV;
+
+		for (int i = oldValue; i < newValue; ++i)
+			LevelUp();
+	}
+    
+    //when initializing unit, sets the stuff
+    public void Init (int level, XPCurveData data){
+        xpData = data;
+        statsScript.SetValue(StatTypes.LV, level, false);
+        statsScript.SetValue(StatTypes.XP, ExperienceForLevel(level), false);
+        
+    }
 
     //returns xp needed to level up AT this level
     public int ExperienceCurrentForLevel (int level){
@@ -72,22 +99,7 @@ public class UnitLevel : MonoBehaviour
                 break;
         return lvl;
     }
-
-
-    //when initializing unit, sets the stuff
-    public void Init (int level, XPCurveData data){
-        xpData = data;
-        statsScript.SetValue(StatTypes.LV, level, false);
-        statsScript.SetValue(StatTypes.XP, ExperienceForLevel(level), false);
-    }
-
-    public virtual void OnLvlChangeNotification (object sender, object args){
-		int oldValue = (int)args;
-		int newValue = LV;
-
-		for (int i = oldValue; i < newValue; ++i)
-			LevelUp();
-	}
+    
     public void GainExperience(int xpGained){
         XP += xpGained;
         while(XP >= xpData.experiencePerLevel[LV]){
@@ -103,20 +115,38 @@ public class UnitLevel : MonoBehaviour
         }
     }
     public void LevelUp(){
-        Debug.Log("levelling up! currently lv " + LV + " out of " + xpData.maxLevel);
-        for (int i = 0; i < UnitStatData.statOrder.Length; ++i)
-        {
-            StatTypes type = UnitStatData.statOrder[i];
-            int fixedGrowth = Mathf.FloorToInt(statsScript.statData.growStats[i]);
-            float chanceGrowth = statsScript.statData.growStats[i] - fixedGrowth;
+        // for (int i = 0; i < UnitStatData.statOrder.Length; ++i){
+        //     StatTypes type = UnitStatData.statOrder[i];
+        //     int fixedGrowth = Mathf.FloorToInt(statsScript.statData.growStats[i]);                  //min amount of growth for a stat
+        //     if(fixedGrowth < 0)
+        //         continue;
+        //     float chanceGrowth = statsScript.statData.growStats[i] - fixedGrowth;                   //chance to gain an extra point
+        //     int value = statsScript[type];
+        //     value += fixedGrowth;
+        //     if (Random.value > (1f - chanceGrowth))
+        //         value++;
+            
+        //     Debug.Log("leveled up " + type + " , + " + (statsScript[type]-value));
+        //     statsScript.SetValue(type, value, false);
+        // }
+        for (int i = 0; i < UnitStatData.combatStatOrder.Length; ++i){
+            StatTypes type = UnitStatData.combatStatOrder[i];
+            int fixedGrowth = Mathf.FloorToInt(statsScript.statData.growthStats[i]);                  //min amount of growth for a stat
+            if(fixedGrowth < 0)
+                continue;
+            float chanceGrowth = statsScript.statData.growthStats[i] - fixedGrowth;                   //chance to gain an extra point
             int value = statsScript[type];
             value += fixedGrowth;
             if (Random.value > (1f - chanceGrowth))
                 value++;
+            
+            Debug.Log("leveled up " + type + " , + " + (statsScript[type]-value));
             statsScript.SetValue(type, value, false);
         }
         statsScript.SetValue(StatTypes.HP, statsScript[StatTypes.MHP], false);
-        Debug.Log("leveled up! " + XP + " xp");
+        statsScript.SetValue(StatTypes.BP, statsScript[StatTypes.MBP], false);
+        statsScript.SetValue(StatTypes.SK, statsScript[StatTypes.MSK], false);
+        Debug.Log("leveled up! currently lv " + LV + " out of " + xpData.maxLevel);
     }
 
     // public void AwardExperience(int amount){

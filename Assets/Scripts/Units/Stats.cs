@@ -13,23 +13,23 @@ public class Stats : MonoBehaviour
     int[] _data = new int[ (int)StatTypes.Count ];
 
     //dictionary storing eventnames based on stat type
-    static Dictionary<StatTypes, string> _willChangeNotifications = new Dictionary<StatTypes, string>();
-    static Dictionary<StatTypes, string> _didChangeNotifications = new Dictionary<StatTypes, string>();
+    static Dictionary<StatTypes, string> _willChangeEvents = new Dictionary<StatTypes, string>();
+    static Dictionary<StatTypes, string> _didChangeEvents = new Dictionary<StatTypes, string>();
     public UnitStatData statData;
 
     //returns notifcation name for use with the eventcenter
-    public static string WillChangeNotification (StatTypes type){
+    public static string willChangeEvent (StatTypes type){
         //checks if a willchangenoti exists for this stat, creates a new one if not
-        if (!_willChangeNotifications.ContainsKey(type))
-            _willChangeNotifications.Add(type, string.Format("Stats.{0}WillChange", type.ToString()));
-        return _willChangeNotifications[type];
+        if (!_willChangeEvents.ContainsKey(type))
+            _willChangeEvents.Add(type, string.Format("Stats.{0}WillChange", type.ToString()));
+        return _willChangeEvents[type];
     }
     //returns notifcation name for use with the eventcenter
-    public static string DidChangeNotification (StatTypes type){
+    public static string DidChangeEvent (StatTypes type){
         //checks if a didchangenoti exists for this stat, creates a new one if not
-        if (!_didChangeNotifications.ContainsKey(type))
-            _didChangeNotifications.Add(type, string.Format("Stats.{0}DidChange", type.ToString()));
-        return _didChangeNotifications[type];
+        if (!_didChangeEvents.ContainsKey(type))
+            _didChangeEvents.Add(type, string.Format("Stats.{0}DidChange", type.ToString()));
+        return _didChangeEvents[type];
     }
 
     public void SetValue (StatTypes type, int value, bool allowExceptions){
@@ -42,7 +42,7 @@ public class Stats : MonoBehaviour
             ValueChangeException exc = new ValueChangeException( oldValue, value );
             
             //posts event that this stat type will change
-            this.PostEvent(WillChangeNotification(type), exc);
+            this.PostEvent(willChangeEvent(type), exc);
             
             //gets the new value after applying all modifiers
             value = Mathf.FloorToInt(exc.GetModifiedValue());
@@ -54,7 +54,7 @@ public class Stats : MonoBehaviour
         
         _data[(int)type] = value;
         //posts event that this stat type did change
-        this.PostEvent(DidChangeNotification(type), oldValue);
+        this.PostEvent(DidChangeEvent(type), oldValue);
     }
 
     public int GetCurrentXP(){
@@ -65,12 +65,23 @@ public class Stats : MonoBehaviour
     //originally in unit.cs, moved here to simplify unit script. loads in and sets all the default stats for unit during spawning
     public void InitBaseStats (){
 		// SetValue(StatTypes.LV, 1, false);
-        for (int i = 0; i < UnitStatData.statOrder.Length; ++i)
-        {
-            StatTypes type = UnitStatData.statOrder[i];
-            SetValue(type, statData.baseStats[i], false);
+        // for (int i = 0; i < UnitStatData.statOrder.Length; ++i){
+        //     StatTypes type = UnitStatData.statOrder[i];
+        //     SetValue(type, statData.baseStats[i], false);
+        // }
+
+        //ALWAYS SET INITITAL STAT VALUE AS 1 SO WHEN ADDING THE REAL LEVEL I DON'T ADD AN EXTRA LAYER OF GROWTH STATS
+        SetValue(StatTypes.LV, 1, false);
+        for (int i = 0; i < UnitStatData.fixedStatOrder.Length; ++i){
+            StatTypes type = UnitStatData.fixedStatOrder[i];
+            SetValue(type, statData.fixedStats[i], false);
+        }
+        for (int i = 0; i < UnitStatData.combatStatOrder.Length; ++i){
+            StatTypes type = UnitStatData.combatStatOrder[i];
+            SetValue(type, statData.combatStats[i], false);
         }
         SetValue(StatTypes.HP, this[StatTypes.MHP], false);
         SetValue(StatTypes.BP, this[StatTypes.MBP], false);
+        SetValue(StatTypes.SK, this[StatTypes.MSK], false);
     }
 }

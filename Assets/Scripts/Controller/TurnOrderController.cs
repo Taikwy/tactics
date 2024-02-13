@@ -10,7 +10,7 @@ public class TurnOrderController : MonoBehaviour
     const int actionCost = 2000;
     const int roundAVCost = 100;
     int AVCounter = 100;
-    public int currentRound = 1;
+    public int currentRound = 0;
 
     const int turnActivation = 1000;
     const int turnCost = 500;
@@ -28,7 +28,7 @@ public class TurnOrderController : MonoBehaviour
             //if AV is at 100, then a new round has started
             if(AVCounter == 100){
                 currentRound++;
-                Debug.Log("new round " + currentRound);
+                Debug.Log("new round " + currentRound); 
                 this.PostEvent(RoundBeganEvent);
             }
 

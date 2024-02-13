@@ -12,12 +12,12 @@ public class StatChangeStatusEffect : StatusEffect
 	{
 		myStats = GetComponentInParent<Stats>();
 		if (myStats)
-			this.AddObserver( OnCounterWillChange, Stats.WillChangeNotification(statType), myStats );
+			this.AddObserver( OnCounterWillChange, Stats.willChangeEvent(statType), myStats );
 	}
 
 	void OnDisable ()
 	{
-		this.RemoveObserver( OnCounterWillChange, Stats.WillChangeNotification(statType), myStats );
+		this.RemoveObserver( OnCounterWillChange, Stats.willChangeEvent(statType), myStats );
 	}
 
 	void OnCounterWillChange (object sender, object args)

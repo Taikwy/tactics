@@ -14,13 +14,13 @@ public class DeadStatusEffect : StatusEffect
 	void OnEnable (){
 		owner.transform.localScale = new Vector3(0.75f, 0.25f, 1f);
 		this.AddObserver(OnTurnCheck, TurnOrderController.TurnCheckEvent, owner);
-		this.AddObserver(OnAVWillChange, Stats.WillChangeNotification(StatTypes.AV), stats); 
+		this.AddObserver(OnAVWillChange, Stats.willChangeEvent(StatTypes.AV), stats); 
 	}
 	
 	void OnDisable (){
 		owner.transform.localScale = Vector3.one;
 		this.RemoveObserver(OnTurnCheck, TurnOrderController.TurnCheckEvent, owner);
-		this.RemoveObserver(OnAVWillChange, Stats.WillChangeNotification(StatTypes.AV), stats);
+		this.RemoveObserver(OnAVWillChange, Stats.willChangeEvent(StatTypes.AV), stats);
 	}
 	
 	void OnTurnCheck (object sender, object args){

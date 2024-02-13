@@ -8,11 +8,11 @@ public class AutoStatusController : MonoBehaviour
 		owner = GetComponent<BattleController>();
 	}
 	void OnEnable (){
-		this.AddObserver(OnHPDidChangeNotification, Stats.DidChangeNotification(StatTypes.HP));
+		this.AddObserver(OnHPDidChangeNotification, Stats.DidChangeEvent(StatTypes.HP));
 	}
 	
 	void OnDisable (){
-		this.RemoveObserver(OnHPDidChangeNotification, Stats.DidChangeNotification(StatTypes.HP));
+		this.RemoveObserver(OnHPDidChangeNotification, Stats.DidChangeEvent(StatTypes.HP));
 	}
 	
 	void OnHPDidChangeNotification (object sender, object args){

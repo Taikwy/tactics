@@ -37,9 +37,9 @@ public class StatPanel : MonoBehaviour
             hpLabel.text = string.Format( "HP. {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
             atLabel.text = string.Format( "AT. {0}", stats[StatTypes.AT]);
             dfLabel.text = string.Format( "DF. {0}", stats[StatTypes.DF]);
-            skLabel.text = string.Format( "SK. {0}", stats[StatTypes.SK]);
-            luLabel.text = string.Format( "LU. {0}", stats[StatTypes.LU]);
-            acLAbel.text = string.Format( "AC. {0}", stats[StatTypes.AC]);
+            // skLabel.text = string.Format( "SK. {0}", stats[StatTypes.SK]);
+            // luLabel.text = string.Format( "LU. {0}", stats[StatTypes.LU]);
+            // acLAbel.text = string.Format( "AC. {0}", stats[StatTypes.AC]);
             spLabel.text = string.Format( "SP. {0}", stats[StatTypes.SP]);
             mvLabel.text = string.Format( "MV. {0}", stats[StatTypes.MV]);
         }

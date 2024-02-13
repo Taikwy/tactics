@@ -3160,6 +3160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusBG: {fileID: 432285244}
   statusLabelPrefab: {fileID: 3548770329478891185, guid: f4c44e898dbff66428bf868fb8a53953, type: 3}
+  equipmentLabelPrefab: {fileID: 3548770329478891185, guid: d7f41f83785748248aef87b211126cfc, type: 3}
   background: {fileID: 1025697442}
   portrait: {fileID: 1157582776}
   unitBackground: {fileID: 0}
@@ -3178,7 +3179,7 @@ MonoBehaviour:
   armorLabel: {fileID: 0}
   trinketLabel: {fileID: 0}
   statusHolder: {fileID: 1280479880}
-  equipmentHolder: {fileID: 3548770329478891185, guid: d7f41f83785748248aef87b211126cfc, type: 3}
+  equipmentHolder: {fileID: 1171953617}
 --- !u!1 &439395756
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,10 +35,10 @@ public class Unit : MonoBehaviour
         statsScript = GetComponent<Stats>();
         levelScript = GetComponent<UnitLevel>();
 
-		this.AddObserver(GetComponent<UnitLevel>().OnLvlChangeNotification, Stats.DidChangeNotification(StatTypes.LV), statsScript);
-		Feature[] features = GetComponentsInChildren<Feature>();
-		for (int i = 0; i < features.Length; ++i)
-			features[i].Activate(gameObject);
+		// this.AddObserver(GetComponent<UnitLevel>().OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
+		// Feature[] features = GetComponentsInChildren<Feature>();
+		// for (int i = 0; i < features.Length; ++i)
+		// 	features[i].Activate(gameObject);
 
     }
     public void Place (Tile target){
@@ -59,12 +59,11 @@ public class Unit : MonoBehaviour
     //will need to change this when i actually deal with unit death
     public void OnDeath(){
         // Debug.Log("ondeath");
-        Feature[] features = GetComponentsInChildren<Feature>();
-		for (int i = 0; i < features.Length; ++i)
-			features[i].Deactivate();
+        // Feature[] features = GetComponentsInChildren<Feature>();
+		// for (int i = 0; i < features.Length; ++i)
+		// 	features[i].Deactivate();
 
-		this.RemoveObserver(GetComponent<UnitLevel>().OnLvlChangeNotification, Stats.DidChangeNotification(StatTypes.LV), statsScript);
-		statsScript = null;
+		// this.RemoveObserver(GetComponent<UnitLevel>().OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
         Destroy(gameObject);
     }    
 }

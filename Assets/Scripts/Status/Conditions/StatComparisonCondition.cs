@@ -14,7 +14,7 @@ public class StatComparisonCondition : StatusCondition
 	}
 	
 	void OnDisable (){
-		this.RemoveObserver(OnStatChanged, Stats.DidChangeNotification(type), stats);
+		this.RemoveObserver(OnStatChanged, Stats.DidChangeEvent(type), stats);
 	}
 	
     //
@@ -22,7 +22,7 @@ public class StatComparisonCondition : StatusCondition
 		this.type = type;
 		this.value = value;
 		this.condition = condition;
-		this.AddObserver(OnStatChanged, Stats.DidChangeNotification(type), stats);
+		this.AddObserver(OnStatChanged, Stats.DidChangeEvent(type), stats);
 	}
 	
 	public bool EqualTo (){return stats[type] == value;}

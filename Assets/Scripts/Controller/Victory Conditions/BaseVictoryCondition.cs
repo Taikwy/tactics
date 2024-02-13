@@ -17,11 +17,11 @@ public abstract class BaseVictoryCondition : MonoBehaviour
 	}	
 	protected virtual void OnEnable (){
 		this.AddObserver(OnTurnDidCompleteNotification, TurnOrderController.RoundEndedEvent);
-		this.AddObserver(OnHPDidChangeNotification, Stats.DidChangeNotification(StatTypes.HP));
+		this.AddObserver(OnHPDidChangeNotification, Stats.DidChangeEvent(StatTypes.HP));
 	}	
 	protected virtual void OnDisable (){
 		this.RemoveObserver(OnTurnDidCompleteNotification, TurnOrderController.RoundEndedEvent);
-		this.RemoveObserver(OnHPDidChangeNotification, Stats.DidChangeNotification(StatTypes.HP));
+		this.RemoveObserver(OnHPDidChangeNotification, Stats.DidChangeEvent(StatTypes.HP));
 	}
 	protected virtual void OnHPDidChangeNotification (object sender, object args){
 		CheckForGameOver();
