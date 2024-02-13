@@ -102,8 +102,8 @@ public class InitBattleState : BattleState
         // foreach (var item in units){ result += item.ToString() + ", "; }
         // Debug.Log(result);
 
-		// AddDefeatAll();
-        AddTarget();
+		AddDefeatAll();
+        // AddTarget();
         // AddSurvive();
 	}
     void AddDefeatAll(){

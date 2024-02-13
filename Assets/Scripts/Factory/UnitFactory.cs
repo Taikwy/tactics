@@ -39,11 +39,11 @@ public static class UnitFactory
 		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
 		AddAlliance(unit, recipe.alliance);
-
 		AddMovement(unit, recipe.movementType);
 		// AddJob(unit, recipe.job);
 
 		// AddAttack(unit, recipe.attack);
+		AddEquipment(unit, recipe.equipment);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
 
 		// AddAttackPattern(unit, recipe.strategy);
@@ -137,6 +137,15 @@ public static class UnitFactory
 		GameObject instance = InstantiatePrefab("Abilities/" + name);
 		instance.transform.SetParent(obj.transform);
 	}
+	
+	static void AddEquipment(GameObject unit, List<GameObject> equipment){
+        Equipment equipmentScript = unit.GetComponent<Equipment>();
+		foreach(GameObject equipmentPiece in equipment){
+			Equippable toEquip = GameObject.Instantiate(equipmentPiece).GetComponent<Equippable>();
+			equipmentScript.Equip (toEquip, toEquip.defaultSlots);
+		}
+	}
+	static void PopulateInventory(){}
 	static void AddAbilityCatalog (GameObject obj, string name){
 		GameObject catalog = new GameObject("Ability Catalog");
 		catalog.transform.SetParent(obj.transform);

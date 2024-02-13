@@ -4,38 +4,31 @@ using UnityEngine;
 
 public class Equipment : MonoBehaviour
 {
-    #region Notifications
-    public const string EquippedNotification = "Equipment.EquippedNotification";
-    public const string UnEquippedNotification = "Equipment.UnEquippedNotification";
-    #endregion
-    #region Fields / Properties
-    public IList<Equippable> items { get { return _items.AsReadOnly(); }}
-    List<Equippable> _items = new List<Equippable>();
-    #endregion
-
-    #region Public
+    public const string EquippedEvent = "Equipment.EquippedEvent";
+    public const string UnEquippedEvent = "Equipment.UnEquippedEvent";
+    public IList<Equippable> equippedItems { get { return _equippedItems.AsReadOnly(); }}
+    List<Equippable> _equippedItems = new List<Equippable>();
     public void Equip (Equippable item, EquipSlots slots){
         UnEquip(slots);
-        _items.Add(item);
+        _equippedItems.Add(item);
         item.transform.SetParent(transform);
         item.slots = slots;
         item.OnEquip();
-        // this.PostNotification(EquippedNotification, item);
+        this.PostEvent(EquippedEvent, item);
     }
     public void UnEquip (Equippable item){
         item.OnUnEquip();
         item.slots = EquipSlots.None;
         item.transform.SetParent(transform);
-        _items.Remove(item);
-        // this.PostNotification(UnEquippedNotification, item);
+        _equippedItems.Remove(item);
+        this.PostEvent(UnEquippedEvent, item);
     }
     
     public void UnEquip (EquipSlots slots){
-        for (int i = _items.Count - 1; i >= 0; --i){
-            Equippable item = _items[i];
+        for (int i = _equippedItems.Count - 1; i >= 0; --i){
+            Equippable item = _equippedItems[i];
             if ( (item.slots & slots) != EquipSlots.None )
                 UnEquip(item);
         }
     }
-    #endregion
 }
