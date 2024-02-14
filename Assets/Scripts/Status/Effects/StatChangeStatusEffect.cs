@@ -8,20 +8,17 @@ public class StatChangeStatusEffect : StatusEffect
     public StatTypes statType;
     public int amountChanged;
 
-	void OnEnable ()
-	{
+	void OnEnable (){
 		myStats = GetComponentInParent<Stats>();
 		if (myStats)
-			this.AddObserver( OnCounterWillChange, Stats.willChangeEvent(statType), myStats );
+			this.AddObserver( OnCounterWillChange, Stats.WillChangeEvent(statType), myStats );
 	}
 
-	void OnDisable ()
-	{
-		this.RemoveObserver( OnCounterWillChange, Stats.willChangeEvent(statType), myStats );
+	void OnDisable (){
+		this.RemoveObserver( OnCounterWillChange, Stats.WillChangeEvent(statType), myStats );
 	}
 
-	void OnCounterWillChange (object sender, object args)
-	{
+	void OnCounterWillChange (object sender, object args){
 		ValueChangeException exc = args as ValueChangeException;
 		AddValueModifier a = new AddValueModifier(0, amountChanged);
 		exc.AddModifier(a);

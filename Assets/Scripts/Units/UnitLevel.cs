@@ -33,7 +33,7 @@ public class UnitLevel : MonoBehaviour
 
     //subscribes xpwillchange and xpdidchange methods to stats script's notification 
     void OnEnable (){
-		this.AddObserver(OnExpWillChange, Stats.willChangeEvent(StatTypes.XP), statsScript);
+		this.AddObserver(OnExpWillChange, Stats.WillChangeEvent(StatTypes.XP), statsScript);
 		this.AddObserver(OnExpDidChange, Stats.DidChangeEvent(StatTypes.XP), statsScript);
 
 		this.AddObserver(OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
@@ -42,7 +42,7 @@ public class UnitLevel : MonoBehaviour
 			features[i].Activate(gameObject);
 	}
 	void OnDisable (){
-		this.RemoveObserver(OnExpWillChange, Stats.willChangeEvent(StatTypes.XP), statsScript);
+		this.RemoveObserver(OnExpWillChange, Stats.WillChangeEvent(StatTypes.XP), statsScript);
 		this.RemoveObserver(OnExpDidChange, Stats.DidChangeEvent(StatTypes.XP), statsScript);
 
         Feature[] features = GetComponentsInChildren<Feature>();
@@ -140,13 +140,13 @@ public class UnitLevel : MonoBehaviour
             if (Random.value > (1f - chanceGrowth))
                 value++;
             
-            Debug.Log("leveled up " + type + " , + " + (statsScript[type]-value));
+            // Debug.Log("leveled up " + type + " , + " + (statsScript[type]-value));
             statsScript.SetValue(type, value, false);
         }
         statsScript.SetValue(StatTypes.HP, statsScript[StatTypes.MHP], false);
         statsScript.SetValue(StatTypes.BP, statsScript[StatTypes.MBP], false);
         statsScript.SetValue(StatTypes.SK, statsScript[StatTypes.MSK], false);
-        Debug.Log("leveled up! currently lv " + LV + " out of " + xpData.maxLevel);
+        // Debug.Log("leveled up! currently lv " + LV + " out of " + xpData.maxLevel);
     }
 
     // public void AwardExperience(int amount){

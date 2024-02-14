@@ -18,7 +18,7 @@ public class Stats : MonoBehaviour
     public UnitStatData statData;
 
     //returns notifcation name for use with the eventcenter
-    public static string willChangeEvent (StatTypes type){
+    public static string WillChangeEvent (StatTypes type){
         //checks if a willchangenoti exists for this stat, creates a new one if not
         if (!_willChangeEvents.ContainsKey(type))
             _willChangeEvents.Add(type, string.Format("Stats.{0}WillChange", type.ToString()));
@@ -42,7 +42,7 @@ public class Stats : MonoBehaviour
             ValueChangeException exc = new ValueChangeException( oldValue, value );
             
             //posts event that this stat type will change
-            this.PostEvent(willChangeEvent(type), exc);
+            this.PostEvent(WillChangeEvent(type), exc);
             
             //gets the new value after applying all modifiers
             value = Mathf.FloorToInt(exc.GetModifiedValue());

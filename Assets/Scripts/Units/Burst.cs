@@ -21,12 +21,12 @@ public class Burst : MonoBehaviour
 	}
 	
 	void OnEnable (){
-		this.AddObserver(OnBPWillChange, Stats.willChangeEvent(StatTypes.BP), stats);
+		this.AddObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
 		this.AddObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 	}
 	
 	void OnDisable (){
-		this.RemoveObserver(OnBPWillChange, Stats.willChangeEvent(StatTypes.BP), stats);
+		this.RemoveObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
 		this.RemoveObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 	}
 	

@@ -21,12 +21,12 @@ public class Health : MonoBehaviour
 	}
 	
 	void OnEnable (){
-		this.AddObserver(OnHPWillChange, Stats.willChangeEvent(StatTypes.HP), stats);
+		this.AddObserver(OnHPWillChange, Stats.WillChangeEvent(StatTypes.HP), stats);
 		this.AddObserver(OnMHPDidChange, Stats.DidChangeEvent(StatTypes.MHP), stats);
 	}
 	
 	void OnDisable (){
-		this.RemoveObserver(OnHPWillChange, Stats.willChangeEvent(StatTypes.HP), stats);
+		this.RemoveObserver(OnHPWillChange, Stats.WillChangeEvent(StatTypes.HP), stats);
 		this.RemoveObserver(OnMHPDidChange, Stats.DidChangeEvent(StatTypes.MHP), stats);
 	}
 	

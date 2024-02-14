@@ -7,17 +7,15 @@ public class FlatDamageStatusEffect : StatusEffect
 	Unit owner;
     public int damage;
 
-	void OnEnable ()
-	{
-		owner = gameObject.transform.parent.GetComponent<Unit>();
-		// owner = GetComponentInParent<Unit>();
+	void OnEnable (){
+		// owner = gameObject.transform.parent.GetComponent<Unit>();
+		owner = GetComponentInParent<Unit>();
 		if (owner)
 			this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent, owner);
 		// Debug.Log("trying to find parent unit " + owner);
 	}
 
-	void OnDisable ()
-	{
+	void OnDisable (){
 		this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent, owner);
 	}
 

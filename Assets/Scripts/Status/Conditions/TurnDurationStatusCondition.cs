@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitDurationStatusCondition : DurationStatusCondition 
+public class TurnDurationStatusCondition : DurationStatusCondition 
 {
     protected override void OnEnable (){
         this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);

@@ -59,11 +59,11 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		StatusCondition condition = statusObj.GetComponent<StatusCondition>();
 		
 		switch(condition){
-			case GlobalDurationStatusCondition:
-				(condition as GlobalDurationStatusCondition).duration = duration;
+			case RoundDurationStatusCondition:
+				(condition as RoundDurationStatusCondition).duration = duration;
 				break;
-			case UnitDurationStatusCondition:
-				(condition as UnitDurationStatusCondition).duration = duration;
+			case TurnDurationStatusCondition:
+				(condition as TurnDurationStatusCondition).duration = duration;
 				break;
 			case InfiniteStatusCondition:
 				break;

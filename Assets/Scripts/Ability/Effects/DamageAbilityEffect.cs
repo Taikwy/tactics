@@ -24,8 +24,6 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		// int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
 		int defense = defender.GetComponent<Stats>()[StatTypes.DF];
 
-
-
 		//terrain and weapon bonus logic needs to be added
 		int terrainBonus = 0;
 		int weaponBonus = 0;
