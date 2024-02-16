@@ -38,22 +38,28 @@ public abstract class BaseVictoryCondition : MonoBehaviour
 	}
 	
 	protected virtual bool PartyDefeated (Alliances type){
+		//  string result = "Units: ";
+        // foreach (var item in bc.units){ result += item.ToString() + ", "; }
+        // Debug.Log(result);
 		for (int i = 0; i < bc.units.Count; ++i){
-			Debug.Log("units numb " + bc.units.Count);
+			// Debug.Log("units numb " + bc.units.Count);
 			Alliance a = bc.units[i].GetComponent<Alliance>();
 			if (a == null)
 				continue;
 			
-			if (a.type == type && !IsDefeated(bc.units[i]))
+			if (!IsDefeated(bc.units[i]) && a.type == type){
+				// Debug.Log(bc.units[i] + " " + IsDefeated(bc.units[i]) + " | " + a.type + " " + type + " " + (a.type == type));
 				return false;
+			}
 		}
+		Debug.Log("huh");
 		return true;
 	}
 	
 	protected virtual bool IsDefeated (Unit unit){
 		Health health = unit.GetComponent<Health>();
 		if (health){
-			Debug.Log(unit.name + " health " + health.MinHP + " - " + health.HP);
+			// Debug.Log(unit.name + " health " + health.MinHP + " - " + health.HP + " " + (health.MinHP == health.HP));
 			return health.MinHP == health.HP;
 		}
 		
