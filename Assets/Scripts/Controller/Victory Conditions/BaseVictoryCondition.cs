@@ -38,8 +38,8 @@ public abstract class BaseVictoryCondition : MonoBehaviour
 	}
 	
 	protected virtual bool PartyDefeated (Alliances type){
-		for (int i = 0; i < bc.units.Count; ++i)
-		{
+		for (int i = 0; i < bc.units.Count; ++i){
+			Debug.Log("units numb " + bc.units.Count);
 			Alliance a = bc.units[i].GetComponent<Alliance>();
 			if (a == null)
 				continue;
@@ -52,8 +52,10 @@ public abstract class BaseVictoryCondition : MonoBehaviour
 	
 	protected virtual bool IsDefeated (Unit unit){
 		Health health = unit.GetComponent<Health>();
-		if (health)
+		if (health){
+			Debug.Log(unit.name + " health " + health.MinHP + " - " + health.HP);
 			return health.MinHP == health.HP;
+		}
 		
 		Stats stats = unit.GetComponent<Stats>();
 		return stats[StatTypes.HP] == 0;
