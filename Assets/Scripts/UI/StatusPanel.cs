@@ -16,8 +16,9 @@ public class StatusPanel : MonoBehaviour
     public TMP_Text nameLabel;
     public TMP_Text lvLabel, xpLabel, hpLabel, bpLabel;
     public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
-    public TMP_Text weaponLabel, armorLabel, trinketLabel;
+    // public TMP_Text weaponLabel, armorLabel, trinketLabel;
     public GameObject statusHolder, equipmentHolder;
+    public GameObject weaponLabel, armorLabel, trinketLabel;
     
     //takes in unit gaemeobject
     public void Display (GameObject unit)
@@ -44,14 +45,31 @@ public class StatusPanel : MonoBehaviour
             cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CR]);
             cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
         }
+        weaponLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format("EMPTY ");
+        armorLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format("EMPTY ");
+        trinketLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format("EMPTY ");
         if(equipment){
-            foreach(Equippable item in equipment.equippedItems){
-                GameObject equipmentLabel = Instantiate(equipmentLabelPrefab, equipmentHolder.transform);
-                TMP_Text slotLabel = equipmentLabel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
-                TMP_Text itemLabel = equipmentLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+            // foreach(Equippable item in equipment.equippedItems){
+            //     GameObject equipmentLabel = Instantiate(equipmentLabelPrefab, equipmentHolder.transform);
+            //     TMP_Text slotLabel = equipmentLabel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+            //     TMP_Text itemLabel = equipmentLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
 
-                slotLabel.text = string.Format(item.equippedSlot + " slot: ");
-                itemLabel.text = string.Format(item +  " ");
+            //     slotLabel.text = string.Format(item.equippedSlot + " slot: ");
+            //     itemLabel.text = string.Format(item +  " ");
+            // }
+            foreach(Equippable item in equipment.equippedItems){
+                switch(item.equippedSlot){
+                    case EquipSlots.Weapon:
+                        weaponLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format(item +  " ");
+                        break;
+                    case EquipSlots.Armor:
+                        armorLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format(item +  " ");
+                        break;
+                    case EquipSlots.Trinket:
+                        trinketLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format(item +  " ");
+                        break;
+
+                }
             }
             // weaponLabel.text = string.Format( "Weapon: " + equipment.equippedWeapon);
             // armorLabel.text = string.Format( "Armor: " + equipment.equippedArmor);
