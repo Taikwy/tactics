@@ -23,13 +23,12 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		return 0;
 	}
 
-    protected int NewOnApply (Tile target){
-        Debug.Log("new inflicting status " + effectName);
-        Status status = target.content.GetComponent<Status>();
-        // status.Add(statusEffect);
-        return 0;
-
-	}
+    // protected int NewOnApply (Tile target){
+    //     Debug.Log("new inflicting status " + effectName);
+    //     Status status = target.content.GetComponent<Status>();
+    //     // status.Add(statusEffect);
+    //     return 0;
+	// }
 
 	protected override int OnApply (Tile target){
         Debug.Log("new inflicting status " + effectName);
@@ -44,6 +43,16 @@ public class InflictAbilityEffect : BaseAbilityEffect
 			Debug.LogError("Invalid Status Condition Type");
 			return 0;
 		}
+
+		//crit rate stuff
+		int adjustedDuration = duration;
+		float critRate = GetComponentInParent<Unit>().GetComponentInParent<Stats>()[StatTypes.CR];
+		float critDMG = GetComponentInParent<Unit>().GetComponentInParent<Stats>()[StatTypes.CD];
+		if(UnityEngine.Random.Range(0, 101) <= critRate){
+			adjustedDuration += (int)Mathf.Ceil(critDMG/100f) * duration;
+			Debug.Log("CRIT!!! " + critRate + " incrased duratioin " + ((int)Mathf.Ceil(critDMG/100f) * duration));
+		}
+
 
 		//mi is status.add
 		MethodInfo mi = typeof(Status).GetMethod("Add");
@@ -60,10 +69,10 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		
 		switch(condition){
 			case RoundDurationStatusCondition:
-				(condition as RoundDurationStatusCondition).duration = duration;
+				(condition as RoundDurationStatusCondition).duration = adjustedDuration;
 				break;
 			case TurnDurationStatusCondition:
-				(condition as TurnDurationStatusCondition).duration = duration;
+				(condition as TurnDurationStatusCondition).duration = adjustedDuration;
 				break;
 			case InfiniteStatusCondition:
 				break;

@@ -29,9 +29,10 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 		// 		subEffects.Add(subEffect);
 		// }
 	}
-
-	//needs a new way to handle status effect to show in forecast
+	//used for forecast
 	public abstract int Predict (Tile target);
+	//includes crit calcs
+	// public abstract int ActualPredict (Tile target);
 
     //handles applying the effect, checks if it can hit and raises events for the result
 	public void Apply (Tile target){
