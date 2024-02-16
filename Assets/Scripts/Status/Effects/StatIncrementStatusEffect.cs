@@ -6,7 +6,7 @@ public class StatIncrementStatusEffect : StatusEffect
 {
 	Unit owner;
 	Stats myStats;
-    public int modifyAmount;
+    public int incrementAmount;
 
 	void OnEnable (){
 		// owner = gameObject.transform.parent.GetComponent<Unit>();
@@ -25,7 +25,7 @@ public class StatIncrementStatusEffect : StatusEffect
 
 	void OnCounterWillChange (object sender, object args){
 		ValueChangeException exc = args as ValueChangeException;
-		MultDeltaModifier m = new MultDeltaModifier(0, 2);
+		AddValueModifier m = new AddValueModifier(0, incrementAmount);
 		exc.AddModifier(m);
 	}
 }

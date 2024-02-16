@@ -41,7 +41,7 @@ public class StatusPanel : MonoBehaviour
             atLabel.text = string.Format( "ATTACK {0}", stats[StatTypes.AT]);
             dfLabel.text = string.Format( "DEFENSE {0}", stats[StatTypes.DF]);
             spLabel.text = string.Format( "SPEED {0}", stats[StatTypes.SP]);
-            cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CP]);
+            cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CR]);
             cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
         }
         if(equipment){

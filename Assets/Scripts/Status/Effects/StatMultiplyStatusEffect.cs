@@ -6,7 +6,7 @@ public class StatMultiplyStatusEffect : StatusEffect
 {
     Unit owner;
 	Stats myStats;
-    public int modifyAmount;
+    public int multiplyAmount;
 
 	void OnEnable (){
 		if (myStats)
@@ -19,7 +19,7 @@ public class StatMultiplyStatusEffect : StatusEffect
 
 	void OnCounterWillChange (object sender, object args){
 		ValueChangeException exc = args as ValueChangeException;
-		MultDeltaModifier m = new MultDeltaModifier(0, 2);
+		MultValueModifier m = new MultValueModifier(0, multiplyAmount);
 		exc.AddModifier(m);
 	}
 }

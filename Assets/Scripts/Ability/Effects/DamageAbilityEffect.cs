@@ -33,6 +33,15 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		float damage = attackingDamage - defense;
 		damage = Mathf.Max(damage, 1);
 
+
+		//crit rate stuff
+		float critRate = attacker.GetComponentInParent<Stats>()[StatTypes.CR];
+		float critDMG = attacker.GetComponentInParent<Stats>()[StatTypes.CD];
+		if(Random.Range(0, 101) >= critRate){
+			damage *= (1 + critDMG/100f);
+			Debug.Log("CRIT!!!");
+		}
+
 		// Clamp the damage to a range, just for edge cases
 		damage = Mathf.Clamp(damage, 0, maxDamage); 
 		

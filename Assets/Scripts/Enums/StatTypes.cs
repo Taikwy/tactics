@@ -18,7 +18,7 @@ public enum StatTypes
     DF,                 //Defense
     SP,                 //Speed
 
-    CP,                 //Crit Percent - only from weapons
+    CR,                 //Crit Percent - only from weapons
     CD,                 //Crit DMG - only from weapons
 
     // EN,

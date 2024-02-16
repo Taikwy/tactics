@@ -29,7 +29,7 @@ public class UnitStatData : ScriptableObject
         StatTypes.DF,
         StatTypes.SP,
         
-        StatTypes.CP,
+        StatTypes.CR,
         StatTypes.CD,
     };
     public static readonly StatTypes[] fixedStatOrder = new StatTypes[]{
@@ -38,7 +38,7 @@ public class UnitStatData : ScriptableObject
         StatTypes.MV,
 
         StatTypes.SP,
-        StatTypes.CP,
+        StatTypes.CR,
         StatTypes.CD,
     };
     public static readonly StatTypes[] combatStatOrder = new StatTypes[]{
