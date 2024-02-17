@@ -32,4 +32,12 @@ public class StatMultiplyStatusEffect : StatModifyStatusEffect
 			info.arg2.Add( new MultValueModifier(0, incrementOrMultiply) );
 		}
 	}
+	protected override void OnGetSpeed (object sender, object args){
+		// Debug.Log(sender as Unit);
+		if((sender as Unit) == GetComponentInParent<Unit>()){
+			Debug.Log("multiplying speed! " + incrementOrMultiply);
+			var info = args as Info<Unit, Unit, List<ValueModifier>>;
+			info.arg2.Add( new MultValueModifier(0, incrementOrMultiply) );
+		}
+	}
 }

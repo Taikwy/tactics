@@ -24,14 +24,16 @@ public class TurnOrderController : MonoBehaviour
 	public const string TurnCompletedEvent = "TurnOrderController.turnCompleted";
 	public const string RoundEndedEvent = "TurnOrderController.roundEnded";
 
+	public const string AVChangedEvent = "TurnOrderController.AVChanged";
 	public const string SpeedChangedEvent = "TurnOrderController.speedChanged";
 	public const string GetSpeedEvent = "BaseAbilityEffect.GetSpeedEvent";
     
     void OnEnable(){
 		this.AddObserver(OnSpeedChange, SpeedChangedEvent);
-		// this.AddObserver(OnGetSpeed, GetSpeedEvent);
+		this.AddObserver(OnGetSpeed, GetSpeedEvent);
     }void OnDisable(){ 
 		this.RemoveObserver(OnSpeedChange, SpeedChangedEvent);
+		this.RemoveObserver(OnGetSpeed, GetSpeedEvent);
     }
 
     public IEnumerator Round (){
@@ -40,7 +42,7 @@ public class TurnOrderController : MonoBehaviour
             //if AV is at 100, then a new round has started
             if(AVCounter == 100){
                 currentRound++;
-                Debug.Log("new round " + currentRound); 
+                Debug.Log("new round " + currentRound + " ========================================"); 
                 this.PostEvent(RoundBeganEvent);
             }
 
@@ -83,10 +85,10 @@ public class TurnOrderController : MonoBehaviour
                         // actionGauge += battleController.turn.actionCost;
                     
                     
-                    CalculateAV(units[i]);
-                    float AV = adjustedActionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
-                    //Sets the current unit its new AV
-                    statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
+                    CalculateAV(units[i], adjustedActionGauge);
+                    // float AV = adjustedActionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
+                    // //Sets the current unit its new AV
+                    // statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
                     // Debug.Log(statsScript.gameObject.name + "'s AV = "+ AV);
 
 					units[i].PostEvent(TurnCompletedEvent);
@@ -94,7 +96,7 @@ public class TurnOrderController : MonoBehaviour
             }
             //if av has gone below 0, means that 100Av has passed and the round has ended. AFTER units have acted, since 100AV on turn 1 still lets u act once before a new turn
             if(AVCounter <= 0){
-                Debug.Log("round " + currentRound + " ended");
+                Debug.Log("round " + currentRound + " ended ___________________________________________________________");
                 this.PostEvent(RoundEndedEvent);
                 AVCounter = 100;
             }
@@ -116,18 +118,35 @@ public class TurnOrderController : MonoBehaviour
     }
     public void CalculateAV(Unit unit, int actionGauge = baseActionGauge){
         Stats statsScript = unit.GetComponent<Stats>();
-        float AV = actionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
+        
+        float newAV = actionGauge / GetSpeed(unit);
+        // float AV = actionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
 
-        statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
+        statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(newAV), false);
         // Debug.Log("calculating " + statsScript.gameObject.name + "'s AV = "+ AV);
+        
+		unit.PostEvent(AVChangedEvent);
     }
 
     public void RecalculateAV(Unit unit){
-        Stats statsScript = unit.GetComponent<Stats>();
-        int percentRemaining = statsScript[StatTypes.AV] * statsScript[StatTypes.SP];
-        //need to get the original speed value used for the old AV
-        float newAV = percentRemaining / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED);
-        statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(newAV), false);
+        // float percentRemaining = GetAV(unit) * GetSpeed(unit) / baseActionGauge;
+        int adjSpeed = GetSpeed(unit);
+        float percentRemaining = (float)adjSpeed / unit.GetComponent<Stats>()[StatTypes.SP];
+        int adjustedAV = (int)( GetAV(unit) / percentRemaining );
+
+
+        // Debug.Log("RECALCULATING AV " + GetAV(unit) + " | " + unit.GetComponent<Stats>()[StatTypes.SP]);
+        unit.GetComponent<Stats>().SetValue(StatTypes.AV, adjustedAV, false);
+        // int adjustedActionGauge = (int)Mathf.Ceil(percentRemaining*baseActionGauge);
+        // CalculateAV(unit, adjustedActionGauge);
+        // Debug.Log("NEW av " + adjustedAV + " | "+  adjSpeed + " | " + percentRemaining + "% | " );
+
+        // Stats statsScript = unit.GetComponent<Stats>();
+        // int percentRemaining = statsScript[StatTypes.AV] * statsScript[StatTypes.SP];
+        // //need to get the original speed value used for the old AV
+        // float newAV = percentRemaining / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED);
+        // statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(newAV), false);
+		unit.PostEvent(AVChangedEvent);
     }
 
     bool CanAct (Unit target){
@@ -135,26 +154,32 @@ public class TurnOrderController : MonoBehaviour
         target.PostEvent( TurnCheckEvent, exc );
         return exc.toggle;
     }
-    float GetAV (Unit target){
+    int GetAV (Unit target){
         return target.GetComponent<Stats>()[StatTypes.AV];
     }
+    void OnGetSpeed(object sender, object args){
+        MonoBehaviour obj = sender as MonoBehaviour;
+        var info = args as Info<Unit, Unit, List<ValueModifier>>;
+        info.arg2.Add( new AddValueModifier(0, obj.GetComponent<Stats>()[StatTypes.SP]) );
+        // Debug.Log("ON GET SPEED: " + obj);
+    }
 
-    void OnGetSpeed(){}
-    int GetSpeed(Unit attacker, string eventName, int startValue){
-        // Debug.Log("getting unit's speed");
+    int GetSpeed(Unit unit){
+        // Debug.Log(unit + "getting unit's speed " + unit.GetComponent<Stats>()[StatTypes.SP]);
 		var modifiers = new List<ValueModifier>();															//list of all modifiers, INCLUDING base stat (ie unit's stat would jhsut be an addvaluemodifier with that stat)
-		var info = new Info<Unit, Unit, List<ValueModifier>>(attacker, null, modifiers);
-		this.PostEvent(eventName, info);																	//posts the event, power script auto adds the modifier for the base stat
+		var info = new Info<Unit, Unit, List<ValueModifier>>(unit, null, modifiers);
+		unit.PostEvent(GetSpeedEvent, info);																	//posts the event, power script auto adds the modifier for the base stat
 		modifiers.Sort(Compare);
 		
         //applies all the modifiers to the value
-		float value = startValue;
+		float value = 0;
 		for (int i = 0; i < modifiers.Count; ++i)
-			value = modifiers[i].Modify(startValue, value);
+			value = modifiers[i].Modify(0, value);
 		
         //floors value as an int and clamps within damage range
 		int retValue = Mathf.FloorToInt(value);
 		retValue = Mathf.Clamp(retValue, minSPEED, maxSPEED);
+        // Debug.Log("adjusted speed " + retValue);
 		return retValue;
     }
     //returns the modifier that should trigger first

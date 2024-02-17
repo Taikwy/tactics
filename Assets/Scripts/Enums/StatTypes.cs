@@ -28,6 +28,7 @@ public enum StatTypes
     // AC,
 
     AV,                 //Action Value - indicates unit's current action value
+    MRAV,                //Most Recent Action Value - used for the unit's current turn of calculation
     TurnCounter,
     Count
 }

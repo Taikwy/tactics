@@ -15,10 +15,12 @@ public class Timeline : MonoBehaviour
 
     void OnEnable (){        
         this.AddObserver(UpdateTimeline, TurnOrderController.TurnBeganEvent);
+        this.AddObserver(UpdateTimeline, TurnOrderController.AVChangedEvent);
 	}
 
 	void OnDisable (){
 		this.RemoveObserver(UpdateTimeline, TurnOrderController.TurnBeganEvent);
+        this.RemoveObserver(UpdateTimeline, TurnOrderController.AVChangedEvent);
 	}
 
     //initial stuff, sets things up like adding the round stuff

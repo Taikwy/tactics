@@ -25,7 +25,9 @@ public class StatModifyStatusEffect : StatusEffect
 				this.AddObserver(OnGetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
 				break;
 			case StatTypes.SP:
-                this.PostEvent(TurnOrderController.SpeedChangedEvent);
+				this.AddObserver(OnGetSpeed, TurnOrderController.GetSpeedEvent);
+				// GetComponentInParent<Unit>().PostEvent(TurnOrderController.SpeedChangedEvent);
+				this.PostEvent(TurnOrderController.SpeedChangedEvent);
 				break;
 			default:
 				Debug.LogError("Invalid Stat Type for modification");
@@ -40,13 +42,13 @@ public class StatModifyStatusEffect : StatusEffect
 				this.RemoveObserver(OnGetDefense, BaseAbilityEffect.GetDefenseEvent);
 				break;
 			case StatTypes.CR:
-				this.AddObserver(OnGetCritRate, BaseAbilityEffect.GetCritRateEvent);
+				this.RemoveObserver(OnGetCritRate, BaseAbilityEffect.GetCritRateEvent);
 				break;
 			case StatTypes.CD:
-				this.AddObserver(OnGetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
+				this.RemoveObserver(OnGetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
 				break;
 			case StatTypes.SP:
-                this.PostEvent(TurnOrderController.SpeedChangedEvent);
+				this.RemoveObserver(OnGetSpeed, TurnOrderController.GetSpeedEvent);
 				break;
 			default:
 				Debug.LogError("Invalid Stat Type for modification");
@@ -58,6 +60,7 @@ public class StatModifyStatusEffect : StatusEffect
 	protected virtual void OnGetDefense (object sender, object args){}
 	protected virtual void OnGetCritRate (object sender, object args){}
 	protected virtual void OnGetCritDMG (object sender, object args){}
+	protected virtual void OnGetSpeed (object sender, object args){}
 
 	//checks if event's attacker is this unit
 	protected bool IsAttacker (object sender, object args){
