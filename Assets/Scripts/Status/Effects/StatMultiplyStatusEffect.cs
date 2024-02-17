@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class StatMultiplyStatusEffect : StatusEffect
 {
-    Unit owner;
 	Stats myStats;
+	StatTypes type;
     public int multiplyAmount;
 
 	void OnEnable (){
+		myStats = GetComponentInParent<Stats>();
 		if (myStats)
-			this.AddObserver( OnCounterWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+			this.AddObserver( OnStatWillChange, Stats.WillChangeEvent(type), myStats );
 	}
 
 	void OnDisable (){
-		this.RemoveObserver( OnCounterWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+		this.RemoveObserver( OnStatWillChange, Stats.WillChangeEvent(type), myStats );
 	}
 
-	void OnCounterWillChange (object sender, object args){
+	void OnStatWillChange (object sender, object args){
 		ValueChangeException exc = args as ValueChangeException;
 		MultValueModifier m = new MultValueModifier(0, multiplyAmount);
 		exc.AddModifier(m);

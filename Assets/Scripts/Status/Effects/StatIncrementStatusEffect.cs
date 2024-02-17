@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class StatIncrementStatusEffect : StatusEffect 
 {
-	Unit owner;
 	Stats myStats;
+	StatTypes type;
     public int incrementAmount;
 
 	void OnEnable (){
-		// owner = gameObject.transform.parent.GetComponent<Unit>();
-		owner = GetComponentInParent<Unit>();
-		// if (owner)
-		// 	this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent, owner);
-		// Debug.Log("trying to find parent unit " + owner);
+		myStats = GetComponentInParent<Stats>();
 		if (myStats)
-			this.AddObserver( OnCounterWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+			this.AddObserver( OnStatWillChange, Stats.WillChangeEvent(type), myStats );
 	}
 
 	void OnDisable (){
-		// this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent, owner);
-		this.RemoveObserver( OnCounterWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+		this.RemoveObserver( OnStatWillChange, Stats.WillChangeEvent(type), myStats );
 	}
 
-	void OnCounterWillChange (object sender, object args){
+	void OnStatWillChange (object sender, object args){
 		ValueChangeException exc = args as ValueChangeException;
 		AddValueModifier m = new AddValueModifier(0, incrementAmount);
 		exc.AddModifier(m);

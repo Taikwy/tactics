@@ -15,13 +15,13 @@ public class DamageAbilityEffect : BaseAbilityEffect
 
 		// Get the attackers base attack stat considering
 		// mission items, support check, status check, and equipment, etc
-		// int attack = GetStat(attacker, defender, GetAttackEvent, 0);
-		int attack = attacker.GetComponentInParent<Stats>()[StatTypes.AT];
+		int attack = GetStat(attacker, defender, GetAttackEvent, 0);
+		// int attack = attacker.GetComponentInParent<Stats>()[StatTypes.AT];
 
 		// Get the targets base defense stat considering
 		// mission items, support check, status check, and equipment, etc
-		// int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
-		int defense = defender.GetComponent<Stats>()[StatTypes.DF];
+		int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
+		// int defense = defender.GetComponent<Stats>()[StatTypes.DF];
 
 		//terrain and weapon bonus logic needs to be added
 		int terrainBonus = 0;
