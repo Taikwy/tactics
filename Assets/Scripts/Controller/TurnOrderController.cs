@@ -20,7 +20,14 @@ public class TurnOrderController : MonoBehaviour
 	public const string TurnBeganEvent = "TurnOrderController.turnBegan";
 	public const string TurnCompletedEvent = "TurnOrderController.turnCompleted";
 	public const string RoundEndedEvent = "TurnOrderController.roundEnded";
+
+	public const string AVChangedEvent = "TurnOrderController.AVChanged";
     
+    void OnEnable(){
+		this.AddObserver(OnAVChange, AVChangedEvent);
+    }void OnDisable(){ 
+		this.RemoveObserver(OnAVChange, AVChangedEvent);
+    }
 
     public IEnumerator Round (){
         BattleController battleController = GetComponent<BattleController>();
@@ -130,4 +137,6 @@ public class TurnOrderController : MonoBehaviour
     int GetCounter (Unit target){
         return target.GetComponent<Stats>()[StatTypes.TurnCounter];
     }
+
+    void OnAVChange(object sender, object args){}
 }

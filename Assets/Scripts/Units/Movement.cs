@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Movement : MonoBehaviour
 {
+	// public const string GetMoveEvent = "Movement.GetMoveEvent";
     public int range { get { return stats[StatTypes.MV]; }}
     // public int jumpHeight { get { return stats[StatTypes.JMP]; }}
     protected Stats stats;
@@ -79,4 +80,5 @@ public abstract class Movement : MonoBehaviour
         }
         return path;
     }
+
 }

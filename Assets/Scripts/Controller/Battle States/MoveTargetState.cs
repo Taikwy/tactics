@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveTargetState : BattleState
 {
+    
     List<Tile> tiles, pathTiles = new List<Tile>();
     Movement moveScript;
     bool updating = false;

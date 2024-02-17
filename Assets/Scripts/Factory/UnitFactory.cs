@@ -125,20 +125,6 @@ public static class UnitFactory
 		}
 	}
 
-	//currently unused, idk if im gonna have jobs
-	static void AddJob (GameObject obj, string name){
-		GameObject instance = InstantiatePrefab("Jobs/" + name);
-		instance.transform.SetParent(obj.transform);
-		Job job = instance.GetComponent<Job>();
-		job.Employ();
-		job.LoadDefaultStats();
-	}
-	//unused, i think this is for when i used to have ability menus in the ability menu
-	static void AddAttack (GameObject obj, string name){
-		GameObject instance = InstantiatePrefab("Abilities/" + name);
-		instance.transform.SetParent(obj.transform);
-	}
-	
 	static void AddEquipment(GameObject unit, List<GameObject> equipment){
         Equipment equipmentScript = unit.GetComponent<Equipment>();
 		foreach(GameObject equipmentPiece in equipment){
@@ -147,7 +133,6 @@ public static class UnitFactory
 			equipmentScript.Equip (toEquip, toEquip.defaultSlots);
 		}
 	}
-	static void PopulateInventory(){}
 	static void AddAbilityCatalog (GameObject obj, string name){
 		GameObject catalog = new GameObject("Ability Catalog");
 		catalog.transform.SetParent(obj.transform);

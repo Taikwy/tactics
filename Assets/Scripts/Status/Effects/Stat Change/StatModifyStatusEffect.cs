@@ -12,49 +12,39 @@ public class StatModifyStatusEffect : StatusEffect
 	public void AddObservers(){
 		switch(statType){
 			case StatTypes.AT:
-				this.AddObserver(GetAttack, BaseAbilityEffect.GetAttackEvent);
+				this.AddObserver(OnGetAttack, BaseAbilityEffect.GetAttackEvent);
 				break;
 			case StatTypes.DF:
-				this.AddObserver(GetDefense, BaseAbilityEffect.GetDefenseEvent);
+				this.AddObserver(OnGetDefense, BaseAbilityEffect.GetDefenseEvent);
 				break;
 			case StatTypes.CR:
-				this.AddObserver(GetCritRate, BaseAbilityEffect.GetCritRateEvent);
+				this.AddObserver(OnGetCritRate, BaseAbilityEffect.GetCritRateEvent);
 				break;
 			case StatTypes.CD:
-				this.AddObserver(GetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
+				this.AddObserver(OnGetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
 				break;
 		}
 	}protected void OnDisable (){
 		switch(statType){
 			case StatTypes.AT:
-				this.RemoveObserver(GetAttack, BaseAbilityEffect.GetAttackEvent);
+				this.RemoveObserver(OnGetAttack, BaseAbilityEffect.GetAttackEvent);
 				break;
 			case StatTypes.DF:
-				this.RemoveObserver(GetDefense, BaseAbilityEffect.GetDefenseEvent);
+				this.RemoveObserver(OnGetDefense, BaseAbilityEffect.GetDefenseEvent);
 				break;
 			case StatTypes.CR:
-				this.AddObserver(GetCritRate, BaseAbilityEffect.GetCritRateEvent);
+				this.AddObserver(OnGetCritRate, BaseAbilityEffect.GetCritRateEvent);
 				break;
 			case StatTypes.CD:
-				this.AddObserver(GetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
+				this.AddObserver(OnGetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
 				break;
 		}
 	}
 
-	// void OnGetBaseDefense (object sender, object args){
-	// 	if (IsMyEffect(sender)){
-	// 		var info = args as Info<Unit, Unit, List<ValueModifier>>;
-	// 		info.arg2.Add( new AddValueModifier(0, info.arg1.GetComponent<Stats>()[StatTypes.DF]) );
-	// 		// Debug.Log("on get base defense " +  info.arg1.GetComponent<Stats>()[StatTypes.DF]);
-	// 	}
-	// }
-
-	protected virtual void OnStatWillChange (object sender, object args){}
-
-	protected virtual void GetAttack (object sender, object args){}
-	protected virtual void GetDefense (object sender, object args){}
-	protected virtual void GetCritRate (object sender, object args){}
-	protected virtual void GetCritDMG (object sender, object args){}
+	protected virtual void OnGetAttack (object sender, object args){}
+	protected virtual void OnGetDefense (object sender, object args){}
+	protected virtual void OnGetCritRate (object sender, object args){}
+	protected virtual void OnGetCritDMG (object sender, object args){}
 
 	//checks if event's attacker is this unit
 	protected bool IsAttacker (object sender, object args){
