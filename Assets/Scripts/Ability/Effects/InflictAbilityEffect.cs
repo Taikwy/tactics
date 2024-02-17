@@ -90,8 +90,8 @@ public class InflictAbilityEffect : BaseAbilityEffect
 			// case PercentDamageStatusEffect:
 			// 	(effect as PercentDamageStatusEffect).percent = percentDMG;
 			// 	break;
-			case StatChangeStatusEffect:
-				(effect as StatChangeStatusEffect).amountChanged = statChange;
+			case StatModifyStatusEffect:
+				(effect as StatModifyStatusEffect).incrementOrMultiply = statChange;
 				break;
 		}
 
