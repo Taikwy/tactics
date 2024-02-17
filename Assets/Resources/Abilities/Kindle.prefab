@@ -90,7 +90,7 @@ MonoBehaviour:
   abilityEffectName: 
   subEffects:
   - {fileID: 4466536032333570820}
-  attackPercentModifier: 0
+  attackPercentModifier: 60
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0

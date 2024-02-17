@@ -32,8 +32,45 @@ public class InflictAbilityEffect : BaseAbilityEffect
 	// }
 
 	protected override int OnApply (Tile target){
-        Debug.Log("new inflicting status " + effectName);
-        //checks if there is a calss with the statusname
+        // Debug.Log("new inflicting status " + effectName);
+		Unit attacker = GetComponentInParent<Unit>();
+		Unit defender = target.content.GetComponent<Unit>();
+
+		int adjustedDuration = duration;
+		float critRate = GetStatForCombat(attacker, defender, GetCritRateEvent, 0);
+		float critDMG =  GetStatForCombat(attacker, defender, GetCritDMGEvent, 0);
+		if(UnityEngine.Random.Range(0, 101) <= critRate){
+			didCrit = true;
+			int critDuration = (int) Mathf.Ceil( critDMG/100f* duration);
+			adjustedDuration += critDuration;
+			Debug.Log("CRIT!!! " + critRate + " | " + critDMG + " incrased duratioin: " + adjustedDuration);
+		}
+		else
+			didCrit = false;
+		
+		CreateStatusObject(target, adjustedDuration);
+		return 0;
+	}
+	protected override int OnSubApply (Tile target, bool crit){
+        // Debug.Log("new inflicting SUB status " + effectName);
+		Unit attacker = GetComponentInParent<Unit>();
+		Unit defender = target.content.GetComponent<Unit>();
+
+		//if this is a sub effect, it will crit depending on whether its parent effect critted
+		int adjustedDuration = duration;
+		float critDMG =  GetStatForCombat(attacker, defender, GetCritDMGEvent, 0);
+		if(crit){
+			int critDuration = (int) Mathf.Ceil( critDMG/100f* duration);
+			adjustedDuration += critDuration;
+			Debug.Log("PARENT ABILITY CRITED!!! " + crit + " | " + critDMG + " incrased duratioin: " + adjustedDuration);
+		}
+		CreateStatusObject(target, adjustedDuration);
+
+		return 0;
+	}
+	
+	int CreateStatusObject(Tile target, int adjustedDuration){
+		//checks if there is a calss with the statusname
 		Type effectType = Type.GetType(effectName);
 		Type conditionType = Type.GetType(conditionName);
 		if (effectType == null || !effectType.IsSubclassOf(typeof(StatusEffect))){
@@ -44,17 +81,6 @@ public class InflictAbilityEffect : BaseAbilityEffect
 			Debug.LogError("Invalid Status Condition Type");
 			return 0;
 		}
-
-		//crit rate stuff
-		int adjustedDuration = duration;
-		float critRate = GetComponentInParent<Unit>().GetComponentInParent<Stats>()[StatTypes.CR];
-		float critDMG = GetComponentInParent<Unit>().GetComponentInParent<Stats>()[StatTypes.CD];
-		if(UnityEngine.Random.Range(0, 101) <= critRate){
-			int critDuration = (int) Mathf.Ceil( (critDMG/100f) * duration);
-			adjustedDuration += critDuration;
-			Debug.Log("CRIT!!! " + critRate + " incrased duratioin " + critDuration);
-		}
-
 
 		//mi is status.add
 		MethodInfo mi = typeof(Status).GetMethod("Add");
@@ -94,10 +120,9 @@ public class InflictAbilityEffect : BaseAbilityEffect
 				(effect as StatModifyStatusEffect).incrementOrMultiply = incrementOrMultiply;
 				break;
 		}
-
 		return 0;
 	}
-	
+
 	protected override void OnPrimaryHit(object sender, object args){
 	}
 	protected override void OnPrimaryMiss(object sender, object args){}
