@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 public class StatModifyStatusEffect : StatusEffect 
@@ -23,6 +24,12 @@ public class StatModifyStatusEffect : StatusEffect
 			case StatTypes.CD:
 				this.AddObserver(OnGetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
 				break;
+			case StatTypes.SP:
+                this.PostEvent(TurnOrderController.SpeedChangedEvent);
+				break;
+			default:
+				Debug.LogError("Invalid Stat Type for modification");
+				break;
 		}
 	}protected void OnDisable (){
 		switch(statType){
@@ -37,6 +44,12 @@ public class StatModifyStatusEffect : StatusEffect
 				break;
 			case StatTypes.CD:
 				this.AddObserver(OnGetCritDMG, BaseAbilityEffect.GetCritDMGEvent);
+				break;
+			case StatTypes.SP:
+                this.PostEvent(TurnOrderController.SpeedChangedEvent);
+				break;
+			default:
+				Debug.LogError("Invalid Stat Type for modification");
 				break;
 		}
 	}

@@ -9,13 +9,17 @@ public class SpeedModifyStatusEffect : StatusEffect
 
 	void OnEnable (){
 		myStats = GetComponentInParent<Stats>();
-		if (myStats)
-			this.AddObserver( OnAVWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+		if (myStats){
+			
+		}
+			// this.AddObserver( OnAVWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+                this.PostEvent(TurnOrderController.SpeedChangedEvent);
 	}
 
 	void OnDisable (){
 		// this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent, owner);
-		this.RemoveObserver( OnAVWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+		// this.RemoveObserver( OnAVWillChange, Stats.WillChangeEvent(StatTypes.AV), myStats );
+                this.PostEvent(TurnOrderController.SpeedChangedEvent);
 	}
 
 	void OnAVWillChange (object sender, object args){

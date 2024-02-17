@@ -149,19 +149,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: statType
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: effectName
-      value: StatMultiplyStatusEffect
+      value: StatIncrementStatusEffect
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: abilityEffectName
-      value: ATTACK BUFF
+      value: SPEED BUFF
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: incrementOrMultiply
-      value: 0.5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}

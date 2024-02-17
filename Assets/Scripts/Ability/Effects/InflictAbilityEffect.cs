@@ -11,8 +11,9 @@ public class InflictAbilityEffect : BaseAbilityEffect
 	public string conditionName;
 	[Header("Status Condition")]
 	public int duration;
-	[Header("Status Effect Numbers")]
+	[Header("Damage Status Effect Numbers")]
 	[Tooltip("int flat damage or for percent dmg (out of 100)")]public int flatOrPercent;
+	[Header("Modification Status Effect Numbers")]
 	[Tooltip("stat type to modify")]public StatTypes statType;
 	[Tooltip("stat change increment (INT) or multiply (FLOAT)")] public float incrementOrMultiply;
 	// public int flatDMG;

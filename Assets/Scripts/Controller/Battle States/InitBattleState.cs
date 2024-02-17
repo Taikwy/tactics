@@ -70,7 +70,7 @@ public class InitBattleState : BattleState
             GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
             Unit unitScript = instance.GetComponent<Unit>();
             unitScript.Init(board.GetTile(spawnLocations[i]));
-            turnOrderController.CalculateAV(unitScript);
+            // turnOrderController.CalculateAV(unitScript);
 
             switch(instance.GetComponent<Alliance>().type){
                 default:
@@ -93,6 +93,7 @@ public class InitBattleState : BattleState
         // foreach (var item in units){ result += item.ToString() + ", "; }
         // Debug.Log(result);
 
+        turnOrderController.SetupUnitsAV(units);
         owner.timeline.PopulateTimeline(units);
         
         // SelectTile(units[0].tile.position);                  //this is prob unneeded, since i already select a tile later in select unit state. ig this is jsut for the intiial tile indicator "before" i make a unit take action?

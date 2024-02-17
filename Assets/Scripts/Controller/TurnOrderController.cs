@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnOrderController : MonoBehaviour 
@@ -14,6 +15,8 @@ public class TurnOrderController : MonoBehaviour
 
     const int turnActivation = 1000;
     const int turnCost = 500;
+    const int minSPEED = 50;
+    const int maxSPEED = 200;
 
     public const string RoundBeganEvent = "TurnOrderController.roundBegan";
 	public const string TurnCheckEvent = "TurnOrderController.turnCheck";
@@ -21,12 +24,14 @@ public class TurnOrderController : MonoBehaviour
 	public const string TurnCompletedEvent = "TurnOrderController.turnCompleted";
 	public const string RoundEndedEvent = "TurnOrderController.roundEnded";
 
-	public const string AVChangedEvent = "TurnOrderController.AVChanged";
+	public const string SpeedChangedEvent = "TurnOrderController.speedChanged";
+	public const string GetSpeedEvent = "BaseAbilityEffect.GetSpeedEvent";
     
     void OnEnable(){
-		this.AddObserver(OnAVChange, AVChangedEvent);
+		this.AddObserver(OnSpeedChange, SpeedChangedEvent);
+		// this.AddObserver(OnGetSpeed, GetSpeedEvent);
     }void OnDisable(){ 
-		this.RemoveObserver(OnAVChange, AVChangedEvent);
+		this.RemoveObserver(OnSpeedChange, SpeedChangedEvent);
     }
 
     public IEnumerator Round (){
@@ -70,16 +75,16 @@ public class TurnOrderController : MonoBehaviour
 
                     //Adjusts actiongauge for calculation based on unit actiosn during the turn
                     Stats statsScript = units[i].GetComponent<Stats>();
-                    int actionGauge = baseActionGauge;
+                    int adjustedActionGauge = baseActionGauge;
                     if (battleController.turn.hasUnitMoved)
-                        actionGauge += moveCost;
+                        adjustedActionGauge += moveCost;
                     if (battleController.turn.hasUnitActed)
-                        actionGauge += actionCost;
+                        adjustedActionGauge += actionCost;
                         // actionGauge += battleController.turn.actionCost;
                     
                     
-                    float AV = actionGauge / Mathf.Clamp(statsScript[StatTypes.SP], 50, 200) ;
-
+                    CalculateAV(units[i]);
+                    float AV = adjustedActionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
                     //Sets the current unit its new AV
                     statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
                     // Debug.Log(statsScript.gameObject.name + "'s AV = "+ AV);
@@ -103,9 +108,15 @@ public class TurnOrderController : MonoBehaviour
         units.Sort( (a,b) => GetAV(a).CompareTo(GetAV(b)) );
     }
 
-    public void CalculateAV(Unit unit){
+    public void SetupUnitsAV(List<Unit> units){
+        Debug.Log("setting up units AV");
+        foreach(Unit unit in units){
+            CalculateAV(unit);
+        }
+    }
+    public void CalculateAV(Unit unit, int actionGauge = baseActionGauge){
         Stats statsScript = unit.GetComponent<Stats>();
-        float AV = baseActionGauge / Mathf.Clamp(statsScript[StatTypes.SP], 50, 200) ;
+        float AV = actionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
 
         statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
         // Debug.Log("calculating " + statsScript.gameObject.name + "'s AV = "+ AV);
@@ -115,7 +126,7 @@ public class TurnOrderController : MonoBehaviour
         Stats statsScript = unit.GetComponent<Stats>();
         int percentRemaining = statsScript[StatTypes.AV] * statsScript[StatTypes.SP];
         //need to get the original speed value used for the old AV
-        float newAV = percentRemaining / Mathf.Clamp(statsScript[StatTypes.SP], 50, 200);
+        float newAV = percentRemaining / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED);
         statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(newAV), false);
     }
 
@@ -128,15 +139,37 @@ public class TurnOrderController : MonoBehaviour
         return target.GetComponent<Stats>()[StatTypes.AV];
     }
 
-    // bool CanTakeTurn (Unit target){
-    //     BaseException exc = new BaseException( GetCounter(target) >= turnActivation );
-    //     target.PostEvent( TurnCheckEvent, exc );
-    //     return exc.toggle;
-    // }
-    
-    int GetCounter (Unit target){
-        return target.GetComponent<Stats>()[StatTypes.TurnCounter];
+    void OnGetSpeed(){}
+    int GetSpeed(Unit attacker, string eventName, int startValue){
+        // Debug.Log("getting unit's speed");
+		var modifiers = new List<ValueModifier>();															//list of all modifiers, INCLUDING base stat (ie unit's stat would jhsut be an addvaluemodifier with that stat)
+		var info = new Info<Unit, Unit, List<ValueModifier>>(attacker, null, modifiers);
+		this.PostEvent(eventName, info);																	//posts the event, power script auto adds the modifier for the base stat
+		modifiers.Sort(Compare);
+		
+        //applies all the modifiers to the value
+		float value = startValue;
+		for (int i = 0; i < modifiers.Count; ++i)
+			value = modifiers[i].Modify(startValue, value);
+		
+        //floors value as an int and clamps within damage range
+		int retValue = Mathf.FloorToInt(value);
+		retValue = Mathf.Clamp(retValue, minSPEED, maxSPEED);
+		return retValue;
     }
+    //returns the modifier that should trigger first
+	int Compare (ValueModifier x, ValueModifier y){
+		return x.sortOrder.CompareTo(y.sortOrder);
+	}
 
-    void OnAVChange(object sender, object args){}
+    void OnSpeedChange(object sender, object args){
+        MonoBehaviour obj = sender as MonoBehaviour;
+        Debug.Log("speed and AV changed! " + obj + " | " + obj.transform.parent + " | " + transform);
+        RecalculateAV(obj.GetComponentInParent<Unit>());
+        // var info = args as Info<Unit, Unit, List<ValueModifier>>;
+        // info.arg2.Add( new AddValueModifier(0, GetComponentInParent<Stats>()[StatTypes.AT]) );
+        // Debug.Log("on get base attack " + GetComponentInParent<Stats>()[StatTypes.AT]);
+
+        GetComponent<BattleController>().timeline.UpdateTimeline(null, null);
+    }
 }
