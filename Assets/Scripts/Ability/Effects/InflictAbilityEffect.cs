@@ -50,8 +50,9 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		float critRate = GetComponentInParent<Unit>().GetComponentInParent<Stats>()[StatTypes.CR];
 		float critDMG = GetComponentInParent<Unit>().GetComponentInParent<Stats>()[StatTypes.CD];
 		if(UnityEngine.Random.Range(0, 101) <= critRate){
-			adjustedDuration += (int)Mathf.Ceil(critDMG/100f) * duration;
-			Debug.Log("CRIT!!! " + critRate + " incrased duratioin " + ((int)Mathf.Ceil(critDMG/100f) * duration));
+			int critDuration = (int) Mathf.Ceil( (critDMG/100f) * duration);
+			adjustedDuration += critDuration;
+			Debug.Log("CRIT!!! " + critRate + " incrased duratioin " + critDuration);
 		}
 
 
