@@ -29,10 +29,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 		// 		subEffects.Add(subEffect);
 		// }
 	}
-	//used for forecast
 	public abstract int Predict (Tile target);
-	//includes crit calcs
-	// public abstract int ActualPredict (Tile target);
 
     //handles applying the effect, checks if it can hit and raises events for the result
 	public void Apply (Tile target){
@@ -91,13 +88,12 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 
 	protected abstract void OnPrimaryHit(object sender, object args);
 	protected abstract void OnPrimaryMiss(object sender, object args);
-    //
+    
 	protected virtual int GetStat (Unit attacker, Unit target, string eventName, int startValue){
         Debug.Log("getting base stats");
-		var modifiers = new List<ValueModifier>();
+		var modifiers = new List<ValueModifier>();															//list of all modifiers, INCLUDING base stat (ie unit's stat would jhsut be an addvaluemodifier with that stat)
 		var info = new Info<Unit, Unit, List<ValueModifier>>(attacker, target, modifiers);
-		this.PostEvent(eventName, info);
-        //sorts all the modifiers based on sort order
+		this.PostEvent(eventName, info);																	//posts the event, power script auto adds the modifier for the base stat
 		modifiers.Sort(Compare);
 		
         //applies all the modifiers to the value
@@ -109,6 +105,31 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 		int retValue = Mathf.FloorToInt(value);
 		retValue = Mathf.Clamp(retValue, minDamage, maxDamage);
 		return retValue;
+	}
+
+	protected virtual int GetStatForCombat (Unit attacker, Unit target, string eventName, int startValue){
+        Debug.Log("getting base stats for combat");
+		var modifiers = new List<ValueModifier>();															//list of all modifiers, INCLUDING base stat (ie unit's stat would jhsut be an addvaluemodifier with that stat)
+		var info = new Info<Unit, Unit, List<ValueModifier>>(attacker, target, modifiers);
+		this.PostEvent(eventName, info);																	//posts the event, power script auto adds the modifier for the base stat
+		modifiers.Sort(Compare);
+		
+        //applies all the modifiers to the value
+		float value = startValue;
+		for (int i = 0; i < modifiers.Count; ++i)
+			value = modifiers[i].Modify(startValue, value);
+		
+        //floors value as an int and clamps within damage range
+		int retValue = Mathf.FloorToInt(value);
+		retValue = Mathf.Clamp(retValue, minDamage, maxDamage);
+		return retValue;
+	}
+	
+	//checks if the sender of the event is on the same ability, ie other abilities and unit stats won't get called
+	protected bool IsMyEffect (object sender){
+		MonoBehaviour obj = sender as MonoBehaviour;
+		// Debug.Log("check is my effect " + obj + " | " + obj.transform.parent + " | " + transform);
+		return obj != null && obj.transform.parent == transform.parent;
 	}
 
     //returns the modifier that should trigger first

@@ -6,20 +6,20 @@ using System.Reflection;
 public class InflictAbilityEffect : BaseAbilityEffect 
 {
     // public GameObject statusEffect;
-	[Header("Ailment Types (Class Names)")]
+	[Header("Status Types (Script Names)")]
 	public string effectName;
 	public string conditionName;
-	[Header("Ailment Condition")]
+	[Header("Status Condition")]
 	public int duration;
-	[Header("Ailment Effect Numbers")]
+	[Header("Status Effect Numbers")]
 	[Tooltip("int flat damage or for percent dmg (out of 100)")]public int flatOrPercent;
-	public int flatDMG;
-	public int percentDMG;
-	public int statChange;
+	[Tooltip("int stat change increment or multiply")] public int incrementOrMultiply;
+	// public int flatDMG;
+	// public int percentDMG;
+	// public int statChange;
 
 	//returns 0 cuz no damage
-	public override int Predict (Tile target)
-	{
+	public override int Predict (Tile target){
         Debug.Log("predicting inflict " + effectName);
 		return 0;
 	}
@@ -91,7 +91,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 			// 	(effect as PercentDamageStatusEffect).percent = percentDMG;
 			// 	break;
 			case StatModifyStatusEffect:
-				(effect as StatModifyStatusEffect).incrementOrMultiply = statChange;
+				(effect as StatModifyStatusEffect).incrementOrMultiply = incrementOrMultiply;
 				break;
 		}
 

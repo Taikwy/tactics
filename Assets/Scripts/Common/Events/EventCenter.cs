@@ -54,10 +54,10 @@ public class EventCenter{
 			
 			list.Add( handler );
 		}
-		if(eventName == "BaseAbilityEffect.GetAttackEvent"){
-			Debug.Log("event being added by " + sender + " for " + eventName);
-			Debug.Log("handlers: " + handler);
-		}
+		// if(eventName == "BaseAbilityEffect.GetAttackEvent"){
+		// 	Debug.Log("event being added by " + sender + " for " + eventName);
+		// 	Debug.Log("handlers: " + handler);
+		// }
 	}
 	
     //shorthand method to remove an observer of event

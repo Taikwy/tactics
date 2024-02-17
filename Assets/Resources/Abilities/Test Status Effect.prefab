@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   primaryEffects:
-  - {fileID: 0}
+  - {fileID: 2870192414544954239}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   secondaryEffect: {fileID: 0}
@@ -156,5 +156,10 @@ PrefabInstance:
 --- !u!4 &676859070881667581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7142485807862000992, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
+  m_PrefabInstance: {fileID: 7672897101348811933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2870192414544954239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5597802304154384354, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
   m_PrefabInstance: {fileID: 7672897101348811933}
   m_PrefabAsset: {fileID: 0}

@@ -9,18 +9,26 @@ public class DamageAbilityEffect : BaseAbilityEffect
 	void Start(){
 		abilityEffectName = "DAMAGE";
 	}
+	void OnEnable (){
+		this.AddObserver(OnGetBaseAttack, GetAttackEvent);
+		this.AddObserver(OnGetBaseDefense, GetDefenseEvent);
+	}void OnDisable (){
+		this.RemoveObserver(OnGetBaseAttack, GetAttackEvent);
+		this.RemoveObserver(OnGetBaseDefense, GetDefenseEvent);
+	}
+
 	public override int Predict (Tile target){
 		Unit attacker = GetComponentInParent<Unit>();
 		Unit defender = target.content.GetComponent<Unit>();
 
 		// Get the attackers base attack stat considering
 		// mission items, support check, status check, and equipment, etc
-		int attack = GetStat(attacker, defender, GetAttackEvent, 0);
+		int attack = GetStatForCombat(attacker, defender, GetAttackEvent, 0);
 		// int attack = attacker.GetComponentInParent<Stats>()[StatTypes.AT];
 
 		// Get the targets base defense stat considering
 		// mission items, support check, status check, and equipment, etc
-		int defense = GetStat(attacker, defender, GetDefenseEvent, 0);
+		int defense = GetStatForCombat(attacker, defender, GetDefenseEvent, 0);
 		// int defense = defender.GetComponent<Stats>()[StatTypes.DF];
 
 		//terrain and weapon bonus logic needs to be added
@@ -61,6 +69,22 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		Stats s = defender.GetComponent<Stats>();
 		s[StatTypes.HP] += value;
 		return value;
+	}
+
+	void OnGetBaseAttack (object sender, object args){
+		if (IsMyEffect(sender)){
+			Debug.Log("on get base attack");
+			var info = args as Info<Unit, Unit, List<ValueModifier>>;
+			info.arg2.Add( new AddValueModifier(0, GetComponentInParent<Stats>()[StatTypes.AT]) );
+		}
+	}
+
+	void OnGetBaseDefense (object sender, object args){
+		if (IsMyEffect(sender)){
+			Debug.Log("on get base defense");
+			var info = args as Info<Unit, Unit, List<ValueModifier>>;
+			info.arg2.Add( new AddValueModifier(0, info.arg1.GetComponent<Stats>()[StatTypes.DF]) );
+		}
 	}
 
 	protected override void OnPrimaryHit(object sender, object args){}

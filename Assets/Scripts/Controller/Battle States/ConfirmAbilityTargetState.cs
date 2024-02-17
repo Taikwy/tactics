@@ -98,7 +98,7 @@ public class ConfirmAbilityTargetState : BattleState
     }
 
     void UpdateForecastPanel(){
-        Debug.Log("updating forecast panel");
+        // Debug.Log("updating forecast panel");
 		float hitrate = 0;
 		int amount = 0;
         float subHitrate;

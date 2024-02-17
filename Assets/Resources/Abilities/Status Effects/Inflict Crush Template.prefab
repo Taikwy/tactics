@@ -89,8 +89,9 @@ MonoBehaviour:
   abilityEffectName: CRUSH
   subEffects: []
   effectName: FlatDamageStatusEffect
-  conditionName: UnitDurationStatusCondition
+  conditionName: TurnDurationStatusCondition
   duration: 0
+  flatOrPercent: 0
   flatDMG: 0
   percentDMG: 0
   statChange: 0

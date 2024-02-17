@@ -89,7 +89,7 @@ MonoBehaviour:
   abilityEffectName: BURN
   subEffects: []
   effectName: FlatDamageStatusEffect
-  conditionName: UnitDurationStatusCondition
+  conditionName: TurnDurationStatusCondition
   duration: 2
   flatOrPercent: 2
   flatDMG: 0

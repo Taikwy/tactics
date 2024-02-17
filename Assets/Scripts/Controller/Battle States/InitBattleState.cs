@@ -48,7 +48,7 @@ public class InitBattleState : BattleState
             new Point(6,3),
             // new Point(6,3),
 
-            new Point(6,6),
+            new Point(6,4),
             new Point(4,7),
             new Point(5,8),
             // new Point(6,8),
