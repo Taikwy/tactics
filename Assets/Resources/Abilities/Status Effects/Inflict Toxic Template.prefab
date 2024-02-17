@@ -88,9 +88,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityEffectName: TOXIC
   subEffects: []
-  effectName: FlatDamageStatusEffect
-  conditionName: UnitDurationStatusCondition
-  duration: 0
+  effectName: PercentDamageStatusEffect
+  conditionName: TurnDurationStatusCondition
+  duration: 3
+  flatOrPercent: 5
   flatDMG: 0
   percentDMG: 0
   statChange: 0

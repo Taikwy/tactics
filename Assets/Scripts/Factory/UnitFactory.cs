@@ -20,7 +20,7 @@ public static class UnitFactory
 				}
 			}
 		}
-		Debug.Log("not empty");
+		// Debug.Log("not empty");
 		return Create(recipe, level);
 	}
 

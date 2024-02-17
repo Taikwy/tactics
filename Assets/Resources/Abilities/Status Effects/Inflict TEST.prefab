@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7003075404764746857}
   - component: {fileID: 8112756447783014686}
   m_Layer: 0
-  m_Name: Inflict Burn Template
+  m_Name: Inflict TEST
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,6 @@ MonoBehaviour:
   effectName: FlatDamageStatusEffect
   conditionName: UnitDurationStatusCondition
   duration: 2
-  flatOrPercent: 2
-  flatDMG: 0
+  flatDMG: 2
   percentDMG: 0
   statChange: 0

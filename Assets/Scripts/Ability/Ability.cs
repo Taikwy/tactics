@@ -16,6 +16,7 @@ public class Ability : MonoBehaviour
     public EffectZone secondaryEffectZone, secondarySubEffectZone;
 
 	void Awake(){
+		// Debug.Log("settingh primary effect");
 		primaryEffect = primaryEffects[0];
 	}
 	

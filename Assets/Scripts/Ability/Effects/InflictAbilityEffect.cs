@@ -12,6 +12,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 	[Header("Ailment Condition")]
 	public int duration;
 	[Header("Ailment Effect Numbers")]
+	[Tooltip("int flat damage or for percent dmg (out of 100)")]public int flatOrPercent;
 	public int flatDMG;
 	public int percentDMG;
 	public int statChange;
@@ -79,12 +80,15 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		}
 
 		switch(effect){
-			case FlatDamageStatusEffect:
-				(effect as FlatDamageStatusEffect).damage = flatDMG;
+			case DamageStatusEffect:
+				(effect as DamageStatusEffect).flatOrPercent = flatOrPercent;
 				break;
-			case PercentDamageStatusEffect:
-				(effect as PercentDamageStatusEffect).percent = percentDMG;
-				break;
+			// case FlatDamageStatusEffect:
+			// 	(effect as FlatDamageStatusEffect).flatOrPercent = flatDMG;
+			// 	break;
+			// case PercentDamageStatusEffect:
+			// 	(effect as PercentDamageStatusEffect).percent = percentDMG;
+			// 	break;
 			case StatChangeStatusEffect:
 				(effect as StatChangeStatusEffect).amountChanged = statChange;
 				break;

@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61ef3bf05f93a541be4e5cbe0471469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guaranteed: 0
+  guaranteed: 1
   abilityHitRate: 80
 --- !u!114 &6950046999304816923
 MonoBehaviour:
@@ -141,8 +141,8 @@ MonoBehaviour:
   type: 2
   primaryEffects:
   - {fileID: 4861301945464717442}
-  primaryEffect: {fileID: 4861301945464717442}
-  primarySubEffect: {fileID: 55587267428238840}
+  primaryEffect: {fileID: 0}
+  primarySubEffect: {fileID: 0}
   secondaryEffect: {fileID: 0}
   secondarySubEffect: {fileID: 0}
   primaryEffectZone: {fileID: 0}
@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7003075404764746857, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: guaranteed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7003075404764746857, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: abilityHitRate
@@ -246,13 +246,12 @@ PrefabInstance:
       propertyPath: conditionName
       value: TurnDurationStatusCondition
       objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: flatOrPercent
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
---- !u!1 &55587267428238840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
-  m_PrefabInstance: {fileID: 5578306112918417946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3347629336638676858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
@@ -263,7 +262,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
   m_PrefabInstance: {fileID: 5578306112918417946}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55587267428238840}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
