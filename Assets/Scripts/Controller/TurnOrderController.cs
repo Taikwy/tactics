@@ -128,6 +128,7 @@ public class TurnOrderController : MonoBehaviour
 		unit.PostEvent(AVChangedEvent);
     }
 
+    //current version's equation is oldAV / ( adjSP / baseSP )
     public void RecalculateAV(Unit unit){
         // float percentRemaining = GetAV(unit) * GetSpeed(unit) / baseActionGauge;
         int adjSpeed = GetSpeed(unit);
