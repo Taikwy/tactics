@@ -177,6 +177,7 @@ public static class UnitFactory
 					catalogScript.burstAbility = ability;
 					break;
 			}
+			ability.GetComponent<Ability>().SetOwner();
 		}
 	}
 

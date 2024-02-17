@@ -18,13 +18,13 @@ public class BaseAbilityPercentModifier : MonoBehaviour
 	void OnEnable (){
 		this.AddObserver(OnGetBaseAttack, BaseAbilityEffect.GetAttackEvent);
 		this.AddObserver(OnGetBaseDefense, BaseAbilityEffect.GetDefenseEvent);
-		this.AddObserver(OnGetPercent, BaseAbilityEffect.GetPowerEvent);
+		// this.AddObserver(OnGetPercent, BaseAbilityEffect.GetPowerEvent);
 	}
 
 	void OnDisable (){
 		this.RemoveObserver(OnGetBaseAttack, BaseAbilityEffect.GetAttackEvent);
 		this.RemoveObserver(OnGetBaseDefense, BaseAbilityEffect.GetDefenseEvent);
-		this.RemoveObserver(OnGetPercent, BaseAbilityEffect.GetPowerEvent);
+		// this.RemoveObserver(OnGetPercent, BaseAbilityEffect.GetPowerEvent);
 	}
 
 	void OnGetBaseAttack (object sender, object args){

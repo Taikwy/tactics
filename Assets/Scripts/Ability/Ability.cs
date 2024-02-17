@@ -18,6 +18,18 @@ public class Ability : MonoBehaviour
 	void Awake(){
 		// Debug.Log("settingh primary effect");
 		primaryEffect = primaryEffects[0];
+
+		
+	}
+	public void SetOwner(){
+		Unit owner = GetComponentInParent<Unit>();
+		// Debug.Log("SETTING UP ABILITY " + owner);
+		foreach(GameObject effect in primaryEffects){
+			effect.GetComponent<BaseAbilityEffect>().owner = owner;
+			foreach(BaseAbilityEffect subEffect in effect.GetComponent<BaseAbilityEffect>().subEffects){
+				subEffect.owner = owner;
+			}
+		}
 	}
 	
     //replaced the logic i originally had in confirmtargetstate

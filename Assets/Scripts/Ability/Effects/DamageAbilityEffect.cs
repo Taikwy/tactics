@@ -24,8 +24,8 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		Unit defender = target.content.GetComponent<Unit>();
 
 		// Get the attacker and defender's stats considering equipment and statuses
-		int attack = GetStatForCombat(attacker, defender, GetAttackEvent, 0);
-		int defense = GetStatForCombat(attacker, defender, GetDefenseEvent, 0);
+		float attack = GetStatForCombat(attacker, defender, GetAttackEvent, 0);
+		float defense = GetStatForCombat(attacker, defender, GetDefenseEvent, 0);
 
 		//terrain and weapon bonus logic needs to be added, should use events
 		int terrainBonus = 0;

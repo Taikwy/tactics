@@ -12,8 +12,8 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	public const string GetDefenseEvent = "BaseAbilityEffect.GetDefenseEvent";
 	public const string GetCritRateEvent = "BaseAbilityEffect.GetCritRareEvent";
 	public const string GetCritDMGEvent = "BaseAbilityEffect.GetCritDMGEvent";
-	public const string GetPowerEvent = "BaseAbilityEffect.GetPowerEvent";
-	public const string TweakDamageEvent = "BaseAbilityEffect.TweakDamageEvent";
+	// public const string GetPowerEvent = "BaseAbilityEffect.GetPowerEvent";
+	// public const string TweakDamageEvent = "BaseAbilityEffect.TweakDamageEvent";
 
 	public const string HitEvent = "BaseAbilityEffect.HitEvent";
 	public const string MissedEvent = "BaseAbilityEffect.MissedEvent";
@@ -23,6 +23,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	// public BaseAbilityEffect subEffect;
 	public List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();
 	protected bool didCrit = false;
+	[HideInInspector] public Unit owner;
 
 	protected void OnEnable (){
 		this.AddObserver(OnGetBaseCritRate, GetCritRateEvent);

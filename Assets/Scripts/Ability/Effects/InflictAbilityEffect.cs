@@ -13,7 +13,8 @@ public class InflictAbilityEffect : BaseAbilityEffect
 	public int duration;
 	[Header("Status Effect Numbers")]
 	[Tooltip("int flat damage or for percent dmg (out of 100)")]public int flatOrPercent;
-	[Tooltip("int stat change increment or multiply")] public int incrementOrMultiply;
+	[Tooltip("stat type to modify")]public StatTypes statType;
+	[Tooltip("stat change increment (INT) or multiply (FLOAT)")] public float incrementOrMultiply;
 	// public int flatDMG;
 	// public int percentDMG;
 	// public int statChange;
@@ -23,13 +24,6 @@ public class InflictAbilityEffect : BaseAbilityEffect
         Debug.Log("predicting inflict " + effectName);
 		return 0;
 	}
-
-    // protected int NewOnApply (Tile target){
-    //     Debug.Log("new inflicting status " + effectName);
-    //     Status status = target.content.GetComponent<Status>();
-    //     // status.Add(statusEffect);
-    //     return 0;
-	// }
 
 	protected override int OnApply (Tile target){
         // Debug.Log("new inflicting status " + effectName);
@@ -117,7 +111,10 @@ public class InflictAbilityEffect : BaseAbilityEffect
 			// 	(effect as PercentDamageStatusEffect).percent = percentDMG;
 			// 	break;
 			case StatModifyStatusEffect:
+			Debug.Log(statType);
 				(effect as StatModifyStatusEffect).incrementOrMultiply = incrementOrMultiply;
+				(effect as StatModifyStatusEffect).statType = statType;
+				(effect as StatModifyStatusEffect).AddObservers();
 				break;
 		}
 		return 0;

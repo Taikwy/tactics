@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inflict TEST
       objectReference: {fileID: 0}
+    - target: {fileID: 7003075404764746857, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
+      propertyPath: guaranteed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -144,12 +148,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
+      propertyPath: statType
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: effectName
-      value: StatIncrementStatusEffect
+      value: StatMultiplyStatusEffect
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: abilityEffectName
       value: ATTACK BUFF
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
+      propertyPath: incrementOrMultiply
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
