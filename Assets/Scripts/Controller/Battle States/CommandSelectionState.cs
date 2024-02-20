@@ -79,6 +79,7 @@ public class CommandSelectionState : BaseAbilityMenuState
     }protected void Focus(){
         Debug.Log("Focus clicked!");
         owner.turn.actingUnit.GetComponent<SkillPoints>().SK += 2;
+        owner.turn.actingUnit.GetComponent<Burst>().BP += owner.turn.actingUnit.GetComponent<Burst>().focusBP;
         owner.ChangeState<SelectUnitState>();
     }protected void Defend(){
         // Debug.Log("defend clicked!");

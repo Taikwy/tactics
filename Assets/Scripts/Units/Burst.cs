@@ -18,6 +18,7 @@ public class Burst : MonoBehaviour
 	int deltaAV = 0;
 	int turnBP = 4;
 	int damagedBP = 3;
+	public int focusBP = 5;
 	
 	void Awake (){
 		stats = GetComponent<Stats>();
