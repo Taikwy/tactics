@@ -15,8 +15,9 @@ public class Burst : MonoBehaviour
 	Stats stats;
 	
 	int MinBP = 0;
-	int turnBP = 4;
 	int deltaAV = 0;
+	int turnBP = 4;
+	int damagedBP = 3;
 	
 	void Awake (){
 		stats = GetComponent<Stats>();
@@ -88,7 +89,7 @@ public class Burst : MonoBehaviour
 			//checks if the unit LOST HP
 			if (deltaHP > 0){
 				// Debug.Log(obj + " HP decreased, gaining burst");
-				BP +=  deltaHP/4;
+				BP +=  damagedBP + deltaHP/4;
 			}
 		}
 	}

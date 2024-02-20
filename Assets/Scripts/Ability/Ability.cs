@@ -10,10 +10,10 @@ public class Ability : MonoBehaviour
     public AbilityTypes type;
 	public List<GameObject> primaryEffects = new List<GameObject>();
 	public GameObject primaryEffect, primarySubEffect;
-	public GameObject secondaryEffect, secondarySubEffect;
-	[Space(1)]
-    public EffectZone primaryEffectZone, primarySubEffectZone;
-    public EffectZone secondaryEffectZone, secondarySubEffectZone;
+	// public GameObject secondaryEffect, secondarySubEffect;
+	// [Space(1)]
+    // public EffectZone primaryEffectZone, primarySubEffectZone;
+    // public EffectZone secondaryEffectZone, secondarySubEffectZone;
 
 	void Awake(){
 		// Debug.Log("settingh primary effect");
