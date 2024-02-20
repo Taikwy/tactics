@@ -12,27 +12,34 @@ public class Burst : MonoBehaviour
 		get { return stats[StatTypes.MBP]; }
 		set { stats[StatTypes.MBP] = value; }
 	}
+	Stats stats;
 	
 	int MinBP = 0;
 	int turnBP = 4;
-	Stats stats;
+	int deltaAV = 0;
 	
 	void Awake (){
 		stats = GetComponent<Stats>();
 	}
 	
 	void OnEnable (){
-		this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
-
 		this.AddObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
 		this.AddObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
+
+		this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
+		this.AddObserver(OnAVDidChange, Stats.DidChangeEvent(StatTypes.AV), stats);
+		this.AddObserver(OnHPDidChange, Stats.DidChangeEvent(StatTypes.HP), stats);
+
 	}
 	
 	void OnDisable (){
-		this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
-
 		this.RemoveObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
 		this.RemoveObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
+
+		this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
+		this.RemoveObserver(OnAVDidChange, Stats.DidChangeEvent(StatTypes.AV), stats);
+		this.RemoveObserver(OnHPDidChange, Stats.DidChangeEvent(StatTypes.HP), stats);
+
 	}
 	void TurnStartBP(){}
 	void OnBPWillChange (object sender, object args){
@@ -52,11 +59,39 @@ public class Burst : MonoBehaviour
 	void OnNewTurn(object sender, object args){
 		Unit actor = sender as Unit;
 		if(actor == gameObject.GetComponent<Unit>()){
-			Debug.Log("new turn, incrementing burst by " + turnBP + " sender: ");
+			// Debug.Log("new turn, incrementing burst by " + turnBP + " sender: ");
 			BP += turnBP;
 		}
 	}
-	void OnAVDidChange(object sender, object args){}
+	//gains 1 burst point for every 10 AV
+	void OnAVDidChange(object sender, object args){
+		MonoBehaviour obj = sender as MonoBehaviour;
+		int oldAV = (int)args;
+		if(obj!=null && obj.transform == gameObject.transform){
+			// Debug.Log("sender " + obj+ " old val? " + oldAV+ " new val-" + stats[StatTypes.AV] + " old deltaA " + deltaAV);
+			if(oldAV > stats[StatTypes.AV])
+				deltaAV += oldAV - stats[StatTypes.AV];
+			if(deltaAV >= 10){
+				// Debug.Log("AV changed by " + deltaAV + ", incrementing burst by " + (deltaAV/10));
+				BP += (deltaAV/10);
+				deltaAV = deltaAV%10;
+			}
+		}
+	}
+	
+	//25% of HP lost is bp gained, use division since its always single calculations and not a consistent thing like AV
+	void OnHPDidChange (object sender, object args){
+		MonoBehaviour obj = sender as MonoBehaviour;
+		int oldHP = (int)args;
+		if(obj!=null && obj.transform == gameObject.transform){
+			int deltaHP = oldHP - stats[StatTypes.HP];
+			//checks if the unit LOST HP
+			if (deltaHP > 0){
+				Debug.Log(obj + " BP decreased");
+				BP +=  deltaHP/4;
+			}
+		}
+	}
 
 
 }

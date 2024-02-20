@@ -8,8 +8,9 @@ public enum StatTypes
     XP,                 //Experience - indicates unit's current experience
     HP,                 //Health Points - indicates unit's current health
         MHP,                //Max Health Points - indicates unit's max health
-    BP,                 //Energy Points - indicates unit's current energy
-        MBP,                //Max Energy Points - indicates unit's max energy
+    BP,                 //burst Points - indicates unit's current burst
+        MBP,                //Max burst Points - indicates unit's max burst
+        BPR,                //burst gain rate - how many points they regen per turn
     SK,                //Skill Points - indicates unit's current skill points
         MSK,               //Max Skill Points
     MV,                 //Move - indicates unit's max move range

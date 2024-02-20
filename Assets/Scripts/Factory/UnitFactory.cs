@@ -102,8 +102,9 @@ public static class UnitFactory
 		health.MinHP = minHP;
 		return health;
 	}	
-	static Burst AddBurst(GameObject unit){
+	static Burst AddBurst(GameObject unit, int BP = 0){
 		Burst burst = unit.AddComponent<Burst>();
+		burst.BP = BP;
 		return burst;
 	}
 	static SkillPoints AddSkill(GameObject unit, int SK = 1){
