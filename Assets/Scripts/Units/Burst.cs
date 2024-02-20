@@ -50,8 +50,11 @@ public class Burst : MonoBehaviour
 	}
 
 	void OnNewTurn(object sender, object args){
-		// Debug.Log("new turn, incrementing burst " + turnBP);
-		BP += turnBP;
+		Unit actor = sender as Unit;
+		if(actor == gameObject.GetComponent<Unit>()){
+			Debug.Log("new turn, incrementing burst by " + turnBP + " sender: ");
+			BP += turnBP;
+		}
 	}
 	void OnAVDidChange(object sender, object args){}
 

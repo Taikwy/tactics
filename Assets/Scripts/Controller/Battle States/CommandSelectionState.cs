@@ -91,6 +91,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         if (turn.hasUnitMoved && !turn.lockMove){
             turn.UndoMove();
             abilityPanelController.SetLocked(0, false);
+            abilityPanelController.SetLocked(2, false);
             SelectTile(turn.actingUnit.tile.position);
         }
         else{

@@ -43,9 +43,12 @@ public class CategorySelectionState : BaseAbilityMenuState
             //checks whether the ability should be locked depending on whether the unit has enough skill points
             performable.Add(ability.GetComponent<Ability>().CanPerform());
             //new, checks the abilities' cost to add to the name
-            AbilitySkillCost cost = ability.GetComponent<AbilitySkillCost>();
-            if (cost)
-                menuOptions.Add(string.Format("{0}: {1} pts", ability.name, cost.skillCost));
+            AbilitySkillCost skillCost = ability.GetComponent<AbilitySkillCost>();
+            AbilityBurstCost burstCost = ability.GetComponent<AbilityBurstCost>();
+            if (skillCost)
+                menuOptions.Add(string.Format("{0}: {1} skpts", ability.name, skillCost.skillCost));
+            else if (burstCost)
+                menuOptions.Add(string.Format("{0}: {1} bpts", ability.name, burstCost.burstCost));
             else
                 menuOptions.Add( ability.name );
             switch(ability.GetComponent<Ability>().type){
