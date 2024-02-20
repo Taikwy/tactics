@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79dbd39aed8e324b85871ad441c4e55, type: 3}
   m_Name: LancerData
   m_EditorClassIdentifier: 
-  fixedStats: 640000000300000004000000500000000a00000064000000
+  fixedStats: 640000000400000004000000500000000a00000064000000
   combatStats: 120000001200000008000000
   growthStats:
   - 3.2
