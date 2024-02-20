@@ -8,6 +8,7 @@ public class AbilitySkillCost : MonoBehaviour
     Ability owner;
     void Awake (){
         owner = GetComponent<Ability>();
+        Stats s = GetComponentInParent<Stats>();
     }
     void OnEnable (){
         this.AddObserver(OnCanPerformCheck, Ability.CanPerformCheck, owner);
@@ -27,6 +28,11 @@ public class AbilitySkillCost : MonoBehaviour
     }
     void OnDidPerformNotification (object sender, object args) {
         Stats s = GetComponentInParent<Stats>();
-        s[StatTypes.SK] -= amount;
+        if(owner.type == AbilityTypes.BASIC){
+            Debug.Log("basic attack so gaining 1 skill point");
+            s[StatTypes.SK]++;
+        }
+        else
+            s[StatTypes.SK] -= amount;
     }
 }

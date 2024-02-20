@@ -41,8 +41,8 @@ public class CommandSelectionState : BaseAbilityMenuState
                 "MOVE",
                 "ACTION",
                 // "STATUS",
-                "DEFEND",
-                "PASS"
+                "FOCUS",
+                "DEFEND"
             };
             menuFunctions = new List<UnityEngine.Events.UnityAction>(4){
                 delegate { Move(); },
@@ -77,6 +77,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         owner.ChangeState<SelectUnitState>();
     }protected void Focus(){
         Debug.Log("Focus clicked!");
+        owner.turn.actingUnit.GetComponent<SkillPoints>().SK += 2;
         owner.ChangeState<SelectUnitState>();
     }protected void Defend(){
         // Debug.Log("defend clicked!");

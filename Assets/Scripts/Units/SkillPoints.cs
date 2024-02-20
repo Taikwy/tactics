@@ -32,7 +32,7 @@ public class SkillPoints : MonoBehaviour
 	void OnSKWillChange (object sender, object args){
         Debug.Log("clamping skill points");
 		ValueChangeException vce = args as ValueChangeException;
-		vce.AddModifier(new ClampValueModifier(int.MaxValue, MinSK, stats[StatTypes.MHP]));
+		vce.AddModifier(new ClampValueModifier(int.MaxValue, MinSK, stats[StatTypes.MSK]));
 	}
 	
 	void OnMSKDidChange (object sender, object args){

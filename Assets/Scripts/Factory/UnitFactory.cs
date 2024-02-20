@@ -106,8 +106,9 @@ public static class UnitFactory
 		Burst burst = unit.AddComponent<Burst>();
 		return burst;
 	}
-	static SkillPoints AddSkill(GameObject unit){
+	static SkillPoints AddSkill(GameObject unit, int SK = 1){
 		SkillPoints skill = unit.AddComponent<SkillPoints>();
+		skill.SK = SK;
 		return skill;
 	}
 	static Alliances AddAlliance (GameObject obj, Alliances type){
