@@ -42,7 +42,7 @@ public class CommandSelectionState : BaseAbilityMenuState
                 "ACTION",
                 // "STATUS",
                 "FOCUS",
-                "DEFEND"
+                "PASS"
             };
             menuFunctions = new List<UnityEngine.Events.UnityAction>(4){
                 delegate { Move(); },

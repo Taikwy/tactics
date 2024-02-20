@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KitsuneData
   m_EditorClassIdentifier: 
   fixedStats: 6400000004000000050000005a0000001900000032000000
-  combatStats: 180000001400000009000000
+  combatStats: 180000001900000009000000
   growthStats:
   - 3.2
   - 2.2

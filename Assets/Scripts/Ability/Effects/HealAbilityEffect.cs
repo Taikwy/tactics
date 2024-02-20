@@ -9,7 +9,7 @@ public class HealAbilityEffect : BaseAbilityEffect
 	public int attackPercentModifier = -1;						//percentage out of 100. scales the unit's attack stat
 
 	void Start(){
-		abilityEffectName = "DAMAGE";
+		abilityEffectName = "HEAL";
 	}
 	void OnEnable (){
 		base.OnEnable();
@@ -44,7 +44,7 @@ public class HealAbilityEffect : BaseAbilityEffect
         healAmount = Mathf.Max(healAmount, 1);
 		healAmount = Mathf.Clamp(healAmount, 0, maxHeal); 
 		
-		Debug.Log("predicting damage ability effect  HEAL [ " + "percent[" + defensePercentModifier + "% OR " + attackPercentModifier + "%] * (attack[" + attack + "] OR defense[" + defense + "]  + terrain0[]) + weapon[0] ] = " + healAmount + " dmg");
+		Debug.Log("predicting heal ability effect  HEAL [ " + "percent[" + defensePercentModifier + "% OR " + attackPercentModifier + "%] * (attack[" + attack + "] OR defense[" + defense + "]  + terrain0[]) + weapon[0] ] = " + healAmount + " dmg");
 		return (int)healAmount;
 	}
 	
@@ -74,6 +74,7 @@ public class HealAbilityEffect : BaseAbilityEffect
 
 		// Clamp the damage to min and max damage
 		predictedHeal = Mathf.Clamp(predictedHeal, minHeal, maxHeal);
+        Debug.Log(defender.name + " healed by " + predictedHeal);
 
 		// Apply the damage to the target
 		Stats s = defender.GetComponent<Stats>();
