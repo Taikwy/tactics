@@ -12,15 +12,15 @@ public class AbilityBurstCost : MonoBehaviour
     }
     void OnEnable (){
         this.AddObserver(OnCanPerformCheck, Ability.CanPerformCheck, owner);
-        this.AddObserver(OnDidPerformNotification, Ability.DidPerformNotification, owner);
+        this.AddObserver(OnDidPerformNotification, Ability.DidPerformEvent, owner);
     }
     void OnDisable (){
         this.RemoveObserver(OnCanPerformCheck, Ability.CanPerformCheck, owner);
-        this.RemoveObserver(OnDidPerformNotification, Ability.DidPerformNotification, owner);
+        this.RemoveObserver(OnDidPerformNotification, Ability.DidPerformEvent, owner);
     }
     void OnCanPerformCheck (object sender, object args){
         Stats s = GetComponentInParent<Stats>();
-        Debug.Log("can perform burst check");
+        // Debug.Log("can perform burst check");
         if (s[StatTypes.BP] < burstCost) {
             BaseException exc = (BaseException)args;
             exc.FlipToggle();

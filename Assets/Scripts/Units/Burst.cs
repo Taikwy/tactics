@@ -30,6 +30,7 @@ public class Burst : MonoBehaviour
 		this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
 		this.AddObserver(OnAVDidChange, Stats.DidChangeEvent(StatTypes.AV), stats);
 		this.AddObserver(OnHPDidChange, Stats.DidChangeEvent(StatTypes.HP), stats);
+		this.AddObserver(OnAbilityHit, Ability.AbilityHitEvent);
 
 	}
 	
@@ -40,6 +41,7 @@ public class Burst : MonoBehaviour
 		this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
 		this.RemoveObserver(OnAVDidChange, Stats.DidChangeEvent(StatTypes.AV), stats);
 		this.RemoveObserver(OnHPDidChange, Stats.DidChangeEvent(StatTypes.HP), stats);
+		this.RemoveObserver(OnAbilityHit, Ability.AbilityHitEvent);
 
 	}
 	void TurnStartBP(){}
@@ -91,6 +93,17 @@ public class Burst : MonoBehaviour
 				// Debug.Log(obj + " HP decreased, gaining burst");
 				BP +=  damagedBP + deltaHP/4;
 			}
+		}
+	}
+
+	//when an ability's primary effect hits, u gain burst
+	void OnAbilityHit(object sender, object args){
+		MonoBehaviour obj = sender as MonoBehaviour;
+		int burstGain = (int)args;
+		// Debug.Log("ability sender " + obj.GetComponentInParent<Stats>().transform + " | unit gameobject " + gameObject.transform + " || " + (obj.GetComponentInParent<Stats>().transform == gameObject.transform));
+		if(obj!=null && obj.GetComponentInParent<Stats>().transform == gameObject.transform){
+			Debug.Log("gaining bp from ability hit " + burstGain);
+			BP += burstGain;
 		}
 	}
 

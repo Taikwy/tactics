@@ -5,11 +5,14 @@ using UnityEngine;
 public class Ability : MonoBehaviour 
 {
     public const string CanPerformCheck = "Ability.CanPerformCheck";
-    public const string FailedNotification = "Ability.FailedNotification";
-    public const string DidPerformNotification = "Ability.DidPerformNotification";
+    public const string FailedEvent = "Ability.FailedEvent";
+    public const string DidPerformEvent = "Ability.DidPerformEvent";
+	public const string AbilityHitEvent = "Ability.AbilityHitEvent";
     public AbilityTypes type;
 	public List<GameObject> primaryEffects = new List<GameObject>();
 	public GameObject primaryEffect, primarySubEffect;
+	bool abilityHit = false;													//did ability hit or miss this turn
+	[Header("BURST")]public int burstGain = 0;
 	// public GameObject secondaryEffect, secondarySubEffect;
 	// [Space(1)]
     // public EffectZone primaryEffectZone, primarySubEffectZone;
@@ -18,6 +21,13 @@ public class Ability : MonoBehaviour
 	void Awake(){
 		// Debug.Log("settingh primary effect");
 		primaryEffect = primaryEffects[0];
+	}
+	void OnEnable (){
+		this.AddObserver(OnPrimaryHit, BaseAbilityEffect.HitEvent);
+	}
+	
+	void OnDisable (){
+		this.RemoveObserver(OnPrimaryHit, BaseAbilityEffect.HitEvent);
 	}
 	public void SetOwner(){
 		Unit owner = GetComponentInParent<Unit>();
@@ -53,14 +63,19 @@ public class Ability : MonoBehaviour
 
 	public void Perform (List<Tile> targets){
 		if (!CanPerform()){
-			this.PostEvent(FailedNotification);
+			this.PostEvent(FailedEvent);
 			return;
 		}
 		
 		for (int i = 0; i < targets.Count; ++i)
 			Perform(targets[i]);
 
-		this.PostEvent(DidPerformNotification);
+		this.PostEvent(DidPerformEvent);
+		if(abilityHit){
+			Debug.Log("a primary effect did hit");
+			this.PostEvent(AbilityHitEvent, burstGain);
+			abilityHit = false;
+		}
 	}
 
 	void Perform (Tile target){
@@ -82,5 +97,17 @@ public class Ability : MonoBehaviour
 		// BaseAbilityEffect effect = primaryEffect.GetComponent<BaseAbilityEffect>();
 		// effect.Apply(target);
 
+	}
+	void OnPrimaryHit(object sender, object args){
+		MonoBehaviour obj = sender as MonoBehaviour;
+		if(obj == null || obj.GetComponentInParent<Ability>() != this)
+			return;
+		foreach(GameObject effect in primaryEffects){
+			// Debug.Log("effect- " + effect + " || " + obj.gameObject + " || " + (obj.gameObject == effect));
+			if(obj.gameObject == effect){
+				// Debug.Log("effect is a primary effect");
+				abilityHit = true;
+			}
+		}
 	}
 }

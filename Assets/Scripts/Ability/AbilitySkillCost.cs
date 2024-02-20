@@ -12,15 +12,15 @@ public class AbilitySkillCost : MonoBehaviour
     }
     void OnEnable (){
         this.AddObserver(OnCanPerformCheck, Ability.CanPerformCheck, owner);
-        this.AddObserver(OnDidPerformNotification, Ability.DidPerformNotification, owner);
+        this.AddObserver(OnDidPerformNotification, Ability.DidPerformEvent, owner);
     }
     void OnDisable (){
         this.RemoveObserver(OnCanPerformCheck, Ability.CanPerformCheck, owner);
-        this.RemoveObserver(OnDidPerformNotification, Ability.DidPerformNotification, owner);
+        this.RemoveObserver(OnDidPerformNotification, Ability.DidPerformEvent, owner);
     }
     void OnCanPerformCheck (object sender, object args){
         Stats s = GetComponentInParent<Stats>();
-        Debug.Log("can perform check");
+        // Debug.Log("can perform check");
         if (s[StatTypes.SK] < skillCost) {
             BaseException exc = (BaseException)args;
             exc.FlipToggle();
@@ -28,9 +28,9 @@ public class AbilitySkillCost : MonoBehaviour
     }
     void OnDidPerformNotification (object sender, object args) {
         Stats s = GetComponentInParent<Stats>();
-        Debug.Log("ability was performed, checking type " + owner.type);
+        // Debug.Log("ability was performed, checking type " + owner.type);
         if(owner.type == AbilityTypes.BASIC){
-            Debug.Log("basic attack so gaining 1 skill point");
+            // Debug.Log("basic attack so gaining 1 skill point");
             s[StatTypes.SK]++;
         }
         else
