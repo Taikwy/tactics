@@ -87,7 +87,7 @@ public class Burst : MonoBehaviour
 			int deltaHP = oldHP - stats[StatTypes.HP];
 			//checks if the unit LOST HP
 			if (deltaHP > 0){
-				Debug.Log(obj + " BP decreased");
+				// Debug.Log(obj + " HP decreased, gaining burst");
 				BP +=  deltaHP/4;
 			}
 		}
