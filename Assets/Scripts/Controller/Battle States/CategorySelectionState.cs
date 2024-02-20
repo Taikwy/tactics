@@ -45,7 +45,7 @@ public class CategorySelectionState : BaseAbilityMenuState
             //new, checks the abilities' cost to add to the name
             AbilitySkillCost cost = ability.GetComponent<AbilitySkillCost>();
             if (cost)
-                menuOptions.Add(string.Format("{0}: {1} pts", ability.name, cost.amount));
+                menuOptions.Add(string.Format("{0}: {1} pts", ability.name, cost.skillCost));
             else
                 menuOptions.Add( ability.name );
             switch(ability.GetComponent<Ability>().type){

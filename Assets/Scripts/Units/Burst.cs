@@ -14,6 +14,7 @@ public class Burst : MonoBehaviour
 	}
 	
 	int MinBP = 0;
+	int turnBP = 4;
 	Stats stats;
 	
 	void Awake (){
@@ -21,15 +22,19 @@ public class Burst : MonoBehaviour
 	}
 	
 	void OnEnable (){
+		this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
+
 		this.AddObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
 		this.AddObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 	}
 	
 	void OnDisable (){
+		this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
+
 		this.RemoveObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
 		this.RemoveObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 	}
-	
+	void TurnStartBP(){}
 	void OnBPWillChange (object sender, object args){
 		ValueChangeException vce = args as ValueChangeException;
 		vce.AddModifier(new ClampValueModifier(int.MaxValue, MinBP, stats[StatTypes.MBP]));
@@ -43,4 +48,12 @@ public class Burst : MonoBehaviour
 		else
 			BP = Mathf.Clamp(BP, MinBP, MBP);
 	}
+
+	void OnNewTurn(object sender, object args){
+		// Debug.Log("new turn, incrementing burst " + turnBP);
+		BP += turnBP;
+	}
+	void OnAVDidChange(object sender, object args){}
+
+
 }

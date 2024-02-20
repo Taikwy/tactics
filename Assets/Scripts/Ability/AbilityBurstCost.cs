@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilitySkillCost : MonoBehaviour 
+public class AbilityBurstCost : MonoBehaviour 
 {
-    [Tooltip("ONLY APPLIES FOR SKILL AND WEAPON ABILITIES")]public int skillCost;
+    public int burstCost;
     Ability owner;
     void Awake (){
         owner = GetComponent<Ability>();
@@ -20,20 +20,18 @@ public class AbilitySkillCost : MonoBehaviour
     }
     void OnCanPerformCheck (object sender, object args){
         Stats s = GetComponentInParent<Stats>();
-        Debug.Log("can perform check");
-        if (s[StatTypes.SK] < skillCost) {
+        Debug.Log("can perform burst check");
+        if (s[StatTypes.BP] < burstCost) {
             BaseException exc = (BaseException)args;
             exc.FlipToggle();
         }
     }
     void OnDidPerformNotification (object sender, object args) {
         Stats s = GetComponentInParent<Stats>();
-        Debug.Log("ability was performed, checking type " + owner.type);
-        if(owner.type == AbilityTypes.BASIC){
-            Debug.Log("basic attack so gaining 1 skill point");
-            s[StatTypes.SK]++;
+        if(owner.type == AbilityTypes.BURST){
+            s[StatTypes.BP] = 0;
         }
         else
-            s[StatTypes.SK] -= skillCost;
+            Debug.LogError("Ability contains burst cost but is not burst type");
     }
 }
