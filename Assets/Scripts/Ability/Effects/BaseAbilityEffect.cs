@@ -7,6 +7,8 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 {
 	protected const int minDamage = -999;
 	protected const int maxDamage = 999;
+	protected const int minHeal = 999;
+	protected const int maxHeal = 999;
 
 	public const string GetAttackEvent = "BaseAbilityEffect.GetAttackEvent";
 	public const string GetDefenseEvent = "BaseAbilityEffect.GetDefenseEvent";

@@ -18,8 +18,6 @@ public class Ability : MonoBehaviour
 	void Awake(){
 		// Debug.Log("settingh primary effect");
 		primaryEffect = primaryEffects[0];
-
-		
 	}
 	public void SetOwner(){
 		Unit owner = GetComponentInParent<Unit>();
@@ -46,7 +44,8 @@ public class Ability : MonoBehaviour
 
     //checks if the ability can be performed
 	public bool CanPerform (){
-        //the event here is posted in the magic cost related scripts. i dont have them yet, im gonna replace them with energy or whatever other resource later
+		// Debug.Log("checkin if can perform");
+        //the event here is posted in the skill points script, checks whether the unit has enough skill points for the given ability
 		BaseException exc = new BaseException(true);
 		this.PostEvent(CanPerformCheck, exc);
 		return exc.toggle;

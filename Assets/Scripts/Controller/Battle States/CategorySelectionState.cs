@@ -33,13 +33,21 @@ public class CategorySelectionState : BaseAbilityMenuState
     //loads menu from the current unit's ability catalog
     protected override void LoadMenu ()
     {
+        performable = new List<bool>();
         menuOptions = new List<string>();
         menuFunctions = new List<UnityEngine.Events.UnityAction>();
 
         AbilityCatalog catalog = turn.actingUnit.GetComponentInChildren<AbilityCatalog>();
         for (int i = 0; i < catalog.CategoryCount(); ++i){
             GameObject ability = catalog.GetCategory(i);
-            menuOptions.Add( ability.name );
+            //checks whether the ability should be locked depending on whether the unit has enough skill points
+            performable.Add(ability.GetComponent<Ability>().CanPerform());
+            //new, checks the abilities' cost to add to the name
+            AbilitySkillCost cost = ability.GetComponent<AbilitySkillCost>();
+            if (cost)
+                menuOptions.Add(string.Format("{0}: {1} pts", ability.name, cost.amount));
+            else
+                menuOptions.Add( ability.name );
             switch(ability.GetComponent<Ability>().type){
                 case AbilityTypes.BASIC:
                     menuFunctions.Add(delegate { Attack(catalog.basicAbility); });
@@ -55,8 +63,13 @@ public class CategorySelectionState : BaseAbilityMenuState
                     break;
             }
         }
+        
 
-        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, menuFunctions);
+        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, menuFunctions, performable);
+    
+        for (int i = 0; i < menuEntries.Count; ++i){
+            menuEntries[i].button.interactable = performable[i]; 
+        }
         //logic for disabling actions the unit cannot take, ie not enough burst or currently silenced or whatever
         // abilityPanelController.SetLocked(0, turn.hasUnitMoved);                           
     }
@@ -71,11 +84,5 @@ public class CategorySelectionState : BaseAbilityMenuState
 
     protected override void Cancel(){
         owner.ChangeState<CommandSelectionState>();
-    }
-
-    
-    void SetCategory (int index){
-        ActionSelectionState.category = index;
-        owner.ChangeState<ActionSelectionState>();
     }
 }

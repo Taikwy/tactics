@@ -69,8 +69,24 @@ public class AbilityPanelController : MonoBehaviour
         for (int i = 0; i < options.Count; ++i){
             AbilityMenuEntry entry = Dequeue();
             entry.Title = options[i];
+            // entry.gameObject.GetComponent<RectTransform>().wid
+            entry.button.onClick.AddListener(functions[i]);
+            // entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
+            // entry.button.interactable = performable[i];
+            menuEntries.Add(entry);
+        }
+        return menuEntries;
+    }
+    public List<AbilityMenuEntry> Show (List<string> options, List<UnityEngine.Events.UnityAction> functions, List<bool> performable){
+        menuPanel.SetActive(true);
+        Clear ();
+
+        for (int i = 0; i < options.Count; ++i){
+            AbilityMenuEntry entry = Dequeue();
+            entry.Title = options[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
             // entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
+            entry.button.interactable = performable[i];
             menuEntries.Add(entry);
         }
         return menuEntries;

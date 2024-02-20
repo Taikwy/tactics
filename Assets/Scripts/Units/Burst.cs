@@ -13,7 +13,7 @@ public class Burst : MonoBehaviour
 		set { stats[StatTypes.MBP] = value; }
 	}
 	
-	public int MinBP = 0;
+	int MinBP = 0;
 	Stats stats;
 	
 	void Awake (){

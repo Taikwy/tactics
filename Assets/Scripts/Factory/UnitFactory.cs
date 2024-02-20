@@ -38,6 +38,7 @@ public static class UnitFactory
 
 		AddHealth(unit, recipe.statData.minHP);
 		AddBurst(unit);
+		AddSkill(unit);
 		AddAlliance(unit, recipe.alliance);
 		AddMovement(unit, recipe.movementType);
 		// AddJob(unit, recipe.job);
@@ -103,8 +104,11 @@ public static class UnitFactory
 	}	
 	static Burst AddBurst(GameObject unit){
 		Burst burst = unit.AddComponent<Burst>();
-		burst.MinBP = 0;
 		return burst;
+	}
+	static SkillPoints AddSkill(GameObject unit){
+		SkillPoints skill = unit.AddComponent<SkillPoints>();
+		return skill;
 	}
 	static Alliances AddAlliance (GameObject obj, Alliances type){
 		Alliance alliance = obj.AddComponent<Alliance>();

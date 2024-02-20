@@ -48,8 +48,8 @@ public class CommandSelectionState : BaseAbilityMenuState
                 delegate { Move(); },
                 delegate { Act(); },
                 // delegate { Status(); },
+                delegate { Focus(); },
                 delegate { Defend(); },
-                delegate { Pass(); }
             };
         }
         
@@ -75,11 +75,11 @@ public class CommandSelectionState : BaseAbilityMenuState
     }protected void Status(){
         // Debug.Log("status clicked!");
         owner.ChangeState<SelectUnitState>();
+    }protected void Focus(){
+        Debug.Log("Focus clicked!");
+        owner.ChangeState<SelectUnitState>();
     }protected void Defend(){
         // Debug.Log("defend clicked!");
-        owner.ChangeState<SelectUnitState>();
-    }protected void Pass(){
-        // Debug.Log("pass clicked!");
         owner.ChangeState<SelectUnitState>();
     }
 

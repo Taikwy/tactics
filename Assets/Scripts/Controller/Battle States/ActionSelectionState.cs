@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//THIS CLASS IS UNUSED
 public class ActionSelectionState : BaseAbilityMenuState 
 {
     public static int category;
@@ -22,6 +23,7 @@ public class ActionSelectionState : BaseAbilityMenuState
     }
     protected override void LoadMenu ()
     {
+        Debug.LogError("does this happen?");
         catalog = turn.actingUnit.GetComponentInChildren<AbilityCatalog>();
         GameObject container = catalog.GetCategory(category);
         int count = catalog.AbilityCount(container);
@@ -33,7 +35,7 @@ public class ActionSelectionState : BaseAbilityMenuState
         for (int i = 0; i < count; ++i)
         {
             Ability ability = catalog.GetAbility(category, i);
-            // AbilityMagicCost cost = ability.GetComponent<AbilityMagicCost>();
+            // AbilitySkillCost cost = ability.GetComponent<AbilitySkillCost>();
             // if (cost)
             //     menuOptions.Add(string.Format("{0}: {1}", ability.name, cost.amount));
             // else
