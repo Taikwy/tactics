@@ -7437,24 +7437,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268517466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d9923dce1af664dbff03fa50709c94, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d21a582766c58348bb461d036436051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelBG: {fileID: 1268517466}
-  background: {fileID: 851470523}
-  portrait: {fileID: 0}
-  unitBackground: {fileID: 0}
+  panelBG: {fileID: 851470521}
   nameLabel: {fileID: 1951143953}
-  lvLabel: {fileID: 0}
-  xpLabel: {fileID: 0}
-  hpLabel: {fileID: 296418333}
-  bpLabel: {fileID: 1174556663}
-  skpLabel: {fileID: 0}
-  atLabel: {fileID: 0}
-  dfLabel: {fileID: 0}
-  spLabel: {fileID: 0}
-  cpLabel: {fileID: 0}
-  cdLabel: {fileID: 0}
+  effectLabel: {fileID: 296418333}
+  conditionLabel: {fileID: 1174556663}
 --- !u!1 &1273188124
 GameObject:
   m_ObjectHideFlags: 0
@@ -7636,7 +7625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd279e76506d5547bdca5cd51c1bad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePanel: {fileID: 0}
   primaryPanel: {fileID: 1856305562}
   secondaryPanel: {fileID: 1632149149}
   primaryStatusPanel: {fileID: 432285246}

@@ -6,7 +6,7 @@ public class PanelController : MonoBehaviour
 {
     const string ShowKey = "Show";
     const string HideKey = "Hide";
-    [SerializeField] BasePanel basePanel;
+    // [SerializeField] BasePanel basePanel;
     [SerializeField] UnitPanel primaryPanel, secondaryPanel;              //selected and targeted unit
     [SerializeField] StatusPanel primaryStatusPanel;              //selected and targeted unit
     // [SerializeField] AbilityMenu abilityMenu;

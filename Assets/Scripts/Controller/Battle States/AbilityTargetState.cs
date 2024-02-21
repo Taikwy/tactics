@@ -55,25 +55,6 @@ public class AbilityTargetState : BattleState
         TargetTiles();
     }
 
-    // protected override void OnMove (object sender, InfoEventArgs<Point> e){
-    //     if (rangeScript.directionOriented){
-    //         ChangeDirection(e.info);
-    //         SelectTile(e.info + turn.actingUnit.tile.position);
-    //         areaScript.targets.Clear();
-    //         TargetTiles();
-    //     }
-    //     else{
-    //         //checks if selecticon is within range of ability or over self unit
-    //         if(highlightedTiles.Contains(board.GetTile(e.info + selectPos)) || e.info + selectPos == turn.actingUnit.tile.position)
-    //             SelectTile(e.info + selectPos);
-    //     }
-    //     TargetTiles();
-    //     SelectTiles();
-
-        
-    //     if(true)                                    //Add an if statement so abilities that cannot harm yourself cannot target urself and urself cannot come up on the second panel
-    //         RefreshSecondaryPanel(selectPos);
-    // }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){
