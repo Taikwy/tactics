@@ -94,7 +94,7 @@ public class AbilityTargetState : BattleState
                 SelectTile(toRemove.position);
             }
             else
-                owner.ChangeState<CategorySelectionState>();
+                owner.ChangeState<ActionSelectionState>();
             return;
         }
         Debug.Log("post on fire");

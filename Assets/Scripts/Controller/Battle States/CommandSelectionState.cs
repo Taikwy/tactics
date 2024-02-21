@@ -10,7 +10,7 @@ public class CommandSelectionState : BaseAbilityMenuState
     public override void Enter (){
         // Debug.Log("enter command selection  state");
         base.Enter ();
-        // panelController.ShowStatus(turn.actingUnit.gameObject);
+        panelController.ShowStatus(turn.actingUnit.gameObject);
         SelectTile(turn.actingUnit.tile.position);
 
         updating = true;
@@ -21,7 +21,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         updating = false;
 
         base.Exit ();
-        // panelController.HideStatus();
+        panelController.HideStatus();
     }
     protected void Update(){
         if(!updating)
@@ -70,7 +70,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         owner.ChangeState<MoveTargetState>();
     }protected void Act(){
         // Debug.Log("act clicked!");
-        owner.ChangeState<CategorySelectionState>();
+        owner.ChangeState<ActionSelectionState>();
     }protected void Status(){
         // Debug.Log("status clicked!");
         owner.ChangeState<SelectUnitState>();

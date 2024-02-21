@@ -2,33 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CategorySelectionState : BaseAbilityMenuState 
+public class ActionSelectionState : BaseAbilityMenuState 
 {
     public override void Enter (){
         // Debug.Log("entering category state");
         base.Enter ();
-        // statPanelController.ShowPrimary(turn.actingUnit.gameObject);
-        panelController.ShowPrimary(turn.actingUnit.gameObject);
+        // panelController.ShowPrimary(turn.actingUnit.gameObject);
     }
     public override void Exit (){
         // Debug.Log("exiting category state");
         base.Exit ();
-        // statPanelController.HidePrimary();
-        panelController.HidePrimary();
+        // panelController.HidePrimary();
     }
 
-    // protected override void LoadMenu (){
-    //     if (menuOptions == null){
-    //         menuTitle = "Action";
-    //         menuOptions = new List<string>(4);
-    //         menuOptions.Add("Attack");
-    //         menuOptions.Add("EX Attack");
-    //         menuOptions.Add("Skill");
-    //         menuOptions.Add("Super");
-    //     }
-        
-    //     abilityMenuPanelController.Show(menuTitle, menuOptions);
-    // }
 
     //loads menu from the current unit's ability catalog
     protected override void LoadMenu ()
