@@ -11,12 +11,15 @@ public class Timeline : MonoBehaviour
     //refs to the actual prefabs of the indicators
     public GameObject container;
     public GameObject indicatorPrefab;
+    BattleController owner;
     public List<TurnIndicator> turnIndicators = new List<TurnIndicator>();
 
     void OnEnable (){        
         this.AddObserver(UpdateTimeline, TurnOrderController.TurnBeganEvent);
         this.AddObserver(UpdateTimeline, TurnOrderController.AVChangedEvent);
         this.AddObserver(UpdateTimeline, Stats.DidChangeEvent(StatTypes.AV));
+
+        owner = GetComponentInParent<BattleController>();
 	}
 
 	void OnDisable (){
@@ -74,23 +77,29 @@ public class Timeline : MonoBehaviour
             indicator.gameObject.transform.SetAsFirstSibling();
             // Debug.Log("timeline color is "+ indicator.icon.color);
             indicator.background.color = indicator.defaultBGColor;
+            if(owner.turn.actingUnit && indicator.unitScript == owner.turn.actingUnit)
+                indicator.background.color = Color.white;
         }
-        if(turnIndicators.Count > 0){
-            // Debug.Log("setting first unit bg color");
-            turnIndicators[turnIndicators.Count-1].background.color = Color.white;
-        }
-        // if(turnIndicators[0])
-        //     turnIndicators[0].bgColor = Color.yellow;
         
     }
     //sorts all indicators by ascending AV count, so smallest first
     public void SortTimeline(){
+        List<TurnIndicator> tempIndicators = turnIndicators;
+        // for(int i = 0; i < turnIndicators.Count; i++){
+        //     for(int j = 0; j < turnIndicators.Count; j++){}
+        // }
         turnIndicators.Sort( (a,b) => GetAV(b).CompareTo(GetAV(a)) );
+        // turnIndicators.Sort( (a,b) => GetAV(a).CompareTo(GetAV(b)) );
+        // turnIndicators.Reverse();
+
+        // string result = "turnindicators : ";
+        // foreach (var item in turnIndicators){ result += item.ToString() + ", "; }
+        // Debug.Log(result);
+
         // Debug.Log("sorted");
     }
     //returns the raw AV from the stats script
     int GetAV(TurnIndicator indicator){
-        // return indicator.unitScript.gameObject.GetComponent<Stats>()[StatTypes.AV];
         return indicator.statsScript[StatTypes.AV];
     }
     //returns the actual display of the turn indicator

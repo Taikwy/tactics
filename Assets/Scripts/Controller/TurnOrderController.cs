@@ -67,7 +67,7 @@ public class TurnOrderController : MonoBehaviour
 
 
             //Loops thru all units that can act
-            for (int i = units.Count - 1; i >= 0; --i){
+            for (int i = 0; i < units.Count; ++i){
                 //If the current units AV is below 0, it can act and will change to its turn
                 if (CanAct(units[i])){
                     battleController.turn.Change(units[i]);
@@ -108,6 +108,10 @@ public class TurnOrderController : MonoBehaviour
     //Sorts unit by remaining Action Value
     public void SortUnitsTurnOrder(List<Unit> units){
         units.Sort( (a,b) => GetAV(a).CompareTo(GetAV(b)) );
+
+        // string result = "sorted units : ";
+        // foreach (var item in units){ result += item.ToString() + ", "; }
+        // Debug.Log(result);
     }
 
     public void SetupUnitsAV(List<Unit> units){
