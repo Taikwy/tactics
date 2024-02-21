@@ -192,9 +192,6 @@ public class TurnOrderController : MonoBehaviour
         MonoBehaviour obj = sender as MonoBehaviour;
         Debug.Log("speed and AV changed! " + obj + " | " + obj.transform.parent + " | " + transform);
         RecalculateAV(obj.GetComponentInParent<Unit>());
-        // var info = args as Info<Unit, Unit, List<ValueModifier>>;
-        // info.arg2.Add( new AddValueModifier(0, GetComponentInParent<Stats>()[StatTypes.AT]) );
-        // Debug.Log("on get base attack " + GetComponentInParent<Stats>()[StatTypes.AT]);
 
         GetComponent<BattleController>().timeline.UpdateTimeline(null, null);
     }

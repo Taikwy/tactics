@@ -303,6 +303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 8106384470307524467}
+  background: {fileID: 477847077939368631}
+  defaultBGColor: {r: 0, g: 0, b: 0, a: 0.47058824}
   counter: {fileID: 2757338896969043010}
   unitScript: {fileID: 0}
   statsScript: {fileID: 0}

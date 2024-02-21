@@ -16,11 +16,13 @@ public class Timeline : MonoBehaviour
     void OnEnable (){        
         this.AddObserver(UpdateTimeline, TurnOrderController.TurnBeganEvent);
         this.AddObserver(UpdateTimeline, TurnOrderController.AVChangedEvent);
+        this.AddObserver(UpdateTimeline, Stats.DidChangeEvent(StatTypes.AV));
 	}
 
 	void OnDisable (){
 		this.RemoveObserver(UpdateTimeline, TurnOrderController.TurnBeganEvent);
         this.RemoveObserver(UpdateTimeline, TurnOrderController.AVChangedEvent);
+        this.RemoveObserver(UpdateTimeline, Stats.DidChangeEvent(StatTypes.AV));
 	}
 
     //initial stuff, sets things up like adding the round stuff
@@ -71,7 +73,14 @@ public class Timeline : MonoBehaviour
             // Debug.Log(indicator.counter.text);
             indicator.gameObject.transform.SetAsFirstSibling();
             // Debug.Log("timeline color is "+ indicator.icon.color);
+            indicator.background.color = indicator.defaultBGColor;
         }
+        if(turnIndicators.Count > 0){
+            // Debug.Log("setting first unit bg color");
+            turnIndicators[turnIndicators.Count-1].background.color = Color.white;
+        }
+        // if(turnIndicators[0])
+        //     turnIndicators[0].bgColor = Color.yellow;
         
     }
     //sorts all indicators by ascending AV count, so smallest first
