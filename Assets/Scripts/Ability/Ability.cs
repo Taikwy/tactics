@@ -13,6 +13,7 @@ public class Ability : MonoBehaviour
 	public GameObject primaryEffect, primarySubEffect;
 	bool abilityHit = false;													//did ability hit or miss this turn
 	[Header("BURST")]public int burstGain = 0;
+	[TextArea(5,20)]public string abilityDescription = "EMPTY DESCRIPTION";
 	// public GameObject secondaryEffect, secondarySubEffect;
 	// [Space(1)]
     // public EffectZone primaryEffectZone, primarySubEffectZone;

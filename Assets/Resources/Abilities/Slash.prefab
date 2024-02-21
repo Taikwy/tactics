@@ -144,6 +144,7 @@ MonoBehaviour:
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 13
+  abilityDescription: A very basic... basic attack
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,4 +187,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCost: 0
+  cost: 0

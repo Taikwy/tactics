@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbilityBurstCost : MonoBehaviour 
 {
-    public int burstCost;
+    public int cost;
     Ability owner;
     void Awake (){
         owner = GetComponent<Ability>();
@@ -21,7 +21,7 @@ public class AbilityBurstCost : MonoBehaviour
     void OnCanPerformCheck (object sender, object args){
         Stats s = GetComponentInParent<Stats>();
         // Debug.Log("can perform burst check");
-        if (s[StatTypes.BP] < burstCost) {
+        if (s[StatTypes.BP] < cost) {
             BaseException exc = (BaseException)args;
             exc.FlipToggle();
         }
@@ -29,7 +29,7 @@ public class AbilityBurstCost : MonoBehaviour
     void OnDidPerformNotification (object sender, object args) {
         Stats s = GetComponentInParent<Stats>();
         if(owner.type == AbilityTypes.BURST){
-            s[StatTypes.BP] -= burstCost;
+            s[StatTypes.BP] -= cost;
         }
         else
             Debug.LogError("Ability contains burst cost but is not burst type");

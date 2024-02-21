@@ -145,12 +145,8 @@ MonoBehaviour:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  secondaryEffect: {fileID: 0}
-  secondarySubEffect: {fileID: 0}
-  primaryEffectZone: {fileID: 0}
-  primarySubEffectZone: {fileID: 0}
-  secondaryEffectZone: {fileID: 0}
-  secondarySubEffectZone: {fileID: 0}
+  burstGain: 0
+  abilityDescription: Set things on fire.
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCost: 1
+  cost: 1
 --- !u!1001 &5578306112918417946
 PrefabInstance:
   m_ObjectHideFlags: 0

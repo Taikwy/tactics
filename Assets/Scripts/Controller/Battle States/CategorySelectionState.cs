@@ -40,9 +40,9 @@ public class ActionSelectionState : BaseAbilityMenuState
             AbilitySkillCost skillCost = ability.GetComponent<AbilitySkillCost>();
             AbilityBurstCost burstCost = ability.GetComponent<AbilityBurstCost>();
             if (skillCost)
-                menuOptions.Add(string.Format("{0}: {1} skpts", ability.name, skillCost.skillCost));
+                menuOptions.Add(string.Format("{0}: {1} skpts", ability.name, skillCost.cost));
             else if (burstCost)
-                menuOptions.Add(string.Format("{0}: {1} bpts", ability.name, burstCost.burstCost));
+                menuOptions.Add(string.Format("{0}: {1} bpts", ability.name, burstCost.cost));
             else
                 menuOptions.Add( ability.name );
             switch(ability.GetComponent<Ability>().type){

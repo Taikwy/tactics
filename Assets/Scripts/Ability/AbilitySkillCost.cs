@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbilitySkillCost : MonoBehaviour 
 {
-    [Tooltip("ONLY APPLIES FOR SKILL AND WEAPON ABILITIES")]public int skillCost;
+    [Tooltip("ONLY APPLIES FOR SKILL AND WEAPON ABILITIES")]public int cost;
     Ability owner;
     void Awake (){
         owner = GetComponent<Ability>();
@@ -21,7 +21,7 @@ public class AbilitySkillCost : MonoBehaviour
     void OnCanPerformCheck (object sender, object args){
         Stats s = GetComponentInParent<Stats>();
         // Debug.Log("can perform check");
-        if (s[StatTypes.SK] < skillCost) {
+        if (s[StatTypes.SK] < cost) {
             BaseException exc = (BaseException)args;
             exc.FlipToggle();
         }
@@ -34,6 +34,6 @@ public class AbilitySkillCost : MonoBehaviour
             s[StatTypes.SK]++;
         }
         else
-            s[StatTypes.SK] -= skillCost;
+            s[StatTypes.SK] -= cost;
     }
 }

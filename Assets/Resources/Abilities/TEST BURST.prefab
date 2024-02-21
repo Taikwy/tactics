@@ -143,12 +143,8 @@ MonoBehaviour:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  secondaryEffect: {fileID: 0}
-  secondarySubEffect: {fileID: 0}
-  primaryEffectZone: {fileID: 0}
-  primarySubEffectZone: {fileID: 0}
-  secondaryEffectZone: {fileID: 0}
-  secondarySubEffectZone: {fileID: 0}
+  burstGain: 0
+  abilityDescription: The lamest burst ever.
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,4 +187,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db082ed1f3dbb14f84d82cdd8a76dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burstCost: 80
+  cost: 80
