@@ -77,7 +77,7 @@ public class AbilityPanelController : MonoBehaviour
         }
         return menuEntries;
     }
-    public List<AbilityMenuEntry> Show (List<string> options, List<UnityEngine.Events.UnityAction> functions, List<bool> performable){
+    public List<AbilityMenuEntry> Show (List<string> options, List<bool> performable, List<UnityEngine.Events.UnityAction> functions, List<UnityEngine.Events.UnityAction> highglightFuncs, List<UnityEngine.Events.UnityAction> unhighlightFuncs){
         menuPanel.SetActive(true);
         Clear ();
 
@@ -85,6 +85,8 @@ public class AbilityPanelController : MonoBehaviour
             AbilityMenuEntry entry = Dequeue();
             entry.Title = options[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
+            entry.highlightFunc = highglightFuncs[i];
+            entry.unhighlightFunc = unhighlightFuncs[i];
             // entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
             entry.button.interactable = performable[i];
             menuEntries.Add(entry);

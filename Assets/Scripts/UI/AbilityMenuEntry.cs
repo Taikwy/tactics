@@ -22,6 +22,10 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Color pressedColor;
     public Color disabledColor;
 
+
+    [HideInInspector]public UnityEngine.Events.UnityAction highlightFunc, unhighlightFunc;
+    
+
     public enum ButtonStatus{
         Normal,
         Disabled,
@@ -137,7 +141,18 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 
     public void OnPointerEnter( PointerEventData eventData ){
+        // Debug.Log("highlighting");
         isHighlightDesired = true;
+        if(highlightFunc != null)
+            highlightFunc();
+
+    }
+    public void OnPointerExit( PointerEventData eventData ){
+        // Debug.Log("unhighlighting");
+        isHighlightDesired = false;
+        if(unhighlightFunc != null)
+            unhighlightFunc();
+        // abilityMenuEntry.Unhover();
     }
 
     public void OnPointerDown( PointerEventData eventData ){
@@ -148,8 +163,4 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
         isPressedDesired = false;
     }
 
-    public void OnPointerExit( PointerEventData eventData ){
-        isHighlightDesired = false;
-        // abilityMenuEntry.Unhover();
-    }
 }

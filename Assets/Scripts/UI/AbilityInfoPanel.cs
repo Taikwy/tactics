@@ -22,7 +22,7 @@ public class AbilityInfoPanel : MonoBehaviour
 
         nameLabel.text = ability.name;
         effectLabel.text = abilityScript.primaryEffect.name;
-        nameLabel.text = "nothin for now";
+        conditionLabel.text = "nothin for now";
     }
 
     public void ShowPanel(){
