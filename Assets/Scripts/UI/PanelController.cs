@@ -19,7 +19,7 @@ public class PanelController : MonoBehaviour
         HideSecondary(); 
         HideAbilityInfo();
     }
-    
+
     public void ShowPrimary (GameObject unit){
         HideStatus();
         showingPrimary = true;

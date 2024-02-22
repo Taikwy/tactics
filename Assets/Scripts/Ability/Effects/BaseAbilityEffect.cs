@@ -30,9 +30,11 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 
 	protected void OnEnable (){
 		this.AddObserver(OnGetBaseCritRate, GetCritRateEvent);
+		// this.AddObserver(OnGetBaseCritRate, StatusPanel.GetAttackEvent);
 		this.AddObserver(OnGetBaseCritDMG, GetCritDMGEvent);
 	}protected void OnDisable (){
 		this.RemoveObserver(OnGetBaseCritRate, GetCritRateEvent);
+		// this.RemoveObserver(OnGetBaseCritRate, StatusPanel.GetAttackEvent);
 		this.RemoveObserver(OnGetBaseCritDMG, GetCritDMGEvent);
 	}
 	public abstract int Predict (Tile target);
@@ -98,24 +100,31 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	protected abstract void OnPrimaryMiss(object sender, object args);
     
 	protected virtual int GetStatForCombat (Unit attacker, Unit target, string eventName, int startValue){
-        // Debug.Log("getting base stats for combat");
+        Debug.Log(eventName + " getting base stats for combat | starting val " + startValue);
 		var modifiers = new List<ValueModifier>();															//list of all modifiers, INCLUDING base stat (ie unit's stat would jhsut be an addvaluemodifier with that stat)
 		var info = new Info<Unit, Unit, List<ValueModifier>>(attacker, target, modifiers);
 		this.PostEvent(eventName, info);																	//posts the event, power script auto adds the modifier for the base stat
 		modifiers.Sort(Compare);
 		
+        Debug.Log(modifiers.Count + " num modifers");
         //applies all the modifiers to the value
 		float value = startValue;
-		for (int i = 0; i < modifiers.Count; ++i)
+		for (int i = 0; i < modifiers.Count; ++i){
+			Debug.Log(modifiers[i] + " add amt " + (modifiers[i] as AddValueModifier).toAdd);			
 			value = modifiers[i].Modify(startValue, value);
+
+		}
 		
+		Debug.Log("middle modified value " + value);
         //floors value as an int and clamps within damage range
 		int retValue = Mathf.FloorToInt(value);
 		retValue = Mathf.Clamp(retValue, minDamage, maxDamage);
+		Debug.Log("final modified value " + retValue);
 		return retValue;
 	}
 	
 	void OnGetBaseCritRate (object sender, object args){
+		Debug.Log("getting crtit??");
 		// MonoBehaviour obj = sender as MonoBehaviour;
 		// Debug.Log("check crit rate is my effect " + obj + " | " + obj.transform.parent + " | " + transform);
 		if (IsMyEffect(sender)){

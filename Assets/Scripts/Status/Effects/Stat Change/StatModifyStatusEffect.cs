@@ -89,7 +89,8 @@ public class StatModifyStatusEffect : StatusEffect
 	}
 	//used for status info panel
 	protected bool IsActor(object sender, object args){
-		if((sender as Unit != null) && sender as Unit == GetComponentInParent<Unit>())
+		var info = args as Info<Unit, Unit, List<ValueModifier>>;
+		if(info.arg0 == GetComponentInParent<Unit>())
 			return true;
 		return false;
 	}
