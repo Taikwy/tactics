@@ -14,8 +14,7 @@ public class AbilityInfoPanel : MonoBehaviour
     public TMP_Text effectLabel, rangeLabel, areaLabel;
     
     //takes in ability gameobject
-    public void Display (GameObject ability)
-    {
+    public void Display (GameObject ability){
         Ability abilityScript = ability.GetComponent<Ability>();
         // EffectZone abilityZone = abilityScript.primaryEffect.GetComponent<EffectZone>();
         AbilityRange rangeScript = ability.GetComponent<AbilityRange>();

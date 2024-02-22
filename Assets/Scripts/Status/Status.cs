@@ -34,8 +34,7 @@ public class Status : MonoBehaviour
 		statusObj.transform.SetParent(gameObject.transform);
 		T effect = statusObj.GetComponent<T>();
 
-		if (effect == null)
-		{
+		if (effect == null){
 			statusObj.AddComponent<T>();
 			statusObj.AddComponent<U>();
 			statuses.Add(statusObj);

@@ -20,7 +20,8 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	public const string HitEvent = "BaseAbilityEffect.HitEvent";
 	public const string MissedEvent = "BaseAbilityEffect.MissedEvent";
 	
-	public string abilityEffectName;
+	[Tooltip("Used for creating the status effect obj under a unit's status component")]public string abilityEffectName;
+	[Tooltip("Shows when hovering the status effect under the status panel")][TextArea(5,20)]public string abilityEffectDescription;
     // public bool hasSubEffects;                    //this thing is mine
 	// public BaseAbilityEffect subEffect;
 	public List<BaseAbilityEffect> subEffects = new List<BaseAbilityEffect>();

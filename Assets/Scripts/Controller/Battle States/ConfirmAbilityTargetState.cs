@@ -22,8 +22,7 @@ public class ConfirmAbilityTargetState : BattleState
         FindTargets();
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
-        if (turn.targets.Count > 0)
-        {
+        if (turn.targets.Count > 0){
             // Debug.Log("targetting " + turn.targets.Count);
             forecastPanel.Show();
             

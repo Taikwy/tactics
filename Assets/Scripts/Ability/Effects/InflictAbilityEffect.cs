@@ -7,7 +7,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 {
     // public GameObject statusEffect;
 	[Header("Status Types (Script Names)")]
-	public string effectName;
+	[Tooltip("StatIncrementStatusEffect || StatMultiplyStatusEffect")]public string effectName;
 	public string conditionName;
 	[Header("Status Condition")]
 	public int duration;
@@ -88,7 +88,9 @@ public class InflictAbilityEffect : BaseAbilityEffect
 
 		StatusEffect effect = statusObj.GetComponent<StatusEffect>();
 		effect.statusName = abilityEffectName;
+		effect.statusEffectDescription = abilityEffectDescription;
 		StatusCondition condition = statusObj.GetComponent<StatusCondition>();
+		
 		
 		switch(condition){
 			case RoundDurationStatusCondition:
@@ -118,6 +120,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 				(effect as StatModifyStatusEffect).AddObservers();
 				break;
 		}
+
 		return 0;
 	}
 

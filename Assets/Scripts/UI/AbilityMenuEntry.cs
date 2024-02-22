@@ -137,6 +137,8 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
         isHighlightDesired = false;
         isPressedDesired = false;
         button.interactable = true;
+
+        highlightFunc = unhighlightFunc = null;
     }
 
 

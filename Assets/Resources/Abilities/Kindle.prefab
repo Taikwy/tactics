@@ -87,7 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectName: 
+  abilityEffectName: DAMAAAGE
+  abilityEffectDescription: 
   subEffects:
   - {fileID: 4466536032333570820}
   owner: {fileID: 0}
@@ -260,6 +261,11 @@ PrefabInstance:
     - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: flatOrPercent
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: abilityEffectDescription
+      value: Standard BURN effect, lasts for 2 turns and deals 2 damage at the start
+        of the Unit's turn.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}

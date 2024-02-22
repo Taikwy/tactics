@@ -103,7 +103,7 @@ public class Burst : MonoBehaviour
 		int burstGain = (int)args;
 		// Debug.Log("ability sender " + obj.GetComponentInParent<Stats>().transform + " | unit gameobject " + gameObject.transform + " || " + (obj.GetComponentInParent<Stats>().transform == gameObject.transform));
 		if(obj!=null && obj.GetComponentInParent<Stats>().transform == gameObject.transform){
-			Debug.Log("gaining bp from ability hit " + burstGain);
+			// Debug.Log("gaining bp from ability hit " + burstGain);
 			BP += burstGain;
 		}
 	}

@@ -73,7 +73,7 @@ public class Ability : MonoBehaviour
 
 		this.PostEvent(DidPerformEvent);
 		if(abilityHit){
-			Debug.Log("a primary effect did hit");
+			// Debug.Log("a primary effect did hit");
 			this.PostEvent(AbilityHitEvent, burstGain);
 			abilityHit = false;
 		}
