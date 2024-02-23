@@ -9,6 +9,7 @@ public abstract class BaseAbilityMenuState : BattleState
     protected List<string> menuOptions;
     protected List<UnityEngine.Events.UnityAction> menuFunctions;
     protected List<bool> performable;
+    protected List<GameObject> abilities;
     public override void Enter (){
         // Debug.Log("entering base ability menu state");
         base.Enter ();

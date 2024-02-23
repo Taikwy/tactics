@@ -30,10 +30,12 @@ public class ActionSelectionState : BaseAbilityMenuState
         menuFunctions = new List<UnityEngine.Events.UnityAction>();
         menuHighlightFunctions = new List<UnityEngine.Events.UnityAction>();
         menuUnhighlightFunctions = new List<UnityEngine.Events.UnityAction>();
+        abilities = new List<GameObject>();
 
         AbilityCatalog catalog = turn.actingUnit.GetComponentInChildren<AbilityCatalog>();
         for (int i = 0; i < catalog.CategoryCount(); ++i){
             GameObject ability = catalog.GetCategory(i);
+            abilities.Add(ability);
             //checks whether the ability should be locked depending on whether the unit has enough skill points
             performable.Add(ability.GetComponent<Ability>().CanPerform());
             //new, checks the abilities' cost to add to the name
@@ -67,7 +69,8 @@ public class ActionSelectionState : BaseAbilityMenuState
         }
         
 
-        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, performable, menuFunctions, menuHighlightFunctions, menuUnhighlightFunctions);
+        // List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, performable, menuFunctions, menuHighlightFunctions, menuUnhighlightFunctions);
+        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(abilities, menuOptions, performable, menuFunctions, menuHighlightFunctions, menuUnhighlightFunctions);
     
         for (int i = 0; i < menuEntries.Count; ++i){
             menuEntries[i].button.interactable = performable[i]; 

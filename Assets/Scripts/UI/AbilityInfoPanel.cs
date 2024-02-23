@@ -43,6 +43,7 @@ public class AbilityInfoPanel : MonoBehaviour
     }
 
     public void ShowPanel(){
+        // Debug.Log("showing ability panel");
         panelBG.SetActive(true);
     }
     public void HidePanel(){
