@@ -25,8 +25,6 @@ public class StatusPanel : MonoBehaviour
     // public TMP_Text weaponLabel, armorLabel, trinketLabel;
     [Header("Status Effect stuff")]
     public GameObject statusHolder;
-    [Header("Equipment stuff")]
-    public GameObject equipmentHolder, weaponLabel, armorLabel, trinketLabel;
 
     GameObject statusInfoPanel;
     void OnEnable(){
@@ -70,12 +68,12 @@ public class StatusPanel : MonoBehaviour
 
             
             Debug.Log("==================================");
-            Debug.Log("base atack tho " + stats[StatTypes.AT]);
+            // Debug.Log("base atack tho " + stats[StatTypes.AT]);
             atLabel.text = string.Format( "ATTACK {0}", GetStatForDisplay(unitScript, GetAttackEvent, 0));
             if(GetStatForDisplay(unitScript, GetAttackEvent, 0) >  stats[StatTypes.AT]) atLabel.color = Color.green;
             else if(GetStatForDisplay(unitScript, GetAttackEvent, 0) <  stats[StatTypes.AT]) atLabel.color = Color.red;
             else atLabel.color = Color.white;
-            Debug.Log("base attack " + stats[StatTypes.AT] + " | modified attack " + GetStatForDisplay(unitScript, GetAttackEvent, 0));
+            // Debug.Log("base attack " + stats[StatTypes.AT] + " | modified attack " + GetStatForDisplay(unitScript, GetAttackEvent, 0));
             dfLabel.text = string.Format( "DEFENSE {0}", GetStatForDisplay(unitScript, GetDefenseEvent, 0));
             if(GetStatForDisplay(unitScript, GetDefenseEvent, 0) >  stats[StatTypes.DF]) dfLabel.color = Color.green;
             else if(GetStatForDisplay(unitScript, GetDefenseEvent, 0) <  stats[StatTypes.DF]) dfLabel.color = Color.red;
@@ -84,7 +82,6 @@ public class StatusPanel : MonoBehaviour
             if(GetStatForDisplay(unitScript, GetSpeedEvent, 0) >  stats[StatTypes.SP]) spLabel.color = Color.green;
             else if(GetStatForDisplay(unitScript, GetSpeedEvent, 0) <  stats[StatTypes.SP]) spLabel.color = Color.red;
             else spLabel.color = Color.white;
-            Debug.LogError("woah");
             cpLabel.text = string.Format( "CRIT% {0}", GetStatForDisplay(unitScript, GetCritRateEvent, 0));
             if(GetStatForDisplay(unitScript, GetCritRateEvent, 0) >  stats[StatTypes.CR]) cpLabel.color = Color.green;
             else if(GetStatForDisplay(unitScript, GetCritRateEvent, 0) <  stats[StatTypes.CR]) cpLabel.color = Color.red;
@@ -104,39 +101,6 @@ public class StatusPanel : MonoBehaviour
             // spLabel.text = string.Format( "SPEED {0}", stats[StatTypes.SP]);
             // cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CR]);
             // cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
-        }
-
-
-        weaponLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format("EMPTY ");
-        armorLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format("EMPTY ");
-        trinketLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format("EMPTY ");
-        if(equipment){
-            // foreach(Equippable item in equipment.equippedItems){
-            //     GameObject equipmentLabel = Instantiate(equipmentLabelPrefab, equipmentHolder.transform);
-            //     TMP_Text slotLabel = equipmentLabel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
-            //     TMP_Text itemLabel = equipmentLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
-
-            //     slotLabel.text = string.Format(item.equippedSlot + " slot: ");
-            //     itemLabel.text = string.Format(item +  " ");
-            // }
-            foreach(Equippable item in equipment.equippedItems){
-                switch(item.equippedSlot){
-                    case EquipSlots.Weapon:
-                        weaponLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format(item +  " ");
-                        break;
-                    case EquipSlots.Armor:
-                        armorLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format(item +  " ");
-                        break;
-                    case EquipSlots.Trinket:
-                        trinketLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = string.Format(item +  " ");
-                        break;
-
-                }
-            }
-            // weaponLabel.text = string.Format( "Weapon: " + equipment.equippedWeapon);
-            // armorLabel.text = string.Format( "Armor: " + equipment.equippedArmor);
-            // trinketLabel.text = string.Format( "Trinket: " + equipment.equippedTrinket);
-
         }
         foreach(Transform label in statusHolder.transform){
             Destroy(label.gameObject);
@@ -173,9 +137,9 @@ public class StatusPanel : MonoBehaviour
         
 		var modifiers = new List<ValueModifier>();															//list of all modifiers, INCLUDING base stat (ie unit's stat would jhsut be an addvaluemodifier with that stat)
 		var info = new Info<Unit, Unit, List<ValueModifier>>(actor, actor, modifiers);
-		this.PostEvent(eventName, info);																	//posts the event
+		this.PostEvent(eventName, info);																	
 		modifiers.Sort(Compare);
-        Debug.Log(modifiers.Count + " num modifers");
+        // Debug.Log(modifiers.Count + " num modifers");
         //applies all the modifiers to the value
 		float value = startValue;
 		for (int i = 0; i < modifiers.Count; ++i){
@@ -183,7 +147,7 @@ public class StatusPanel : MonoBehaviour
 			value = modifiers[i].Modify(startValue, value);
         }
 		
-		Debug.Log("=============final modified value " + value);
+		// Debug.Log("=============final modified value " + value);
 		return (int)value;
 	}
     void OnGetBaseAttack (object sender, object args){

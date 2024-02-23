@@ -10,14 +10,16 @@ public class PanelController : MonoBehaviour
     [SerializeField] UnitPanel primaryPanel, secondaryPanel;              //selected and targeted unit
     [SerializeField] StatusPanel primaryStatusPanel;              //selected and targeted unit
     [SerializeField] AbilityInfoPanel abilityInfoPanel;              //selected and targeted unit
+    [SerializeField] DetailsPanel detailsPanel;              //selected and targeted unit
     // [SerializeField] AbilityMenu abilityMenu;
-    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo = false;
+    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo, showingDetails = false;
     
     void Start (){
         HidePrimary();
         HideStatus();
         HideSecondary(); 
         HideAbilityInfo();
+        HideDetails();
     }
 
     public void ShowPrimary (GameObject unit){
@@ -56,6 +58,15 @@ public class PanelController : MonoBehaviour
     }    public void HideAbilityInfo (){
         showingAbilityInfo = false;
         abilityInfoPanel.HidePanel();
+    }
+    
+    public void ShowDetails (GameObject ability){
+        showingDetails = true;
+        detailsPanel.Display(ability);
+        detailsPanel.ShowPanel();
+    }    public void HideDetails (){
+        showingDetails = false;
+        detailsPanel.HidePanel();
     }
 
     // void MovePanel (StatPanel obj, string pos) {
