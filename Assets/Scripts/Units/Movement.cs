@@ -13,14 +13,11 @@ public abstract class Movement : MonoBehaviour
     protected Unit unit;
     protected Transform jumper;
 
-    protected virtual void Awake ()
-    {
+    protected virtual void Awake (){
         unit = GetComponent<Unit>();
-        // jumper = transform.FindChild("Jumper");
     }
 
-    protected virtual void Start ()
-    {
+    protected virtual void Start (){
         stats = GetComponent<Stats>();
     }
     public virtual List<Tile> GetTilesInRange (Board board){

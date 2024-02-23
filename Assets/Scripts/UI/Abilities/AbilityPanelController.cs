@@ -78,7 +78,7 @@ public class AbilityPanelController : MonoBehaviour
         return menuEntries;
     }
     //used for ability menu, so there's more stuff such as highltigh functions
-    public List<AbilityMenuEntry> Show (List<GameObject> abilities, List<string> names, List<bool> performable, List<UnityEngine.Events.UnityAction> functions, List<UnityEngine.Events.UnityAction> highglightFuncs, List<UnityEngine.Events.UnityAction> unhighlightFuncs){
+    public List<AbilityMenuEntry> Show (List<GameObject> abilities, List<string> names, List<bool> performable, List<UnityEngine.Events.UnityAction> functions){
         menuPanel.SetActive(true);
         Clear ();
         Debug.Log(abilities.Count);
@@ -113,8 +113,8 @@ public class AbilityPanelController : MonoBehaviour
             return;
         
         menuEntries[index].button.interactable = !value;
-
     }
+
     public void CreateAbilityInfoPanel(GameObject label, GameObject ability){
         Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
