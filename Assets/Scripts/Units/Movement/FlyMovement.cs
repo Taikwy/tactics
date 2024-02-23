@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class FlyMovement : Movement 
 {
-    protected override bool ExpandSearch (Tile from, Tile to)
-    {
+    protected override bool ExpandSearch (Tile from, Tile to){
+         if(to.isWalkable || to.isFlyable){
+            if(to.content != null){
+                if(to.content.GetComponent<Unit>()){
+                    Debug.Log("tile is occupied by a unit, can fly over");
+                    return base.ExpandSearch(from, to);
+                }
+            }
+            else
+                return base.ExpandSearch(from, to);
+        }
+        return false;
+
         // Skip if the tile is occupied
         if (to.content != null || !to.isFlyable)
             return false;
