@@ -67,7 +67,7 @@ public class StatusPanel : MonoBehaviour
             skpLabel.text = string.Format( "SKILL PTS {0} / {1}", stats[StatTypes.SK], stats[StatTypes.MSK] );
 
             
-            Debug.Log("==================================");
+            // Debug.Log("==================================");
             // Debug.Log("base atack tho " + stats[StatTypes.AT]);
             atLabel.text = string.Format( "ATTACK {0}", GetStatForDisplay(unitScript, GetAttackEvent, 0));
             if(GetStatForDisplay(unitScript, GetAttackEvent, 0) >  stats[StatTypes.AT]) atLabel.color = Color.green;

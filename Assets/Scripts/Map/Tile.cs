@@ -19,7 +19,6 @@ public class Tile : MonoBehaviour
     // public Color attackHighlight = new Color(1,1,1);
     // public Color allyHighlight = new Color(1,1,1);
 
-
     public bool hovered = false;
     
     public Point position;
@@ -36,7 +35,7 @@ public class Tile : MonoBehaviour
     }
 
     public TILETYPE tileType;
-    public bool isWalkable, isFlyable = false;
+    public bool isWalkable, isFlyable = false;                      //things like pits are flyabale but not walkable
     public GameObject content;
     // public bool isTraversible;
     [HideInInspector] public Tile prev;

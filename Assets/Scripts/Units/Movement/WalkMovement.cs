@@ -6,9 +6,36 @@ public class WalkMovement : Movement
 {
     protected override bool ExpandSearch (Tile from, Tile to)
     {
-        // Skip if the tile is occupied or isn't walkable
-        if (to.content != null || !to.isWalkable)
+        if(to.isWalkable){
+            if(to.content != null){
+                if(to.content.GetComponent<Unit>()){
+                    if(to.content.GetComponent<Unit>().ALLIANCE == GetComponent<Unit>().ALLIANCE){
+                        Debug.Log("tile is occupied by a unit of a same alliance");
+                        return base.ExpandSearch(from, to);
+                    }
+                }
+            }
+            else
+                return base.ExpandSearch(from, to);
+        }
+        return false;
+        
+        //if tile is occupied by NOT a unit or isn't walkable
+        if (!to.isWalkable || (to.content != null)){
+            Debug.Log("tile is occupied or unwalkable");
             return false;
+        }
+        // if(to.content != null){
+        //     if()
+        // }
+        GameObject content = to.content;
+        if(content.GetComponent<Unit>().ALLIANCE != GetComponent<Unit>().ALLIANCE){
+            Debug.Log("tile is occupied by a unit of a different alliance");
+            return false;
+        }
+        // Skip if the tile is occupied or isn't walkable
+        // if (to.content != null || !to.isWalkable)
+        //     return false;
         return base.ExpandSearch(from, to);
     }
 

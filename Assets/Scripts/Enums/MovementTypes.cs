@@ -4,5 +4,6 @@ using UnityEngine;
 
 public enum MovementTypes{
     Walk,
-    Fly
+    Fly,
+    Teleport
 }

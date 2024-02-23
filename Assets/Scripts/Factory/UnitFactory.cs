@@ -125,9 +125,9 @@ public static class UnitFactory
             case MovementTypes.Fly:
                 obj.AddComponent<FlyMovement>();
                 break;
-		// case MovementTypes.Teleport:
-		// 	obj.AddComponent<TeleportMovement>();
-		// 	break;
+			case MovementTypes.Teleport:
+				obj.AddComponent<TeleportMovement>();
+				break;
 		}
 	}
 

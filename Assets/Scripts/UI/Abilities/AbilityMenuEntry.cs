@@ -147,9 +147,9 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter( PointerEventData eventData ){
         // Debug.Log("highlighting");
         isHighlightDesired = true;
-            Debug.Log("null func " + highlightFunc);
+            // Debug.Log("null func " + highlightFunc);
         if(highlightFunc != null){
-            Debug.Log("func " + highlightFunc);
+            // Debug.Log("func " + highlightFunc);
             highlightFunc();
         }
 

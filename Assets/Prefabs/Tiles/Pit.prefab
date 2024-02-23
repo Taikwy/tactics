@@ -247,12 +247,13 @@ MonoBehaviour:
   targetSprite: {fileID: 1204405536, guid: feaedf39666e69446b0d54a69066bc2e, type: 3}
   selectSprite: {fileID: -1808446317, guid: c517fb5d06e59cb4299724899f0a0db0, type: 3}
   targetAnim: {fileID: 0}
+  hovered: 0
   position:
     x: 0
     y: 0
   tileType: 2
   isWalkable: 0
-  isFlyable: 0
+  isFlyable: 1
   content: {fileID: 0}
   prev: {fileID: 0}
   distance: 0

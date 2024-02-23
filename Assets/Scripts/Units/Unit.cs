@@ -19,6 +19,7 @@ public class Unit : MonoBehaviour
 
     [HideInInspector] public Stats statsScript;
     [HideInInspector] public UnitLevel levelScript;
+    [HideInInspector] public Alliance allianceScript;
 
     //public getter for level and experience
     public int LV{
@@ -28,12 +29,17 @@ public class Unit : MonoBehaviour
         get { return statsScript[StatTypes.XP]; }
         set { statsScript[StatTypes.XP] = value; }
     }
+    public Alliances ALLIANCE{
+        get { return allianceScript.type; }
+        // set { statsScript[StatTypes.XP] = value; }
+    }
     public void Init(Tile t){
         Place(t);
         Match();
 
         statsScript = GetComponent<Stats>();
         levelScript = GetComponent<UnitLevel>();
+        allianceScript = GetComponent<Alliance>();
 
 		// this.AddObserver(GetComponent<UnitLevel>().OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
 		// Feature[] features = GetComponentsInChildren<Feature>();
