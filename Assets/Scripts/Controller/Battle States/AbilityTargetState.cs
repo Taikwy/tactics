@@ -41,6 +41,7 @@ public class AbilityTargetState : BattleState
         selectedTiles.Add(turn.actingUnit.tile);
         board.UnselectTiles(selectedTiles);
         panelController.HidePrimary();
+        panelController.HideSecondary();
         // statPanelController.HidePrimary();
         // statPanelController.HideSecondary();
     }

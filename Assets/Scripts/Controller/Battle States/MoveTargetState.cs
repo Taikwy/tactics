@@ -46,6 +46,7 @@ public class MoveTargetState : BattleState
         tiles = null;
         // statPanelController.HidePrimary();
         panelController.HidePrimary();
+        panelController.HideSecondary();
     } 
 
     protected void Update(){
@@ -53,8 +54,9 @@ public class MoveTargetState : BattleState
             return;
         // Debug.Log("movestate updating");
 
+        RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
         SelectTile(board.selectedPoint);
-        TargetTiles();
+        TargetTiles();        
     }
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
