@@ -70,7 +70,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         owner.ChangeState<MoveTargetState>();
     }protected void Act(){
         // Debug.Log("act clicked!");
-        owner.ChangeState<ActionSelectionState>();
+        owner.ChangeState<AbilitySectionState>();
     }protected void Status(){
         // Debug.Log("status clicked!");
         owner.ChangeState<SelectUnitState>();
