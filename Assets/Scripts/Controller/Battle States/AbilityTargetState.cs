@@ -19,13 +19,15 @@ public class AbilityTargetState : BattleState
 
         areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);
-        HighlightTiles ();
+        // HighlightTiles ();
+        highlightedTiles = rangeScript.GetTilesInRange(board);
+        board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
+
         selectedTiles = new List<Tile>();
         // TargetTiles();
         // SelectTiles();
         
         panelController.ShowPrimary(turn.actingUnit.gameObject);
-        // RefreshSecondaryPanel(selectPos);
         panelController.ShowSecondary(turn.actingUnit.gameObject);
         if (rangeScript.directionOriented)
             RefreshSecondaryPanel(selectPos);
@@ -52,8 +54,8 @@ public class AbilityTargetState : BattleState
         // Debug.Log("abilitytarget updating");
         
         RefreshSecondaryPanel(board.selectedPoint);
-        SelectTile(board.selectedPoint);
-        SelectTile(board.selectedPoint, tiles.Contains(board.selectedTile));
+        // SelectTile(board.selectedPoint);
+        SelectTile(board.selectedPoint, highlightedTiles.Contains(board.selectedTile));
         TargetTiles();
     }
 
@@ -92,16 +94,18 @@ public class AbilityTargetState : BattleState
             board.UnhighlightTiles(highlightedTiles);
             turn.actingUnit.dir = dir;
             turn.actingUnit.Match();
-            HighlightTiles ();
+            // HighlightTiles ();
+            highlightedTiles = rangeScript.GetTilesInRange(board);
+            board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
         }
     }
     
-    void HighlightTiles (){
-        highlightedTiles = rangeScript.GetTilesInRange(board);
-        // board.SelectTiles(tiles);
-        // board.HighlightAttackTiles(highlightedTiles);
-        board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
-    }
+    // void HighlightTiles (){
+    //     highlightedTiles = rangeScript.GetTilesInRange(board);
+    //     // board.SelectTiles(tiles);
+    //     // board.HighlightAttackTiles(highlightedTiles);
+    //     board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
+    // }
 
     void TargetTiles (){
         // targetedTiles = rangeScript.GetTargetsInRange(board);
@@ -110,7 +114,7 @@ public class AbilityTargetState : BattleState
 
         //gets all the currently targeted tiles
         List<Tile> centerTiles = areaScript.ShowTargetedTiles(board);
-        if(!centerTiles.Contains(owner.selectedTile))
+        if(!centerTiles.Contains(owner.selectedTile) && highlightedTiles.Contains(board.selectedTile))    //this got changed when i made the select indicator change color targeting things out of range
             centerTiles.Add(owner.selectedTile);
         
         targetedTiles = new List<Tile>();
