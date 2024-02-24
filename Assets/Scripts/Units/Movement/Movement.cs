@@ -20,9 +20,16 @@ public abstract class Movement : MonoBehaviour
     protected virtual void Start (){
         stats = GetComponent<Stats>();
     }
+    //old version that filters out occupied tiles
     public virtual List<Tile> GetTilesInRange (Board board){
         List<Tile> retValue = board.Search( unit.tile, ExpandSearch );
         FilterOccupied(retValue);
+        return retValue;
+    }
+    //returns the full list of tiles so i can color the ally and enemy tiles separately in movetargetstate.cs
+    public virtual List<Tile> GetAllTilesInRange (Board board){
+        List<Tile> retValue = board.Search( unit.tile, ExpandSearch );
+        // FilterOccupied(retValue);
         return retValue;
     }
 
@@ -30,16 +37,36 @@ public abstract class Movement : MonoBehaviour
         return (from.distance + 1) <= range;
     }
 
-    protected virtual void Filter (List<Tile> tiles){
+    public virtual void FilterOccupied (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i)
             if (tiles[i].content != null)
                 tiles.RemoveAt(i);
     }
-
-    protected virtual void FilterOccupied (List<Tile> tiles){
+    public virtual List<Tile> FilterAllies (List<Tile> tiles){
+        Debug.Log("allies " + tiles.Count);
+        List<Tile> allies = new List<Tile>();
+        for (int i = tiles.Count - 1; i >= 0; --i){
+            Debug.Log(tiles[i].content);
+            if (tiles[i].content != null){
+                if(tiles[i].content.GetComponent<Unit>()){
+                    if(tiles[i].content.GetComponent<Unit>().ALLIANCE == GetComponent<Unit>().ALLIANCE){
+                        allies.Add(tiles[i]);
+                    }
+                }
+            }}
+        return allies;
+    }
+    public virtual List<Tile> FilterEnemies (List<Tile> tiles){
+        List<Tile> enemies = new List<Tile>();
         for (int i = tiles.Count - 1; i >= 0; --i)
-            if (tiles[i].content != null)
-                tiles.RemoveAt(i);
+            if (tiles[i].content != null){
+                if(tiles[i].content.GetComponent<Unit>()){
+                    if(tiles[i].content.GetComponent<Unit>().ALLIANCE != GetComponent<Unit>().ALLIANCE){
+                        enemies.Add(tiles[i]);
+                    }
+                }
+            }
+        return enemies;
     }
 
     public virtual IEnumerator Move(Tile target)

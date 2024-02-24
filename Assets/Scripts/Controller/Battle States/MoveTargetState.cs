@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveTargetState : BattleState
 {
     
-    List<Tile> tiles, pathTiles = new List<Tile>();
+    List<Tile> tiles, pathTiles, allyTiles, enemyTiles = new List<Tile>();
     Movement moveScript;
     bool updating = false;
     
@@ -13,11 +13,22 @@ public class MoveTargetState : BattleState
         // Debug.Log("enter moving state");
         base.Enter ();
         moveScript = turn.actingUnit.GetComponent<Movement>();
-        tiles = moveScript.GetTilesInRange(board);
-        // board.SelectTiles(tiles);
+        // tiles = moveScript.GetTilesInRange(board);
+        tiles = moveScript.GetAllTilesInRange(board);
+        allyTiles = moveScript.FilterAllies(tiles);
+        enemyTiles = moveScript.FilterEnemies(tiles);
+
+        
+        moveScript.FilterOccupied(tiles);
         tiles.Add(turn.actingUnit.tile);
+
+        // board.SelectTiles(tiles);
         // board.HighlightMoveTiles(tiles);
         board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
+        board.HighlightTiles(allyTiles, Board.OverlayColor.PASS);
+        board.HighlightTiles(enemyTiles, Board.OverlayColor.ATTACK);
+        Debug.Log(allyTiles.Count);
+        Debug.Log(enemyTiles.Count);
         RefreshPrimaryPanel(selectPos);
 
         updating = true;
@@ -29,6 +40,8 @@ public class MoveTargetState : BattleState
 
         base.Exit ();
         board.UnhighlightTiles(tiles);
+        board.UnhighlightTiles(allyTiles);
+        board.UnhighlightTiles(enemyTiles);
         board.UntargetTiles(pathTiles);
         tiles = null;
         // statPanelController.HidePrimary();
@@ -45,6 +58,7 @@ public class MoveTargetState : BattleState
     }
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
+        Debug.LogError("movetstate onmove?");
         SelectTile(e.info + selectPos);
         TargetTiles();
         RefreshPrimaryPanel(selectPos);

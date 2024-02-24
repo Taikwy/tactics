@@ -20,5 +20,6 @@ MonoBehaviour:
   job: 
   attack: 
   abilityCatalog: Slime Catalog
-  movementType: 0
+  movementType: 1
   alliance: 4
+  equipment: []

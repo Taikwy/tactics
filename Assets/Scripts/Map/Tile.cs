@@ -73,42 +73,42 @@ public class Tile : MonoBehaviour
         // Unhover();
     }
 
+    //curerenlty unused
     public void Hover(){
         highlightRenderer.enabled = true;
         highlightRenderer.sprite = highlightSprite;
         highlightRenderer.color = new Color(1,1,1, 0.5f);
-    }
-    public void Unhover(){
+    }    public void Unhover(){
         highlightRenderer.enabled = false;
         highlightRenderer.color = Color.clear;
     }
 
+    //standard flat color highlight for showing ranges
     public void Highlight(Color color){
         highlightRenderer.enabled = true;
         highlightRenderer.sprite = highlightSprite;
         highlightRenderer.color = color;
-    }
-    public void Unhighlight(){
+    }    public void Unhighlight(){
         highlightRenderer.enabled = false;
         // highlightRenderer.sprite = highlightSprite;
         highlightRenderer.color = Color.clear;
     }
+    //indicating movement path and hovering targets
     public void Target(Color color){
         targetRenderer.enabled = true;
         targetRenderer.sprite = targetSprite;
         targetRenderer.color = color;
-    }
-    public void Untarget(){
+    }    public void Untarget(){
         targetRenderer.enabled = false;
         // targetRenderer.sprite = targetSprite;
         targetRenderer.color = Color.clear;
     }
+    //when the tile gets selected
     public void Select(Color color){
         selectRenderer.enabled = true;
         selectRenderer.sprite = selectSprite;
         selectRenderer.color = color;
-    }
-    public void Unselect(){
+    }    public void Unselect(){
         selectRenderer.enabled = false;
         // selectRenderer.sprite = selectSprite;
         selectRenderer.color = Color.clear;

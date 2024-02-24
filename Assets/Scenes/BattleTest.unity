@@ -3747,7 +3747,7 @@ MonoBehaviour:
   attackHighlightColor: {r: 1, g: 0, b: 0, a: 0.47058824}
   allyHighlightColor: {r: 0, g: 1, b: 0.15721321, a: 0.47058824}
   moveColor: {r: 0, g: 0.12997723, b: 1, a: 1}
-  passColor: {r: 0, g: 1, b: 0.15686275, a: 1}
+  passColor: {r: 0.119199514, g: 1, b: 0, a: 0.5372549}
   attackColor: {r: 1, g: 0.30571634, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0.15686275, a: 1}
   buffColor: {r: 0, g: 1, b: 0.9725491, a: 1}
@@ -7081,9 +7081,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d5be06f40e6da449ca88a6e2a3a678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entryPrefab: {fileID: 6016511660530592886, guid: 4318d2bc57a80c84ca4e0e5923220537, type: 3}
   menuPanel: {fileID: 205846718}
   menuEntries: []
+  entryPrefab: {fileID: 6016511660530592886, guid: 4318d2bc57a80c84ca4e0e5923220537, type: 3}
   abilityInfoPanelPrefab: {fileID: 1316923320154009274, guid: 56fc6bd4b605f37449e8f03d90a5b9bb, type: 3}
 --- !u!1 &1217268638
 GameObject:
