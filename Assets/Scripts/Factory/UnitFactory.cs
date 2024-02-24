@@ -193,7 +193,14 @@ public static class UnitFactory
 					catalogScript.traitAbility = ability;
 					break;
 				case AbilityTypes.SKILL:
-					catalogScript.skillAbility = ability;
+					if(catalogScript.primarySkillAbility == null){
+						catalogScript.primarySkillAbility = ability;
+					}else if(catalogScript.secondarySkillAbility == null){
+						catalogScript.secondarySkillAbility = ability;
+					}else{
+						Debug.LogError("Primary and Secondary Skill Ability slots are already filled");
+					}
+					// catalogScript.skillAbility = ability;
 					break;
 				case AbilityTypes.BURST:
 					catalogScript.burstAbility = ability;
