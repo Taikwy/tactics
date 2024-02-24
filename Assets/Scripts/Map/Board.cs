@@ -17,10 +17,13 @@ public class Board : MonoBehaviour
     [SerializeField] GameObject groundTilePrefab;
     [SerializeField] GameObject pitTilePrefab;
     [SerializeField] GameObject wallTilePrefab;
-    [Space(10)]
-    [SerializeField] Color moveHighlightColor = new Color(0, 1, 1, 1);
-    [SerializeField] Color attackHighlightColor = new Color(0, 1, 1, 1);
-    [SerializeField] Color allyHighlightColor = new Color(0, 1, 1, 1);
+    [Header("Select Indicator Colors")]
+    public Color selectValid;
+    public Color selectInvalid;
+    [Header("Highlight Colors")]
+    // [SerializeField] Color moveHighlightColor = new Color(0, 1, 1, 1);
+    // [SerializeField] Color attackHighlightColor = new Color(0, 1, 1, 1);
+    // [SerializeField] Color allyHighlightColor = new Color(0, 1, 1, 1);
     [SerializeField] Color moveColor, passColor, attackColor, healColor, buffColor, debuffColor;
     // [SerializeField] Color selectColor = new Color(0, 1, 1, 1);
     public Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile>();

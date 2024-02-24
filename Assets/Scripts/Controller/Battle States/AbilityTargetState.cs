@@ -53,6 +53,7 @@ public class AbilityTargetState : BattleState
         
         RefreshSecondaryPanel(board.selectedPoint);
         SelectTile(board.selectedPoint);
+        SelectTile(board.selectedPoint, tiles.Contains(board.selectedTile));
         TargetTiles();
     }
 

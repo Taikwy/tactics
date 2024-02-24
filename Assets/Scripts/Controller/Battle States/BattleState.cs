@@ -49,6 +49,20 @@ public abstract class BattleState : State
             return;
         selectPos = p;
         tileSelectionIndicator.localPosition = board.tiles[p].center;
+        
+        tileSelectionIndicator.gameObject.GetComponent<SpriteRenderer>().color = board.selectValid;
+    }
+    //takes in a bool to see whether the selected tile is targetable. will change color of the highlight
+    protected virtual void SelectTile (Point p, bool targetable = true) {
+        // Debug.Log("selecting tile " + p);
+        if (selectPos == p || !board.tiles.ContainsKey(p))
+            return;
+        selectPos = p;
+        tileSelectionIndicator.localPosition = board.tiles[p].center;
+        if(targetable)
+            tileSelectionIndicator.gameObject.GetComponent<SpriteRenderer>().color = board.selectValid;
+        else
+            tileSelectionIndicator.gameObject.GetComponent<SpriteRenderer>().color = board.selectInvalid;
     }
 
     protected virtual Unit GetUnit (Point p) {

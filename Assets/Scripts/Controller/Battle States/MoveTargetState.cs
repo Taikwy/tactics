@@ -55,15 +55,15 @@ public class MoveTargetState : BattleState
         // Debug.Log("movestate updating");
 
         RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
-        SelectTile(board.selectedPoint);
+        SelectTile(board.selectedPoint, tiles.Contains(board.selectedTile));
         TargetTiles();        
     }
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
         Debug.LogError("movetstate onmove?");
-        SelectTile(e.info + selectPos);
-        TargetTiles();
-        RefreshPrimaryPanel(selectPos);
+        // SelectTile(e.info + selectPos);
+        // TargetTiles();
+        // RefreshPrimaryPanel(selectPos);
     }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
