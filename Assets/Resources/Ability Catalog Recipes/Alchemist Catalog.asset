@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Alchemist Catalog
   m_EditorClassIdentifier: 
   entries:
-  - Slash
+  - Stab
+  - Fire Missile
+  - Vial of Ice
+  - Mangum Opus

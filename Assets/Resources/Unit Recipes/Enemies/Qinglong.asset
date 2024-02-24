@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c666d4609392c245aa32f8419270021, type: 3}
+  m_Name: Qinglong
+  m_EditorClassIdentifier: 
+  unitBase: Unit Base
+  sprite: {fileID: 21300000, guid: 5f28786840ba68b498fdf66323ca9825, type: 3}
+  portrait: {fileID: 21300000, guid: 800808881c4814046aa5937142fd8763, type: 3}
+  xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
+  statData: {fileID: 11400000, guid: 0bacb785bdfe3b141ad7438407cb15cf, type: 2}
+  job: 
+  attack: 
+  abilityCatalog: Qinglong Catalog
+  movementType: 0
+  alliance: 4
+  equipment: []

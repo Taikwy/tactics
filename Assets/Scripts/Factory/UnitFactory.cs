@@ -24,8 +24,7 @@ public static class UnitFactory
 		return Create(recipe, level);
 	}
 
-	public static GameObject Create (UnitRecipe recipe, int level)
-	{
+	public static GameObject Create (UnitRecipe recipe, int level){
 		GameObject unit = InstantiatePrefab("Units/" + recipe.unitBase);
 		unit.name = recipe.name;
 		unit.GetComponent<SpriteRenderer>().sprite = recipe.sprite;
@@ -146,8 +145,17 @@ public static class UnitFactory
 
 		AbilityCatalogRecipe recipe = Resources.Load<AbilityCatalogRecipe>("Ability Catalog Recipes/" + name);
 		if (recipe == null){
-			Debug.LogError("No Ability Catalog Recipe Found: " + name);
-			return;
+			recipe = Resources.Load<AbilityCatalogRecipe>("Ability Catalog Recipes/Basic Attacks/" + name);
+			if (recipe == null){
+				recipe = Resources.Load<AbilityCatalogRecipe>("Ability Catalog Recipes/Skills/" + name);
+				if (recipe == null){
+					recipe = Resources.Load<AbilityCatalogRecipe>("Ability Catalog Recipes/Bursts/" + name);
+					if (recipe == null){
+						Debug.LogError("No Ability Catalog Recipe Found: " + name);
+						return;
+					}
+				}
+			}
 		}
 
 		for (int i = 0; i < recipe.entries.Length; ++i){

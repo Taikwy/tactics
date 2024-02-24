@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79dbd39aed8e324b85871ad441c4e55, type: 3}
   m_Name: KitsuneData
   m_EditorClassIdentifier: 
-  fixedStats: 6400000004000000050000005a0000001900000032000000
-  combatStats: 180000001900000009000000
+  fixedStats: 000000000300000003000000540000001400000032000000
+  combatStats: 120000000900000009000000
   growthStats:
   - 3.2
   - 2.2

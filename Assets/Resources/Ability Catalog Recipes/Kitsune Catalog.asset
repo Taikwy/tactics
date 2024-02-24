@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Kitsune Catalog
   m_EditorClassIdentifier: 
   entries:
-  - Slash
-  - Kindle
-  - Test Status Effect
-  - TEST BURST
+  - Scratch
+  - Wildfire

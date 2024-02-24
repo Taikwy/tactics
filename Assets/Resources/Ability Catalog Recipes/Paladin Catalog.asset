@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Paladin Catalog
   m_EditorClassIdentifier: 
   entries:
-  - Slash
+  - Strike
+  - Angelic Might
+  - Holy Prayer
+  - Divine Smite

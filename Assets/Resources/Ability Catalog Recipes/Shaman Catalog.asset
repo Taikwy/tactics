@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Shaman Catalog
   m_EditorClassIdentifier: 
   entries:
-  - Slash
+  - Divinity
+  - Cleansing Spirit
+  - Vine Cluster
+  - Gale Ritual
