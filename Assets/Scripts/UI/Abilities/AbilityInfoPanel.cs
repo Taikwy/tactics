@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Linq.Expressions;
 
 public class AbilityInfoPanel : MonoBehaviour 
 {
@@ -33,8 +34,15 @@ public class AbilityInfoPanel : MonoBehaviour
             else
                 costLabel.text = string.Format("SKILL POINTS REQUIRED: {0}", ability.GetComponent<AbilitySkillCost>().cost);
         }
-        if(ability.GetComponent<AbilityBurstCost>())
-            costLabel.text = string.Format("BURST METER REQUIRED: {0}", ability.GetComponent<AbilityBurstCost>().cost);
+        if(ability.GetComponent<AbilityBurstCost>()){
+            if(ability.GetComponent<AbilityBurstCost>().cost < 0){
+                Debug.Log("should be max " + GetComponentInParent<Stats>());
+                costLabel.text = string.Format("BURST METER REQUIRED: {0}", ability.GetComponentInParent<Stats>()[StatTypes.MBP]);
+                Debug.Log("should be max");
+            }
+            else
+                costLabel.text = string.Format("BURST METER REQUIRED: {0}", ability.GetComponent<AbilityBurstCost>().cost);
+        }
 
         descLabel.text = abilityScript.abilityDescription;
         effectLabel.text = string.Format("EFFECT: {0}, ZONE: {1}", abilityScript.primaryEffect.name, abilityScript.primaryEffect.GetComponent<EffectZone>());

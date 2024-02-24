@@ -11,11 +11,13 @@ public class AbilitySectionState : BaseAbilityMenuState
     public override void Enter (){
         // Debug.Log("entering category state");
         base.Enter ();
+        panelController.ShowStatus(turn.actingUnit.gameObject);
     }
     public override void Exit (){
         // Debug.Log("exiting category state");
         base.Exit ();
         abilityPanelController.DestroyAbilityInfoPanel();
+        panelController.HideStatus();
     }
 
 
@@ -38,9 +40,11 @@ public class AbilitySectionState : BaseAbilityMenuState
             AbilitySkillCost skillCost = ability.GetComponent<AbilitySkillCost>();
             AbilityBurstCost burstCost = ability.GetComponent<AbilityBurstCost>();
             if (skillCost)
-                menuOptions.Add(string.Format("{0}: {1} skpts", ability.name, skillCost.cost));
+                menuOptions.Add(string.Format(ability.name));
+                // menuOptions.Add(string.Format("{0}: {1} skpts", ability.name, skillCost.cost));
             else if (burstCost)
-                menuOptions.Add(string.Format("{0}: {1} bpts", ability.name, burstCost.cost));
+                menuOptions.Add(string.Format(ability.name));
+                // menuOptions.Add(string.Format("{0}: {1} bpts", ability.name, burstCost.cost));
             else
                 menuOptions.Add( ability.name );
             switch(ability.GetComponent<Ability>().type){

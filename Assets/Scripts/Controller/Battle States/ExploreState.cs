@@ -27,7 +27,10 @@ public class ExploreState : BattleState
         //exits back to acting unit, or selects the currently targeted unit to show status info
         if(!panelController.showingPrimaryStatus){
             if (e.info == 0){
-                RefreshPrimaryStatusPanel(board.selectedPoint);
+                if(board.selectedTile.content == owner.turn.actingUnit.gameObject)
+                    owner.ChangeState<CommandSelectionState>();
+                else
+                    RefreshPrimaryStatusPanel(board.selectedPoint);
             }
             if (e.info == 1){
                 owner.ChangeState<CommandSelectionState>();

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 public class Status : MonoBehaviour
 {
-	public const string AddedNotification = "Status.AddedNotification";
-	public const string RemovedNotification = "Status.RemovedNotification";
+	public const string AddedEvent = "Status.AddedEvent";
+	public const string RemovedEvent = "Status.RemovedEvent";
+	public const string RemovedAllEvent = "Status.RemovedAllEvent";
 	public List<GameObject> statuses = new List<GameObject>();
 
 	//old attempt at tweaking the tutorial version of th emethod to use a prefab
@@ -38,49 +39,12 @@ public class Status : MonoBehaviour
 			statusObj.AddComponent<T>();
 			statusObj.AddComponent<U>();
 			statuses.Add(statusObj);
-			this.PostEvent(AddedNotification, effect);
+			this.PostEvent(AddedEvent, effect);
 		}
 
 		return statusObj;
 	}
 
-
-	//destroys condition and gameobject, then destroys effect gameobject
-	// public void Remove (StatusCondition target){
-	// 	StatusEffect effect = target.GetComponentInParent<StatusEffect>();
-
-	// 	target.transform.SetParent(null);
-	// 	Destroy(target.gameObject);
-
-	// 	StatusCondition condition = effect.GetComponentInChildren<StatusCondition>();
-	// 	if (condition == null){
-	// 		effect.transform.SetParent(null);
-	// 		Destroy(effect.gameObject);
-	// 		this.PostEvent(RemovedNotification, effect);
-	// 	}
-	// }
-
-	//Currently unused
-	// public void Add(){
-	// 	StatusEffect effect = GetComponentInChildren<StatusEffect>();
-	// 	if(effect != null)
-	// 		CheckStatus();
-	// 	else{
-	// 		GameObject statusObj = new GameObject( typeof(StatusEffect).Name );
-	// 		statusObj.transform.SetParent(gameObject.transform);
-	// 		effect = statusObj.AddComponent<StatusEffect>();
-	// 		statusObj.AddComponent<StatusCondition>();
-	// 		this.PostEvent(AddedNotification, effect);
-	// 	}
-	// }
-
-	//old version wher i just add a status ailment prefab
-	// public void Add(GameObject statusPrefab){
-	// 	// Debug.Log("adding status");
-	// 	GameObject statusObj = Instantiate(statusPrefab, gameObject.transform);
-	// 	statuses.Add(statusObj);
-	// 	this.PostEvent(AddedNotification, statusObj.GetComponent<StatusEffect>());
-	// }
 	public void Remove(StatusCondition condition){
 		StatusEffect effect = condition.GetComponentInChildren<StatusEffect>();
 		statuses.Remove(effect.gameObject);
@@ -90,7 +54,23 @@ public class Status : MonoBehaviour
 		Destroy(effect.gameObject);
 		Destroy(condition.gameObject);
 
-		this.PostEvent(RemovedNotification, effect);
+		this.PostEvent(RemovedEvent, effect);
+	}
+
+	public void RemoveAll(){
+		StatusEffect effect;
+		StatusCondition condition;
+		foreach(GameObject status in statuses){
+			effect = status.GetComponentInChildren<StatusEffect>();
+			condition = status.GetComponentInChildren<StatusCondition>();
+
+			effect.transform.SetParent(null);
+			condition.transform.SetParent(null);
+			Destroy(effect.gameObject);
+			Destroy(condition.gameObject);
+		}
+
+		this.PostEvent(RemovedAllEvent, null);
 	}
 
 

@@ -158,7 +158,7 @@ public static class UnitFactory
 				}
 			}
 		}
-		Debug.Log("catalog found! " + recipe);
+		// Debug.Log("catalog found! " + recipe);
 
 		for (int i = 0; i < recipe.entries.Length; ++i){
 			string abilityName = string.Format("Abilities/{0}", recipe.entries[i]);

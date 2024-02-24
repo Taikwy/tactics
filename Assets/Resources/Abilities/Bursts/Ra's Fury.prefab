@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7693599255702816309}
   - component: {fileID: 8089819927461016214}
+  - component: {fileID: 4888908716431183397}
   - component: {fileID: 3484823612947708004}
   - component: {fileID: 3466583539704759156}
-  - component: {fileID: 4888908716431183397}
   m_Layer: 0
   m_Name: Ra's Fury
   m_TagString: Untagged
@@ -55,6 +55,19 @@ MonoBehaviour:
   primarySubEffect: {fileID: 0}
   burstGain: 0
   abilityDescription: You never want to mess with deities.
+--- !u!114 &4888908716431183397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935371756486926109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db082ed1f3dbb14f84d82cdd8a76dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: -1
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,19 +98,6 @@ MonoBehaviour:
   canTargetSelf: 0
   numTargets: 1
   targets: []
---- !u!114 &4888908716431183397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935371756486926109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db082ed1f3dbb14f84d82cdd8a76dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cost: 150
 --- !u!1001 &3099370861349548600
 PrefabInstance:
   m_ObjectHideFlags: 0

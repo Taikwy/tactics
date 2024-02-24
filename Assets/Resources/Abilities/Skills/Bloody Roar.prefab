@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6966475923109113812}
   - component: {fileID: 1918677148183206524}
+  - component: {fileID: 6950046999304816923}
   - component: {fileID: 616511774074537263}
   - component: {fileID: 4742295797092695002}
-  - component: {fileID: 6950046999304816923}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8993413393573697161}
   m_Father: {fileID: 7693599255702816309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +48,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6950046999304816923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861301945464717442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityEffectName: DAMAGE
+  abilityEffectDescription: '---
+
+'
+  subEffects:
+  - {fileID: 8018232712710892279}
+  owner: {fileID: 0}
+  attackPercentModifier: 80
 --- !u!114 &616511774074537263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,25 +95,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
---- !u!114 &6950046999304816923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861301945464717442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityEffectName: DAMAGE
-  abilityEffectDescription: '---
-
-'
-  subEffects: []
-  owner: {fileID: 0}
-  attackPercentModifier: 80
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,9 +105,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7693599255702816309}
   - component: {fileID: 8089819927461016214}
-  - component: {fileID: 3484823612947708004}
-  - component: {fileID: 3954202826209727461}
   - component: {fileID: 7818359391419740545}
+  - component: {fileID: 3484823612947708004}
+  - component: {fileID: 8520899578886184011}
   m_Layer: 0
   m_Name: Bloody Roar
   m_TagString: Untagged
@@ -141,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25f15774e5b48f43a605f3046a8525f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
@@ -150,36 +152,6 @@ MonoBehaviour:
   abilityDescription: '---
 
 '
---- !u!114 &3484823612947708004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935371756486926109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 1
-  tilesInRange: []
-  targetsInRange: []
---- !u!114 &3954202826209727461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935371756486926109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4755e8b045f7534597b695d829853e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canTargetSelf: 0
-  numTargets: 1
-  targets: []
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,4 +164,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
+  cost: 1
+--- !u!114 &3484823612947708004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935371756486926109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
+  tilesInRange: []
+  targetsInRange: []
+--- !u!114 &8520899578886184011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935371756486926109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93fdc0ddc106ef4cb10bd5dda7ad325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTargetSelf: 0
+  numTargets: 1
+  targets: []
+--- !u!1001 &2292386271031557097
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6966475923109113812}
+    m_Modifications:
+    - target: {fileID: 5597802304154384354, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_Name
+      value: Inflict Break Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+--- !u!114 &8018232712710892279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8112756447783014686, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+  m_PrefabInstance: {fileID: 2292386271031557097}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8993413393573697161 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+  m_PrefabInstance: {fileID: 2292386271031557097}
+  m_PrefabAsset: {fileID: 0}

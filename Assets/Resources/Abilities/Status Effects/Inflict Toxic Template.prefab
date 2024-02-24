@@ -87,11 +87,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityEffectName: TOXIC
+  abilityEffectDescription: 5% HP dmg taken
   subEffects: []
+  owner: {fileID: 0}
   effectName: PercentDamageStatusEffect
   conditionName: TurnDurationStatusCondition
   duration: 3
   flatOrPercent: 5
-  flatDMG: 0
-  percentDMG: 0
-  statChange: 0
+  statType: 0
+  incrementOrMultiply: 0

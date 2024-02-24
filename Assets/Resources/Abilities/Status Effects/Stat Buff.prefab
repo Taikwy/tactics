@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7003075404764746857}
   - component: {fileID: 8112756447783014686}
   m_Layer: 0
-  m_Name: Inflict Break Template
+  m_Name: Stat Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ca026f6d009ea4bb7d29c3aec2d079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guaranteed: 0
+  guaranteed: 1
   abilityHitRate: 0
 --- !u!114 &8112756447783014686
 MonoBehaviour:
@@ -86,13 +86,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectName: BREAK
-  abilityEffectDescription: DF Debuff
+  abilityEffectName: STAT BUFF
+  abilityEffectDescription: STAT BUFF
   subEffects: []
   owner: {fileID: 0}
   effectName: StatIncrementStatusEffect
   conditionName: TurnDurationStatusCondition
-  duration: 0
+  duration: 2
   flatOrPercent: 0
-  statType: 11
+  statType: 10
   incrementOrMultiply: 0

@@ -29,7 +29,11 @@ public class AbilityBurstCost : MonoBehaviour
     void OnDidPerformNotification (object sender, object args) {
         Stats s = GetComponentInParent<Stats>();
         if(owner.type == AbilityTypes.BURST){
-            s[StatTypes.BP] -= cost;
+            //if cost is less than 0 it means it just uses the max burst meter of a character
+            if(cost < 0)
+                s[StatTypes.BP] = 0;
+            else
+                s[StatTypes.BP] -= cost;
         }
         else
             Debug.LogError("Ability contains burst cost but is not burst type");

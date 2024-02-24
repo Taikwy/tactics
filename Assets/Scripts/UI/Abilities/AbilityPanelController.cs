@@ -88,9 +88,9 @@ public class AbilityPanelController : MonoBehaviour
             entry.Title = names[i];
             entry.entry = abilities[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
-            Debug.Log("index " + i);
+            // Debug.Log("index " + i);
             entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, entry.entry); };
-            Debug.Log("null? " +  abilities[i] + " gameobject " + entry.gameObject + " highlight func " + entry.highlightFunc);
+            // Debug.Log("null? " +  abilities[i] + " gameobject " + entry.gameObject + " highlight func " + entry.highlightFunc);
             // entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, abilities[i]); };
             entry.unhighlightFunc = delegate { DestroyAbilityInfoPanel(); };
 
@@ -116,10 +116,10 @@ public class AbilityPanelController : MonoBehaviour
     }
 
     public void CreateAbilityInfoPanel(GameObject label, GameObject ability){
-        Debug.Log("creating ability info panel");
+        // Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
         Vector2 pos = label.transform.position;
-        pos += new Vector2(80, 0);
+        pos += new Vector2(200, 16);
         abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, pos, Quaternion.identity, label.transform);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().ShowPanel();
