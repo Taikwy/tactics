@@ -20,6 +20,6 @@ MonoBehaviour:
   job: 
   attack: 
   abilityCatalog: Qinglong Catalog
-  movementType: 0
+  movementType: 1
   alliance: 4
   equipment: []

@@ -180,10 +180,7 @@ public static class UnitFactory
 					}
 				}
 			}
-
-
-
-
+			
 			ability.transform.SetParent(catalog.transform);
 			switch(ability.GetComponent<Ability>().type){
 				case AbilityTypes.BASIC:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShamanData
   m_EditorClassIdentifier: 
   fixedStats: 780000000300000002000000520000000a00000032000000
-  combatStats: 14000000080000000a000000
+  combatStats: 140000000800000005000000
   growthStats:
   - 3.2
   - 2.2

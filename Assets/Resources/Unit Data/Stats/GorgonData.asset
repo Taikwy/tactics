@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GorgonData
   m_EditorClassIdentifier: 
   fixedStats: 9600000003000000030000004b0000000a00000032000000
-  combatStats: 180000000a0000000a000000
+  combatStats: 180000000a00000005000000
   growthStats:
   - 3.2
   - 2.2

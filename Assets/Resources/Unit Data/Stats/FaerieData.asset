@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FaerieData
   m_EditorClassIdentifier: 
   fixedStats: 000000000300000004000000540000000a00000032000000
-  combatStats: 10000000050000000b000000
+  combatStats: 100000000500000004000000
   growthStats:
   - 3.2
   - 2.2

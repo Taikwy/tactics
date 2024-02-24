@@ -51,16 +51,33 @@ public class AbilitySectionState : BaseAbilityMenuState
                 case AbilityTypes.BASIC:
                     menuFunctions.Add(delegate { Attack(catalog.basicAbility); });
                     break;
-                case AbilityTypes.TRAIT:
-                    menuFunctions.Add(delegate { Attack(catalog.traitAbility); });
-                    break;
+                // case AbilityTypes.TRAIT:
+                //     menuFunctions.Add(delegate { Attack(catalog.traitAbility); });
+                //     break;
                 case AbilityTypes.SKILL:
-                    menuFunctions.Add(delegate { Attack(catalog.skillAbility); });
+                    if(ability == catalog.primarySkillAbility)
+                        menuFunctions.Add(delegate { Attack(catalog.primarySkillAbility ); });
+                    if(ability == catalog.secondarySkillAbility)
+                        menuFunctions.Add(delegate { Attack(catalog.secondarySkillAbility ); });
                     break;
                 case AbilityTypes.BURST:
                     menuFunctions.Add(delegate { Attack(catalog.burstAbility); });
                     break;
             }
+            // switch(ability.GetComponent<Ability>().type){
+            //     case AbilityTypes.BASIC:
+            //         menuFunctions.Add(delegate { Attack(catalog.basicAbility); });
+            //         break;
+            //     case AbilityTypes.TRAIT:
+            //         menuFunctions.Add(delegate { Attack(catalog.traitAbility); });
+            //         break;
+            //     case AbilityTypes.SKILL:
+            //         menuFunctions.Add(delegate { Attack(catalog.skillAbility); });
+            //         break;
+            //     case AbilityTypes.BURST:
+            //         menuFunctions.Add(delegate { Attack(catalog.burstAbility); });
+            //         break;
+            // }
             // menuUnhighlightFunctions.Add(delegate { panelController.HideAbilityInfo(); });
         }
         

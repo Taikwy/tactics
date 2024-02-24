@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarbarianData
   m_EditorClassIdentifier: 
   fixedStats: b40000000400000004000000560000000a00000032000000
-  combatStats: 1c0000000c00000009000000
+  combatStats: 1c0000000c00000006000000
   growthStats:
   - 3.2
   - 2.2

@@ -58,17 +58,20 @@ public class Status : MonoBehaviour
 	}
 
 	public void RemoveAll(){
+		Debug.Log("removing all");
 		StatusEffect effect;
 		StatusCondition condition;
 		foreach(GameObject status in statuses){
 			effect = status.GetComponentInChildren<StatusEffect>();
 			condition = status.GetComponentInChildren<StatusCondition>();
-
+			
+			Debug.Log("removing " + effect + " | " + condition);
 			effect.transform.SetParent(null);
 			condition.transform.SetParent(null);
 			Destroy(effect.gameObject);
 			Destroy(condition.gameObject);
 		}
+		statuses.Clear();
 
 		this.PostEvent(RemovedAllEvent, null);
 	}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaladinData
   m_EditorClassIdentifier: 
   fixedStats: 9600000004000000020000004a0000000a00000032000000
-  combatStats: 190000000a0000000c000000
+  combatStats: 190000000a00000009000000
   growthStats:
   - 3.2
   - 2.2
