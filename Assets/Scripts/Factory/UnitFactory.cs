@@ -14,7 +14,7 @@ public static class UnitFactory
 				if(recipe == null){
 					recipe = Resources.Load<UnitRecipe>("Unit Recipes/Neutrals/" + name);
 					if(recipe == null){
-						Debug.LogError("No Unit Recipe for name: " + name);
+						Debug.LogError("No Unit Recipe for at path: " + recipe);
 						return null;
 					}
 				}
@@ -53,8 +53,9 @@ public static class UnitFactory
 	static GameObject InstantiatePrefab (string filePath){
 		GameObject prefab = Resources.Load<GameObject>(filePath);
 		if (prefab == null){
-			Debug.LogError("No Prefab for at path: " + filePath);
-			return new GameObject(filePath);
+			// Debug.LogError("No Prefab for at path: " + filePath);
+			// return new GameObject(filePath);
+			return null;
 		}
 		GameObject instance = GameObject.Instantiate(prefab);
 
@@ -151,16 +152,38 @@ public static class UnitFactory
 				if (recipe == null){
 					recipe = Resources.Load<AbilityCatalogRecipe>("Ability Catalog Recipes/Bursts/" + name);
 					if (recipe == null){
-						Debug.LogError("No Ability Catalog Recipe Found: " + name);
+						Debug.LogError("No Ability Catalog Recipe Found: " + recipe);
 						return;
 					}
 				}
 			}
 		}
+		Debug.Log("catalog found! " + recipe);
 
 		for (int i = 0; i < recipe.entries.Length; ++i){
 			string abilityName = string.Format("Abilities/{0}", recipe.entries[i]);
+			// Debug.Log("ability creation " + abilityName);
 			GameObject ability = InstantiatePrefab(abilityName);
+			if(!ability){
+				abilityName = string.Format("Abilities/Basic Attacks/{0}", recipe.entries[i]);
+				ability = InstantiatePrefab(abilityName);
+				if(!ability){
+					abilityName = string.Format("Abilities/Skills/{0}", recipe.entries[i]);
+					ability = InstantiatePrefab(abilityName);
+					if(!ability){
+						abilityName = string.Format("Abilities/Bursts/{0}", recipe.entries[i]);
+						ability = InstantiatePrefab(abilityName);
+						if(!ability){
+							Debug.LogError("No ability found in any path");
+							continue;
+						}
+					}
+				}
+			}
+
+
+
+
 			ability.transform.SetParent(catalog.transform);
 			switch(ability.GetComponent<Ability>().type){
 				case AbilityTypes.BASIC:

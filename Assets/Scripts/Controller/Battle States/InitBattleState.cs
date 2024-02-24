@@ -6,8 +6,7 @@ using UnityEngine.Assertions.Must;
 
 public class InitBattleState : BattleState 
 {
-    public override void Enter ()
-    {
+    public override void Enter (){
         base.Enter ();
         StartCoroutine(Init());
     }

@@ -3743,11 +3743,10 @@ MonoBehaviour:
   groundTilePrefab: {fileID: 6364204904911779010, guid: 90bd2a19f46ae2c4fa2977a5e384d33f, type: 3}
   pitTilePrefab: {fileID: 6534081145384810864, guid: 681bd367d04e4f540a4d9ff125009ea9, type: 3}
   wallTilePrefab: {fileID: 1025403324043751005, guid: 2d1833f51b6bd424a81a418c30b67967, type: 3}
-  moveHighlightColor: {r: 0, g: 0.27205753, b: 1, a: 0.47058824}
-  attackHighlightColor: {r: 1, g: 0, b: 0, a: 0.47058824}
-  allyHighlightColor: {r: 0, g: 1, b: 0.15721321, a: 0.47058824}
+  selectValid: {r: 1, g: 0.9880785, b: 0, a: 1}
+  selectInvalid: {r: 1, g: 0, b: 0, a: 1}
   moveColor: {r: 0, g: 0.12997723, b: 1, a: 1}
-  passColor: {r: 0.119199514, g: 1, b: 0, a: 0.5372549}
+  passColor: {r: 0, g: 0.12941177, b: 1, a: 0.5372549}
   attackColor: {r: 1, g: 0.30571634, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0.15686275, a: 1}
   buffColor: {r: 0, g: 1, b: 0.9725491, a: 1}
@@ -9617,7 +9616,7 @@ PrefabInstance:
     - target: {fileID: 5253958904110508632, guid: 22de3ea0dedcec54d943ebdc5ce5029e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e3e09ccb2967b4e4db3bdc44c7899ae5, type: 3}
+      objectReference: {fileID: 21300000, guid: 9f50b6aa9213b2d41a1767da1edb805c, type: 3}
     - target: {fileID: 5253958904110508632, guid: 22de3ea0dedcec54d943ebdc5ce5029e, type: 3}
       propertyPath: m_SortingLayer
       value: 3
