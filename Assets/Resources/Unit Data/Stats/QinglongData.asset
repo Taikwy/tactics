@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QinglongData
   m_EditorClassIdentifier: 
   fixedStats: f00000000500000001000000550000000a0000004b000000
-  combatStats: 280000000c00000006000000
+  combatStats: 280000000c00000007000000
   growthStats:
   - 3.2
   - 2.2

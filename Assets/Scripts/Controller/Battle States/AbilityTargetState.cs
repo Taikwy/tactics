@@ -31,6 +31,8 @@ public class AbilityTargetState : BattleState
         panelController.ShowSecondary(turn.actingUnit.gameObject);
         if (rangeScript.directionOriented)
             RefreshSecondaryPanel(selectPos);
+        if (driver.Current == Drivers.Computer)
+			StartCoroutine(ComputerHighlightTarget());
         
         updating = true;
     }
@@ -134,4 +136,28 @@ public class AbilityTargetState : BattleState
         // board.SelectTiles(selectedTiles);
         board.SelectTiles(selectedTiles, Board.OverlayColor.ATTACK);
     }
+
+    IEnumerator ComputerHighlightTarget ()
+	{
+        //for direction orientated abilities
+		// if (ar.directionOriented)
+		// {
+		// 	ChangeDirection(turn.plan.attackDirection.GetNormal());
+		// 	yield return new WaitForSeconds(0.25f);
+		// }
+		// else
+		// {
+			Point cursorPos = selectPos;
+			while (cursorPos != turn.plan.fireLocation){
+				if (cursorPos.x < turn.plan.fireLocation.x) cursorPos.x++;
+				if (cursorPos.x > turn.plan.fireLocation.x) cursorPos.x--;
+				if (cursorPos.y < turn.plan.fireLocation.y) cursorPos.y++;
+				if (cursorPos.y > turn.plan.fireLocation.y) cursorPos.y--;
+				SelectTile(cursorPos);
+				yield return new WaitForSeconds(0.25f);
+			}
+		// }
+		yield return new WaitForSeconds(0.5f);
+		owner.ChangeState<ConfirmAbilityTargetState>();
+	}
 }

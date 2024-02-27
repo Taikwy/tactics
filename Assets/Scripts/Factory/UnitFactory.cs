@@ -46,7 +46,7 @@ public static class UnitFactory
 		AddEquipment(unit, recipe.equipment);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
 
-		// AddAttackPattern(unit, recipe.strategy);
+		AddAttackPattern(unit, recipe.strategy);
 		return unit;
 	}
 
@@ -207,18 +207,15 @@ public static class UnitFactory
 		}
 	}
 
-	// static void AddAttackPattern (GameObject obj, string name)
-	// {
-	// 	Driver driver = obj.AddComponent<Driver>();
-	// 	if (string.IsNullOrEmpty(name))
-	// 	{
-	// 		driver.normal = Drivers.Human;
-	// 	}
-	// 	else
-	// 	{
-	// 		driver.normal = Drivers.Computer;
-	// 		GameObject instance = InstantiatePrefab("Attack Pattern/" + name);
-	// 		instance.transform.SetParent(obj.transform);
-	// 	}
-	// }
+	static void AddAttackPattern (GameObject obj, string name){
+		Driver driver = obj.AddComponent<Driver>();
+		if (string.IsNullOrEmpty(name)){
+			driver.normal = Drivers.Human;
+		}
+		else{
+			driver.normal = Drivers.Computer;
+			GameObject pattern = InstantiatePrefab("Attack Pattern/" + name);
+			pattern.transform.SetParent(obj.transform);
+		}
+	}
 }

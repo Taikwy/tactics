@@ -13,12 +13,15 @@ public class UnitRecipe : ScriptableObject
     public XPCurveData xpData;
     public UnitStatData statData;
     public string job;
-    
-     [Header("attacks and stuff")]
-    public string attack;
-    public string abilityCatalog;
+    [Header("general info")]
     public MovementTypes movementType;
     public Alliances alliance;
     public List<GameObject> equipment = new List<GameObject>();
-    // public Color portraitColor;
+    
+     [Header("abilities and stuff")]
+    public string attack;
+    public string abilityCatalog;
+    [Header("ai stuff")]
+    public string strategy;
+
 }

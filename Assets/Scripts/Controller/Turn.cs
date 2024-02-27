@@ -11,10 +11,9 @@ public class Turn
     public int actionCost;
     public bool lockMove;
     Tile startTile;
-    // Directions startDir;
-    // public GameObject ability;
     public Ability selectedAbility;
     public List<Tile> targets;
+	public PlanOfAttack plan;
     
     public void Change (Unit current){
         actingUnit = current;
@@ -22,12 +21,12 @@ public class Turn
         hasUnitActed = false;
         lockMove = false;
         startTile = actingUnit.tile;
-        // startDir = actingUnit.dir;
+		plan = null;
+        
     }
     public void UndoMove (){
         hasUnitMoved = false;
         actingUnit.Place(startTile);
-        // actingUnit.dir = startDir;
         actingUnit.Match();
     }
 }

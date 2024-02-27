@@ -13,8 +13,10 @@ public class CommandSelectionState : BaseAbilityMenuState
         panelController.ShowStatus(turn.actingUnit.gameObject);
         SelectTile(turn.actingUnit.tile.position);
 
-        updating = true;
+        if (driver.Current == Drivers.Computer)
+			StartCoroutine( ComputerTurn() );
 
+        updating = true;
     }
     public override void Exit (){
         // Debug.Log("exiting command selection state");
@@ -97,5 +99,22 @@ public class CommandSelectionState : BaseAbilityMenuState
             owner.ChangeState<ExploreState>();
         }
     }
+
+    IEnumerator ComputerTurn ()
+	{
+		if (turn.plan == null){
+			turn.plan = owner.cpu.Evaluate();
+			turn.selectedAbility = turn.plan.ability;
+		}
+
+		yield return new WaitForSeconds (1f);
+
+		if (turn.hasUnitMoved == false && turn.plan.moveLocation != turn.actingUnit.tile.position)
+			owner.ChangeState<MoveTargetState>();
+		else if (turn.hasUnitActed == false && turn.plan.ability != null)
+			owner.ChangeState<AbilityTargetState>();
+		else
+			owner.ChangeState<SelectUnitState>();
+	}
     
 }

@@ -22,23 +22,14 @@ public class ConfirmAbilityTargetState : BattleState
         FindTargets();
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
-        if (turn.targets.Count > 0){
-            // Debug.Log("targetting " + turn.targets.Count);
-            forecastPanel.Show();
-            
-            // RefreshSecondaryPanel(selectPos);
-            SetTarget(0);
-        }
-
-        //no clue wtf thsi is, but its a duplicate for some reason
-        // if (turn.targets.Count > 0)
-		// {
-		// 	// if (driver.Current == Drivers.Human)
-		// 	// 	hitSuccessIndicator.Show();
-		// 	SetTarget(0);
-		// }
-		// if (driver.Current == Drivers.Computer)
-		// 	StartCoroutine(ComputerDisplayAbilitySelection());
+        if (turn.targets.Count > 0)
+		{
+			if (driver.Current == Drivers.Human)
+				forecastPanel.Show();
+			SetTarget(0);
+		}
+		if (driver.Current == Drivers.Computer)
+			StartCoroutine(ComputerDisplayAbilitySelection());
     }
 
     public override void Exit (){
@@ -168,4 +159,10 @@ public class ConfirmAbilityTargetState : BattleState
 	// 	yield return new WaitForSeconds (2f);
 	// 	owner.ChangeState<PerformAbilityState>();
 	// }
+    IEnumerator ComputerDisplayAbilitySelection (){
+		// owner.battleMessageController.Display(turn.ability.name);
+        Debug.LogError(turn.selectedAbility.name);
+		yield return new WaitForSeconds (2f);
+		owner.ChangeState<PerformAbilityState>();
+	}
 }

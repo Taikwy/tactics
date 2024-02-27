@@ -18,8 +18,9 @@ MonoBehaviour:
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: acdc24855d514524dbf0f6d45fb309e2, type: 2}
   job: 
-  attack: 
-  abilityCatalog: Faerie Catalog
   movementType: 1
   alliance: 4
   equipment: []
+  attack: 
+  abilityCatalog: Faerie Catalog
+  strategy: Faerie Attack Pattern

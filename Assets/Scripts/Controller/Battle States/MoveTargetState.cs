@@ -31,6 +31,9 @@ public class MoveTargetState : BattleState
         Debug.Log(enemyTiles.Count);
         RefreshPrimaryPanel(selectPos);
 
+        if (driver.Current == Drivers.Computer)
+			StartCoroutine(ComputerHighlightMoveTarget());
+
         updating = true;
     }
     
@@ -101,4 +104,19 @@ public class MoveTargetState : BattleState
          }
         
     }
+
+    IEnumerator ComputerHighlightMoveTarget (){
+		Point cursorPos = selectPos;
+		while (cursorPos != turn.plan.moveLocation)
+		{
+			if (cursorPos.x < turn.plan.moveLocation.x) cursorPos.x++;
+			if (cursorPos.x > turn.plan.moveLocation.x) cursorPos.x--;
+			if (cursorPos.y < turn.plan.moveLocation.y) cursorPos.y++;
+			if (cursorPos.y > turn.plan.moveLocation.y) cursorPos.y--;
+			SelectTile(cursorPos);
+			yield return new WaitForSeconds(0.25f);
+		}
+		yield return new WaitForSeconds(0.5f);
+		owner.ChangeState<MoveSequenceState>();
+	}
 }
