@@ -21,19 +21,21 @@ public class ForecastPanel : MonoBehaviour
   {
     forecastPanel.SetActive(false);
   }
-  public void SetStats (Unit actor, GameObject target, GameObject ability, float chance, int amount, float subChance, int subAmount)
-  {      
-      actionName.text = ability.name;
 
-      string effect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectName;
-      string subEffect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectName;
+  //old and unused
+  // public void SetStats (Unit actor, GameObject target, GameObject ability, float chance, int amount, float subChance, int subAmount)
+  // {      
+  //     actionName.text = ability.name;
+
+  //     string effect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectName;
+  //     string subEffect = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().abilityEffectName;
       
-      abilityEffect.text = string.Format("{0} : {1} pts", effect, amount);
-      abilityHitrate.text = string.Format("HIT : {0} %", (int)chance);
+  //     abilityEffect.text = string.Format("{0} : {1} pts", effect, amount);
+  //     abilityHitrate.text = string.Format("HIT : {0} %", (int)chance);
 
-      subAbilityEffect.text = string.Format("{0} : {1} pts", subEffect, amount);
-      subAbilityHitrate.text = string.Format("HIT : {0} %", (int)subChance);
-  }
+  //     subAbilityEffect.text = string.Format("{0} : {1} pts", subEffect, amount);
+  //     subAbilityHitrate.text = string.Format("HIT : {0} %", (int)subChance);
+  // }
   public void SetStats (Unit actor, GameObject target, GameObject ability, float chance, int amount)
   {      
       actionName.text = ability.name;

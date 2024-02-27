@@ -120,9 +120,11 @@ public class MoveTargetState : BattleState
 			else if (cursorPos.y > turn.plan.moveLocation.y) cursorPos.y--;
             // Debug.Log("after moving cursor " + cursorPos);
 			SelectTile(cursorPos);
-			yield return new WaitForSeconds(0.5f);
+            RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
+            TargetTiles();       
+			yield return new WaitForSeconds(0.15f);
 		}
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.3f);
 		owner.ChangeState<MoveSequenceState>();
 	}
 }

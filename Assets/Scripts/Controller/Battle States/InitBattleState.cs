@@ -30,21 +30,38 @@ public class InitBattleState : BattleState
 
     //TEst the factory stuff
     void SpawnFactory(){
+        // string[] unitRecipes = new string[]{
+        //     "Paladin",
+        //     "Samurai",
+        //     "Barbarian",
+        //     "Shaman",
+        //     "Alchemist",
+        //     // "Shaman",
+
+        //     // "Slime",
+        //     // "Mushroom",
+        //     "Kitsune",
+        //     "Faerie",
+        //     "Gorgon",
+        //     "Sphinx",
+        //     "Qinglong"
+        //     // "Snake"
+        // };
         string[] unitRecipes = new string[]{
-            "Paladin",
+            "Faerie",
             "Samurai",
-            "Barbarian",
-            "Shaman",
-            "Alchemist",
+            "Faerie",
+            "Faerie",
+            "Faerie",
             // "Shaman",
 
             // "Slime",
             // "Mushroom",
-            "Kitsune",
             "Faerie",
-            "Gorgon",
-            "Sphinx",
-            "Qinglong"
+            "Faerie",
+            "Faerie",
+            "Faerie",
+            "Faerie"
             // "Snake"
         };
         Point[] spawnLocations = new Point[]{

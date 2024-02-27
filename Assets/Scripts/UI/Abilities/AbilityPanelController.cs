@@ -81,7 +81,7 @@ public class AbilityPanelController : MonoBehaviour
     public List<AbilityMenuEntry> Show (List<GameObject> abilities, List<string> names, List<bool> performable, List<UnityEngine.Events.UnityAction> functions){
         menuPanel.SetActive(true);
         Clear ();
-        Debug.Log(abilities.Count);
+        // Debug.Log(abilities.Count);
         for (int i = 0; i < names.Count; ++i){
 
             AbilityMenuEntry entry = Dequeue();

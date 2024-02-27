@@ -113,7 +113,7 @@ public class AbilityTargetState : BattleState
 
         //gets all the currently targeted tiles
         List<Tile> centerTiles = areaScript.ShowTargetedTiles(board);
-        if(!centerTiles.Contains(owner.selectedTile) && highlightedTiles.Contains(board.selectedTile))    //this got changed when i made the select indicator change color targeting things out of range
+        if(!centerTiles.Contains(owner.selectedTile) && highlightedTiles.Contains(owner.selectedTile))    //this got changed when i made the select indicator change color targeting things out of range
             centerTiles.Add(owner.selectedTile);
         
         targetedTiles = new List<Tile>();
@@ -121,7 +121,7 @@ public class AbilityTargetState : BattleState
         foreach(Tile centerTile in centerTiles){
             targetedTiles.AddRange(zoneScript.ShowTilesInZone(board, centerTile.position));
         }
-        // Debug.Log("targeting " + targetedTiles.Count);
+        // Debug.Log("targeting tiles " + targetedTiles.Count + " | center tiles " + centerTiles.Count);
         board.TargetTiles(targetedTiles, Board.OverlayColor.ATTACK);
     }
 
@@ -145,17 +145,31 @@ public class AbilityTargetState : BattleState
 		// else
 		// {
 			Point cursorPos = selectPos;
+            // Debug.Log("fire location " + turn.plan.fireLocation);
 			while (cursorPos != turn.plan.fireLocation){
 				if (cursorPos.x < turn.plan.fireLocation.x) cursorPos.x++;
 				if (cursorPos.x > turn.plan.fireLocation.x) cursorPos.x--;
 				if (cursorPos.y < turn.plan.fireLocation.y) cursorPos.y++;
 				if (cursorPos.y > turn.plan.fireLocation.y) cursorPos.y--;
-                Debug.Log("after moving cursor for target " + cursorPos);
+                // Debug.Log("after moving cursor for target " + cursorPos);
+                RefreshSecondaryPanel(board.selectedPoint);
 				SelectTile(cursorPos);
-				yield return new WaitForSeconds(0.25f);
+                TargetTiles();
+				yield return new WaitForSeconds(0.2f);
 			}
 		// }
-		yield return new WaitForSeconds(0.5f);
-		owner.ChangeState<ConfirmAbilityTargetState>();
+				SelectTile(cursorPos);
+                TargetTiles();
+		yield return new WaitForSeconds(0.3f);
+				SelectTile(cursorPos);
+                TargetTiles();
+        if(highlightedTiles.Contains(owner.selectedTile)){
+            areaScript.targets.Add(owner.selectedTile);
+            if(areaScript.targets.Count >= areaScript.numTargets){
+                owner.ChangeState<ConfirmAbilityTargetState>();
+            }
+        }
+        
+		// owner.ChangeState<ConfirmAbilityTargetState>();
 	}
 }

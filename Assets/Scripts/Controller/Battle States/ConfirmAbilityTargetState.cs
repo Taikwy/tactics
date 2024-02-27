@@ -23,7 +23,7 @@ public class ConfirmAbilityTargetState : BattleState
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
         if (turn.targets.Count > 0){
-			if (driver.Current == Drivers.Human)
+			// if (driver.Current == Drivers.Human)
 				forecastPanel.Show();
 			SetTarget(0);
 		}
@@ -58,6 +58,7 @@ public class ConfirmAbilityTargetState : BattleState
     }
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){
+            Debug.Log("firing? " + turn.targets.Count);
             if (turn.targets.Count > 0){
                 owner.ChangeState<PerformAbilityState>();
             }
@@ -164,8 +165,10 @@ public class ConfirmAbilityTargetState : BattleState
 	// }
     IEnumerator ComputerDisplayAbilitySelection (){
 		// owner.battleMessageController.Display(turn.ability.name);
-        Debug.LogError(turn.selectedAbility.name);
-		yield return new WaitForSeconds (2f);
+        Debug.Log(turn.selectedAbility.name);
+        SetTarget(0);
+        // UpdateForecastPanel();
+		yield return new WaitForSeconds (.5f);
 		owner.ChangeState<PerformAbilityState>();
 	}
 }
