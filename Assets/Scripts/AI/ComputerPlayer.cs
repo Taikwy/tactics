@@ -136,7 +136,8 @@ public class ComputerPlayer : MonoBehaviour
 	
 	void RateFireLocation (PlanOfAttack plan, AttackOption option){
 		AbilityArea area = plan.ability.GetComponent<AbilityArea>();
-		List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.pos);
+		// List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.position);
+		List<Tile> tiles = area.ShowTargetedTiles(bc.board);
 		option.areaTargets = tiles;
 		option.isCasterMatch = IsAbilityTargetMatch(plan, actingUnit.tile);
 
@@ -192,9 +193,9 @@ public class ComputerPlayer : MonoBehaviour
 		}
 		
 		AttackOption choice = finalPicks[ UnityEngine.Random.Range(0, finalPicks.Count)  ];
-		plan.fireLocation = choice.target.pos;
+		plan.fireLocation = choice.target.position;
 		plan.attackDirection = choice.direction;
-		plan.moveLocation = choice.bestMoveTile.pos;
+		plan.moveLocation = choice.bestMoveTile.position;
 	}
 
 	void FindNearestFoe (){
