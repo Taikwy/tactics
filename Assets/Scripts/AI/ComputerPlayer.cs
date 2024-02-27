@@ -115,6 +115,11 @@ public class ComputerPlayer : MonoBehaviour
 	// 	PickBestOption(plan, list);
 	// }
 
+	
+	List<Tile> GetMoveOptions (){
+		return actingUnit.GetComponent<Movement>().GetTilesInRange(bc.board);
+	}
+    
 	bool IsAbilityTargetMatch (PlanOfAttack plan, Tile tile){
 		bool isMatch = false;
 		if (plan.target == Targets.Tile)
@@ -128,18 +133,14 @@ public class ComputerPlayer : MonoBehaviour
 		return isMatch;
 	}
 	
-	List<Tile> GetMoveOptions (){
-		return actingUnit.GetComponent<Movement>().GetTilesInRange(bc.board);
-	}
-	
 	void RateFireLocation (PlanOfAttack plan, AttackOption option){
 		AbilityArea area = plan.ability.GetComponent<AbilityArea>();
 		List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.pos);
 		option.areaTargets = tiles;
 		option.isCasterMatch = IsAbilityTargetMatch(plan, actingUnit.tile);
 
-		for (int i = 0; i < tiles.Count; ++i)
-		{
+        //iterates and checks whether the tile is a valid target. if so, add a mark
+		for (int i = 0; i < tiles.Count; ++i){
 			Tile tile = tiles[i];
 			if (actingUnit.tile == tiles[i] || !plan.ability.IsTarget(tile))
 				continue;
