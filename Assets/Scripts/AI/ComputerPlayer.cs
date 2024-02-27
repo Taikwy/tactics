@@ -5,36 +5,37 @@ using System.Collections.Generic;
 public class ComputerPlayer : MonoBehaviour 
 {
 	BattleController bc;
-	Unit actor { get { return bc.turn.actingUnit; }}
-	Alliance alliance { get { return actor.GetComponent<Alliance>(); }}
-	Unit nearestFoe;
+	Unit actingUnit { get { return bc.turn.actingUnit; }}
+	Alliance alliance { get { return actingUnit.GetComponent<Alliance>(); }}
+	Unit nearestFoe, nearestAlly;
 	void Awake ()
 	{
 		bc = GetComponent<BattleController>();
 	}
-	public PlanOfAttack Evaluate (){
-		PlanOfAttack poa = new PlanOfAttack();
-		AttackPattern pattern = actor.GetComponentInChildren<AttackPattern>();
-		if (pattern)
-			pattern.Pick(poa);
-		else
-			DefaultAttackPattern(poa);
-		
-		if (IsPositionIndependent(poa))
-			PlanPositionIndependent(poa);
-		else if (IsDirectionIndependent(poa))
-			PlanDirectionIndependent(poa);
-		else
-			PlanDirectionDependent(poa);
 
-		if (poa.ability == null)
-			MoveTowardOpponent(poa);
+	public PlanOfAttack Evaluate (){
+		PlanOfAttack plan = new PlanOfAttack();
+		AttackPattern pattern = actingUnit.GetComponentInChildren<AttackPattern>();
+		if (pattern)
+			pattern.Pick(plan);
+		else
+			DefaultAttackPattern(plan);
 		
-		return poa;
+		if (IsPositionIndependent(plan))
+			PlanPositionIndependent(plan);
+		else if (IsDirectionIndependent(plan))
+			PlanDirectionIndependent(plan);
+		// else
+		// 	PlanDirectionDependent(plan);
+
+		if (plan.ability == null)
+			MoveTowardOpponent(plan);
+		
+		return plan;
 	}
 	void DefaultAttackPattern (PlanOfAttack plan){
-		// Just get the first "Attack" ability
-		plan.ability = actor.GetComponentInChildren<Ability>();
+		// Just get the first "Attack" ability   THIS NEEDS TO CHANGE TO BASIC ATTACK
+		plan.ability = actingUnit.GetComponentInChildren<Ability>();
 		plan.target = Targets.Foe;
 	}
 
@@ -43,10 +44,10 @@ public class ComputerPlayer : MonoBehaviour
 		return range.positionOriented == false;
 	}
 	
-	// bool IsDirectionIndependent (PlanOfAttack plan){
-	// 	AbilityRange range = plan.ability.GetComponent<AbilityRange>();
-	// 	return !range.directionOriented;
-	// }
+	bool IsDirectionIndependent (PlanOfAttack plan){
+		AbilityRange range = plan.ability.GetComponent<AbilityRange>();
+		return !range.directionOriented;
+	}
 	
 	void PlanPositionIndependent (PlanOfAttack plan){
 		List<Tile> moveOptions = GetMoveOptions();
@@ -55,31 +56,27 @@ public class ComputerPlayer : MonoBehaviour
 	}
 	
 	void PlanDirectionIndependent (PlanOfAttack plan){
-		Tile startTile = actor.tile;
+		Tile startTile = actingUnit.tile;
 		Dictionary<Tile, AttackOption> map = new Dictionary<Tile, AttackOption>();
 		AbilityRange ar = plan.ability.GetComponent<AbilityRange>();
 		List<Tile> moveOptions = GetMoveOptions();
 		
-		for (int i = 0; i < moveOptions.Count; ++i)
-		{
+		for (int i = 0; i < moveOptions.Count; ++i){
 			Tile moveTile = moveOptions[i];
-			actor.Place( moveTile );
+			actingUnit.Place( moveTile );
 			List<Tile> fireOptions = ar.GetTilesInRange(bc.board);
 			
-			for (int j = 0; j < fireOptions.Count; ++j)
-			{
+			for (int j = 0; j < fireOptions.Count; ++j){
 				Tile fireTile = fireOptions[j];
 				AttackOption option = null;
-				if (map.ContainsKey(fireTile))
-				{
+				if (map.ContainsKey(fireTile)){
 					option = map[fireTile];
 				}
-				else
-				{
+				else{
 					option = new AttackOption();
 					map[fireTile] = option;
 					option.target = fireTile;
-					option.direction = actor.dir;
+					option.direction = actingUnit.dir;
 					RateFireLocation(plan, option);
 				}
 
@@ -87,36 +84,36 @@ public class ComputerPlayer : MonoBehaviour
 			}
 		}
 		
-		actor.Place(startTile);
+		actingUnit.Place(startTile);
 		List<AttackOption> list = new List<AttackOption>(map.Values);
 		PickBestOption(plan, list);
 	}
 	
-	void PlanDirectionDependent (PlanOfAttack plan){
-		Tile startTile = actor.tile;
-		Directions startDirection = actor.dir;
-		List<AttackOption> list = new List<AttackOption>();
-		List<Tile> moveOptions = GetMoveOptions();
+	// void PlanDirectionDependent (PlanOfAttack plan){
+	// 	Tile startTile = actingUnit.tile;
+	// 	Directions startDirection = actingUnit.dir;
+	// 	List<AttackOption> list = new List<AttackOption>();
+	// 	List<Tile> moveOptions = GetMoveOptions();
 		
-		for (int i = 0; i < moveOptions.Count; ++i){
-			Tile moveTile = moveOptions[i];
-			actor.Place( moveTile );
+	// 	for (int i = 0; i < moveOptions.Count; ++i){
+	// 		Tile moveTile = moveOptions[i];
+	// 		actingUnit.Place( moveTile );
 			
-			for (int j = 0; j < 4; ++j){
-				actor.dir = (Directions)j;
-				AttackOption ao = new AttackOption();
-				ao.target = moveTile;
-				ao.direction = actor.dir;
-				RateFireLocation(plan, ao);
-				ao.AddMoveTarget(moveTile);
-				list.Add(ao);
-			}
-		}
+	// 		for (int j = 0; j < 4; ++j){
+	// 			actingUnit.dir = (Directions)j;
+	// 			AttackOption ao = new AttackOption();
+	// 			ao.target = moveTile;
+	// 			ao.direction = actingUnit.dir;
+	// 			RateFireLocation(plan, ao);
+	// 			ao.AddMoveTarget(moveTile);
+	// 			list.Add(ao);
+	// 		}
+	// 	}
 		
-		actor.Place(startTile);
-		actor.dir = startDirection;
-		PickBestOption(plan, list);
-	}
+	// 	actingUnit.Place(startTile);
+	// 	actingUnit.dir = startDirection;
+	// 	PickBestOption(plan, list);
+	// }
 
 	bool IsAbilityTargetMatch (PlanOfAttack plan, Tile tile){
 		bool isMatch = false;
@@ -132,19 +129,19 @@ public class ComputerPlayer : MonoBehaviour
 	}
 	
 	List<Tile> GetMoveOptions (){
-		return actor.GetComponent<Movement>().GetTilesInRange(bc.board);
+		return actingUnit.GetComponent<Movement>().GetTilesInRange(bc.board);
 	}
 	
 	void RateFireLocation (PlanOfAttack plan, AttackOption option){
 		AbilityArea area = plan.ability.GetComponent<AbilityArea>();
 		List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.pos);
 		option.areaTargets = tiles;
-		option.isCasterMatch = IsAbilityTargetMatch(plan, actor.tile);
+		option.isCasterMatch = IsAbilityTargetMatch(plan, actingUnit.tile);
 
 		for (int i = 0; i < tiles.Count; ++i)
 		{
 			Tile tile = tiles[i];
-			if (actor.tile == tiles[i] || !plan.ability.IsTarget(tile))
+			if (actingUnit.tile == tiles[i] || !plan.ability.IsTarget(tile))
 				continue;
 			
 			bool isMatch = IsAbilityTargetMatch(plan, tile);
@@ -158,7 +155,7 @@ public class ComputerPlayer : MonoBehaviour
 		for (int i = 0; i < list.Count; ++i)
 		{
 			AttackOption option = list[i];
-			int score = option.GetScore(actor, plan.ability);
+			int score = option.GetScore(actingUnit, plan.ability);
 			if (score > bestScore)
 			{
 				bestScore = score;
@@ -201,7 +198,7 @@ public class ComputerPlayer : MonoBehaviour
 
 	void FindNearestFoe (){
 		nearestFoe = null;
-		bc.board.Search(actor.tile, delegate(Tile arg1, Tile arg2) {
+		bc.board.Search(actingUnit.tile, delegate(Tile arg1, Tile arg2) {
 			if (nearestFoe == null && arg2.content != null)
 			{
 				Alliance other = arg2.content.GetComponentInChildren<Alliance>();
@@ -234,7 +231,7 @@ public class ComputerPlayer : MonoBehaviour
 			}
 		}
 
-		poa.moveLocation = actor.tile.position;
+		poa.moveLocation = actingUnit.tile.position;
 	}
 
 	// public Directions DetermineEndFacingDirection (){
