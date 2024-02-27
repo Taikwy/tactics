@@ -154,40 +154,39 @@ public class ComputerPlayer : MonoBehaviour
 	void PickBestOption (PlanOfAttack plan, List<AttackOption> list){
 		int bestScore = 1;
 		List<AttackOption> bestOptions = new List<AttackOption>();
-		for (int i = 0; i < list.Count; ++i)
-		{
+
+
+		for (int i = 0; i < list.Count; ++i){
 			AttackOption option = list[i];
 			int score = option.GetScore(actingUnit, plan.ability);
-			if (score > bestScore)
-			{
+			if (score > bestScore){
 				bestScore = score;
 				bestOptions.Clear();
 				bestOptions.Add(option);
 			}
-			else if (score == bestScore)
-			{
+			else if (score == bestScore){
 				bestOptions.Add(option);
 			}
 		}
 
+        //if all of the options were ass and detrimental, don't perform any ability
 		if (bestOptions.Count == 0){
 			plan.ability = null; // Clear ability as a sign not to perform it
 			return;
 		}
 
+        //THIS SECTION I WILL HAVE TO UPDATE THE MOST
 		List<AttackOption> finalPicks = new List<AttackOption>();
 		bestScore = 0;
 		for (int i = 0; i < bestOptions.Count; ++i){
 			AttackOption option = bestOptions[i];
 			int score = option.bestAngleBasedScore;
-			if (score > bestScore)
-			{
+			if (score > bestScore){
 				bestScore = score;
 				finalPicks.Clear();
 				finalPicks.Add(option);
 			}
-			else if (score == bestScore)
-			{
+			else if (score == bestScore){
 				finalPicks.Add(option);
 			}
 		}
@@ -201,15 +200,13 @@ public class ComputerPlayer : MonoBehaviour
 	void FindNearestFoe (){
 		nearestFoe = null;
 		bc.board.Search(actingUnit.tile, delegate(Tile arg1, Tile arg2) {
-			if (nearestFoe == null && arg2.content != null)
-			{
+			if (nearestFoe == null && arg2.content != null){
 				Alliance other = arg2.content.GetComponentInChildren<Alliance>();
 				if (other != null && alliance.IsMatch(other, Targets.Foe))
 				{
 					Unit unit = other.GetComponent<Unit>();
 					Stats stats = unit.GetComponent<Stats>();
-					if (stats[StatTypes.HP] > 0)
-					{
+					if (stats[StatTypes.HP] > 0){
 						nearestFoe = unit;
 						return true;
 					}
@@ -218,12 +215,47 @@ public class ComputerPlayer : MonoBehaviour
 			return nearestFoe == null;
 		});
 	}
+    //just copied the findnearestfoe code to find the nearest ally instead
+    void FindNearestAlly (){
+		nearestAlly = null;
+		bc.board.Search(actingUnit.tile, delegate(Tile arg1, Tile arg2) {
+			if (nearestAlly == null && arg2.content != null){
+				Alliance other = arg2.content.GetComponentInChildren<Alliance>();
+				if (other != null && alliance.IsMatch(other, Targets.Ally)){
+					Unit unit = other.GetComponent<Unit>();
+					Stats stats = unit.GetComponent<Stats>();
+					if (stats[StatTypes.HP] > 0){
+						nearestAlly = unit;
+						return true;
+					}
+				}
+			}
+			return nearestAlly == null;
+		});
+	}
 
 	void MoveTowardOpponent (PlanOfAttack poa){
 		List<Tile> moveOptions = GetMoveOptions();
 		FindNearestFoe();
 		if (nearestFoe != null){
 			Tile toCheck = nearestFoe.tile;
+			while (toCheck != null){
+				if (moveOptions.Contains(toCheck)){
+					poa.moveLocation = toCheck.position;
+					return;
+				}
+				toCheck = toCheck.prev;
+			}
+		}
+
+		poa.moveLocation = actingUnit.tile.position;
+	}
+    //copied movetowardopponent to move towards an ally instead
+    void MoveTowardAlly (PlanOfAttack poa){
+		List<Tile> moveOptions = GetMoveOptions();
+		FindNearestFoe();
+		if (nearestAlly != null){
+			Tile toCheck = nearestAlly.tile;
 			while (toCheck != null){
 				if (moveOptions.Contains(toCheck)){
 					poa.moveLocation = toCheck.position;
