@@ -120,6 +120,7 @@ public class ComputerPlayer : MonoBehaviour
 		return actingUnit.GetComponent<Movement>().GetTilesInRange(bc.board);
 	}
     
+    //simply checks whether the tile being targeted is a match
 	bool IsAbilityTargetMatch (PlanOfAttack plan, Tile tile){
 		bool isMatch = false;
 		if (plan.target == Targets.Tile)
