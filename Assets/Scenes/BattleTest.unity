@@ -3321,7 +3321,7 @@ MonoBehaviour:
   turnOrderController: {fileID: 0}
   guiController: {fileID: 439395760}
   timeline: {fileID: 1074842531}
-  cpu: {fileID: 0}
+  cpu: {fileID: 431054554}
 --- !u!4 &431054551
 Transform:
   m_ObjectHideFlags: 0
@@ -3961,6 +3961,7 @@ MonoBehaviour:
   healColor: {r: 0, g: 1, b: 0.15686275, a: 1}
   buffColor: {r: 0, g: 1, b: 0.9725491, a: 1}
   debuffColor: {r: 1, g: 0, b: 0.48627454, a: 1}
+  humanDriver: 1
   selectedPoint:
     x: 0
     y: 0
