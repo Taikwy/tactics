@@ -74,14 +74,14 @@ public class Tile : MonoBehaviour
     }
 
     //curerenlty unused
-    public void Hover(){
-        highlightRenderer.enabled = true;
-        highlightRenderer.sprite = highlightSprite;
-        highlightRenderer.color = new Color(1,1,1, 0.5f);
-    }    public void Unhover(){
-        highlightRenderer.enabled = false;
-        highlightRenderer.color = Color.clear;
-    }
+    // public void Hover(){
+    //     highlightRenderer.enabled = true;
+    //     highlightRenderer.sprite = highlightSprite;
+    //     highlightRenderer.color = new Color(1,1,1, 0.5f);
+    // }    public void Unhover(){
+    //     highlightRenderer.enabled = false;
+    //     highlightRenderer.color = Color.clear;
+    // }
 
     //standard flat color highlight for showing ranges
     public void Highlight(Color color){

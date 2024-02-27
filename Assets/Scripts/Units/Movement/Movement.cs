@@ -43,10 +43,10 @@ public abstract class Movement : MonoBehaviour
                 tiles.RemoveAt(i);
     }
     public virtual List<Tile> FilterAllies (List<Tile> tiles){
-        Debug.Log("allies " + tiles.Count);
+        // Debug.Log("allies " + tiles.Count);
         List<Tile> allies = new List<Tile>();
         for (int i = tiles.Count - 1; i >= 0; --i){
-            Debug.Log(tiles[i].content);
+            // Debug.Log(tiles[i].content);
             if (tiles[i].content != null){
                 if(tiles[i].content.GetComponent<Unit>()){
                     if(tiles[i].content.GetComponent<Unit>().ALLIANCE == GetComponent<Unit>().ALLIANCE){

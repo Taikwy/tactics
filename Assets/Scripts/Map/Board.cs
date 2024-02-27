@@ -27,6 +27,7 @@ public class Board : MonoBehaviour
     [SerializeField] Color moveColor, passColor, attackColor, healColor, buffColor, debuffColor;
     // [SerializeField] Color selectColor = new Color(0, 1, 1, 1);
     public Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile>();
+    public bool humanDriver = true;
 
     public Point selectedPoint;
     public Tile selectedTile{
@@ -90,6 +91,10 @@ public class Board : MonoBehaviour
 
 
     public void Update(){
+        if(humanDriver)
+            UpdateSelectedPoint();
+    }
+    void UpdateSelectedPoint(){
         foreach(KeyValuePair<Point, Tile> tile in tiles){
             if(tile.Value.hovered){
                 selectedPoint = tile.Value.position;

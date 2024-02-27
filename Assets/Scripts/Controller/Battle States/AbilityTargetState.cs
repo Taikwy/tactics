@@ -31,10 +31,14 @@ public class AbilityTargetState : BattleState
         panelController.ShowSecondary(turn.actingUnit.gameObject);
         if (rangeScript.directionOriented)
             RefreshSecondaryPanel(selectPos);
-        if (driver.Current == Drivers.Computer)
+        if (driver.Current == Drivers.Computer){
 			StartCoroutine(ComputerHighlightTarget());
-        
-        updating = true;
+            updating = false;
+        }
+        else{
+            board.humanDriver = true;
+            updating = true;
+        }
     }
     public override void Exit (){
         updating = false;
@@ -90,23 +94,16 @@ public class AbilityTargetState : BattleState
     }
 
     //unused rn
-    void ChangeDirection (Point p){
-        Directions dir = p.GetDirection();
-        if (turn.actingUnit.dir != dir){
-            board.UnhighlightTiles(highlightedTiles);
-            turn.actingUnit.dir = dir;
-            turn.actingUnit.Match();
-            // HighlightTiles ();
-            highlightedTiles = rangeScript.GetTilesInRange(board);
-            board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
-        }
-    }
-    
-    // void HighlightTiles (){
-    //     highlightedTiles = rangeScript.GetTilesInRange(board);
-    //     // board.SelectTiles(tiles);
-    //     // board.HighlightAttackTiles(highlightedTiles);
-    //     board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
+    // void ChangeDirection (Point p){
+    //     Directions dir = p.GetDirection();
+    //     if (turn.actingUnit.dir != dir){
+    //         board.UnhighlightTiles(highlightedTiles);
+    //         turn.actingUnit.dir = dir;
+    //         turn.actingUnit.Match();
+    //         // HighlightTiles ();
+    //         highlightedTiles = rangeScript.GetTilesInRange(board);
+    //         board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
+    //     }
     // }
 
     void TargetTiles (){
@@ -153,6 +150,7 @@ public class AbilityTargetState : BattleState
 				if (cursorPos.x > turn.plan.fireLocation.x) cursorPos.x--;
 				if (cursorPos.y < turn.plan.fireLocation.y) cursorPos.y++;
 				if (cursorPos.y > turn.plan.fireLocation.y) cursorPos.y--;
+                Debug.Log("after moving cursor for target " + cursorPos);
 				SelectTile(cursorPos);
 				yield return new WaitForSeconds(0.25f);
 			}

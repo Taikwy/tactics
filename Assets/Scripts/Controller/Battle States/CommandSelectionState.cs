@@ -13,8 +13,12 @@ public class CommandSelectionState : BaseAbilityMenuState
         panelController.ShowStatus(turn.actingUnit.gameObject);
         SelectTile(turn.actingUnit.tile.position);
 
-        if (driver.Current == Drivers.Computer)
+        if (driver.Current == Drivers.Computer){
+            board.humanDriver = false;
 			StartCoroutine( ComputerTurn() );
+        }
+        else    
+            board.humanDriver = true;
 
         updating = true;
     }

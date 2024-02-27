@@ -27,14 +27,20 @@ public class MoveTargetState : BattleState
         board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
         board.HighlightTiles(allyTiles, Board.OverlayColor.PASS);
         board.HighlightTiles(enemyTiles, Board.OverlayColor.ATTACK);
-        Debug.Log(allyTiles.Count);
-        Debug.Log(enemyTiles.Count);
+        // Debug.Log(allyTiles.Count);
+        // Debug.Log(enemyTiles.Count);
         RefreshPrimaryPanel(selectPos);
 
-        if (driver.Current == Drivers.Computer)
+        if (driver.Current == Drivers.Computer){
+            board.humanDriver = false;
+            updating = false;
 			StartCoroutine(ComputerHighlightMoveTarget());
+        }
+        else{
+            board.humanDriver = true;
+            updating = true;
+        }
 
-        updating = true;
     }
     
     public override void Exit () {
@@ -107,14 +113,14 @@ public class MoveTargetState : BattleState
 
     IEnumerator ComputerHighlightMoveTarget (){
 		Point cursorPos = selectPos;
-		while (cursorPos != turn.plan.moveLocation)
-		{
+		while (cursorPos != turn.plan.moveLocation){
 			if (cursorPos.x < turn.plan.moveLocation.x) cursorPos.x++;
-			if (cursorPos.x > turn.plan.moveLocation.x) cursorPos.x--;
-			if (cursorPos.y < turn.plan.moveLocation.y) cursorPos.y++;
-			if (cursorPos.y > turn.plan.moveLocation.y) cursorPos.y--;
+			else if (cursorPos.x > turn.plan.moveLocation.x) cursorPos.x--;
+			else if (cursorPos.y < turn.plan.moveLocation.y) cursorPos.y++;
+			else if (cursorPos.y > turn.plan.moveLocation.y) cursorPos.y--;
+            // Debug.Log("after moving cursor " + cursorPos);
 			SelectTile(cursorPos);
-			yield return new WaitForSeconds(0.25f);
+			yield return new WaitForSeconds(0.5f);
 		}
 		yield return new WaitForSeconds(0.5f);
 		owner.ChangeState<MoveSequenceState>();

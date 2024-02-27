@@ -28,12 +28,12 @@ public class InputController : MonoBehaviour
     {
         if(guiController.showingGameOver || guiController.showingPause)
             return;
-        int x = _hor.Update();
-        int y = _ver.Update();
-        if (x != 0 || y != 0){
-            if (moveEvent != null)
-                moveEvent(this, new InfoEventArgs<Point>(new Point(x, y)));
-        }
+        // int x = _hor.Update();
+        // int y = _ver.Update();
+        // if (x != 0 || y != 0){
+        //     if (moveEvent != null)
+        //         moveEvent(this, new InfoEventArgs<Point>(new Point(x, y)));
+        // }
 
         // Debug.Log(Input.GetAxisRaw("Horizontal"));
         // Debug.Log(Input.GetAxisRaw("Vertical"));

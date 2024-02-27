@@ -22,14 +22,17 @@ public class ConfirmAbilityTargetState : BattleState
         FindTargets();
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
-        if (turn.targets.Count > 0)
-		{
+        if (turn.targets.Count > 0){
 			if (driver.Current == Drivers.Human)
 				forecastPanel.Show();
 			SetTarget(0);
 		}
-		if (driver.Current == Drivers.Computer)
+		if (driver.Current == Drivers.Computer){
+            board.humanDriver = false;
 			StartCoroutine(ComputerDisplayAbilitySelection());
+        }
+        else
+            board.humanDriver = true;
     }
 
     public override void Exit (){
