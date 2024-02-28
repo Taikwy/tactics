@@ -33,6 +33,9 @@ public class Unit : MonoBehaviour
         get { return allianceScript.type; }
         // set { statsScript[StatTypes.XP] = value; }
     }
+    public Movement movement{
+        get{ return GetComponent<Movement>();}
+    }
     public void Init(Tile t){
         Place(t);
         Match();

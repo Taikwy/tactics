@@ -23,6 +23,7 @@ public class AttackOption
 	List<Mark> marks = new List<Mark>();
 	List<Tile> moveTargets = new List<Tile>();
 	public void AddMoveTarget (Tile tile){
+        // Debug.Log("adding move targets");
 		// Dont allow moving to a tile that would negatively affect the caster
 		if (!isCasterMatch && areaTargets.Contains(tile))
 			return;
@@ -30,6 +31,7 @@ public class AttackOption
 	}
 
 	public void AddMark (Tile tile, bool isMatch){
+            // Debug.Log(tile + " adding mark " + isMatch);
 		marks.Add (new Mark(tile, isMatch));
 	}
 
@@ -50,6 +52,7 @@ public class AttackOption
 		if (isCasterMatch && areaTargets.Contains(bestMoveTile))
 			score++;
 
+        // Debug.Log(bestMoveTile + " getting score " + score + " | marks " + marks.Count);
 		return score;
 	}
 

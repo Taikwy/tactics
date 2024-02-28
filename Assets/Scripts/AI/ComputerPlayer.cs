@@ -14,12 +14,14 @@ public class ComputerPlayer : MonoBehaviour
 	}
 
 	public PlanOfAttack Evaluate (){
+        print("evaluating");
 		PlanOfAttack plan = new PlanOfAttack();
 		AttackPattern pattern = actingUnit.GetComponentInChildren<AttackPattern>();
+        print("pattern? " + pattern);
 		if (pattern)
 			pattern.Pick(plan);
 		else
-			DefaultAttackPattern(plan);
+			BasicAttackPattern(plan);
 		
 		if (IsPositionIndependent(plan))
 			PlanPositionIndependent(plan);
@@ -28,44 +30,60 @@ public class ComputerPlayer : MonoBehaviour
 		// else
 		// 	PlanDirectionDependent(plan);
 
-		if (plan.ability == null)
+		if (plan.ability == null){
+            print("no ability selected, just gonna move towards opponent");
 			MoveTowardOpponent(plan);
+
+        }
 		
 		return plan;
 	}
-	void DefaultAttackPattern (PlanOfAttack plan){
-		// Just get the first "Attack" ability   THIS NEEDS TO CHANGE TO BASIC ATTACK
+    //always defaults to getting the basic attack
+    void BasicAttackPattern (PlanOfAttack plan){
+        print("getting basic attack");
 		plan.ability = actingUnit.GetComponentInChildren<Ability>();
 		plan.target = Targets.Foe;
 	}
+	// void DefaultAttackPattern (PlanOfAttack plan){
+	// 	// Just get the first "Attack" ability 
+	// 	plan.ability = actingUnit.GetComponentInChildren<Ability>();
+	// 	plan.target = Targets.Foe;
+	// }
+
 
 	bool IsPositionIndependent (PlanOfAttack plan){
+        // print("is position independent???");
 		AbilityRange range = plan.ability.GetComponent<AbilityRange>();
 		return range.positionOriented == false;
 	}
 	
 	bool IsDirectionIndependent (PlanOfAttack plan){
+        // print("is direction independent???");
 		AbilityRange range = plan.ability.GetComponent<AbilityRange>();
 		return !range.directionOriented;
 	}
 	
 	void PlanPositionIndependent (PlanOfAttack plan){
+        print("planning position independent");
 		List<Tile> moveOptions = GetMoveOptions();
 		Tile tile = moveOptions[Random.Range(0, moveOptions.Count)];
 		plan.moveLocation = plan.fireLocation = tile.position;
 	}
 	
 	void PlanDirectionIndependent (PlanOfAttack plan){
+        print("planning direction independent");
 		Tile startTile = actingUnit.tile;
 		Dictionary<Tile, AttackOption> map = new Dictionary<Tile, AttackOption>();
 		AbilityRange ar = plan.ability.GetComponent<AbilityRange>();
 		List<Tile> moveOptions = GetMoveOptions();
 		
+        // print("moveoptions " + moveOptions.Count);
 		for (int i = 0; i < moveOptions.Count; ++i){
 			Tile moveTile = moveOptions[i];
 			actingUnit.Place( moveTile );
 			List<Tile> fireOptions = ar.GetTilesInRange(bc.board);
 			
+        // print("fireoptions " + fireOptions.Count);
 			for (int j = 0; j < fireOptions.Count; ++j){
 				Tile fireTile = fireOptions[j];
 				AttackOption option = null;
@@ -83,9 +101,9 @@ public class ComputerPlayer : MonoBehaviour
 				option.AddMoveTarget(moveTile);
 			}
 		}
-		
 		actingUnit.Place(startTile);
 		List<AttackOption> list = new List<AttackOption>(map.Values);
+		// print("list size " + list.Count);
 		PickBestOption(plan, list);
 	}
 	
@@ -114,11 +132,6 @@ public class ComputerPlayer : MonoBehaviour
 	// 	actingUnit.dir = startDirection;
 	// 	PickBestOption(plan, list);
 	// }
-
-	
-	List<Tile> GetMoveOptions (){
-		return actingUnit.GetComponent<Movement>().GetTilesInRange(bc.board);
-	}
     
     //simply checks whether the tile being targeted is a match
 	bool IsAbilityTargetMatch (PlanOfAttack plan, Tile tile){
@@ -135,15 +148,23 @@ public class ComputerPlayer : MonoBehaviour
 	}
 	
 	void RateFireLocation (PlanOfAttack plan, AttackOption option){
+        // print("rating firing locations");
 		AbilityArea area = plan.ability.GetComponent<AbilityArea>();
+		AbilityRange range = plan.ability.GetComponent<AbilityRange>();
 		// List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.position);
+        List<Tile> tilesInRange = range.GetTilesInRange(bc.board);
+        foreach(Tile tile in tilesInRange){
+            area.targets.Add(tile);
+        }
 		List<Tile> tiles = area.ShowTargetedTiles(bc.board);
+        // Debug.Log(plan.ability + " | " + area + " | RATING FIRE LOCATION AND ADDING TILES " + tilesInRange.Count);
 		option.areaTargets = tiles;
 		option.isCasterMatch = IsAbilityTargetMatch(plan, actingUnit.tile);
 
         //iterates and checks whether the tile is a valid target. if so, add a mark
 		for (int i = 0; i < tiles.Count; ++i){
 			Tile tile = tiles[i];
+            // print(tile + " | actingunity " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
 			if (actingUnit.tile == tiles[i] || !plan.ability.IsTarget(tile))
 				continue;
 			
@@ -153,6 +174,7 @@ public class ComputerPlayer : MonoBehaviour
 	}
 	
 	void PickBestOption (PlanOfAttack plan, List<AttackOption> list){
+        print("picking best option");
 		int bestScore = 1;
 		List<AttackOption> bestOptions = new List<AttackOption>();
 
@@ -160,6 +182,7 @@ public class ComputerPlayer : MonoBehaviour
 		for (int i = 0; i < list.Count; ++i){
 			AttackOption option = list[i];
 			int score = option.GetScore(actingUnit, plan.ability);
+            // print(option + " score " + score);
 			if (score > bestScore){
 				bestScore = score;
 				bestOptions.Clear();
@@ -172,6 +195,7 @@ public class ComputerPlayer : MonoBehaviour
 
         //if all of the options were ass and detrimental, don't perform any ability
 		if (bestOptions.Count == 0){
+            print("all options were garbage");
 			plan.ability = null; // Clear ability as a sign not to perform it
 			return;
 		}
@@ -198,56 +222,30 @@ public class ComputerPlayer : MonoBehaviour
 		plan.moveLocation = choice.bestMoveTile.position;
 	}
 
-	void FindNearestFoe (){
-		nearestFoe = null;
-		bc.board.Search(actingUnit.tile, delegate(Tile arg1, Tile arg2) {
-			if (nearestFoe == null && arg2.content != null){
-				Alliance other = arg2.content.GetComponentInChildren<Alliance>();
-				if (other != null && alliance.IsMatch(other, Targets.Foe))
-				{
-					Unit unit = other.GetComponent<Unit>();
-					Stats stats = unit.GetComponent<Stats>();
-					if (stats[StatTypes.HP] > 0){
-						nearestFoe = unit;
-						return true;
-					}
-				}
-			}
-			return nearestFoe == null;
-		});
-	}
-    //just copied the findnearestfoe code to find the nearest ally instead
-    void FindNearestAlly (){
-		nearestAlly = null;
-		bc.board.Search(actingUnit.tile, delegate(Tile arg1, Tile arg2) {
-			if (nearestAlly == null && arg2.content != null){
-				Alliance other = arg2.content.GetComponentInChildren<Alliance>();
-				if (other != null && alliance.IsMatch(other, Targets.Ally)){
-					Unit unit = other.GetComponent<Unit>();
-					Stats stats = unit.GetComponent<Stats>();
-					if (stats[StatTypes.HP] > 0){
-						nearestAlly = unit;
-						return true;
-					}
-				}
-			}
-			return nearestAlly == null;
-		});
-	}
 
+	List<Tile> GetMoveOptions (){
+        // print("getting move options");
+		return actingUnit.GetComponent<Movement>().GetTilesInRange(bc.board);
+	}
 	void MoveTowardOpponent (PlanOfAttack poa){
+        // print("moving towards opponent");
 		List<Tile> moveOptions = GetMoveOptions();
+        // print("move options " + moveOptions.Count);
 		FindNearestFoe();
+        // print("ffound foe - " + nearestFoe);
 		if (nearestFoe != null){
 			Tile toCheck = nearestFoe.tile;
+            // print("ffound foe's tile - " + toCheck);
 			while (toCheck != null){
 				if (moveOptions.Contains(toCheck)){
 					poa.moveLocation = toCheck.position;
 					return;
 				}
+                // print("riiperoni " + toCheck.prev);
 				toCheck = toCheck.prev;
 			}
 		}
+        // print("reached the end??");
 
 		poa.moveLocation = actingUnit.tile.position;
 	}
@@ -269,6 +267,56 @@ public class ComputerPlayer : MonoBehaviour
 		poa.moveLocation = actingUnit.tile.position;
 	}
 
+	void FindNearestFoe (){
+        // print("finding nearest foe");
+		nearestFoe = null;
+        bool walker = false;
+        //checks if acting unit is a walker
+        if(actingUnit.movement.GetType() == typeof(WalkMovement))
+            walker = true;
+        // print("unit is walker??? " + walker);
+
+		bc.board.Search(actingUnit.tile, delegate(Tile arg1, Tile arg2) {
+            //makes sure that the tile being checked is walkable FOR WALKERS
+            if(walker && (!arg2.isWalkable || !arg1.isWalkable))
+                return false;
+            //checks that there isn't currently a nearest foe and that the tile we're checking has content
+            if (nearestFoe == null && arg2.content != null){
+                Alliance other = arg2.content.GetComponentInChildren<Alliance>();
+                //checks that the content in the tile is a unit and is a foe
+                if (other != null && alliance.IsMatch(other, Targets.Foe)){
+                    Unit unit = other.GetComponent<Unit>();
+                    Stats stats = unit.GetComponent<Stats>();
+                    if (stats[StatTypes.HP] > 0){
+                        nearestFoe = unit;
+                        return true;
+                    }
+                }
+            }
+                
+
+            return nearestFoe == null;
+        }
+        );
+	}
+    //just copied the findnearestfoe code to find the nearest ally instead
+    void FindNearestAlly (){
+		nearestAlly = null;
+		bc.board.Search(actingUnit.tile, delegate(Tile arg1, Tile arg2) {
+			if (nearestAlly == null && arg2.content != null){
+				Alliance other = arg2.content.GetComponentInChildren<Alliance>();
+				if (other != null && alliance.IsMatch(other, Targets.Ally)){
+					Unit unit = other.GetComponent<Unit>();
+					Stats stats = unit.GetComponent<Stats>();
+					if (stats[StatTypes.HP] > 0){
+						nearestAlly = unit;
+						return true;
+					}
+				}
+			}
+			return nearestAlly == null;
+		});
+	}
 	// public Directions DetermineEndFacingDirection (){
 	// 	Directions dir = (Directions)UnityEngine.Random.Range(0, 4);
 	// 	FindNearestFoe();
