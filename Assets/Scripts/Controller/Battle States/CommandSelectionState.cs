@@ -10,15 +10,17 @@ public class CommandSelectionState : BaseAbilityMenuState
     public override void Enter (){
         // Debug.Log("enter command selection  state");
         base.Enter ();
-        panelController.ShowStatus(turn.actingUnit.gameObject);
         SelectTile(turn.actingUnit.tile.position);
 
         if (driver.Current == Drivers.Computer){
+            panelController.ShowPrimary(turn.actingUnit.gameObject);
             board.humanDriver = false;
 			StartCoroutine( ComputerTurn() );
         }
-        else    
+        else{
+            panelController.ShowStatus(turn.actingUnit.gameObject);
             board.humanDriver = true;
+        }
 
         updating = true;
     }
@@ -27,6 +29,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         updating = false;
 
         base.Exit ();
+        panelController.HidePrimary();
         panelController.HideStatus();
     }
     protected void Update(){

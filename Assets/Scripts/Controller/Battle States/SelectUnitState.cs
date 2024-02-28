@@ -36,6 +36,6 @@ public class SelectUnitState : BattleState
 			owner.ChangeState<EndBattleState>();
         }
         else
-        owner.ChangeState<CommandSelectionState>();
+            owner.ChangeState<CommandSelectionState>();
     }
 }

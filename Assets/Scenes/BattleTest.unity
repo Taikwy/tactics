@@ -3312,6 +3312,7 @@ MonoBehaviour:
   selectPos:
     x: 0
     y: 0
+  levelRecipe: {fileID: 11400000, guid: 65c154e39fc18224f8333f4766a4b7cc, type: 2}
   currentUnit: {fileID: 0}
   units: []
   abilityMenuPanelController: {fileID: 0}

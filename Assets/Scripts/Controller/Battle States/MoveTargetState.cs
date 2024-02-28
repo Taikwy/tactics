@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveTargetState : BattleState
 {
     
-    List<Tile> tiles, pathTiles, allyTiles, enemyTiles = new List<Tile>();
+    List<Tile> tiles, pathTiles, allyTiles, foeTiles = new List<Tile>();
     Movement moveScript;
     bool updating = false;
     
@@ -16,7 +16,7 @@ public class MoveTargetState : BattleState
         // tiles = moveScript.GetTilesInRange(board);
         tiles = moveScript.GetAllTilesInRange(board);
         allyTiles = moveScript.FilterAllies(tiles);
-        enemyTiles = moveScript.FilterEnemies(tiles);
+        foeTiles = moveScript.FilterFoes(tiles);
 
         
         moveScript.FilterOccupied(tiles);
@@ -26,7 +26,7 @@ public class MoveTargetState : BattleState
         // board.HighlightMoveTiles(tiles);
         board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
         board.HighlightTiles(allyTiles, Board.OverlayColor.PASS);
-        board.HighlightTiles(enemyTiles, Board.OverlayColor.ATTACK);
+        board.HighlightTiles(foeTiles, Board.OverlayColor.ATTACK);
         // Debug.Log(allyTiles.Count);
         // Debug.Log(enemyTiles.Count);
         RefreshPrimaryPanel(selectPos);
@@ -50,7 +50,7 @@ public class MoveTargetState : BattleState
         base.Exit ();
         board.UnhighlightTiles(tiles);
         board.UnhighlightTiles(allyTiles);
-        board.UnhighlightTiles(enemyTiles);
+        board.UnhighlightTiles(foeTiles);
         board.UntargetTiles(pathTiles);
         tiles = null;
         // statPanelController.HidePrimary();
@@ -122,9 +122,9 @@ public class MoveTargetState : BattleState
 			SelectTile(cursorPos);
             RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
             TargetTiles();       
-			yield return new WaitForSeconds(0.15f);
+			yield return new WaitForSeconds(0.1f);
 		}
-		yield return new WaitForSeconds(0.3f);
+		yield return new WaitForSeconds(0.15f);
 		owner.ChangeState<MoveSequenceState>();
 	}
 }

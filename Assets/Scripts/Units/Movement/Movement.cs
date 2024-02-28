@@ -56,17 +56,17 @@ public abstract class Movement : MonoBehaviour
             }}
         return allies;
     }
-    public virtual List<Tile> FilterEnemies (List<Tile> tiles){
-        List<Tile> enemies = new List<Tile>();
+    public virtual List<Tile> FilterFoes (List<Tile> tiles){
+        List<Tile> foes = new List<Tile>();
         for (int i = tiles.Count - 1; i >= 0; --i)
             if (tiles[i].content != null){
                 if(tiles[i].content.GetComponent<Unit>()){
                     if(tiles[i].content.GetComponent<Unit>().ALLIANCE != GetComponent<Unit>().ALLIANCE){
-                        enemies.Add(tiles[i]);
+                        foes.Add(tiles[i]);
                     }
                 }
             }
-        return enemies;
+        return foes;
     }
 
     public virtual IEnumerator Move(Tile target)

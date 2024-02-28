@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class ExploreState : BattleState 
 {
+    List<Tile> tiles, allyTiles, foeTiles;
     bool updating = false;
     public override void Enter (){
         base.Enter ();
+        tiles = allyTiles = foeTiles = new List<Tile>();
         RefreshPrimaryPanel(selectPos);
 
         updating = true;
     }
     public override void Exit (){
         updating = false;
+
+        // UnhighlightTiles();
 
         base.Exit ();
         panelController.HidePrimary();
@@ -26,11 +30,34 @@ public class ExploreState : BattleState
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         //exits back to acting unit, or selects the currently targeted unit to show status info
         if(!panelController.showingPrimaryStatus){
+            //left click
             if (e.info == 0){
-                if(board.selectedTile.content == owner.turn.actingUnit.gameObject)
+                
+                UnhighlightTiles();
+                //if current unit, goes back to command selection state
+                if(board.selectedTile.content == owner.turn.actingUnit.gameObject){
                     owner.ChangeState<CommandSelectionState>();
-                else
+                }
+                //if not current unit, shows the unit's info
+                else{
+                    if(board.GetTile(board.selectedPoint).content != null){
+                        Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
+                        if(selectedUnit != null){
+                            Movement moveScript = selectedUnit.movement;
+                            tiles = moveScript.GetAllTilesInRange(board);
+                            allyTiles = moveScript.FilterAllies(tiles);
+                            foeTiles = moveScript.FilterFoes(tiles);
+                            
+                            moveScript.FilterOccupied(tiles);
+                            tiles.Add(board.GetTile(board.selectedPoint));
+
+                            HighlightTiles();
+                            // RefreshPrimaryPanel(selectPos);
+                        }
+                    }
+                    
                     RefreshPrimaryStatusPanel(board.selectedPoint);
+                }
             }
             if (e.info == 1){
                 owner.ChangeState<CommandSelectionState>();
@@ -40,6 +67,7 @@ public class ExploreState : BattleState
         else{
             if (e.info == 1){
                 panelController.HideStatus();
+                UnhighlightTiles();
             }
         }
         
@@ -53,5 +81,19 @@ public class ExploreState : BattleState
             RefreshPrimaryPanel(board.selectedPoint);
             SelectTile(board.selectedPoint);
         }
+    }
+
+    void HighlightTiles(){
+        board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
+        board.HighlightTiles(allyTiles, Board.OverlayColor.PASS);
+        board.HighlightTiles(foeTiles, Board.OverlayColor.ATTACK);
+    }
+    void UnhighlightTiles(){
+        if(tiles.Count > 0)
+            board.UnhighlightTiles(tiles);
+        if(allyTiles.Count > 0)
+            board.UnhighlightTiles(allyTiles);
+        if(foeTiles.Count > 0)
+            board.UnhighlightTiles(foeTiles);
     }
 }
