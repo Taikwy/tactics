@@ -13,6 +13,7 @@ public class BattleController : StateMachine
     public Transform tileSelectionIndicator;
     public Point selectPos;
     public Tile selectedTile { get { return board.GetTile(selectPos); }}
+    [Header("level recipe")]public LevelRecipe levelRecipe;
     [Header("Unit Stuff")]
     public Unit currentUnit;
     public Turn turn = new Turn();
@@ -29,6 +30,7 @@ public class BattleController : StateMachine
     public IEnumerator round;
     public Timeline timeline;
     public ComputerPlayer cpu;
+
     
 
     void Start (){

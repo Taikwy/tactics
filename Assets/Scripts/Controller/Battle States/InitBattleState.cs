@@ -90,31 +90,34 @@ public class InitBattleState : BattleState
         GameObject neutralContainer = new GameObject("Neutrals");
 		neutralContainer.transform.SetParent(unitContainer.transform);
 
-        for (int i = 0; i < unitRecipes.Length; ++i)
-        {
-            // GameObject instance = UnitFactory.Create(unitRecipes[i], Random.Range(1, 11));
-            GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
-            Unit unitScript = instance.GetComponent<Unit>();
-            unitScript.Init(board.GetTile(spawnLocations[i]));
-            // turnOrderController.CalculateAV(unitScript);
+        SpawnUnits(owner.levelRecipe.allyUnitRecipes, owner.levelRecipe.allySpawnLocations, allyContainer);
+        SpawnUnits(owner.levelRecipe.enemyUnitRecipes, owner.levelRecipe.enemySpawnLocations, enemyContainer);
 
-            switch(instance.GetComponent<Alliance>().type){
-                default:
-                    instance.transform.SetParent(unitContainer.transform);
-                    Debug.Log("Unit has no alliance set");
-                    break;
-                case Alliances.Ally:
-                    instance.transform.SetParent(allyContainer.transform);
-                    break;
-                case Alliances.Enemy:
-                    instance.transform.SetParent(enemyContainer.transform);
-                    break;
-                case Alliances.Neutral:
-                    instance.transform.SetParent(neutralContainer.transform);
-                    break;
-            }
-            units.Add(unitScript);
-        }
+        // for (int i = 0; i < unitRecipes.Length; ++i)
+        // {
+        //     // GameObject instance = UnitFactory.Create(unitRecipes[i], Random.Range(1, 11));
+        //     GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
+        //     Unit unitScript = instance.GetComponent<Unit>();
+        //     unitScript.Init(board.GetTile(spawnLocations[i]));
+        //     // turnOrderController.CalculateAV(unitScript);
+
+        //     switch(instance.GetComponent<Alliance>().type){
+        //         default:
+        //             instance.transform.SetParent(unitContainer.transform);
+        //             Debug.Log("Unit has no alliance set");
+        //             break;
+        //         case Alliances.Ally:
+        //             instance.transform.SetParent(allyContainer.transform);
+        //             break;
+        //         case Alliances.Enemy:
+        //             instance.transform.SetParent(enemyContainer.transform);
+        //             break;
+        //         case Alliances.Neutral:
+        //             instance.transform.SetParent(neutralContainer.transform);
+        //             break;
+        //     }
+        //     units.Add(unitScript);
+        // }
         // string result = "Units: ";
         // foreach (var item in units){ result += item.ToString() + ", "; }
         // Debug.Log(result);
@@ -123,6 +126,18 @@ public class InitBattleState : BattleState
         owner.timeline.PopulateTimeline(units);
         
         // SelectTile(units[0].tile.position);                  //this is prob unneeded, since i already select a tile later in select unit state. ig this is jsut for the intiial tile indicator "before" i make a unit take action?
+    }
+
+    void SpawnUnits(string[] unitRecipes, Point[] spawnLocations, GameObject container){
+        for (int i = 0; i < unitRecipes.Length; ++i)
+        {
+            GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
+            Unit unitScript = instance.GetComponent<Unit>();
+            unitScript.Init(board.GetTile(spawnLocations[i]));
+
+            instance.transform.SetParent(container.transform);
+            units.Add(unitScript);
+        }
     }
 
     void AddVictoryCondition (){
