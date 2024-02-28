@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class CameraRig : MonoBehaviour 
 {
-    public float speed = 5f;
+    public float smoothTime = .5f;
+    [Tooltip("How far from the center can the cursor be before the camera starts moving towards it ")]public float cameraLeniency = 2f;
+    Vector2 velocity = Vector2.zero;
     public bool following = false;
     public Transform target;
-    Transform _transform;
+    Transform cameraTransform;
+
     
     void Awake ()
     {
-        _transform = transform;
+        cameraTransform = transform;
     }
     
     void Update ()
     {
         //makes sure there's a target transform and that camera is supposed to be following right now
-        if (target)
-            _transform.position = Vector3.Lerp(_transform.position, target.position, speed * Time.deltaTime);
-            // _transform.position = Vector3.MoveTowards(_transform.position, target.position, 5* speed * Time.deltaTime);
+        if(target){
+            Vector2 targetPosition = target.position;
+            // if(Vector2.Distance(cameraTransform.position, target.position) > cameraLeniency)
+                cameraTransform.position = Vector2.SmoothDamp(cameraTransform.position, target.position, ref velocity, smoothTime);
+        }
     }
 }
