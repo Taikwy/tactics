@@ -10,17 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8144ab3e39fee8d4dae69a9c528f1b30, type: 3}
-  m_Name: AI Test Level
+  m_Name: new testing
   m_EditorClassIdentifier: 
   levelName: AI Testing Grounds
   levelIndex: -1
   allyUnitRecipes:
   - Samurai
   allySpawnLocations:
-  - x: 5
+  - x: 6
     y: 3
   enemyUnitRecipes:
   - Kitsune
+  - Kitsune
+  - Kitsune
+  - Kitsune
+  - Kitsune
   enemySpawnLocations:
   - x: 4
+    y: 7
+  - x: 5
+    y: 8
+  - x: 7
+    y: 8
+  - x: 6
+    y: 6
+  - x: 8
     y: 7

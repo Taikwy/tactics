@@ -15,7 +15,7 @@ public class SelectUnitState : BattleState
     }
     public override void Exit (){
         base.Exit ();
-        // panelController.HidePrimary();
+        panelController.HidePrimary();
         panelController.HideStatus();
     }
 
@@ -27,8 +27,16 @@ public class SelectUnitState : BattleState
         // }
         owner.round.MoveNext();
         SelectTile(turn.actingUnit.tile.position);
-        // RefreshPrimaryPanel(selectPos);
-        RefreshPrimaryStatusPanel(selectPos);
+		driver = (turn.actingUnit != null) ? turn.actingUnit.GetComponent<Driver>() : null;
+
+        if (driver.Current == Drivers.Computer){
+            // board.humanDriver = false;
+            RefreshPrimaryStatusPanel(selectPos);
+        }
+        else{
+            RefreshPrimaryPanel(selectPos);
+            // board.humanDriver = true;
+        }
         
         yield return null;
         if (IsBattleOver()){

@@ -155,12 +155,12 @@ public class AbilityTargetState : BattleState
                 RefreshSecondaryPanel(board.selectedPoint);
 				SelectTile(cursorPos);
                 TargetTiles();
-				yield return new WaitForSeconds(0.2f);
+				yield return new WaitForSeconds(0.1f);
 			}
 		// }
 				SelectTile(cursorPos);
                 TargetTiles();
-		yield return new WaitForSeconds(0.3f);
+		yield return new WaitForSeconds(0.1f);
 				SelectTile(cursorPos);
                 TargetTiles();
         if(highlightedTiles.Contains(owner.selectedTile)){

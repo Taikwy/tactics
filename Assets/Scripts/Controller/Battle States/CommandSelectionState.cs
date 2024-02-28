@@ -114,7 +114,7 @@ public class CommandSelectionState : BaseAbilityMenuState
 			turn.selectedAbility = turn.plan.ability;
 		}
 
-		yield return new WaitForSeconds (.4f);
+		yield return new WaitForSeconds (.2f);
 
 		if (turn.hasUnitMoved == false && turn.plan.moveLocation != turn.actingUnit.tile.position)
 			owner.ChangeState<MoveTargetState>();

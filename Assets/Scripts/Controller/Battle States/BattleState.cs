@@ -14,7 +14,7 @@ public abstract class BattleState : State
     public Turn turn { get { return owner.turn; }}
     public List<Unit> units { get { return owner.units; }}
 
-    public AbilityMenuPanelController abilityMenuPanelController { get { return owner.abilityMenuPanelController; }}
+    // public AbilityMenuPanelController abilityMenuPanelController { get { return owner.abilityMenuPanelController; }}
     public AbilityPanelController abilityPanelController { get { return owner.abilityPanelController; }}
     public PanelController panelController { get { return owner.panelController; }}
     public ForecastPanel forecastPanel { get { return owner.forecastPanel; }}

@@ -20,7 +20,7 @@ public class BattleController : StateMachine
     public List<Unit> units = new List<Unit>();
 
     [Header("Controller Scripts")]
-    public AbilityMenuPanelController abilityMenuPanelController;
+    // public AbilityMenuPanelController abilityMenuPanelController;
     public AbilityPanelController abilityPanelController;
     public PanelController panelController;
     public ForecastPanel forecastPanel;

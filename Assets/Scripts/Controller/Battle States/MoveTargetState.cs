@@ -124,7 +124,7 @@ public class MoveTargetState : BattleState
             TargetTiles();       
 			yield return new WaitForSeconds(0.1f);
 		}
-		yield return new WaitForSeconds(0.15f);
+		yield return new WaitForSeconds(0.1f);
 		owner.ChangeState<MoveSequenceState>();
 	}
 }
