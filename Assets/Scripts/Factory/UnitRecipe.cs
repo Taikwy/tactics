@@ -22,6 +22,6 @@ public class UnitRecipe : ScriptableObject
     public string attack;
     public string abilityCatalog;
     [Header("ai stuff")]
-    public string strategy;
+    public string attackPattern;
 
 }

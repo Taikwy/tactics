@@ -18,8 +18,9 @@ MonoBehaviour:
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: 5fb083f1c614cce41a244b018ebec1e4, type: 2}
   job: 
-  attack: 
-  abilityCatalog: Kitsune Catalog
   movementType: 0
   alliance: 4
   equipment: []
+  attack: 
+  abilityCatalog: Kitsune Catalog
+  attackPattern: Kitsune Attack Pattern

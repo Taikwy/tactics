@@ -93,11 +93,9 @@ public class AttackOption
 	// application of this ability
 	bool IsAbilityAngleBased (Ability ability){
 		bool isAngleBased = false;
-		for (int i = 0; i < ability.transform.childCount; ++i)
-		{
+		for (int i = 0; i < ability.transform.childCount; ++i){
 			HitRate hr = ability.transform.GetChild(i).GetComponent<HitRate>();
-			if (hr.IsAngleBased)
-			{
+			if (hr.IsAngleBased){
 				isAngleBased = true;
 				break;
 			}
@@ -118,6 +116,7 @@ public class AttackOption
 		return score;
 	}
 
+    //filters moves in case the caster WANTS to get hit by the ability
 	void FilterBestMoves (List<Tile> list){
 		if (!isCasterMatch)
 			return;

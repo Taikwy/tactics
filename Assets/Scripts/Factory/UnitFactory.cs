@@ -46,7 +46,7 @@ public static class UnitFactory
 		AddEquipment(unit, recipe.equipment);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
 
-		AddAttackPattern(unit, recipe.strategy);
+		AddAttackPattern(unit, recipe.attackPattern);
 		return unit;
 	}
 
@@ -214,7 +214,7 @@ public static class UnitFactory
 		}
 		else{
 			driver.normal = Drivers.Computer;
-			GameObject pattern = InstantiatePrefab("Attack Pattern/" + name);
+			GameObject pattern = InstantiatePrefab("Attack Patterns/" + name);
 			pattern.transform.SetParent(obj.transform);
 		}
 	}
