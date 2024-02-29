@@ -165,7 +165,7 @@ public class ConfirmAbilityTargetState : BattleState
 	// }
     IEnumerator ComputerDisplayAbilitySelection (){
 		// owner.battleMessageController.Display(turn.ability.name);
-        Debug.Log(turn.selectedAbility.name);
+        Debug.Log(" i need to add ui here to display this " + turn.selectedAbility.name);
         SetTarget(0);
         // UpdateForecastPanel();
 		yield return new WaitForSeconds (.5f);

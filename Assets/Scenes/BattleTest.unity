@@ -3312,10 +3312,9 @@ MonoBehaviour:
   selectPos:
     x: 0
     y: 0
-  levelRecipe: {fileID: 11400000, guid: 65c154e39fc18224f8333f4766a4b7cc, type: 2}
+  levelRecipe: {fileID: 11400000, guid: 60a3f05647305f041a4502024d5a462f, type: 2}
   currentUnit: {fileID: 0}
   units: []
-  abilityMenuPanelController: {fileID: 0}
   abilityPanelController: {fileID: 1201334133}
   panelController: {fileID: 1274223312}
   forecastPanel: {fileID: 210886686}
@@ -10009,11 +10008,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761c753624e17b24f8b147328330b33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  smoothTime: 0.5
+  cameraLeniency: 2
   following: 0
   target: {fileID: 1683587603}
-  smoothTime: 0.5
-  usingDamp: 1
 --- !u!4 &1742690636
 Transform:
   m_ObjectHideFlags: 0
