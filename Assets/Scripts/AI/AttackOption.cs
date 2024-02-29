@@ -15,7 +15,7 @@ public class AttackOption
 		}
 	}
 	public Tile target;
-	public Directions direction;
+	// public Directions direction;
 	public List<Tile> areaTargets = new List<Tile>();
 	public bool isCasterMatch;
 	public Tile bestMoveTile { get; private set; }
@@ -65,7 +65,7 @@ public class AttackOption
 			bestAngleBasedScore = int.MinValue;
 			Tile startTile = caster.tile;
 			Directions startDirection = caster.dir;
-			caster.dir = direction;
+			// caster.dir = direction;
 
 			List<Tile> bestOptions = new List<Tile>();
 			for (int i = 0; i < moveTargets.Count; ++i){
@@ -82,7 +82,7 @@ public class AttackOption
 			}
 			
 			caster.Place(startTile);
-			caster.dir = startDirection;
+			// caster.dir = startDirection;
 
 			FilterBestMoves(bestOptions);
 			bestMoveTile = bestOptions[ Random.Range(0, bestOptions.Count) ];

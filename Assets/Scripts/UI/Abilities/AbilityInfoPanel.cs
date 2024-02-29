@@ -47,7 +47,7 @@ public class AbilityInfoPanel : MonoBehaviour
         descLabel.text = abilityScript.abilityDescription;
         effectLabel.text = string.Format("EFFECT: {0}, ZONE: {1}", abilityScript.primaryEffect.name, abilityScript.primaryEffect.GetComponent<EffectZone>());
         rangeLabel.text = string.Format("RANGE TYPE: {0}, RANGE: {1}", rangeScript.name, rangeScript.range);
-        areaLabel.text = string.Format("AREA: {0}, NUM TARGETS: {1}", areaScript.name, areaScript.numTargets);
+        // areaLabel.text = string.Format("AREA: {0}, NUM TARGETS: under testing rn", areaScript.name, areaScript.numTargets);
     }
 
     public void ShowPanel(){

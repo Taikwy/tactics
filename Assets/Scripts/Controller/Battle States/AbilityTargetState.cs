@@ -72,8 +72,19 @@ public class AbilityTargetState : BattleState
             if(!highlightedTiles.Contains(owner.selectedTile)){
                 return;
             }
-            areaScript.targets.Add(owner.selectedTile);
-            if(areaScript.targets.Count >= areaScript.numTargets){
+            //only relevant for unit area, cuz full area will just auto return the full range
+            if(areaScript.GetType() == typeof(UnitAbilityArea)){
+                UnitAbilityArea unitArea = areaScript as UnitAbilityArea;
+                if(unitArea.targets.Count < unitArea.numTargets){
+                    unitArea.targets.Add(owner.selectedTile);
+                }
+                if(unitArea.targets.Count >= unitArea.numTargets){
+                    owner.ChangeState<ConfirmAbilityTargetState>();
+                    return;
+                }
+            }
+            else{
+                //this is gonna be if area script is full area, in which case selecting will auto proceed
                 owner.ChangeState<ConfirmAbilityTargetState>();
                 return;
             }
@@ -112,7 +123,8 @@ public class AbilityTargetState : BattleState
             board.UntargetTiles(targetedTiles);
 
         //gets all the currently targeted tiles
-        List<Tile> centerTiles = areaScript.ShowTargetedTiles(board);
+        // List<Tile> centerTiles = areaScript.ShowTargetedTiles(board);
+        List<Tile> centerTiles = new List<Tile>(areaScript.targets);
         if(!centerTiles.Contains(owner.selectedTile) && highlightedTiles.Contains(owner.selectedTile))    //this got changed when i made the select indicator change color targeting things out of range
             centerTiles.Add(owner.selectedTile);
         
@@ -165,9 +177,9 @@ public class AbilityTargetState : BattleState
                 TargetTiles();
         if(highlightedTiles.Contains(owner.selectedTile)){
             areaScript.targets.Add(owner.selectedTile);
-            if(areaScript.targets.Count >= areaScript.numTargets){
+            // if(areaScript.targets.Count >= areaScript.numTargets){
                 owner.ChangeState<ConfirmAbilityTargetState>();
-            }
+            // }
         }
         
 		// owner.ChangeState<ConfirmAbilityTargetState>();

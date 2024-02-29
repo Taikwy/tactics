@@ -13,7 +13,4 @@ public class ConstantAbilityRange : AbilityRange
         return (from.distance + 1) <= range;
     }
 
-    // public override List<Tile> GetTargetsInRange (Board board){
-    //     return board.Search(unit.tile, ExpandSearch);
-    // }
 }

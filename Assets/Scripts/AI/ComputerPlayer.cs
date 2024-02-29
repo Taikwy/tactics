@@ -96,7 +96,7 @@ public class ComputerPlayer : MonoBehaviour
 					option = new AttackOption();
 					map[fireTile] = option;
 					option.target = fireTile;
-					option.direction = actingUnit.dir;
+					// option.direction = actingUnit.dir;
 					RateFireLocation(plan, option);
 				}
 
@@ -160,7 +160,7 @@ public class ComputerPlayer : MonoBehaviour
         // }
 		// List<Tile> tiles = area.ShowTargetedTiles(bc.board);
 		List<Tile> tiles = tilesInRange;
-        Debug.Log(plan.ability + " | " + area + " | RATING FIRE LOCATION AND ADDING TILES " + tilesInRange.Count);
+        // Debug.Log(plan.ability + " | " + area + " | RATING FIRE LOCATION AND ADDING TILES " + tilesInRange.Count);
 		option.areaTargets = tiles;
 		option.isCasterMatch = IsAbilityTargetMatch(plan, actingUnit.tile);
 
@@ -221,13 +221,15 @@ public class ComputerPlayer : MonoBehaviour
 		}
 		print("final picks " + finalPicks.Count);
 		foreach(AttackOption ao in finalPicks){
-			print("target " + ao.target.position+  " | attack dir " + ao.direction + " | move " + ao.bestMoveTile.position);
+			print("target " + ao.target.position+  " | attack dir  + ao.direction +  | move " + ao.bestMoveTile.position);
 		}
 		
 		AttackOption choice = finalPicks[ Random.Range(0, finalPicks.Count)  ];
 		plan.fireLocation = choice.target.position;
-		plan.attackDirection = choice.direction;
+		// plan.attackDirection = choice.direction;
 		plan.moveLocation = choice.bestMoveTile.position;
+
+		print("FINAL PICK target " + plan.fireLocation+  " | move " + plan.moveLocation);
 	}
 
 
