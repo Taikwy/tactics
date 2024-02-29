@@ -149,32 +149,29 @@ public class ComputerPlayer : MonoBehaviour
 		return isMatch;
 	}
 	
+	//rates all the possibile firing locations GIVEN the attack option's move location
 	void RateFireLocation (PlanOfAttack plan, AttackOption option){
         // print("rating firing locations");
 		AbilityArea area = plan.ability.GetComponent<AbilityArea>();
-		AbilityRange range = plan.ability.GetComponent<AbilityRange>();
-		// List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.position);
-        List<Tile> tilesInRange = range.GetTilesInRange(bc.board);
-        // foreach(Tile tile in tilesInRange){
-        //     area.targets.Add(tile);
-        // }
-		// List<Tile> tiles = area.ShowTargetedTiles(bc.board);
-		List<Tile> tiles = tilesInRange;
-        // Debug.Log(plan.ability + " | " + area + " | RATING FIRE LOCATION AND ADDING TILES " + tilesInRange.Count);
+		List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.position);
+		
 		option.areaTargets = tiles;
 		option.isCasterMatch = IsAbilityTargetMatch(plan, actingUnit.tile);
 
+        // Debug.Log(plan.ability + " | " + actingUnit.tile + " | RATING FIRE LOCATION AND ADDING TILES " + tiles.Count);
         //iterates and checks whether the tile is a valid target. if so, add a mark
 		for (int i = 0; i < tiles.Count; ++i){
 			Tile tile = tiles[i];
             // print(tile + " | actingunit " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
 			if (actingUnit.tile == tiles[i] || !plan.ability.IsTarget(tile))
 				continue;
-            print(tile + " | actingunit " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
+            print("targeting " + tile + " | actingunit " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
 			
 			bool isMatch = IsAbilityTargetMatch(plan, tile);
 			option.AddMark(tile, isMatch);
 		}
+		
+        area.targets.Clear();
 	}
 	
 	void PickBestOption (PlanOfAttack plan, List<AttackOption> list){
@@ -186,7 +183,7 @@ public class ComputerPlayer : MonoBehaviour
 		for (int i = 0; i < list.Count; ++i){
 			AttackOption option = list[i];
 			int score = option.GetScore(actingUnit, plan.ability);
-            // print(option + " score " + score);
+            // print("picking option " + option + " score " + score);
 			if (score > bestScore){
 				bestScore = score;
 				bestOptions.Clear();
