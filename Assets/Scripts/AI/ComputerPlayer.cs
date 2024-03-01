@@ -165,7 +165,7 @@ public class ComputerPlayer : MonoBehaviour
             // print(tile + " | actingunit " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
 			if (actingUnit.tile == tiles[i] || !plan.ability.IsTarget(tile))
 				continue;
-            print("targeting " + tile + " | actingunit " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
+            // print("targeting " + tile + " | actingunit " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
 			
 			bool isMatch = IsAbilityTargetMatch(plan, tile);
 			option.AddMark(tile, isMatch);
