@@ -23,6 +23,8 @@ public class ComputerPlayer : MonoBehaviour
 		else
 			BasicAttackPattern(plan);
 		
+		print("plan selected " + plan + " | " +plan.ability);
+		
 		if (IsPositionIndependent(plan))
 			PlanPositionIndependent(plan);
 		else if (IsDirectionIndependent(plan))

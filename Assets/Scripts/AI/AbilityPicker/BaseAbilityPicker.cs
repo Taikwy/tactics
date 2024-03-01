@@ -14,15 +14,22 @@ public abstract class BaseAbilityPicker : MonoBehaviour
 	//gets the abilty script from catalog of unit
 	protected Ability Find (string abilityName){
 		for (int i = 0; i < abilityCatalog.transform.childCount; ++i){
-			Transform category = abilityCatalog.transform.GetChild(i);
-			Transform child = category.Find(abilityName);
-			if (child != null)
+			// Transform category = abilityCatalog.transform.GetChild(i);
+			// Transform child = category.Find(abilityName);
+			// if (child != null)
+			// 	return child.GetComponent<Ability>();
+			Transform catalog = abilityCatalog.transform;
+			Transform child = catalog.Find(abilityName);
+			if (child != null){
+				print("ability " + child + " found!!!");
 				return child.GetComponent<Ability>();
+			}
 		}
 		return null;
 	}
 	//returns ANY ability
 	protected Ability Default (){
+		print("getting default ability");
 		return owner.GetComponentInChildren<Ability>();
 	}
 }
