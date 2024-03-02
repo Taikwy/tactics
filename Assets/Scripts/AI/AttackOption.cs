@@ -63,54 +63,25 @@ public class AttackOption
 		if (moveTargets.Count == 0)
 			return;
 		
-		if (IsAbilityAngleBased(ability)){
-			bestAngleBasedScore = int.MinValue;
-			Tile startTile = caster.tile;
-			Directions startDirection = caster.dir;
-			// caster.dir = direction;
-
-			List<Tile> bestOptions = new List<Tile>();
-			for (int i = 0; i < moveTargets.Count; ++i){
-				caster.Place(moveTargets[i]);
-				int score = GetAngleBasedScore(caster);
-				if (score > bestAngleBasedScore){
-					bestAngleBasedScore = score;
-					bestOptions.Clear();
-				}
-
-				if (score == bestAngleBasedScore){
-					bestOptions.Add(moveTargets[i]);
-				}
-			}
-			
-			caster.Place(startTile);
-			// caster.dir = startDirection;
-
-			FilterBestMoves(bestOptions);
-			bestMoveTile = bestOptions[ Random.Range(0, bestOptions.Count) ];
-		}
-		else{
-			Debug.Log("getting bedt move target " + moveTargets.Contains(caster.tile));
-			if(moveTargets.Contains(caster.tile))
-				bestMoveTile = caster.tile;
-			else
-				bestMoveTile = moveTargets[ Random.Range(0, moveTargets.Count) ];
-		}
+		// Debug.Log("getting bedt move target " + moveTargets.Contains(caster.tile));
+		if(moveTargets.Contains(caster.tile))
+			bestMoveTile = caster.tile;
+		else
+			bestMoveTile = moveTargets[ Random.Range(0, moveTargets.Count) ];
 	}
 
-	// Indicates whether the angle of attack is an important factor in the
-	// application of this ability
-	bool IsAbilityAngleBased (Ability ability){
-		bool isAngleBased = false;
-		for (int i = 0; i < ability.transform.childCount; ++i){
-			HitRate hr = ability.transform.GetChild(i).GetComponent<HitRate>();
-			if (hr.IsAngleBased){
-				isAngleBased = true;
-				break;
-			}
-		}
-		return isAngleBased;
-	}
+	// unused, i don't use any angles or directions for hitrate calculations
+	// bool IsAbilityAngleBased (Ability ability){
+	// 	bool isAngleBased = false;
+	// 	for (int i = 0; i < ability.transform.childCount; ++i){
+	// 		HitRate hr = ability.transform.GetChild(i).GetComponent<HitRate>();
+	// 		if (hr.IsAngleBased){
+	// 			isAngleBased = true;
+	// 			break;
+	// 		}
+	// 	}
+	// 	return isAngleBased;
+	// }
 
 	// Scores the option based on how many of the targets are a match
 	// and considers the angle of attack to each mark
