@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickers:
-  - {fileID: 5530263093665564257}
   - {fileID: 8521022540666885327}
-  - {fileID: 3835294976570732480}
+  - {fileID: 8521022540666885327}
+  - {fileID: 8521022540666885327}
 --- !u!1 &6885633212326610262
 GameObject:
   m_ObjectHideFlags: 0

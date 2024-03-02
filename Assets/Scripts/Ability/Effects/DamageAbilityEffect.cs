@@ -39,7 +39,7 @@ public class DamageAbilityEffect : BaseAbilityEffect
 		// Clamp the damage to a range, just for edge cases
 		damage = Mathf.Clamp(damage, 0, maxDamage); 
 		
-		Debug.Log("predicting damage ability effect  dmg[ " + "percent[" + attackPercentModifier + "] * (attack[" + attack + "] + terrain0[]) + weapon[0]"+ " ] - def["+ defense + "] = " + damage + " dmg");
+		// Debug.Log("predicting damage ability effect  dmg[ " + "percent[" + attackPercentModifier + "] * (attack[" + attack + "] + terrain0[]) + weapon[0]"+ " ] - def["+ defense + "] = " + damage + " dmg");
 		return -(int)damage;
 	}
 	

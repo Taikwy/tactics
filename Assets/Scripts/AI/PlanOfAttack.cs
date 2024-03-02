@@ -8,4 +8,22 @@ public class PlanOfAttack
 	public Point moveLocation;
 	public Point fireLocation;
 	public Directions attackDirection;
+
+	public bool canPerformAbility;
+	public enum SubAction{
+		FOCUS,
+		MOVE,
+		PASS,
+	}
+	public enum SubMovement{
+		PASS,
+		ALLY,
+		FOE,
+		RANDOM,
+
+	}
+	public SubAction subAction;
+	public bool targets;
+	public SubMovement subMovement;
+
 }

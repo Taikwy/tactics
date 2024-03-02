@@ -18,34 +18,59 @@ public class ComputerPlayer : MonoBehaviour
 		PlanOfAttack plan = new PlanOfAttack();
 		AttackPattern pattern = actingUnit.GetComponentInChildren<AttackPattern>();
         // print("pattern? " + pattern);
-		if (pattern)
+		if (pattern){
 			pattern.Pick(plan);
-		else
-			BasicAttackPattern(plan);
-		
-		print("plan selected " + plan + " | " +plan.ability);
-		
-		if (IsPositionIndependent(plan))
-			PlanPositionIndependent(plan);
-		else if (IsDirectionIndependent(plan))
-			PlanDirectionIndependent(plan);
+			if(!CheckForTargets(plan.target)){
+				plan.ability = null;
+				plan.canPerformAbility = false;
+			}
+			pattern.HandlePicker(plan);
+			print("plan selected " + plan + " | " + plan.ability);
 
-		if (plan.ability == null){
-            print("no ability selected, just gonna move towards opponent");
-			MoveTowardOpponent(plan);
-        }
+		}
 		else{
-			print("ability selected " + plan.ability);
+			Debug.LogError("NO ATTACK PATTERN FOUND FOR " + actingUnit);
 		}
 		
+		//handles firetarget and mvoement target given the plan's selected ability
+		if(plan.canPerformAbility && plan.ability!= null){
+			print("ability selected " + plan.ability);
+			if (IsPositionIndependent(plan))
+				PlanPositionIndependent(plan);
+			else if (IsDirectionIndependent(plan))
+				PlanDirectionIndependent(plan);
+		}
+		
+		//handle movement in the case of NO ABILITY BEING PERFORMED
+		if(plan.ability == null){
+			switch(plan.subMovement){
+				case PlanOfAttack.SubMovement.PASS:
+					plan.moveLocation = actingUnit.tile.position;
+					break;
+				case PlanOfAttack.SubMovement.FOE:
+					MoveTowardFoe(plan);
+					if(!CheckForTargets(Targets.Foe))
+						plan.moveLocation = actingUnit.tile.position;
+					break;
+				case PlanOfAttack.SubMovement.ALLY:
+					MoveTowardAlly(plan);
+					if(!CheckForTargets(Targets.Ally))
+						plan.moveLocation = actingUnit.tile.position;
+					break;
+				case PlanOfAttack.SubMovement.RANDOM:
+					MoveRandom(plan);
+					break;
+			}
+		}
+
 		return plan;
 	}
     //always defaults to getting the basic attack
-    void BasicAttackPattern (PlanOfAttack plan){
-        print("getting basic attack");
-		plan.ability = actingUnit.GetComponentInChildren<Ability>();
-		plan.target = Targets.Foe;
-	}
+    // void BasicAttackPattern (PlanOfAttack plan){
+    //     print("getting basic attack");
+	// 	plan.ability = actingUnit.GetComponentInChildren<Ability>();
+	// 	plan.target = Targets.Foe;
+	// }
 
 	bool IsPositionIndependent (PlanOfAttack plan){
         // print("is position independent???");
@@ -172,7 +197,7 @@ public class ComputerPlayer : MonoBehaviour
 		List<AttackOption> bestOptions = new List<AttackOption>();
 
 
-		print("choosing best from list " + list + " | " + list.Count);
+		// print("choosing best from list " + list + " | " + list.Count);
 		for (int i = 0; i < list.Count; ++i){
 			AttackOption option = list[i];
 			int score = option.GetScore(actingUnit, plan.ability);
@@ -193,13 +218,13 @@ public class ComputerPlayer : MonoBehaviour
 			plan.ability = null; // Clear ability as a sign not to perform it
 			return;
 		}
-		print("best options chosen " + bestOptions + " |     " + bestOptions.Count + "     | move " + bestOptions[0].bestMoveTile);
-		foreach(AttackOption option in bestOptions){
-			print("best options");
-			foreach(Tile tile in option.moveTiles){
-				print("tile " + tile + "              | " + actingUnit.tile);
-			}
-		}
+		// print("best options chosen " + bestOptions + " |     " + bestOptions.Count + "     | move " + bestOptions[0].bestMoveTile);
+		// foreach(AttackOption option in bestOptions){
+		// 	print("best options");
+		// 	foreach(Tile tile in option.moveTiles){
+		// 		print("tile " + tile + "              | " + actingUnit.tile);
+		// 	}
+		// }
 
         //THIS SECTION I WILL HAVE TO UPDATE THE MOST
 		List<AttackOption> finalPicks = new List<AttackOption>();
@@ -217,16 +242,16 @@ public class ComputerPlayer : MonoBehaviour
 			}
 		}
 		print("final picks " + finalPicks.Count);
-		foreach(AttackOption ao in finalPicks){
-			print("target " + ao.target.position+  " | attack dir  + ao.direction +  | move " + ao.bestMoveTile.position);
-		}
+		// foreach(AttackOption ao in finalPicks){
+		// 	print("target " + ao.target.position+  " | attack dir  + ao.direction +  | move " + ao.bestMoveTile.position);
+		// }
 		
 		AttackOption choice = finalPicks[ Random.Range(0, finalPicks.Count)  ];
 		plan.fireLocation = choice.target.position;
 		// plan.attackDirection = choice.direction;
 		plan.moveLocation = choice.bestMoveTile.position;
 
-		print("FINAL PICK target " + plan.fireLocation+  " | move " + plan.moveLocation);
+		// print("FINAL PICK target " + plan.fireLocation+  " | move " + plan.moveLocation);
 	}
 
 	//simply checks whether the tile being targeted is a match
@@ -247,7 +272,11 @@ public class ComputerPlayer : MonoBehaviour
         // print("getting move options");
 		return actingUnit.GetComponent<Movement>().GetTilesInRange(bc.board);
 	}
-	void MoveTowardOpponent (PlanOfAttack plan){
+	void MoveRandom(PlanOfAttack plan){
+		List<Tile> moveOptions = GetMoveOptions();
+		plan.moveLocation = moveOptions[ Random.Range(0, moveOptions.Count) ].position;
+	}
+	void MoveTowardFoe (PlanOfAttack plan){
         // print("moving towards opponent");
 		List<Tile> moveOptions = GetMoveOptions();
         // print("move options " + moveOptions.Count);
@@ -270,22 +299,21 @@ public class ComputerPlayer : MonoBehaviour
 		plan.moveLocation = actingUnit.tile.position;
 	}
     //copied movetowardopponent to move towards an ally instead
-    // void MoveTowardAlly (PlanOfAttack poa){
-	// 	List<Tile> moveOptions = GetMoveOptions();
-	// 	FindNearestFoe();
-	// 	if (nearestAlly != null){
-	// 		Tile toCheck = nearestAlly.tile;
-	// 		while (toCheck != null){
-	// 			if (moveOptions.Contains(toCheck)){
-	// 				poa.moveLocation = toCheck.position;
-	// 				return;
-	// 			}
-	// 			toCheck = toCheck.prev;
-	// 		}
-	// 	}
-
-	// 	poa.moveLocation = actingUnit.tile.position;
-	// }
+    void MoveTowardAlly (PlanOfAttack plan){
+		List<Tile> moveOptions = GetMoveOptions();
+		FindNearestFoe();
+		if (nearestAlly != null){
+			Tile toCheck = nearestAlly.tile;
+			while (toCheck != null){
+				if (moveOptions.Contains(toCheck)){
+					plan.moveLocation = toCheck.position;
+					return;
+				}
+				toCheck = toCheck.prev;
+			}
+		}
+		plan.moveLocation = actingUnit.tile.position;
+	}
 
 	void FindNearestFoe (){
         // print("finding nearest foe");
@@ -337,5 +365,36 @@ public class ComputerPlayer : MonoBehaviour
 			}
 			return nearestAlly == null;
 		});
+	}
+
+	protected bool CheckForTargets(Targets target){
+		switch(target){
+			case Targets.None:
+				return true;
+				break;
+			case Targets.Ally:
+				for (int i = 0; i < bc.units.Count; ++i){
+					Alliance a = bc.units[i].GetComponent<Alliance>();
+					if (a == null)
+						continue;
+					if(a.IsMatch(alliance, target))
+						return true;
+				}
+				break;
+			case Targets.Foe:
+				for (int i = 0; i < bc.units.Count; ++i){
+					Alliance a = bc.units[i].GetComponent<Alliance>();
+					if (a == null)
+						continue;
+					if(a.IsMatch(alliance, target))
+						return true;
+				}
+				break;
+			case Targets.Tile:
+				return true;
+				break;
+		}
+		return false;
+		
 	}
 }

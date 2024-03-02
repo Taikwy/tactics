@@ -11,8 +11,10 @@ public class FixedAbilityPicker : BaseAbilityPicker
 		plan.ability = Find(ability);
 
 		if (plan.ability == null){
-			plan.ability = Default();
-			plan.target = Targets.Foe;
+			Debug.LogError("couldn't find ability " + ability);
 		}
+		CheckAbility(plan);
+		
+		plan.subMovement = subMovement;
 	}
 }
