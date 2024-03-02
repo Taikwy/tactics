@@ -21,7 +21,7 @@ public abstract class HitRate : MonoBehaviour
 	/// </summary>
 	public const string StatusCheckNotification = "HitRate.StatusCheckNotification";
 
-	public virtual bool IsAngleBased { get { return true; }}
+	public virtual bool IsAngleBased { get { return false; }}
 	protected Unit attacker;
     public bool guaranteed = false;
     public float abilityHitRate;

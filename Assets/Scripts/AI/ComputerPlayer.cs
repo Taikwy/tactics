@@ -69,9 +69,14 @@ public class ComputerPlayer : MonoBehaviour
 	
 	void PlanPositionIndependent (PlanOfAttack plan){
         // print("planning position independent");
-		List<Tile> moveOptions = GetMoveOptions();
-		Tile tile = moveOptions[Random.Range(0, moveOptions.Count)];
-		plan.moveLocation = plan.fireLocation = tile.position;
+
+		//if the ability doesn't require moving, the unit decides not to move
+		plan.moveLocation = actingUnit.tile.position;
+
+
+		// List<Tile> moveOptions = GetMoveOptions();
+		// Tile tile = moveOptions[Random.Range(0, moveOptions.Count)];
+		// plan.moveLocation = plan.fireLocation = tile.position;
 	}
 	
 	void PlanDirectionIndependent (PlanOfAttack plan){
@@ -80,10 +85,12 @@ public class ComputerPlayer : MonoBehaviour
 		Dictionary<Tile, AttackOption> map = new Dictionary<Tile, AttackOption>();
 		AbilityRange ar = plan.ability.GetComponent<AbilityRange>();
 		List<Tile> moveOptions = GetMoveOptions();
+		moveOptions.Add(actingUnit.tile);
 		
         // print("moveoptions " + moveOptions.Count);
 		for (int i = 0; i < moveOptions.Count; ++i){
 			Tile moveTile = moveOptions[i];
+        	// print("movable tile " + moveTile);
 			actingUnit.Place( moveTile );
 			List<Tile> fireOptions = ar.GetTilesInRange(bc.board);
 			
@@ -103,6 +110,7 @@ public class ComputerPlayer : MonoBehaviour
 				}
 
 				option.AddMoveTarget(moveTile);
+				// print(i + ":" + j + " | fire tile " + fireTile + " | move tile " + moveTile);
 			}
 		}
 		actingUnit.Place(startTile);
@@ -153,7 +161,7 @@ public class ComputerPlayer : MonoBehaviour
 	
 	//rates all the possibile firing locations GIVEN the attack option's move location
 	void RateFireLocation (PlanOfAttack plan, AttackOption option){
-        // print("rating firing locations");
+        // print("rating firing locations | fire tile " + option.target + " | movetile " + actingUnit.tile);
 		AbilityArea area = plan.ability.GetComponent<AbilityArea>();
 		List<Tile> tiles = area.GetTilesInArea(bc.board, option.target.position);
 		
@@ -170,6 +178,7 @@ public class ComputerPlayer : MonoBehaviour
             // print("targeting " + tile + " | actingunit " +  actingUnit.tile + " | " + plan.ability.IsTarget(tile));
 			
 			bool isMatch = IsAbilityTargetMatch(plan, tile);
+			// Debug.Log(plan.ability + " is abiliy target matching? " + isMatch);
 			option.AddMark(tile, isMatch);
 		}
 		
@@ -182,10 +191,11 @@ public class ComputerPlayer : MonoBehaviour
 		List<AttackOption> bestOptions = new List<AttackOption>();
 
 
+		print("choosing best from list " + list + " | " + list.Count);
 		for (int i = 0; i < list.Count; ++i){
 			AttackOption option = list[i];
 			int score = option.GetScore(actingUnit, plan.ability);
-            // print("picking option " + option + " score " + score);
+            // print(i + " getting score | score " + score + " | firing target " + option.target + " | move " + option.bestMoveTile);
 			if (score > bestScore){
 				bestScore = score;
 				bestOptions.Clear();
@@ -201,6 +211,13 @@ public class ComputerPlayer : MonoBehaviour
             // print("all options were garbage");
 			plan.ability = null; // Clear ability as a sign not to perform it
 			return;
+		}
+		print("best options chosen " + bestOptions + " |     " + bestOptions.Count + "     | move " + bestOptions[0].bestMoveTile);
+		foreach(AttackOption option in bestOptions){
+			print("best options");
+			foreach(Tile tile in option.moveTiles){
+				print("tile " + tile + "              | " + actingUnit.tile);
+			}
 		}
 
         //THIS SECTION I WILL HAVE TO UPDATE THE MOST

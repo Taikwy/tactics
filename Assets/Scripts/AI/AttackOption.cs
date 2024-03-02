@@ -22,8 +22,9 @@ public class AttackOption
 	public int bestAngleBasedScore { get; private set; }
 	List<Mark> marks = new List<Mark>();
 	List<Tile> moveTargets = new List<Tile>();
+	public List<Tile> moveTiles { get{ return moveTargets; }}
 	public void AddMoveTarget (Tile tile){
-        // Debug.Log("adding move targets");
+        // Debug.Log("firetile " + target + " adding new move target " + tile);
 		// Dont allow moving to a tile that would negatively affect the caster
 		if (!isCasterMatch && areaTargets.Contains(tile))
 			return;
@@ -49,6 +50,7 @@ public class AttackOption
 				score--;
 		}
 
+		//if ability is beneficial for allies (Caster) increment score if the mvoetile falls underneath this
 		if (isCasterMatch && areaTargets.Contains(bestMoveTile))
 			score++;
 
@@ -88,7 +90,11 @@ public class AttackOption
 			bestMoveTile = bestOptions[ Random.Range(0, bestOptions.Count) ];
 		}
 		else{
-			bestMoveTile = moveTargets[ Random.Range(0, moveTargets.Count) ];
+			Debug.Log("getting bedt move target " + moveTargets.Contains(caster.tile));
+			if(moveTargets.Contains(caster.tile))
+				bestMoveTile = caster.tile;
+			else
+				bestMoveTile = moveTargets[ Random.Range(0, moveTargets.Count) ];
 		}
 	}
 
