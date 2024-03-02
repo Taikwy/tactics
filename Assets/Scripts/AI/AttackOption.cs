@@ -70,19 +70,6 @@ public class AttackOption
 			bestMoveTile = moveTargets[ Random.Range(0, moveTargets.Count) ];
 	}
 
-	// unused, i don't use any angles or directions for hitrate calculations
-	// bool IsAbilityAngleBased (Ability ability){
-	// 	bool isAngleBased = false;
-	// 	for (int i = 0; i < ability.transform.childCount; ++i){
-	// 		HitRate hr = ability.transform.GetChild(i).GetComponent<HitRate>();
-	// 		if (hr.IsAngleBased){
-	// 			isAngleBased = true;
-	// 			break;
-	// 		}
-	// 	}
-	// 	return isAngleBased;
-	// }
-
 	// Scores the option based on how many of the targets are a match
 	// and considers the angle of attack to each mark
 	int GetAngleBasedScore (Unit caster){

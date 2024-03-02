@@ -29,8 +29,6 @@ public class ComputerPlayer : MonoBehaviour
 			PlanPositionIndependent(plan);
 		else if (IsDirectionIndependent(plan))
 			PlanDirectionIndependent(plan);
-		// else
-		// 	PlanDirectionDependent(plan);
 
 		if (plan.ability == null){
             print("no ability selected, just gonna move towards opponent");
@@ -48,12 +46,6 @@ public class ComputerPlayer : MonoBehaviour
 		plan.ability = actingUnit.GetComponentInChildren<Ability>();
 		plan.target = Targets.Foe;
 	}
-	// void DefaultAttackPattern (PlanOfAttack plan){
-	// 	// Just get the first "Attack" ability 
-	// 	plan.ability = actingUnit.GetComponentInChildren<Ability>();
-	// 	plan.target = Targets.Foe;
-	// }
-
 
 	bool IsPositionIndependent (PlanOfAttack plan){
         // print("is position independent???");
@@ -80,7 +72,7 @@ public class ComputerPlayer : MonoBehaviour
 	}
 	
 	void PlanDirectionIndependent (PlanOfAttack plan){
-        print("planning direction independent");
+        // print("planning direction independent");
 		Tile startTile = actingUnit.tile;
 		Dictionary<Tile, AttackOption> map = new Dictionary<Tile, AttackOption>();
 		AbilityRange ar = plan.ability.GetComponent<AbilityRange>();
@@ -145,19 +137,7 @@ public class ComputerPlayer : MonoBehaviour
 	// 	PickBestOption(plan, list);
 	// }
     
-    //simply checks whether the tile being targeted is a match
-	bool IsAbilityTargetMatch (PlanOfAttack plan, Tile tile){
-		bool isMatch = false;
-		if (plan.target == Targets.Tile)
-			isMatch = true;
-		else if (plan.target != Targets.None){
-			Alliance other = tile.content.GetComponentInChildren<Alliance>();
-			if (other != null && alliance.IsMatch(other, plan.target))
-				isMatch = true;
-		}
-
-		return isMatch;
-	}
+    
 	
 	//rates all the possibile firing locations GIVEN the attack option's move location
 	void RateFireLocation (PlanOfAttack plan, AttackOption option){
@@ -184,6 +164,7 @@ public class ComputerPlayer : MonoBehaviour
 		
         area.targets.Clear();
 	}
+	
 	
 	void PickBestOption (PlanOfAttack plan, List<AttackOption> list){
         // print("picking best option");
@@ -248,6 +229,19 @@ public class ComputerPlayer : MonoBehaviour
 		print("FINAL PICK target " + plan.fireLocation+  " | move " + plan.moveLocation);
 	}
 
+	//simply checks whether the tile being targeted is a match
+	bool IsAbilityTargetMatch (PlanOfAttack plan, Tile tile){
+		bool isMatch = false;
+		if (plan.target == Targets.Tile)
+			isMatch = true;
+		else if (plan.target != Targets.None){
+			Alliance other = tile.content.GetComponentInChildren<Alliance>();
+			if (other != null && alliance.IsMatch(other, plan.target))
+				isMatch = true;
+		}
+
+		return isMatch;
+	}
 
 	List<Tile> GetMoveOptions (){
         // print("getting move options");
@@ -344,20 +338,4 @@ public class ComputerPlayer : MonoBehaviour
 			return nearestAlly == null;
 		});
 	}
-	// public Directions DetermineEndFacingDirection (){
-	// 	Directions dir = (Directions)UnityEngine.Random.Range(0, 4);
-	// 	FindNearestFoe();
-	// 	if (nearestFoe != null){
-	// 		Directions start = actor.dir;
-	// 		for (int i = 0; i < 4; ++i){
-	// 			actor.dir = (Directions)i;
-	// 			if (nearestFoe.GetFacing(actor) == Facings.Front){
-	// 				dir = actor.dir;
-	// 				break;
-	// 			}
-	// 		}
-	// 		actor.dir = start;
-	// 	}
-	// 	return dir;
-	// }
 }
