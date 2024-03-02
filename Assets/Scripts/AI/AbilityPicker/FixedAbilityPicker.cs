@@ -3,8 +3,9 @@ using System.Collections;
 
 public class FixedAbilityPicker : BaseAbilityPicker
 {
-	public Targets target;
+	[Header("Ability Info")]
 	public string ability;
+	public Targets target;
 
 	public override void Pick (PlanOfAttack plan){
 		plan.target = target;

@@ -15,6 +15,7 @@ public abstract class BaseAbilityPicker : MonoBehaviour
 	// 	FOCUS,
 	// 	PASS
 	// }
+	[Header("Substitute stuff")]
 	public ProceedType proceedType;
 	public PlanOfAttack.SubAction subAction;
 	public PlanOfAttack.SubMovement subMovement;

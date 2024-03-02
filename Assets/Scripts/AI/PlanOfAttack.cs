@@ -11,9 +11,8 @@ public class PlanOfAttack
 
 	public bool canPerformAbility;
 	public enum SubAction{
-		FOCUS,
-		MOVE,
 		PASS,
+		FOCUS,
 	}
 	public enum SubMovement{
 		PASS,
