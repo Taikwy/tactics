@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61ef3bf05f93a541be4e5cbe0471469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guaranteed: 1
+  guaranteed: 0
   abilityHitRate: 80
 --- !u!114 &6950046999304816923
 MonoBehaviour:
@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inflict Toxic Template
       objectReference: {fileID: 0}
+    - target: {fileID: 7003075404764746857, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
+      propertyPath: guaranteed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -256,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: flatOrPercent
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: abilityEffectDescription

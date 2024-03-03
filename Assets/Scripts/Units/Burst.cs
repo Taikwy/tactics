@@ -27,7 +27,7 @@ public class Burst : MonoBehaviour
 	
 	void OnEnable (){
 		this.AddObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
-		this.AddObserver(OnBPDidChange, Stats.DidChangeEvent(StatTypes.BP), stats);
+		// this.AddObserver(OnBPDidChange, Stats.DidChangeEvent(StatTypes.BP), stats);
 		this.AddObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 
 		this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
@@ -39,7 +39,7 @@ public class Burst : MonoBehaviour
 	
 	void OnDisable (){
 		this.RemoveObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
-		this.RemoveObserver(OnBPDidChange, Stats.DidChangeEvent(StatTypes.BP), stats);
+		// this.RemoveObserver(OnBPDidChange, Stats.DidChangeEvent(StatTypes.BP), stats);
 		this.RemoveObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 
 		this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);

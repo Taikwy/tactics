@@ -163,7 +163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: statType
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: effectName
@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: conditionScript
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: abilityEffectName

@@ -115,7 +115,7 @@ public class TurnOrderController : MonoBehaviour
     }
 
     public void SetupUnitsAV(List<Unit> units){
-        Debug.Log("setting up units AV");
+        // Debug.Log("setting up units AV");
         foreach(Unit unit in units){
             CalculateAV(unit);
         }

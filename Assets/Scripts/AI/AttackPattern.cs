@@ -9,15 +9,17 @@ public class AttackPattern : MonoBehaviour
 	[HideInInspector]public bool burstTargets;
 	int index;
 	
-	public void Pick (PlanOfAttack plan){
-		if(burstPicker && burstPicker.CanBurst() && burstTargets){
+	public bool CheckBurst(PlanOfAttack plan){
+		print("checking burst " + burstPicker + " " + burstPicker.CanBurst() + " " + burstTargets);
+		if(burstPicker && burstPicker.CanBurst()){
 			plan.bursting = true;
 			burstPicker.Pick(plan);
+			return true;
 		}
-		else{
-			pickers[index].Pick(plan);
-		}
-
+		return false;
+	}
+	public void Pick (PlanOfAttack plan){
+		pickers[index].Pick(plan);
 	}
 	public void IncrementPicker(){
 		// print("incrementing picker");

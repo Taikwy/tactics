@@ -19,9 +19,10 @@ public class ComputerPlayer : MonoBehaviour
 		AttackPattern pattern = actingUnit.GetComponentInChildren<AttackPattern>();
         // print("pattern? " + pattern);
 		if (pattern){
-			pattern.Pick(plan);
+			if(!pattern.CheckBurst(plan))
+				pattern.Pick(plan);
 			plan.validTargetsLeft = CheckForTargets(plan.target);
-			// print("valid targets? " + plan.validTargetsLeft);
+			print("valid targets? " + plan.validTargetsLeft);
 			if(!plan.validTargetsLeft){
 				plan.ability = null;
 				//if the plan was to burst but it is now invalid, set burst targets to false in the pattern
