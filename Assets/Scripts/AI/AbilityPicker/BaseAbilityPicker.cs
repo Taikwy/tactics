@@ -15,10 +15,10 @@ public abstract class BaseAbilityPicker : MonoBehaviour
 	// 	FOCUS,
 	// 	PASS
 	// }
-	[Header("Substitute stuff")]
-	public ProceedType proceedType;
-	public PlanOfAttack.SubAction subAction;
-	public PlanOfAttack.SubMovement subMovement;
+	[Header("Substitute stuff in case ability doesn't get performed")]
+	[Tooltip("What ACTION to do if unable to perform")]public PlanOfAttack.SubAction subAction;
+	[Tooltip("Where to MOVE if unable to perform")]public PlanOfAttack.SubMovement subMovement;
+	[Tooltip("SKIP or STAY on this picker")]public ProceedType proceedType;
 	
 	void Start (){
 		owner = GetComponentInParent<Unit>();
@@ -52,10 +52,11 @@ public abstract class BaseAbilityPicker : MonoBehaviour
 	protected void CheckAbility(PlanOfAttack plan){
 		if(plan.ability == null)
 			return;
-		Debug.Log("checking whether can perform " + plan.ability + " | " +  plan.ability.CanPerform());
-		plan.canPerformAbility = plan.ability.CanPerform();
 		plan.subAction = subAction;
-		Debug.Log("assigning sub action " + plan.subAction);
+		if(!plan.ability.CanPerform())
+			plan.ability = null;
+		
+		Debug.Log("checking whether can perform " + plan.ability + " | " +  (plan.ability != null) + "         assigning sub action " + plan.subAction);
 	}
 
 	

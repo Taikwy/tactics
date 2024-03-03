@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8089819927461016214}
   - component: {fileID: 5097820390366547705}
   - component: {fileID: 3484823612947708004}
-  - component: {fileID: 3954202826209727461}
+  - component: {fileID: 5324320466522401809}
   m_Layer: 0
   m_Name: Enthrall
   m_TagString: Untagged
@@ -83,7 +83,7 @@ MonoBehaviour:
   range: 1
   tilesInRange: []
   targetsInRange: []
---- !u!114 &3954202826209727461
+--- !u!114 &5324320466522401809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8935371756486926109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4755e8b045f7534597b695d829853e1, type: 3}
+  m_Script: {fileID: 11500000, guid: d876e6f5dd31b274cb1fc518264d1a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 1
   targets: []
+  numTargets: 1
 --- !u!1001 &7686314560786691674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,6 +156,10 @@ PrefabInstance:
     - target: {fileID: 7142485807862000992, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
+      propertyPath: duration
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
       propertyPath: incrementOrMultiply

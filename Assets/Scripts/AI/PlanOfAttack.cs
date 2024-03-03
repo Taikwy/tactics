@@ -9,7 +9,8 @@ public class PlanOfAttack
 	public Point fireLocation;
 	public Directions attackDirection;
 
-	public bool canPerformAbility;
+	// public bool canPerformAbility;
+	public bool validTargetsLeft;
 	public enum SubAction{
 		PASS,
 		FOCUS,

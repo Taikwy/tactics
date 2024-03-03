@@ -23,4 +23,4 @@ MonoBehaviour:
   equipment: []
   attack: 
   abilityCatalog: Faerie Catalog
-  strategy: Faerie Attack Pattern
+  attackPattern: Faerie Attack Pattern

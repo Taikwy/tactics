@@ -27,7 +27,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 	}
 
 	protected override int OnApply (Tile target){
-        // Debug.Log("new inflicting status " + effectName);
+        Debug.Log("new inflicting status " + effectName);
 		Unit attacker = GetComponentInParent<Unit>();
 		Unit defender = target.content.GetComponent<Unit>();
 
@@ -114,10 +114,10 @@ public class InflictAbilityEffect : BaseAbilityEffect
 			// 	(effect as PercentDamageStatusEffect).percent = percentDMG;
 			// 	break;
 			case StatModifyStatusEffect:
-			Debug.Log(statType);
 				(effect as StatModifyStatusEffect).incrementOrMultiply = incrementOrMultiply;
 				(effect as StatModifyStatusEffect).statType = statType;
 				(effect as StatModifyStatusEffect).AddObservers();
+				Debug.Log(incrementOrMultiply + " | " + statType);
 				break;
 		}
 

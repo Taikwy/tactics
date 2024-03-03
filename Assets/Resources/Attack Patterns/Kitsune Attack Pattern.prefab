@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34114d52a46757e48bf688e132fb6c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 3
+  subAction: 0
+  subMovement: 2
+  proceedType: 1
   ability: Wildfire
+  target: 3
 --- !u!1 &5371467695276652074
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,9 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickers:
+  - {fileID: 5530263093665564257}
   - {fileID: 8521022540666885327}
-  - {fileID: 8521022540666885327}
-  - {fileID: 8521022540666885327}
+  - {fileID: 3835294976570732480}
 --- !u!1 &6885633212326610262
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31975f0d744bbe8408947df6061dee1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subAction: 0
+  subMovement: 2
+  proceedType: 0
   pickers:
   - {fileID: 5530263093665564257}
   - {fileID: 8521022540666885327}
@@ -188,5 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34114d52a46757e48bf688e132fb6c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 3
+  subAction: 1
+  subMovement: 2
+  proceedType: 0
   ability: Scratch
+  target: 3
