@@ -5,10 +5,17 @@ using System.Collections.Generic;
 public class AttackPattern : MonoBehaviour 
 {
 	public List<BaseAbilityPicker> pickers;
+	public BurstAbilityPicker burstPicker;
 	int index;
 	
 	public void Pick (PlanOfAttack plan){
-		pickers[index].Pick(plan);
+		if(burstPicker && burstPicker.CanBurst()){
+			plan.bursting = true;
+		}
+		else{
+			pickers[index].Pick(plan);
+		}
+
 	}
 	public void IncrementPicker(){
 		// print("incrementing picker");
@@ -27,6 +34,14 @@ public class AttackPattern : MonoBehaviour
 		else{
 			IncrementPicker();
 		}
+	}
+	public void HandleBurst(){
+		if(burstAbility != null && burstAbility.GetComponent<AbilityBurstCost>() != null){
+			if(BP >= burstAbility.GetComponent<AbilityBurstCost>().cost){
+				this.PostEvent(BurstPerformableEvent);
+			}
+		}
+
 	}
 
 }

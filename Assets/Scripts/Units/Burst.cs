@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Burst : MonoBehaviour 
 {
+    public const string BurstPerformableEvent = "Burst.BurstPerformableEvent";
 	public int BP{
 		get { return stats[StatTypes.BP]; }
 		set { stats[StatTypes.BP] = value; }
@@ -13,6 +14,7 @@ public class Burst : MonoBehaviour
 		set { stats[StatTypes.MBP] = value; }
 	}
 	Stats stats;
+	GameObject burstAbility;
 	
 	int MinBP = 0;
 	int deltaAV = 0;
@@ -22,10 +24,12 @@ public class Burst : MonoBehaviour
 	
 	void Awake (){
 		stats = GetComponent<Stats>();
+		burstAbility = GetComponentInChildren<AbilityCatalog>().burstAbility;
 	}
 	
 	void OnEnable (){
 		this.AddObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
+		this.AddObserver(OnBPDidChange, Stats.DidChangeEvent(StatTypes.BP), stats);
 		this.AddObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 
 		this.AddObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
@@ -37,6 +41,7 @@ public class Burst : MonoBehaviour
 	
 	void OnDisable (){
 		this.RemoveObserver(OnBPWillChange, Stats.WillChangeEvent(StatTypes.BP), stats);
+		this.RemoveObserver(OnBPDidChange, Stats.DidChangeEvent(StatTypes.BP), stats);
 		this.RemoveObserver(OnMBPDidChange, Stats.DidChangeEvent(StatTypes.MBP), stats);
 
 		this.RemoveObserver(OnNewTurn, TurnOrderController.TurnBeganEvent);
@@ -59,6 +64,14 @@ public class Burst : MonoBehaviour
 		else
 			BP = Mathf.Clamp(BP, MinBP, MBP);
 	}
+	void OnBPDidChange (object sender, object args){
+		// if(burstAbility != null && burstAbility.GetComponent<AbilityBurstCost>() != null){
+		// 	if(BP >= burstAbility.GetComponent<AbilityBurstCost>().cost){
+		// 		this.PostEvent(BurstPerformableEvent);
+		// 	}
+		// }
+	}
+
 
 	void OnNewTurn(object sender, object args){
 		Unit actor = sender as Unit;

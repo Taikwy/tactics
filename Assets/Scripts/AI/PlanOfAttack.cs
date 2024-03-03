@@ -24,5 +24,6 @@ public class PlanOfAttack
 	public SubAction subAction;
 	public SubMovement subMovement;
 	public bool validTargetsLeft;
+	public bool bursting = false;
 
 }
