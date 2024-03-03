@@ -30,9 +30,9 @@ public class AbilityBurstCost : MonoBehaviour
         Stats s = GetComponentInParent<Stats>();
         if(owner.type == AbilityTypes.BURST){
             //if cost is less than 0 it means it just uses the max burst meter of a character
-            if(cost < 0)
-                s[StatTypes.BP] = 0;
-            else
+            // if(cost < 0)
+            //     s[StatTypes.BP] = 0;
+            // else
                 s[StatTypes.BP] -= cost;
         }
         else

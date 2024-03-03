@@ -18,8 +18,9 @@ MonoBehaviour:
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: 56090796786f4144e91ad23edec1a9bd, type: 2}
   job: 
-  attack: 
-  abilityCatalog: Gorgon Catalog
   movementType: 0
   alliance: 4
   equipment: []
+  attack: 
+  abilityCatalog: Gorgon Catalog
+  attackPattern: Gorgon Attack Pattern
