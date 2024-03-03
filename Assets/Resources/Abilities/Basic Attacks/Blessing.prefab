@@ -166,8 +166,16 @@ PrefabInstance:
       value: StatIncrementStatusEffect
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
+      propertyPath: effectScript
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: flatOrPercent
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
+      propertyPath: conditionScript
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: abilityEffectName

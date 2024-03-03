@@ -101,9 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7693599255702816309}
   - component: {fileID: 8089819927461016214}
-  - component: {fileID: 3484823612947708004}
-  - component: {fileID: 3954202826209727461}
   - component: {fileID: 7818359391419740545}
+  - component: {fileID: 3484823612947708004}
+  - component: {fileID: 4003445492403569039}
   m_Layer: 0
   m_Name: Strike
   m_TagString: Untagged
@@ -146,6 +146,19 @@ MonoBehaviour:
   primarySubEffect: {fileID: 0}
   burstGain: 5
   abilityDescription: Quite the standard basic attack.
+--- !u!114 &7818359391419740545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935371756486926109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +174,7 @@ MonoBehaviour:
   range: 1
   tilesInRange: []
   targetsInRange: []
---- !u!114 &3954202826209727461
+--- !u!114 &4003445492403569039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,22 +183,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8935371756486926109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4755e8b045f7534597b695d829853e1, type: 3}
+  m_Script: {fileID: 11500000, guid: d876e6f5dd31b274cb1fc518264d1a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 1
   targets: []
---- !u!114 &7818359391419740545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935371756486926109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cost: 0
+  numTargets: 1

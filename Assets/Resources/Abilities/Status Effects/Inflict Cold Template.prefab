@@ -92,6 +92,8 @@ MonoBehaviour:
   owner: {fileID: 0}
   effectName: StatIncrementStatusEffect
   conditionName: TurnDurationStatusCondition
+  effectScript: 2
+  conditionScript: 1
   duration: 2
   flatOrPercent: 0
   statType: 12

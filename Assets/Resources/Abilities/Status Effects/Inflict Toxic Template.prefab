@@ -92,6 +92,8 @@ MonoBehaviour:
   owner: {fileID: 0}
   effectName: PercentDamageStatusEffect
   conditionName: TurnDurationStatusCondition
+  effectScript: 1
+  conditionScript: 0
   duration: 3
   flatOrPercent: 5
   statType: 0

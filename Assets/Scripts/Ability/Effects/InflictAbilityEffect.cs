@@ -8,11 +8,13 @@ using Unity.VisualScripting;
 public class InflictAbilityEffect : BaseAbilityEffect 
 {
 	public enum EffectNames{
+		FlatDamageStatusEffect,
+		PercentDamageStatusEffect,
 		StatIncrementStatusEffect,
 		StatMultiplyStatusEffect
 	}
 	public enum ConditionNames{
-		TurnDurationStatusCondition,
+		// TurnDurationStatusCondition,
 		TurnStartStatusCondition,
 		TurnEndStatusCondition,
 		InfiniteStatusCondition,
