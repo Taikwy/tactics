@@ -56,7 +56,7 @@ public class CommandSelectionState : BaseAbilityMenuState
                 delegate { Act(); },
                 // delegate { Status(); },
                 delegate { Focus(); },
-                delegate { Defend(); },
+                delegate { Pass(); },
             };
         }
         
@@ -67,7 +67,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         //logic for setting stuff as locked depending on actions the playe rhas taken
         abilityPanelController.SetLocked(0, turn.hasUnitMoved || turn.hasUnitActed);                             //disable movement if already moved or acted
         abilityPanelController.SetLocked(1, turn.hasUnitActed);                             //disable action if already acted
-        abilityPanelController.SetLocked(2, turn.hasUnitMoved);                             //disable focus if unit has moved
+        abilityPanelController.SetLocked(2, turn.hasUnitMoved || MaxedSkillPoints());                             //disable focus if unit has moved or already has maxed out skill points
         // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             //disable action if already acted
         // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             
 
@@ -80,15 +80,21 @@ public class CommandSelectionState : BaseAbilityMenuState
     }protected void Act(){
         // Debug.Log("act clicked!");
         owner.ChangeState<AbilitySectionState>();
-    }protected void Status(){
-        // Debug.Log("status clicked!");
-        owner.ChangeState<SelectUnitState>();
-    }protected void Focus(){
-        Debug.Log("Focus clicked!");
+    }
+    // protected void Status(){
+    //     // Debug.Log("status clicked!");
+    //     owner.ChangeState<SelectUnitState>();
+    // }
+    protected void Focus(){
+        // Debug.Log("Focus clicked!");
+        if(MaxedSkillPoints()){
+            Debug.LogError("skill points already max, cannot focus");
+            return;
+        }
         owner.turn.actingUnit.GetComponent<SkillPoints>().SK += 2;
         owner.turn.actingUnit.GetComponent<Burst>().BP += owner.turn.actingUnit.GetComponent<Burst>().focusBP;
         owner.ChangeState<SelectUnitState>();
-    }protected void Defend(){
+    }protected void Pass(){
         // Debug.Log("defend clicked!");
         owner.ChangeState<SelectUnitState>();
     }
@@ -120,8 +126,26 @@ public class CommandSelectionState : BaseAbilityMenuState
 			owner.ChangeState<MoveTargetState>();
 		else if (turn.hasUnitActed == false && turn.plan.ability != null)
 			owner.ChangeState<AbilityTargetState>();
+        else if(turn.hasUnitActed == false && turn.plan.subAction == PlanOfAttack.SubAction.FOCUS){
+            if(MaxedSkillPoints()){
+                print("cpu has max skill points, passing instead");
+                Pass();
+            }
+            else{
+                print("cpu is focusing");
+                Focus();
+            }
+        }
+        else if(turn.hasUnitActed == false && turn.plan.subAction == PlanOfAttack.SubAction.PASS){
+            print("cpu is passing");
+            Pass();
+        }
 		else
 			owner.ChangeState<SelectUnitState>();
 	}
+
+    bool MaxedSkillPoints(){
+        return owner.turn.actingUnit.GetComponent<SkillPoints>().SK >= owner.turn.actingUnit.GetComponent<SkillPoints>().MSK;
+    }
     
 }
