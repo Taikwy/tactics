@@ -32,7 +32,7 @@ public abstract class BaseAbilityPicker : MonoBehaviour
 			Transform catalog = abilityCatalog.transform;
 			Transform child = catalog.Find(abilityName);
 			if (child != null){
-				print("ability " + child + " found!!!");
+				// print("ability " + child + " found!!!");
 				return child.GetComponent<Ability>();
 			}
 		}

@@ -21,7 +21,7 @@ public class ComputerPlayer : MonoBehaviour
 		if (pattern){
 			pattern.Pick(plan);
 			plan.validTargetsLeft = CheckForTargets(plan.target);
-			print("valid targets? " + plan.validTargetsLeft);
+			// print("valid targets? " + plan.validTargetsLeft);
 			if(!plan.validTargetsLeft){
 				plan.ability = null;
 				// plan.canPerformAbility = false;
@@ -222,35 +222,36 @@ public class ComputerPlayer : MonoBehaviour
 			plan.ability = null; // Clear ability as a sign not to perform it
 			return;
 		}
+
 		// print("best options chosen " + bestOptions + " |     " + bestOptions.Count + "     | move " + bestOptions[0].bestMoveTile);
 		// foreach(AttackOption option in bestOptions){
-		// 	print("best options");
+		// 	print("best options " + option.target + " | score " + option.GetScore(actingUnit, plan.ability));
 		// 	foreach(Tile tile in option.moveTiles){
-		// 		print("tile " + tile + "              | " + actingUnit.tile);
+		// 		print("move tile " + tile + "              | " + actingUnit.tile);
 		// 	}
 		// }
 
         //THIS SECTION I WILL HAVE TO UPDATE THE MOST
-		List<AttackOption> finalPicks = new List<AttackOption>();
-		bestScore = 0;
-		for (int i = 0; i < bestOptions.Count; ++i){
-			AttackOption option = bestOptions[i];
-			int score = option.bestAngleBasedScore;
-			if (score > bestScore){
-				bestScore = score;
-				finalPicks.Clear();
-				finalPicks.Add(option);
-			}
-			else if (score == bestScore){
-				finalPicks.Add(option);
-			}
-		}
+		// List<AttackOption> finalPicks = new List<AttackOption>();
+		// bestScore = 0;
+		// for (int i = 0; i < bestOptions.Count; ++i){
+		// 	AttackOption option = bestOptions[i];
+		// 	int score = option.bestAngleBasedScore;
+		// 	if (score > bestScore){
+		// 		bestScore = score;
+		// 		finalPicks.Clear();
+		// 		finalPicks.Add(option);
+		// 	}
+		// 	else if (score == bestScore){
+		// 		finalPicks.Add(option);
+		// 	}
+		// }
 		// print("final picks " + finalPicks.Count);
 		// foreach(AttackOption ao in finalPicks){
 		// 	print("target " + ao.target.position+  " | attack dir  + ao.direction +  | move " + ao.bestMoveTile.position);
 		// }
 		
-		AttackOption choice = finalPicks[ Random.Range(0, finalPicks.Count)  ];
+		AttackOption choice = bestOptions[ Random.Range(0, bestOptions.Count)  ];
 		plan.fireLocation = choice.target.position;
 		// plan.attackDirection = choice.direction;
 		plan.moveLocation = choice.bestMoveTile.position;

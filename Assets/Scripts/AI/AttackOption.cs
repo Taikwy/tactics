@@ -70,19 +70,6 @@ public class AttackOption
 			bestMoveTile = moveTargets[ Random.Range(0, moveTargets.Count) ];
 	}
 
-	// Scores the option based on how many of the targets are a match
-	// and considers the angle of attack to each mark
-	int GetAngleBasedScore (Unit caster){
-		int score = 0;
-		for (int i = 0; i < marks.Count; ++i){
-			int value = marks[i].isMatch ? 1 : -1;
-			// int multiplier = MultiplierForAngle(caster, marks[i].tile);
-			// score += value * multiplier;
-			score += value;
-		}
-		return score;
-	}
-
     //filters moves in case the caster WANTS to get hit by the ability
 	void FilterBestMoves (List<Tile> list){
 		if (!isCasterMatch)
