@@ -24,7 +24,12 @@ public class ComputerPlayer : MonoBehaviour
 			// print("valid targets? " + plan.validTargetsLeft);
 			if(!plan.validTargetsLeft){
 				plan.ability = null;
-				// plan.canPerformAbility = false;
+				//if the plan was to burst but it is now invalid, set burst targets to false in the pattern
+				if(plan.bursting){
+					pattern.burstTargets = false;
+					pattern.Pick(plan);
+					plan.bursting = false;
+				}
 			}
 			// print("plan selected " + plan + " | " + plan.ability);
 		}
@@ -39,6 +44,10 @@ public class ComputerPlayer : MonoBehaviour
 				PlanPositionIndependent(plan);
 			else if (IsDirectionIndependent(plan))
 				PlanDirectionIndependent(plan);
+			
+			if(plan.ability == null){
+				// print("no target found, not using ability");
+			}
 		}
 		
 		//handle movement in the case of NO ABILITY BEING PERFORMED
