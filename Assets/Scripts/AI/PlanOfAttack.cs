@@ -10,7 +10,6 @@ public class PlanOfAttack
 	public Directions attackDirection;
 
 	// public bool canPerformAbility;
-	public bool validTargetsLeft;
 	public enum SubAction{
 		PASS,
 		FOCUS,
@@ -23,7 +22,7 @@ public class PlanOfAttack
 
 	}
 	public SubAction subAction;
-	public bool targets;
 	public SubMovement subMovement;
+	public bool validTargetsLeft;
 
 }
