@@ -159,7 +159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
       propertyPath: duration
-      value: 34
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
+      propertyPath: conditionScript
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
       propertyPath: incrementOrMultiply

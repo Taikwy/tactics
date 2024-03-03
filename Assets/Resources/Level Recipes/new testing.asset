@@ -21,8 +21,6 @@ MonoBehaviour:
     y: 3
   enemyUnitRecipes:
   - Faerie
-  - Kitsune
-  - Kitsune
   enemySpawnLocations:
   - x: 4
     y: 7

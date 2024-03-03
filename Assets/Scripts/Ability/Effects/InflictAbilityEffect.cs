@@ -1,14 +1,35 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using System.Reflection;
+using Unity.VisualScripting;
 
 public class InflictAbilityEffect : BaseAbilityEffect 
 {
-    // public GameObject statusEffect;
+	public enum EffectNames{
+		StatIncrementStatusEffect,
+		StatMultiplyStatusEffect
+	}
+	public enum ConditionNames{
+		TurnDurationStatusCondition,
+		TurnStartStatusCondition,
+		TurnEndStatusCondition,
+		InfiniteStatusCondition,
+		StatComparisonCondition
+	}
+
 	[Header("Status Types (Script Names)")]
 	[Tooltip("StatIncrementStatusEffect || StatMultiplyStatusEffect")]public string effectName;
 	public string conditionName;
+
+
+	[Header("Status Types (Script Names)")]
+	public EffectNames effectScript;
+	public ConditionNames conditionScript;
+
+
+
 	[Header("Status Condition")]
 	public int duration;
 	[Header("Damage Status Effect Numbers")]
@@ -22,12 +43,12 @@ public class InflictAbilityEffect : BaseAbilityEffect
 
 	//returns 0 cuz no damage
 	public override int Predict (Tile target){
-        Debug.Log("predicting inflict " + effectName);
+        Debug.Log("predicting inflict " + effectScript);
 		return 0;
 	}
 
 	protected override int OnApply (Tile target){
-        Debug.Log("new inflicting status " + effectName);
+        // Debug.Log("new inflicting status " + effectScript);
 		Unit attacker = GetComponentInParent<Unit>();
 		Unit defender = target.content.GetComponent<Unit>();
 
@@ -66,8 +87,8 @@ public class InflictAbilityEffect : BaseAbilityEffect
 	
 	int CreateStatusObject(Tile target, int adjustedDuration){
 		//checks if there is a calss with the statusname
-		Type effectType = Type.GetType(effectName);
-		Type conditionType = Type.GetType(conditionName);
+		Type effectType = Type.GetType(effectScript.ToString());
+		Type conditionType = Type.GetType(conditionScript.ToString());
 		if (effectType == null || !effectType.IsSubclassOf(typeof(StatusEffect))){
 			Debug.LogError("Invalid Status Effect Type");
 			return 0;
@@ -93,11 +114,14 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		
 		
 		switch(condition){
-			case RoundDurationStatusCondition:
-				(condition as RoundDurationStatusCondition).duration = adjustedDuration;
-				break;
-			case TurnDurationStatusCondition:
-				(condition as TurnDurationStatusCondition).duration = adjustedDuration;
+			// case RoundDurationStatusCondition:
+			// 	(condition as RoundDurationStatusCondition).duration = adjustedDuration;
+			// 	break;
+			// case TurnDurationStatusCondition:
+			// 	(condition as TurnDurationStatusCondition).duration = adjustedDuration;
+			// 	break;
+			case DurationStatusCondition:
+				(condition as DurationStatusCondition).duration = adjustedDuration;
 				break;
 			case InfiniteStatusCondition:
 				break;
@@ -120,6 +144,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 				Debug.Log(incrementOrMultiply + " | " + statType);
 				break;
 		}
+		// print("created statuys object of type " + effectType + " | condition " + conditionType + " duration " + adjustedDuration);
 
 		return 0;
 	}
