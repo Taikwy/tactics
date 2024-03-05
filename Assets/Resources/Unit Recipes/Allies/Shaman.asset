@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Shaman
   m_EditorClassIdentifier: 
   unitBase: Unit Base
-  sprite: {fileID: 21300000, guid: 91b9c1f170ce1c1468a61e889443639e, type: 3}
+  sprite: {fileID: 21300000, guid: 9847079a84732ec4f9beb403d1591ef3, type: 3}
   portrait: {fileID: 21300000, guid: 27e90e30f02d7c54cbae3087e6e53a8f, type: 3}
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: 00f298a6a5828fa4381f1957f782251a, type: 2}
   job: 
-  attack: 
-  abilityCatalog: Shaman Catalog
   movementType: 0
   alliance: 2
   equipment: []
+  attack: 
+  abilityCatalog: Shaman Catalog
+  attackPattern: 
