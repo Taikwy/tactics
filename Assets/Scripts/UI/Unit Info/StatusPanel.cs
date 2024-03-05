@@ -56,7 +56,7 @@ public class StatusPanel : MonoBehaviour
         Unit unitScript = unit.GetComponent<Unit>();
         nameLabel.text = unitScript.name;
         portrait.sprite = unitScript.portrait;
-        portrait.color = unitScript.portraitColor;
+        // portrait.color = unitScript.portraitColor;
         Stats stats = unit.GetComponent<Stats>();
         Equipment equipment = unit.GetComponent<Equipment>();
         if (stats) {
