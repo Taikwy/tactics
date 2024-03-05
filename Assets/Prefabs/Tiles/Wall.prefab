@@ -141,6 +141,7 @@ MonoBehaviour:
   targetSprite: {fileID: 1204405536, guid: feaedf39666e69446b0d54a69066bc2e, type: 3}
   selectSprite: {fileID: -1808446317, guid: c517fb5d06e59cb4299724899f0a0db0, type: 3}
   targetAnim: {fileID: 0}
+  hovered: 0
   position:
     x: 0
     y: 0
@@ -191,7 +192,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 825832206, guid: 31cef7b5958359e43b46c9a853eb0a21, type: 3}
+  m_Sprite: {fileID: -587760640, guid: 236418d25680caf4ea282fdd25237c0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
