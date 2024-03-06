@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SphinxData
   m_EditorClassIdentifier: 
   fixedStats: b40000000400000002000000480000000a00000032000000
-  combatStats: 190000000800000007000000
+  combatStats: 190000000800000008000000
   growthStats:
   - 3.2
   - 2.2

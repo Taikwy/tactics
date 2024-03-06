@@ -90,7 +90,7 @@ MonoBehaviour:
   abilityEffectDescription: 
   subEffects: []
   owner: {fileID: 0}
-  attackPercentModifier: 70
+  attackPercentModifier: 60
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 4
-  abilityDescription: Deal 70% of the unit's DEFENSE to a single target.
+  abilityDescription: Deals 60% of the unit's ATTACK to a single target.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0

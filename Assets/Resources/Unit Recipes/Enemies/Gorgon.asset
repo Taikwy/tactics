@@ -23,4 +23,5 @@ MonoBehaviour:
   equipment: []
   attack: 
   abilityCatalog: Gorgon Catalog
+  cpuDriver: 0
   attackPattern: Gorgon Attack Pattern

@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &949309952904910724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8628267232646783970}
+  - component: {fileID: 958027864410058910}
+  m_Layer: 0
+  m_Name: Sandstorm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8628267232646783970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949309952904910724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5371467695276652076}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958027864410058910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949309952904910724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34114d52a46757e48bf688e132fb6c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subAction: 0
+  subMovement: 3
+  proceedType: 0
+  ability: Sandstorm
+  target: 3
 --- !u!1 &1775646202484929946
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +60,7 @@ GameObject:
   - component: {fileID: 4674780086467630111}
   - component: {fileID: 8521022540666885327}
   m_Layer: 0
-  m_Name: Poisonous Bite
+  m_Name: Vicious Roar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +96,7 @@ MonoBehaviour:
   subAction: 1
   subMovement: 2
   proceedType: 1
-  ability: Poisonous Bite
+  ability: Vicious Roar
   target: 3
 --- !u!1 &4806164388993368835
 GameObject:
@@ -91,7 +140,7 @@ GameObject:
   - component: {fileID: 5371467695276652076}
   - component: {fileID: 5371467695276652075}
   m_Layer: 0
-  m_Name: Gorgon Attack Pattern
+  m_Name: Sphinx Attack Pattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +162,7 @@ Transform:
   - {fileID: 5515063524815919741}
   - {fileID: 5867753581088207308}
   - {fileID: 4674780086467630111}
+  - {fileID: 8628267232646783970}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,7 +181,7 @@ MonoBehaviour:
   pickers:
   - {fileID: 5530263093665564257}
   - {fileID: 8521022540666885327}
-  - {fileID: 5530263093665564257}
+  - {fileID: 8521022540666885327}
   burstPicker: {fileID: 1783120702664361362}
   burstTargets: 0
 --- !u!1 &6885633212326610262
@@ -145,7 +195,7 @@ GameObject:
   - component: {fileID: 4963814645136369959}
   - component: {fileID: 1783120702664361362}
   m_Layer: 0
-  m_Name: Petrifying Eyes (Burst)
+  m_Name: Ra's Fury (Burst)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +231,7 @@ MonoBehaviour:
   subAction: 0
   subMovement: 2
   proceedType: 1
-  ability: Petrifying Eyes
+  ability: Ra's Fury
   target: 3
 --- !u!1 &8465327551192377114
 GameObject:
@@ -194,7 +244,7 @@ GameObject:
   - component: {fileID: 5867753581088207308}
   - component: {fileID: 5530263093665564257}
   m_Layer: 0
-  m_Name: Slash
+  m_Name: Strike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subAction: 0
-  subMovement: 3
+  subMovement: 2
   proceedType: 0
-  ability: Slash
+  ability: Strike
   target: 3

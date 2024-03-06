@@ -49,12 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  overlayColor: 0
   primaryEffects:
   - {fileID: 5801221991015302157}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 0
-  abilityDescription: You never want to mess with deities.
+  abilityDescription: Deals 120% of the unit's ATTACK to ALL targets within range.
 --- !u!114 &4888908716431183397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db082ed1f3dbb14f84d82cdd8a76dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: -1
+  cost: 180
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 1
   targets: []
 --- !u!1001 &3099370861349548600
 PrefabInstance:
@@ -159,7 +159,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6378345542120587180, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
       propertyPath: attackPercentModifier
-      value: 80
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378345542120587180, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: abilityEffectDescription
+      value: '---
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8899457881431701045, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
       propertyPath: m_Name

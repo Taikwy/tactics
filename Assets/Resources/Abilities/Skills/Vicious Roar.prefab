@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guaranteed: 0
-  abilityHitRate: 80
+  abilityHitRate: 90
 --- !u!114 &4742295797092695002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,9 +103,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7693599255702816309}
   - component: {fileID: 8089819927461016214}
-  - component: {fileID: 3484823612947708004}
-  - component: {fileID: 3954202826209727461}
   - component: {fileID: 7818359391419740545}
+  - component: {fileID: 3484823612947708004}
+  - component: {fileID: 8077837941182523857}
   m_Layer: 0
   m_Name: Vicious Roar
   m_TagString: Untagged
@@ -142,14 +142,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  overlayColor: 0
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 8
-  abilityDescription: '---
-
-'
+  burstGain: 12
+  abilityDescription: Deals 90% of the unit's ATTACK to ALL targets within range.
+--- !u!114 &7818359391419740545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935371756486926109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 2
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +177,7 @@ MonoBehaviour:
   range: 1
   tilesInRange: []
   targetsInRange: []
---- !u!114 &3954202826209727461
+--- !u!114 &8077837941182523857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,22 +186,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8935371756486926109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4755e8b045f7534597b695d829853e1, type: 3}
+  m_Script: {fileID: 11500000, guid: e93fdc0ddc106ef4cb10bd5dda7ad325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 1
   targets: []
---- !u!114 &7818359391419740545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935371756486926109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cost: 0
