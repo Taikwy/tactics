@@ -10,11 +10,13 @@ public class AttackPattern : MonoBehaviour
 	int index;
 	
 	public bool CheckBurst(PlanOfAttack plan){
-		print("checking burst " + burstPicker + " " + burstPicker.CanBurst() + " " + burstTargets);
-		if(burstPicker && burstPicker.CanBurst()){
-			plan.bursting = true;
-			burstPicker.Pick(plan);
-			return true;
+		// print("checking burst " + burstPicker + " " + burstPicker.CanBurst() + " " + burstTargets);
+		if(burstPicker){
+			if(burstPicker.CanBurst()){
+				plan.bursting = true;
+				burstPicker.Pick(plan);
+				return true;
+			}
 		}
 		return false;
 	}
