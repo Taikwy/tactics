@@ -17,10 +17,19 @@ public class Board : MonoBehaviour
     [SerializeField] GameObject groundTilePrefab;
     [SerializeField] GameObject pitTilePrefab;
     [SerializeField] GameObject wallTilePrefab;
+    public enum SelectColor{
+        VALID,
+        INVALID,
+        EMPTY,
+        ALLY,
+        ENEMY,
+    }
     [Header("Select Indicator Colors")]
     public Color selectValid;
     public Color selectInvalid;
+    public Color selectEmpty;
     public Color selectAlly;
+    public Color selectEnemy;
     [Header("Highlight Colors")]
     [SerializeField] Color moveColor;
     [SerializeField] Color passColor, attackColor, healColor, buffColor, debuffColor;

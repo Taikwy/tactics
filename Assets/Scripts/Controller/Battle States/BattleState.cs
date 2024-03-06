@@ -64,15 +64,35 @@ public abstract class BattleState : State
     //takes in a bool to see whether the selected tile is targetable. will change color of the highlight
     protected virtual void SelectTile (Point p, bool targetable = true) {
         // Debug.Log("selecting tile " + p);
-        if (selectPos == p || !board.tiles.ContainsKey(p))
-            return;
-        selectPos = p;
-        tileSelectionIndicator.transform.localPosition = board.tiles[p].center;
+        SelectTile(p);
         if(targetable)
             tileSelectionIndicator.sr.color = board.selectValid;
         else
             tileSelectionIndicator.sr.color = board.selectInvalid;
     }
+    protected virtual void SelectTile (Point p, Board.SelectColor color) {
+        SelectTile(p);
+        Color temp = Color.white;
+        switch(color){
+            case Board.SelectColor.VALID:
+                temp = board.selectValid;
+                break;
+            case Board.SelectColor.INVALID:
+                temp = board.selectInvalid;
+                break;
+            case Board.SelectColor.EMPTY:
+                temp = board.selectEmpty;
+                break;
+            case Board.SelectColor.ALLY:
+                temp = board.selectAlly;
+                break;
+            case Board.SelectColor.ENEMY:
+                temp = board.selectEnemy;
+                break;
+        }
+        tileSelectionIndicator.sr.color = temp;
+    }
+
 
     protected virtual Unit GetUnit (Point p) {
         Tile t = board.GetTile(p);

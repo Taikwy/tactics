@@ -59,7 +59,18 @@ public class MoveTargetState : BattleState
         // Debug.Log("movestate updating");
 
         RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
-        SelectTile(board.selectedPoint, tiles.Contains(board.selectedTile));
+        // SelectTile(board.selectedPoint, tiles.Contains(board.selectedTile));
+        if(tiles.Contains(board.selectedTile)){
+            if(board.selectedTile.content != null){
+                SelectTile(board.selectedPoint, Board.SelectColor.ENEMY);
+            }
+            else{
+                SelectTile(board.selectedPoint, Board.SelectColor.VALID);
+            }
+        }else{
+            SelectTile(board.selectedPoint, Board.SelectColor.EMPTY);
+        }
+
         TargetTiles();        
     }
     

@@ -61,7 +61,23 @@ public class AbilityTargetState : BattleState
         
         RefreshSecondaryPanel(board.selectedPoint);
         // SelectTile(board.selectedPoint);
-        SelectTile(board.selectedPoint, highlightedTiles.Contains(board.selectedTile));
+        if(highlightedTiles.Contains(board.selectedTile)){
+            if(board.selectedTile.content != null){
+                SelectTile(board.selectedPoint, Board.SelectColor.ENEMY);
+                // if(board.selectedTile.content.GetComponent<Alliance>().IsMatch(turn.actingUnit.allianceScript, Targets.Ally)){
+                //     SelectTile(board.selectedPoint, Board.SelectColor.ALLY);
+                // }
+                // else{
+                //     SelectTile(board.selectedPoint, Board.SelectColor.ENEMY);
+                // }
+            }
+            else{
+                SelectTile(board.selectedPoint, Board.SelectColor.VALID);
+            }
+        }else{
+            SelectTile(board.selectedPoint, Board.SelectColor.EMPTY);
+        }
+        // SelectTile(board.selectedPoint, highlightedTiles.Contains(board.selectedTile));
         TargetTiles();
     }
 
