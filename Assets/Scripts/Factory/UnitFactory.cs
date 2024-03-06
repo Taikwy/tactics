@@ -215,7 +215,13 @@ public static class UnitFactory
 		else{
 			driver.normal = Drivers.Computer;
 			GameObject pattern = InstantiatePrefab("Attack Patterns/" + name);
-			pattern.transform.SetParent(obj.transform);
+			if(pattern != null){
+				pattern.transform.SetParent(obj.transform);
+			}
+			else{
+				driver.normal = Drivers.Human;
+
+			}
 		}
 	}
 }

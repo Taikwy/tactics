@@ -547,6 +547,7 @@ MonoBehaviour:
   costLabel: {fileID: 1316923320531725713}
   descLabel: {fileID: 1316923320562210757}
   effectLabel: {fileID: 1316923319446132989}
+  conditionLabel: {fileID: 1316923320245644055}
   rangeLabel: {fileID: 1316923319873460343}
   areaLabel: {fileID: 1316923319810893404}
 --- !u!1 &1316923320245644053

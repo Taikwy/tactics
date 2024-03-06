@@ -12,7 +12,7 @@ public class AbilityInfoPanel : MonoBehaviour
     [Header("Ability Info")]
     public TMP_Text nameLabel;
     public TMP_Text costLabel, descLabel;
-    public TMP_Text effectLabel, rangeLabel, areaLabel;
+    public TMP_Text effectLabel, conditionLabel, rangeLabel, areaLabel;
     
     //takes in ability gameobject
     public void Display (GameObject ability){
@@ -20,6 +20,8 @@ public class AbilityInfoPanel : MonoBehaviour
         // EffectZone abilityZone = abilityScript.primaryEffect.GetComponent<EffectZone>();
         AbilityRange rangeScript = ability.GetComponent<AbilityRange>();
         AbilityArea areaScript = ability.GetComponent<AbilityArea>();
+        BaseAbilityEffect effectScript = abilityScript.primaryEffect.GetComponent<BaseAbilityEffect>();
+
         if(!abilityScript || !rangeScript || !areaScript)  {
             Debug.LogError("Ability missing scripts for info display");
             return;
@@ -29,8 +31,9 @@ public class AbilityInfoPanel : MonoBehaviour
 
         costLabel.text = "COST NOT FOUND";
         if(ability.GetComponent<AbilitySkillCost>()){
-            if(ability.GetComponent<AbilitySkillCost>().cost <= 0)
-                costLabel.text = string.Format("NO COST");
+            if(ability.GetComponent<AbilitySkillCost>().cost <= 0){
+                costLabel.text = string.Format("COST: NONE");
+            }
             else
                 costLabel.text = string.Format("SKILL POINTS REQUIRED: {0}", ability.GetComponent<AbilitySkillCost>().cost);
         }
@@ -45,9 +48,28 @@ public class AbilityInfoPanel : MonoBehaviour
         }
 
         descLabel.text = abilityScript.abilityDescription;
-        effectLabel.text = string.Format("EFFECT: {0}, ZONE: {1}", abilityScript.primaryEffect.name, abilityScript.primaryEffect.GetComponent<EffectZone>());
-        rangeLabel.text = string.Format("RANGE TYPE: {0}, RANGE: {1}", rangeScript.name, rangeScript.range);
-        // areaLabel.text = string.Format("AREA: {0}, NUM TARGETS: under testing rn", areaScript.name, areaScript.numTargets);
+        effectLabel.text = string.Format("EFFECT: {0}", abilityScript.primaryEffect.name);
+        conditionLabel.text = "";
+        if(effectScript.GetType() == typeof(InflictAbilityEffect))
+            conditionLabel.text = effectScript.abilityEffectDescription;
+
+
+        if(rangeScript.GetType() == typeof(ConstantAbilityRange)){
+            rangeLabel.text = string.Format("RANGE: {0}", rangeScript.range);
+        }  
+        else if(rangeScript.GetType() == typeof(InfiniteAbilityRange)){
+            rangeLabel.text = string.Format("RANGE: INFINITE"); 
+        }
+        else if(rangeScript.GetType() == typeof(SelfAbilityRange)){
+            rangeLabel.text = string.Format("RANGE: SELF");
+        }
+
+        if(areaScript.GetType() == typeof(FullAbilityArea)){
+            areaLabel.text = string.Format("AREA: FULL");
+        }
+        else if(areaScript.GetType() == typeof(UnitAbilityArea)){
+            areaLabel.text = string.Format("AREA: UNIT");
+        }
     }
 
     public void ShowPanel(){
