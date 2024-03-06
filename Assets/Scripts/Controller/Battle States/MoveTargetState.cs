@@ -13,7 +13,6 @@ public class MoveTargetState : BattleState
         // Debug.Log("enter moving state");
         base.Enter ();
         moveScript = turn.actingUnit.GetComponent<Movement>();
-        // tiles = moveScript.GetTilesInRange(board);
         tiles = moveScript.GetAllTilesInRange(board);
         allyTiles = moveScript.FilterAllies(tiles);
         foeTiles = moveScript.FilterFoes(tiles);
@@ -22,13 +21,9 @@ public class MoveTargetState : BattleState
         moveScript.FilterOccupied(tiles);
         tiles.Add(turn.actingUnit.tile);
 
-        // board.SelectTiles(tiles);
-        // board.HighlightMoveTiles(tiles);
         board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
         board.HighlightTiles(allyTiles, Board.OverlayColor.PASS);
         board.HighlightTiles(foeTiles, Board.OverlayColor.ATTACK);
-        // Debug.Log(allyTiles.Count);
-        // Debug.Log(enemyTiles.Count);
         RefreshPrimaryPanel(selectPos);
 
         if (driver.Current == Drivers.Computer){
@@ -122,9 +117,9 @@ public class MoveTargetState : BattleState
 			SelectTile(cursorPos);
             RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
             TargetTiles();       
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(owner.actionDelays.moveSelectDelay);
 		}
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(owner.actionDelays.moveFinishDelay);
 		owner.ChangeState<MoveSequenceState>();
 	}
 }

@@ -20,7 +20,7 @@ public class AbilityTargetState : BattleState
 
         areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);
-        highlightedTiles = rangeScript.GetTilesInRange(board);
+        highlightedTiles = rangeScript.FilterGround(rangeScript.GetTilesInRange(board));
         board.HighlightTiles(highlightedTiles, turn.selectedAbility.overlayColor);
 
         selectedTiles = new List<Tile>();
@@ -167,12 +167,12 @@ public class AbilityTargetState : BattleState
                 RefreshSecondaryPanel(board.selectedPoint);
 				SelectTile(cursorPos);
                 TargetTiles();
-				yield return new WaitForSeconds(0.1f);
+				yield return new WaitForSeconds(owner.actionDelays.actionSelectDelay);
 			}
 		// }
 				SelectTile(cursorPos);
                 TargetTiles();
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(owner.actionDelays.actionFinishDelay);
 				SelectTile(cursorPos);
                 TargetTiles();
         if(highlightedTiles.Contains(owner.selectedTile)){

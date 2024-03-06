@@ -31,6 +31,17 @@ public class BattleController : StateMachine
     public IEnumerator round;
     public Timeline timeline;
     public ComputerPlayer cpu;
+    public CPUActionDelays actionDelays;
+
+    [System.Serializable]public struct CPUActionDelays {
+        public float startSelectCommandDelay;
+        public float moveSelectDelay;
+        public float moveFinishDelay;
+        public float actionSelectDelay;
+        public float actionFinishDelay;
+        public float displayActionDelay;
+    }
+
 
     
 

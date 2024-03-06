@@ -28,6 +28,7 @@ public class ConfirmAbilityTargetState : BattleState
 			SetTarget(0);
 		}
 		if (driver.Current == Drivers.Computer){
+            // Debug.LogError("asdasd");
             board.humanDriver = false;
 			StartCoroutine(ComputerDisplayAbilitySelection());
         }
@@ -168,7 +169,8 @@ public class ConfirmAbilityTargetState : BattleState
         Debug.Log(" i need to add ui here to display this " + turn.selectedAbility.name);
         SetTarget(0);
         // UpdateForecastPanel();
-		yield return new WaitForSeconds (.5f);
+		yield return new WaitForSeconds (owner.actionDelays.displayActionDelay);
+        print("delaying display action " + owner.actionDelays.displayActionDelay);
 		owner.ChangeState<PerformAbilityState>();
 	}
 }

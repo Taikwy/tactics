@@ -120,7 +120,7 @@ public class CommandSelectionState : BaseAbilityMenuState
 			turn.selectedAbility = turn.plan.ability;
 		}
 
-		yield return new WaitForSeconds (.2f);
+		yield return new WaitForSeconds (owner.actionDelays.startSelectCommandDelay);
 
 		if (turn.hasUnitMoved == false && turn.plan.moveLocation != turn.actingUnit.tile.position)
 			owner.ChangeState<MoveTargetState>();

@@ -3322,6 +3322,13 @@ MonoBehaviour:
   guiController: {fileID: 439395760}
   timeline: {fileID: 1074842531}
   cpu: {fileID: 431054554}
+  actionDelays:
+    startSelectCommandDelay: 0.25
+    moveSelectDelay: 0.12
+    moveFinishDelay: 0.12
+    actionSelectDelay: 0.15
+    actionFinishDelay: 0.2
+    displayActionDelay: 0.5
 --- !u!4 &431054551
 Transform:
   m_ObjectHideFlags: 0
