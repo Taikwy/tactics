@@ -14,13 +14,13 @@ public class TileSelectionIndicator : MonoBehaviour
     // }
 
     public void ChangeSelect(){
-        print("change tile select to select");
+        // print("change tile select to select");
         // anim.contr
         // anim.clip = selectAnim;
         anim.runtimeAnimatorController = selectAnim;
     }
     public void ChangeTarget(){
-        print("change tile select to target");
+        // print("change tile select to target");
         anim.runtimeAnimatorController = targetAnim;
         // anim.clip = targetAnim;
     }

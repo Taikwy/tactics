@@ -23,4 +23,5 @@ MonoBehaviour:
   equipment: []
   attack: 
   abilityCatalog: Sphinx Catalog
-  attackPattern: 
+  cpuDriver: 0
+  attackPattern: Sphinx Attack Pattern

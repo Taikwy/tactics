@@ -8,6 +8,7 @@ public class Turn
     //For calculating new AV and turn stuff
     public bool hasUnitMoved;
     public bool hasUnitActed;
+    // public bool hasUnitFocused;
     public int actionCost;
     public bool lockMove;
     Tile startTile;

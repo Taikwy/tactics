@@ -23,4 +23,5 @@ MonoBehaviour:
   equipment: []
   attack: 
   abilityCatalog: Kitsune Catalog
+  cpuDriver: 1
   attackPattern: Kitsune Attack Pattern

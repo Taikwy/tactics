@@ -22,6 +22,7 @@ public class UnitRecipe : ScriptableObject
     public string attack;
     public string abilityCatalog;
     [Header("ai stuff")]
+    public bool cpuDriver = false;
     public string attackPattern;
 
 }

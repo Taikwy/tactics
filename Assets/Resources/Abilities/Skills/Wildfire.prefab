@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guaranteed: 0
-  abilityHitRate: 80
+  abilityHitRate: 75
 --- !u!114 &6950046999304816923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   subEffects:
   - {fileID: 4466536032333570820}
   owner: {fileID: 0}
-  attackPercentModifier: 60
+  attackPercentModifier: 65
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,12 +142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  overlayColor: 0
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 0
-  abilityDescription: Go and set things on fire.
+  burstGain: 6
+  abilityDescription: Deal 65% of the unit's ATTACK to a single target and inflicts
+    BURN for 2 turns.
 --- !u!114 &2170991809930980264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1
+  range: 2
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &8819940981040217013
@@ -200,7 +202,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_Name
-      value: Inflict Burn Template
+      value: Inflict BURN
       objectReference: {fileID: 0}
     - target: {fileID: 7003075404764746857, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: guaranteed
@@ -264,7 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: abilityEffectDescription
-      value: BURN for 2 turns.
+      value: Unit takes 1 DAMAGE at the START of every turn.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}

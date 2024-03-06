@@ -91,6 +91,7 @@ public class CommandSelectionState : BaseAbilityMenuState
             Debug.LogError("skill points already max, cannot focus");
             return;
         }
+        turn.hasUnitActed = true;
         owner.turn.actingUnit.GetComponent<SkillPoints>().SK += 2;
         owner.turn.actingUnit.GetComponent<Burst>().BP += owner.turn.actingUnit.GetComponent<Burst>().focusBP;
         owner.ChangeState<SelectUnitState>();

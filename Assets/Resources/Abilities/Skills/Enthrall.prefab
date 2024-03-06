@@ -54,8 +54,8 @@ MonoBehaviour:
   - {fileID: 2811413672841593272}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 5
-  abilityDescription: Who would hurt such a creature?
+  burstGain: 6
+  abilityDescription: Inflicts CRUSH on a single target for 1 turn.
 --- !u!114 &5097820390366547705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,15 +160,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
       propertyPath: duration
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
       propertyPath: conditionScript
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
       propertyPath: incrementOrMultiply
-      value: -3
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}
+      propertyPath: abilityEffectDescription
+      value: 'Unit has -4 ATTACK
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d9ff5ac0ca5f20438b6256cb45ac487, type: 3}

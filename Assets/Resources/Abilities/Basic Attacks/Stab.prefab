@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571dd3124515bf04d9fa18eed365ec64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guaranteed: 0
-  abilityHitRate: 99
+  guaranteed: 1
+  abilityHitRate: 0
 --- !u!114 &4742295797092695002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,12 +140,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  overlayColor: 0
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 5
-  abilityDescription: They don't always have to target the back!
+  burstGain: 4
+  abilityDescription: Deal 60% of the unit's ATTACK to a single target.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0

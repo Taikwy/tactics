@@ -21,9 +21,9 @@ public class InflictAbilityEffect : BaseAbilityEffect
 		StatComparisonCondition
 	}
 
-	[Header("Status Types (Script Names)")]
-	[Tooltip("StatIncrementStatusEffect || StatMultiplyStatusEffect")]public string effectName;
-	public string conditionName;
+	// [Header("Status Types (Script Names)")]
+	// [Tooltip("StatIncrementStatusEffect || StatMultiplyStatusEffect")]public string effectName;
+	// public string conditionName;
 
 
 	[Header("Status Types (Script Names)")]

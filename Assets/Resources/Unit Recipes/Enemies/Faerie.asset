@@ -23,4 +23,5 @@ MonoBehaviour:
   equipment: []
   attack: 
   abilityCatalog: Faerie Catalog
+  cpuDriver: 1
   attackPattern: Faerie Attack Pattern

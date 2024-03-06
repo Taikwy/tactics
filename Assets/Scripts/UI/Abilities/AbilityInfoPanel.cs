@@ -12,7 +12,7 @@ public class AbilityInfoPanel : MonoBehaviour
     [Header("Ability Info")]
     public TMP_Text nameLabel;
     public TMP_Text costLabel, descLabel;
-    public TMP_Text effectLabel, conditionLabel, rangeLabel, areaLabel;
+    public TMP_Text effectLabel, conditionLabel, rangeLabel, areaLabel, hitrateLabel;
     
     //takes in ability gameobject
     public void Display (GameObject ability){
@@ -21,6 +21,7 @@ public class AbilityInfoPanel : MonoBehaviour
         AbilityRange rangeScript = ability.GetComponent<AbilityRange>();
         AbilityArea areaScript = ability.GetComponent<AbilityArea>();
         BaseAbilityEffect effectScript = abilityScript.primaryEffect.GetComponent<BaseAbilityEffect>();
+        HitRate hitrateScript = abilityScript.primaryEffect.GetComponent<HitRate>();
 
         if(!abilityScript || !rangeScript || !areaScript)  {
             Debug.LogError("Ability missing scripts for info display");
@@ -32,19 +33,19 @@ public class AbilityInfoPanel : MonoBehaviour
         costLabel.text = "COST NOT FOUND";
         if(ability.GetComponent<AbilitySkillCost>()){
             if(ability.GetComponent<AbilitySkillCost>().cost <= 0){
-                costLabel.text = string.Format("COST: NONE");
+                costLabel.text = string.Format("No Cost");
             }
             else
-                costLabel.text = string.Format("SKILL POINTS REQUIRED: {0}", ability.GetComponent<AbilitySkillCost>().cost);
+                costLabel.text = string.Format("{0} Skill Point(s) required", ability.GetComponent<AbilitySkillCost>().cost);
         }
         if(ability.GetComponent<AbilityBurstCost>()){
             if(ability.GetComponent<AbilityBurstCost>().cost < 0){
                 Debug.Log("should be max " + GetComponentInParent<Stats>());
-                costLabel.text = string.Format("BURST METER REQUIRED: {0}", ability.GetComponentInParent<Stats>()[StatTypes.MBP]);
+                costLabel.text = string.Format("MAX Burst Meter required", ability.GetComponentInParent<Stats>()[StatTypes.MBP]);
                 Debug.Log("should be max");
             }
             else
-                costLabel.text = string.Format("BURST METER REQUIRED: {0}", ability.GetComponent<AbilityBurstCost>().cost);
+                costLabel.text = string.Format("{0} Burst Meter required", ability.GetComponent<AbilityBurstCost>().cost);
         }
 
         descLabel.text = abilityScript.abilityDescription;
@@ -52,6 +53,8 @@ public class AbilityInfoPanel : MonoBehaviour
         conditionLabel.text = "";
         if(effectScript.GetType() == typeof(InflictAbilityEffect))
             conditionLabel.text = effectScript.abilityEffectDescription;
+
+        hitrateLabel.text = string.Format("BASE HITRATE: {0}%", hitrateScript.baseHitRate); 
 
 
         if(rangeScript.GetType() == typeof(ConstantAbilityRange)){

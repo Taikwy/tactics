@@ -46,7 +46,7 @@ public static class UnitFactory
 		AddEquipment(unit, recipe.equipment);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
 
-		AddAttackPattern(unit, recipe.attackPattern);
+		AddAttackPattern(unit,recipe.cpuDriver, recipe.attackPattern);
 		return unit;
 	}
 
@@ -207,20 +207,20 @@ public static class UnitFactory
 		}
 	}
 
-	static void AddAttackPattern (GameObject obj, string name){
+	static void AddAttackPattern (GameObject obj, bool cpuDriver, string name){
 		Driver driver = obj.AddComponent<Driver>();
-		if (string.IsNullOrEmpty(name)){
+		if(!cpuDriver){
 			driver.normal = Drivers.Human;
 		}
 		else{
-			driver.normal = Drivers.Computer;
 			GameObject pattern = InstantiatePrefab("Attack Patterns/" + name);
 			if(pattern != null){
 				pattern.transform.SetParent(obj.transform);
+				driver.normal = Drivers.Computer;
 			}
 			else{
+				Debug.LogError(obj.name + " set to CPU Driver but no Attack Pattern found");
 				driver.normal = Drivers.Human;
-
 			}
 		}
 	}

@@ -49,6 +49,8 @@ MonoBehaviour:
   pickers:
   - {fileID: 5371467695644196541}
   - {fileID: 5371467695380159826}
+  burstPicker: {fileID: 0}
+  burstTargets: 0
 --- !u!1 &5371467695380159824
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subAction: 1
   subMovement: 1
-  proceedType: 0
+  proceedType: 1
   ability: Enthrall
   target: 3
 --- !u!1 &5371467695644196539
@@ -142,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34114d52a46757e48bf688e132fb6c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subAction: 0
+  subAction: 1
   subMovement: 1
   proceedType: 0
   ability: Blessing

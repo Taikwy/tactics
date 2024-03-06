@@ -59,7 +59,7 @@ public class ConfirmAbilityTargetState : BattleState
     }
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){
-            Debug.Log("firing? " + turn.targets.Count);
+            // Debug.Log("firing? " + turn.targets.Count);
             if (turn.targets.Count > 0){
                 owner.ChangeState<PerformAbilityState>();
             }
@@ -170,7 +170,7 @@ public class ConfirmAbilityTargetState : BattleState
         SetTarget(0);
         // UpdateForecastPanel();
 		yield return new WaitForSeconds (owner.actionDelays.displayActionDelay);
-        print("delaying display action " + owner.actionDelays.displayActionDelay);
+        // print("delaying display action " + owner.actionDelays.displayActionDelay);
 		owner.ChangeState<PerformAbilityState>();
 	}
 }

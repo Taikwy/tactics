@@ -54,8 +54,8 @@ MonoBehaviour:
   - {fileID: 2870192414544954239}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 5
-  abilityDescription: Prayers not included.
+  burstGain: 4
+  abilityDescription: Inflicts STRENGTHEN on a single target for 2 turns.
 --- !u!114 &5097820390366547705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: conditionScript
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: abilityEffectName
@@ -192,7 +192,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: abilityEffectDescription
-      value: +2 Attack for 2 turns
+      value: 'Unit has +2 ATTACK
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}

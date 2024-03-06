@@ -7,8 +7,9 @@ public class TurnOrderController : MonoBehaviour
 {
     //total baseactiongauge is 8000, adjusted for moving. 
     const int baseActionGauge = 8000;
-    const int moveCost = 2000;
-    const int actionCost = 2000;
+    const int moveCost = 1500;
+    const int actionCost = 1500;
+    // const int focusCost = 1000;
     const int roundAVCost = 100;
     int AVCounter = 100;
     public int currentRound = 0;
@@ -82,6 +83,9 @@ public class TurnOrderController : MonoBehaviour
                         adjustedActionGauge += moveCost;
                     if (battleController.turn.hasUnitActed)
                         adjustedActionGauge += actionCost;
+                    // else if(battleController.turn.hasUnitFocused)
+                    //     adjustedActionGauge += focusCost;
+                        
                         // actionGauge += battleController.turn.actionCost;
                     
                     

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guaranteed: 0
-  abilityHitRate: 80
+  abilityHitRate: 85
 --- !u!114 &6950046999304816923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,12 +142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  overlayColor: 0
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 0
-  abilityDescription: Definitely watch out for the fangs.
+  burstGain: 10
+  abilityDescription: Deals 60% of the unit's ATTACK to a single target and inflicts
+    TOXIC for 3 turns.
 --- !u!114 &2170991809930980264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 1
+  cost: 2
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: duration
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: effectName
@@ -260,12 +262,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: flatOrPercent
-      value: 8
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
+      propertyPath: conditionScript
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: abilityEffectDescription
-      value: Standard BURN effect, lasts for 2 turns and deals 2 damage at the start
-        of the Unit's turn.
+      value: Unit takes 10% of their MAX HP as DAMAGE at the START of every turn.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}

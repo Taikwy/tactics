@@ -49,12 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  overlayColor: 3
   primaryEffects:
   - {fileID: 2870192414544954239}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 0
-  abilityDescription: Don't stare for too long. Actually, don't look at all.
+  abilityDescription: Inflicts HALT on a single target for 2 turns.
 --- !u!114 &4888908716431183397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: abilityEffectDescription
-      value: Speed halved for 2 turns.
+      value: Unit's SPEED is HALVED for 2 turns.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}

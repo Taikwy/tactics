@@ -18,8 +18,10 @@ MonoBehaviour:
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: 0bacb785bdfe3b141ad7438407cb15cf, type: 2}
   job: 
-  attack: 
-  abilityCatalog: Qinglong Catalog
   movementType: 1
   alliance: 4
   equipment: []
+  attack: 
+  abilityCatalog: Qinglong Catalog
+  cpuDriver: 0
+  attackPattern: Qinglong Attack Pattern

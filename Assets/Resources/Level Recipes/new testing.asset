@@ -16,16 +16,13 @@ MonoBehaviour:
   levelIndex: -1
   allyUnitRecipes:
   - Samurai
-  - Samurai
   allySpawnLocations:
   - x: 6
     y: 3
   - x: 4
     y: 3
   enemyUnitRecipes:
-  - Kitsune
-  - Faerie
-  - Kitsune
+  - Gorgon
   enemySpawnLocations:
   - x: 4
     y: 7
