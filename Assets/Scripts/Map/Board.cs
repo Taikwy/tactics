@@ -21,11 +21,8 @@ public class Board : MonoBehaviour
     public Color selectValid;
     public Color selectInvalid;
     [Header("Highlight Colors")]
-    // [SerializeField] Color moveHighlightColor = new Color(0, 1, 1, 1);
-    // [SerializeField] Color attackHighlightColor = new Color(0, 1, 1, 1);
-    // [SerializeField] Color allyHighlightColor = new Color(0, 1, 1, 1);
-    [SerializeField] Color moveColor, passColor, attackColor, healColor, buffColor, debuffColor;
-    // [SerializeField] Color selectColor = new Color(0, 1, 1, 1);
+    [SerializeField] Color moveColor;
+    [SerializeField] Color passColor, attackColor, healColor, buffColor, debuffColor;
     public Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile>();
     public bool humanDriver = true;
 
@@ -114,7 +111,11 @@ public class Board : MonoBehaviour
             case OverlayColor.ATTACK:
                 temp = attackColor;
                 break;
+            case OverlayColor.BUFF:
+                temp = buffColor;
+                break;
             case OverlayColor.HEAL:
+                temp = healColor;
                 break;
         }
         temp.a = .35f;
@@ -144,7 +145,11 @@ public class Board : MonoBehaviour
             case OverlayColor.ATTACK:
                 temp = attackColor;
                 break;
+            case OverlayColor.BUFF:
+                temp = buffColor;
+                break;
             case OverlayColor.HEAL:
+                temp = healColor;
                 break;
         }
         temp.a = .8f;
@@ -175,7 +180,11 @@ public class Board : MonoBehaviour
             case OverlayColor.ATTACK:
                 temp = attackColor;
                 break;
+            case OverlayColor.BUFF:
+                temp = buffColor;
+                break;
             case OverlayColor.HEAL:
+                temp = healColor;
                 break;
         }
         temp.a = 1f;

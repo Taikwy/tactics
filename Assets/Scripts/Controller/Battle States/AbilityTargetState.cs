@@ -12,6 +12,8 @@ public class AbilityTargetState : BattleState
     
     public override void Enter (){
         base.Enter ();
+        tileSelectionIndicator.ChangeTarget();
+        
         rangeScript = turn.selectedAbility.GetComponent<AbilityRange>();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
         // zoneScript = turn.selectedAbility.primaryEffectZone;
@@ -44,6 +46,8 @@ public class AbilityTargetState : BattleState
         updating = false;
         // Debug.Log("exitingggg");
         base.Exit ();
+        tileSelectionIndicator.ChangeSelect();
+
         board.UnhighlightTiles(highlightedTiles);
         board.UntargetTiles(targetedTiles);
         selectedTiles.Add(turn.actingUnit.tile);

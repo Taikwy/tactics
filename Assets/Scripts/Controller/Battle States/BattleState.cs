@@ -9,7 +9,7 @@ public abstract class BattleState : State
     public CameraRig cameraRig { get { return owner.cameraRig; }}
     public Board board { get { return owner.board; }}
     public LevelData levelData { get { return owner.levelData; }}
-    public Transform tileSelectionIndicator { get { return owner.tileSelectionIndicator; }}
+    public TileSelectionIndicator tileSelectionIndicator { get { return owner.tileSelectionIndicator; }}
     public Point selectPos { get { return owner.selectPos; } set { owner.selectPos = value; }}
     public Turn turn { get { return owner.turn; }}
     public List<Unit> units { get { return owner.units; }}
@@ -57,9 +57,9 @@ public abstract class BattleState : State
         if (selectPos == p || !board.tiles.ContainsKey(p))
             return;
         selectPos = p;
-        tileSelectionIndicator.localPosition = board.tiles[p].center;
+        tileSelectionIndicator.transform.localPosition = board.tiles[p].center;
         
-        tileSelectionIndicator.gameObject.GetComponent<SpriteRenderer>().color = board.selectValid;
+        tileSelectionIndicator.sr.color = board.selectValid;
     }
     //takes in a bool to see whether the selected tile is targetable. will change color of the highlight
     protected virtual void SelectTile (Point p, bool targetable = true) {
@@ -67,11 +67,11 @@ public abstract class BattleState : State
         if (selectPos == p || !board.tiles.ContainsKey(p))
             return;
         selectPos = p;
-        tileSelectionIndicator.localPosition = board.tiles[p].center;
+        tileSelectionIndicator.transform.localPosition = board.tiles[p].center;
         if(targetable)
-            tileSelectionIndicator.gameObject.GetComponent<SpriteRenderer>().color = board.selectValid;
+            tileSelectionIndicator.sr.color = board.selectValid;
         else
-            tileSelectionIndicator.gameObject.GetComponent<SpriteRenderer>().color = board.selectInvalid;
+            tileSelectionIndicator.sr.color = board.selectInvalid;
     }
 
     protected virtual Unit GetUnit (Point p) {

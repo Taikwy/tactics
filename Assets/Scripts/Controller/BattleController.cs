@@ -10,7 +10,7 @@ public class BattleController : StateMachine
     [Header("Level and Board")]
     public Board board;
     public LevelData levelData;
-    public Transform tileSelectionIndicator;
+    public TileSelectionIndicator tileSelectionIndicator;
     public Point selectPos;
     public Tile selectedTile { get { return board.GetTile(selectPos); }}
     [Header("level recipe")]public LevelRecipe levelRecipe;
@@ -34,6 +34,7 @@ public class BattleController : StateMachine
     
 
     void Start (){
+        tileSelectionIndicator.ChangeSelect();
         guiController.gameObject.SetActive(true);
         ChangeState<InitBattleState>();
     }
