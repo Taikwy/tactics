@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  overlayColor: 2
   primaryEffects:
   - {fileID: 2870192414544954239}
   primaryEffect: {fileID: 0}
@@ -164,6 +165,10 @@ PrefabInstance:
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: effectName
       value: StatIncrementStatusEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
+      propertyPath: effectType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: 81f387c634bc3e5499b5f2ecd7c7e120, type: 3}
       propertyPath: effectScript

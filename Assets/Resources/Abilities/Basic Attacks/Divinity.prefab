@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b67792d30f60754b8a8dcbe4c28e25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectType: 1
   abilityEffectName: HEAL
   abilityEffectDescription: 
   subEffects: []

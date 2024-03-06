@@ -9,6 +9,7 @@ public class Ability : MonoBehaviour
     public const string DidPerformEvent = "Ability.DidPerformEvent";
 	public const string AbilityHitEvent = "Ability.AbilityHitEvent";
     public AbilityTypes type;
+	public Board.OverlayColor overlayColor;
 	public List<GameObject> primaryEffects = new List<GameObject>();
 	public GameObject primaryEffect, primarySubEffect;
 	bool abilityHit = false;													//did ability hit or miss this turn

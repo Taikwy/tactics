@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectType: 0
   abilityEffectName: Damage
   abilityEffectDescription: 
   subEffects: []

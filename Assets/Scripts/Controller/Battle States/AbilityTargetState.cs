@@ -13,21 +13,17 @@ public class AbilityTargetState : BattleState
     public override void Enter (){
         base.Enter ();
         tileSelectionIndicator.ChangeTarget();
-        
+
         rangeScript = turn.selectedAbility.GetComponent<AbilityRange>();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
-        // zoneScript = turn.selectedAbility.primaryEffectZone;
         zoneScript = turn.selectedAbility.primaryEffect.GetComponent<EffectZone>();
 
         areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);
-        // HighlightTiles ();
         highlightedTiles = rangeScript.GetTilesInRange(board);
-        board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
+        board.HighlightTiles(highlightedTiles, turn.selectedAbility.overlayColor);
 
         selectedTiles = new List<Tile>();
-        // TargetTiles();
-        // SelectTiles();
         
         panelController.ShowPrimary(turn.actingUnit.gameObject);
         panelController.ShowSecondary(turn.actingUnit.gameObject);
@@ -138,7 +134,7 @@ public class AbilityTargetState : BattleState
             targetedTiles.AddRange(zoneScript.ShowTilesInZone(board, centerTile.position));
         }
         // Debug.Log("targeting tiles " + targetedTiles.Count + " | center tiles " + centerTiles.Count);
-        board.TargetTiles(targetedTiles, Board.OverlayColor.ATTACK);
+        board.TargetTiles(targetedTiles, turn.selectedAbility.overlayColor);
     }
 
     void SelectTiles(){
@@ -147,7 +143,7 @@ public class AbilityTargetState : BattleState
 
         selectedTiles = new List<Tile>(areaScript.targets);
         // board.SelectTiles(selectedTiles);
-        board.SelectTiles(selectedTiles, Board.OverlayColor.ATTACK);
+        board.SelectTiles(selectedTiles, turn.selectedAbility.overlayColor);
     }
 
     IEnumerator ComputerHighlightTarget ()

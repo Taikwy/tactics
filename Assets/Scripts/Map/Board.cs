@@ -6,12 +6,12 @@ using System;
 public class Board : MonoBehaviour 
 {
     public enum OverlayColor{
-        MOVE,
-        PASS,
         ATTACK,
         HEAL,
         BUFF,
-        DEBUFF
+        DEBUFF,
+        MOVE,
+        PASS,
     }
     [SerializeField] GameObject barrierTilePrefab;
     [SerializeField] GameObject groundTilePrefab;
@@ -20,11 +20,13 @@ public class Board : MonoBehaviour
     [Header("Select Indicator Colors")]
     public Color selectValid;
     public Color selectInvalid;
+    public Color selectAlly;
     [Header("Highlight Colors")]
     [SerializeField] Color moveColor;
     [SerializeField] Color passColor, attackColor, healColor, buffColor, debuffColor;
+    [SerializeField] float highlightAlpha, targetAlpha, selectAlpha;
     public Dictionary<Point, Tile> tiles = new Dictionary<Point, Tile>();
-    public bool humanDriver = true;
+    [HideInInspector]public bool humanDriver = true;
 
     public Point selectedPoint;
     public Tile selectedTile{
@@ -118,18 +120,14 @@ public class Board : MonoBehaviour
                 temp = healColor;
                 break;
         }
-        temp.a = .35f;
+        temp.a = highlightAlpha;
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].Highlight(temp);
-            // tiles[i].highlightRenderer.enabled = true;
-            // tiles[i].highlightRenderer.sprite = tiles[i].highlightSprite;
-            // tiles[i].highlightRenderer.color = temp;
         }
     }
     public void UnhighlightTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].Unhighlight();
-            // tiles[i].highlightRenderer.enabled = false;
         }
     }
     
@@ -152,19 +150,15 @@ public class Board : MonoBehaviour
                 temp = healColor;
                 break;
         }
-        temp.a = .8f;
+        temp.a = targetAlpha;
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].Target(temp);
-            // tiles[i].targetRenderer.enabled = true;
-            // tiles[i].targetRenderer.sprite = tiles[i].targetSprite;
-            // tiles[i].targetRenderer.color = temp;
         }
     }
     public void UntargetTiles (List<Tile> tiles){
         if(tiles != null)
             for (int i = tiles.Count - 1; i >= 0; --i){
                 tiles[i].Untarget();
-                // tiles[i].targetRenderer.enabled = false;
             }
     }
 
@@ -187,18 +181,14 @@ public class Board : MonoBehaviour
                 temp = healColor;
                 break;
         }
-        temp.a = 1f;
+        temp.a = selectAlpha;
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].Select(temp);
-            // tiles[i].selectRenderer.enabled = true;
-            // tiles[i].selectRenderer.sprite = tiles[i].selectSprite;
-            // tiles[i].selectRenderer.color = temp;
         }
     }
     public void UnselectTiles (List<Tile> tiles){
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].Unselect();
-            // tiles[i].selectRenderer.enabled = false;
         }
     }
 

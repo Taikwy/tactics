@@ -3307,12 +3307,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraRig: {fileID: 1742690635}
   board: {fileID: 550533396}
-  levelData: {fileID: 11400000, guid: 5f83d828f47b71f4fa9a8b17bcf7a27a, type: 2}
   tileSelectionIndicator: {fileID: 5253958902572673099}
   selectPos:
     x: 0
     y: 0
-  levelRecipe: {fileID: 11400000, guid: c2c91d3dbf5d5914e9bdc10ff43ff871, type: 2}
+  levelData: {fileID: 11400000, guid: 5f83d828f47b71f4fa9a8b17bcf7a27a, type: 2}
+  levelRecipe: {fileID: 11400000, guid: 60a3f05647305f041a4502024d5a462f, type: 2}
   currentUnit: {fileID: 0}
   units: []
   abilityPanelController: {fileID: 1201334133}
@@ -3955,12 +3955,16 @@ MonoBehaviour:
   wallTilePrefab: {fileID: 1025403324043751005, guid: 2d1833f51b6bd424a81a418c30b67967, type: 3}
   selectValid: {r: 1, g: 0.9880785, b: 0, a: 1}
   selectInvalid: {r: 1, g: 0, b: 0, a: 1}
+  selectAlly: {r: 0, g: 0, b: 0, a: 0}
   moveColor: {r: 0, g: 0.12997723, b: 1, a: 1}
-  passColor: {r: 0, g: 0.12941177, b: 1, a: 0.5372549}
-  attackColor: {r: 1, g: 0.30571634, b: 0, a: 1}
-  healColor: {r: 0, g: 1, b: 0.15686275, a: 1}
-  buffColor: {r: 0, g: 1, b: 0.9725491, a: 1}
-  debuffColor: {r: 1, g: 0, b: 0.48627454, a: 1}
+  passColor: {r: 0, g: 0.12941177, b: 1, a: 1}
+  attackColor: {r: 1, g: 0.14344116, b: 0, a: 1}
+  healColor: {r: 0.2016287, g: 0.9056604, b: 0, a: 1}
+  buffColor: {r: 0, g: 0.9056604, b: 0.72808003, a: 1}
+  debuffColor: {r: 0.96098137, g: 0, b: 1, a: 1}
+  highlightAlpha: 0.3
+  targetAlpha: 0.7
+  selectAlpha: 1
   humanDriver: 1
   selectedPoint:
     x: 0

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  overlayColor: 3
   primaryEffects:
   - {fileID: 2811413672841593272}
   primaryEffect: {fileID: 0}

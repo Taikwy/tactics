@@ -22,7 +22,8 @@ MonoBehaviour:
   - x: 7
     y: 3
   enemyUnitRecipes:
-  - Gorgon
+  - Kitsune
+  - Kitsune
   enemySpawnLocations:
   - x: 4
     y: 7

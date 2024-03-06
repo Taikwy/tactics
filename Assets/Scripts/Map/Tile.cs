@@ -90,7 +90,6 @@ public class Tile : MonoBehaviour
         highlightRenderer.color = color;
     }    public void Unhighlight(){
         highlightRenderer.enabled = false;
-        // highlightRenderer.sprite = highlightSprite;
         highlightRenderer.color = Color.clear;
     }
     //indicating movement path and hovering targets
@@ -100,7 +99,6 @@ public class Tile : MonoBehaviour
         targetRenderer.color = color;
     }    public void Untarget(){
         targetRenderer.enabled = false;
-        // targetRenderer.sprite = targetSprite;
         targetRenderer.color = Color.clear;
     }
     //when the tile gets selected
@@ -110,7 +108,6 @@ public class Tile : MonoBehaviour
         selectRenderer.color = color;
     }    public void Unselect(){
         selectRenderer.enabled = false;
-        // selectRenderer.sprite = selectSprite;
         selectRenderer.color = Color.clear;
     }
 

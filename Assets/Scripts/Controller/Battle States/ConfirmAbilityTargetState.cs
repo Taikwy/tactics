@@ -18,7 +18,7 @@ public class ConfirmAbilityTargetState : BattleState
         //sets cursor over the first target
         SelectTile(areaScript.targets[0].position);
         //highlights all the tiles that are targeted, will need new logic here to properly overlay things
-        board.HighlightTiles(highlightedTiles, Board.OverlayColor.ATTACK);
+        board.HighlightTiles(highlightedTiles, turn.selectedAbility.overlayColor);
         FindTargets();
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
