@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6966475923109113812}
   - component: {fileID: 1918677148183206524}
-  - component: {fileID: 6950046999304816923}
-  - component: {fileID: 616511774074537263}
   - component: {fileID: 4742295797092695002}
+  - component: {fileID: 616511774074537263}
+  - component: {fileID: 6950046999304816923}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -48,6 +48,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4742295797092695002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861301945464717442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+--- !u!114 &616511774074537263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861301945464717442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571dd3124515bf04d9fa18eed365ec64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guaranteed: 0
+  abilityHitRate: 80
 --- !u!114 &6950046999304816923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,34 +94,7 @@ MonoBehaviour:
   subEffects:
   - {fileID: 8018232712710892279}
   owner: {fileID: 0}
-  attackPercentModifier: 80
---- !u!114 &616511774074537263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861301945464717442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571dd3124515bf04d9fa18eed365ec64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guaranteed: 0
-  abilityHitRate: 80
---- !u!114 &4742295797092695002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861301945464717442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
+  attackPercentModifier: 60
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,14 +144,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  overlayColor: 0
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 8
-  abilityDescription: '---
-
-'
+  burstGain: 10
+  abilityDescription: Deals 60% of the unit's ATTACK to ALL targets within range
+    and inflicts BREAK for 1 turn.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 1
   targets: []
 --- !u!1001 &2292386271031557097
 PrefabInstance:
@@ -205,6 +204,10 @@ PrefabInstance:
     - target: {fileID: 5597802304154384354, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
       propertyPath: m_Name
       value: Inflict Break Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003075404764746857, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: guaranteed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
       propertyPath: m_RootOrder
@@ -249,6 +252,18 @@ PrefabInstance:
     - target: {fileID: 7142485807862000992, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: incrementOrMultiply
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}
+      propertyPath: abilityEffectDescription
+      value: Unit has -2 DEFENSE
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ba5f46336d4d2b42b8c3270db9844df, type: 3}

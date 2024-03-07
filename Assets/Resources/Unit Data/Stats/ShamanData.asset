@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79dbd39aed8e324b85871ad441c4e55, type: 3}
   m_Name: ShamanData
   m_EditorClassIdentifier: 
-  fixedStats: 780000000300000002000000520000000a00000032000000
+  fixedStats: 640000000300000002000000520000000a00000032000000
   combatStats: 140000000800000005000000
   growthStats:
   - 3.2

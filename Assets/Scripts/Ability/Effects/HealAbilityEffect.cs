@@ -33,7 +33,7 @@ public class HealAbilityEffect : BaseAbilityEffect
 		// int terrainBonus = 0;
 		int weaponBonus = 0;
 
-        float healAmount = 0;
+        float healAmount = baseHealAmount;
         if(defensePercentModifier >= 0){
 		    healAmount = defensePercentModifier/100.0f * defense + baseHealAmount + weaponBonus;
         }else if(attackPercentModifier >= 0){
@@ -41,7 +41,7 @@ public class HealAbilityEffect : BaseAbilityEffect
         }else{
             Debug.LogError("No percent modifier specified for healing effect " + gameObject);
         }
-        healAmount = Mathf.Max(healAmount, 1);
+        healAmount = Mathf.Max(1, healAmount);
 		healAmount = Mathf.Clamp(healAmount, 0, maxHeal); 
 		
 		Debug.Log("predicting heal ability effect  HEAL [ " + "percent[" + defensePercentModifier + "% OR " + attackPercentModifier + "%] * (attack[" + attack + "] OR defense[" + defense + "]  + terrain0[]) + weapon[0] ] = " + healAmount + " dmg");

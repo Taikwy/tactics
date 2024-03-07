@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7693599255702816309}
   - component: {fileID: 8089819927461016214}
-  - component: {fileID: 3484823612947708004}
-  - component: {fileID: 3954202826209727461}
   - component: {fileID: 7818359391419740545}
+  - component: {fileID: 3484823612947708004}
+  - component: {fileID: 522196609282755376}
   m_Layer: 0
   m_Name: Holy Prayer
   m_TagString: Untagged
@@ -49,44 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  overlayColor: 1
   primaryEffects:
   - {fileID: 1459985830212072426}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 8
-  abilityDescription: '---
-
-'
---- !u!114 &3484823612947708004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935371756486926109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 2
-  tilesInRange: []
-  targetsInRange: []
---- !u!114 &3954202826209727461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935371756486926109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4755e8b045f7534597b695d829853e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canTargetSelf: 0
-  numTargets: 3
-  targets: []
+  burstGain: 6
+  abilityDescription: Heals ALL units within range for 3 HEALTH.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +68,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2510cb2c76388124282a5ff99ece6c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 2
+  cost: 1
+--- !u!114 &3484823612947708004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935371756486926109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+  tilesInRange: []
+  targetsInRange: []
+--- !u!114 &522196609282755376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935371756486926109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93fdc0ddc106ef4cb10bd5dda7ad325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTargetSelf: 0
+  targets: []
 --- !u!1001 &8053509987880502751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157,7 +155,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9188567070031065776, guid: 6d5af3f6560b4964f9a88530d54e74d7, type: 3}
       propertyPath: baseHealAmount
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188567070031065776, guid: 6d5af3f6560b4964f9a88530d54e74d7, type: 3}
+      propertyPath: abilityEffectName
+      value: Heal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188567070031065776, guid: 6d5af3f6560b4964f9a88530d54e74d7, type: 3}
+      propertyPath: abilityEffectDescription
+      value: ---
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d5af3f6560b4964f9a88530d54e74d7, type: 3}

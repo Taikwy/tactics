@@ -61,12 +61,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b67792d30f60754b8a8dcbe4c28e25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectType: 1
   abilityEffectName: HEAL
-  abilityEffectDescription: 
+  abilityEffectDescription: ---
   subEffects: []
   owner: {fileID: 0}
-  baseHealAmount: 5
+  baseHealAmount: 2
   defensePercentModifier: -1
   attackPercentModifier: -1
 --- !u!114 &2466232311232520680
@@ -143,12 +142,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  overlayColor: 1
   primaryEffects:
   - {fileID: 4213803663353148939}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 5
-  abilityDescription: Let yourself be cleansed.
+  burstGain: 4
+  abilityDescription: Heals a single unit for 2 HEALTH.
 --- !u!114 &5132391619979471775
 MonoBehaviour:
   m_ObjectHideFlags: 0

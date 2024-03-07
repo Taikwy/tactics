@@ -15,14 +15,15 @@ MonoBehaviour:
   levelName: AI Testing Grounds
   levelIndex: -1
   allyUnitRecipes:
-  - Samurai
+  - Barbarian
+  - Shaman
   allySpawnLocations:
   - x: 6
     y: 3
   - x: 4
     y: 3
   enemyUnitRecipes:
-  - Sphinx
+  - Qinglong
   enemySpawnLocations:
   - x: 4
     y: 7

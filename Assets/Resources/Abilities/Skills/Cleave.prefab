@@ -92,7 +92,7 @@ MonoBehaviour:
 '
   subEffects: []
   owner: {fileID: 0}
-  attackPercentModifier: 80
+  attackPercentModifier: 100
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 8089819927461016214}
   - component: {fileID: 7818359391419740545}
   - component: {fileID: 3484823612947708004}
-  - component: {fileID: 3954202826209727461}
+  - component: {fileID: 9014984441247006717}
   m_Layer: 0
   m_Name: Cleave
   m_TagString: Untagged
@@ -142,14 +142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  overlayColor: 0
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 8
-  abilityDescription: '---
-
-'
+  burstGain: 12
+  abilityDescription: Deals 100% of the unit's ATTACK to a single target and inflicts
+    CRUSH for 1 turn.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   range: 1
   tilesInRange: []
   targetsInRange: []
---- !u!114 &3954202826209727461
+--- !u!114 &9014984441247006717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,9 +187,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8935371756486926109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4755e8b045f7534597b695d829853e1, type: 3}
+  m_Script: {fileID: 11500000, guid: d876e6f5dd31b274cb1fc518264d1a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canTargetSelf: 0
-  numTargets: 2
   targets: []
+  numTargets: 1
