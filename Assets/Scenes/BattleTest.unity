@@ -3312,7 +3312,7 @@ MonoBehaviour:
     x: 0
     y: 0
   levelData: {fileID: 11400000, guid: 5f83d828f47b71f4fa9a8b17bcf7a27a, type: 2}
-  levelRecipe: {fileID: 11400000, guid: 60a3f05647305f041a4502024d5a462f, type: 2}
+  levelRecipe: {fileID: 11400000, guid: c8b2efd7fd2008f46861684577bc9ec3, type: 2}
   currentUnit: {fileID: 0}
   units: []
   abilityPanelController: {fileID: 1201334133}
