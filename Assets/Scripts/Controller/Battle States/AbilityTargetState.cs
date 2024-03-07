@@ -18,10 +18,14 @@ public class AbilityTargetState : BattleState
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
         zoneScript = turn.selectedAbility.primaryEffect.GetComponent<EffectZone>();
 
-        areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);
         highlightedTiles = rangeScript.FilterTargetable(rangeScript.GetTilesInRange(board));
         board.HighlightTiles(highlightedTiles, turn.selectedAbility.overlayColor);
+        
+        areaScript.targets.Clear();
+        if(areaScript.GetType() == typeof(FullAbilityArea)){
+            areaScript.targets = new List<Tile>(highlightedTiles);
+        }
 
         selectedTiles = new List<Tile>();
         
@@ -101,8 +105,8 @@ public class AbilityTargetState : BattleState
             }
             else{
                 //logic here for adding all units to target lis
-                areaScript.targets = new List<Tile>(highlightedTiles);
-                print("confirming ability target state with full area, targets " + areaScript.targets.Count);
+                // areaScript.targets = new List<Tile>(highlightedTiles);
+                // print("confirming ability target state with full area, targets " + areaScript.targets.Count);
 
                 //this is gonna be if area script is full area, in which case selecting will auto proceed
                 owner.ChangeState<ConfirmAbilityTargetState>();
@@ -110,7 +114,7 @@ public class AbilityTargetState : BattleState
             }
         }
         else{
-            if(areaScript.targets.Count > 0){
+            if(areaScript.GetType() == typeof(UnitAbilityArea) && areaScript.targets.Count > 0){
                 Tile toRemove = areaScript.targets[areaScript.targets.Count-1];
                 areaScript.targets.Remove(toRemove);
                 SelectTile(toRemove.position);
