@@ -124,7 +124,7 @@ public class ComputerPlayer : MonoBehaviour
         	// print("movable tile " + moveTile);
 			actingUnit.Place( moveTile );
 			// List<Tile> fireOptions = ar.GetTilesInRange(bc.board);
-        	List<Tile> fireOptions = ar.FilterGround(ar.GetTilesInRange(bc.board));
+        	List<Tile> fireOptions = ar.FilterTargetable(ar.GetTilesInRange(bc.board));
 			
         // print("fireoptions " + fireOptions.Count);
 			for (int j = 0; j < fireOptions.Count; ++j){

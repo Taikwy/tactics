@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 8443932741246570006}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 8
+  burstGain: 6
   abilityDescription: Inflicts BREAK on ALL targets within range for 2 turns.
 --- !u!114 &7818359391419740545
 MonoBehaviour:

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79dbd39aed8e324b85871ad441c4e55, type: 3}
   m_Name: SphinxData
   m_EditorClassIdentifier: 
-  fixedStats: b40000000400000002000000480000000a00000032000000
-  combatStats: 190000000800000008000000
+  fixedStats: c80000000400000002000000480000000a00000032000000
+  combatStats: 1c0000000800000008000000
   growthStats:
   - 3.2
   - 2.2

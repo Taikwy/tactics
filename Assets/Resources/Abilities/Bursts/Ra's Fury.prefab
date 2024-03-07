@@ -55,7 +55,7 @@ MonoBehaviour:
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 0
-  abilityDescription: Deals 120% of the unit's ATTACK to ALL targets within range.
+  abilityDescription: Deals 150% of the unit's ATTACK to ALL targets within range.
 --- !u!114 &4888908716431183397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db082ed1f3dbb14f84d82cdd8a76dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 180
+  cost: 200
 --- !u!114 &3484823612947708004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160cd6a585986624981c2dc4452f0d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 2
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &3466583539704759156
@@ -159,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6378345542120587180, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
       propertyPath: attackPercentModifier
-      value: 120
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6378345542120587180, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
       propertyPath: abilityEffectDescription

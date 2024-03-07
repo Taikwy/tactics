@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5371467695276652076}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &958027864410058910
 MonoBehaviour:
@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34114d52a46757e48bf688e132fb6c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subAction: 0
-  subMovement: 3
-  proceedType: 0
+  subAction: 1
+  subMovement: 2
+  proceedType: 1
   ability: Sandstorm
   target: 3
 --- !u!1 &1775646202484929946
@@ -79,7 +79,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5371467695276652076}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8521022540666885327
 MonoBehaviour:
@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34114d52a46757e48bf688e132fb6c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subAction: 1
+  subAction: 0
   subMovement: 2
-  proceedType: 1
+  proceedType: 0
   ability: Vicious Roar
   target: 3
 --- !u!1 &4806164388993368835
@@ -161,8 +161,8 @@ Transform:
   - {fileID: 4963814645136369959}
   - {fileID: 5515063524815919741}
   - {fileID: 5867753581088207308}
-  - {fileID: 4674780086467630111}
   - {fileID: 8628267232646783970}
+  - {fileID: 4674780086467630111}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,8 +180,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickers:
   - {fileID: 5530263093665564257}
+  - {fileID: 958027864410058910}
+  - {fileID: 5530263093665564257}
   - {fileID: 8521022540666885327}
-  - {fileID: 8521022540666885327}
+  - {fileID: 958027864410058910}
   burstPicker: {fileID: 1783120702664361362}
   burstTargets: 0
 --- !u!1 &6885633212326610262
@@ -277,8 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34114d52a46757e48bf688e132fb6c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subAction: 0
+  subAction: 1
   subMovement: 2
-  proceedType: 0
+  proceedType: 1
   ability: Strike
   target: 3

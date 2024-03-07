@@ -20,7 +20,7 @@ public class AbilityTargetState : BattleState
 
         areaScript.targets.Clear();
         SelectTile(turn.actingUnit.tile.position);
-        highlightedTiles = rangeScript.FilterGround(rangeScript.GetTilesInRange(board));
+        highlightedTiles = rangeScript.FilterTargetable(rangeScript.GetTilesInRange(board));
         board.HighlightTiles(highlightedTiles, turn.selectedAbility.overlayColor);
 
         selectedTiles = new List<Tile>();
@@ -100,6 +100,10 @@ public class AbilityTargetState : BattleState
                 }
             }
             else{
+                //logic here for adding all units to target lis
+                areaScript.targets = new List<Tile>(highlightedTiles);
+                print("confirming ability target state with full area, targets " + areaScript.targets.Count);
+
                 //this is gonna be if area script is full area, in which case selecting will auto proceed
                 owner.ChangeState<ConfirmAbilityTargetState>();
                 return;

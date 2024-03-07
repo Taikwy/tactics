@@ -92,7 +92,7 @@ MonoBehaviour:
 '
   subEffects: []
   owner: {fileID: 0}
-  attackPercentModifier: 80
+  attackPercentModifier: 100
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
-  burstGain: 12
-  abilityDescription: Deals 90% of the unit's ATTACK to ALL targets within range.
+  burstGain: 10
+  abilityDescription: Deals 100% of the unit's ATTACK to ALL targets within range.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0

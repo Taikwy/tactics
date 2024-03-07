@@ -16,14 +16,14 @@ public abstract class AbilityRange : MonoBehaviour
     // public abstract List<Tile> GetTargetsInRange (Board board);
 
     //filters out any tiles that are NOT ground tiles
-    public virtual List<Tile> FilterGround (List<Tile> tiles){
+    public virtual List<Tile> FilterTargetable (List<Tile> tiles){
         
-        List<Tile> groundTiles = new List<Tile>();
+        List<Tile> targetableTiles = new List<Tile>();
         for (int i = tiles.Count - 1; i >= 0; --i){
             if (tiles[i].tileType == Tile.TILETYPE.GROUND || tiles[i].tileType == Tile.TILETYPE.PIT){
-                groundTiles.Add(tiles[i]);
+                targetableTiles.Add(tiles[i]);
             }
         }
-        return groundTiles;
+        return targetableTiles;
     }
 }
