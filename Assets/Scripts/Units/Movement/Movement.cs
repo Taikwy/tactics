@@ -12,6 +12,8 @@ public abstract class Movement : MonoBehaviour
     public int jumpHeight;
     protected Unit unit;
     protected Transform jumper;
+    public float moveSpeed;
+    public float moveDelaySpeed;
 
     protected virtual void Awake (){
         unit = GetComponent<Unit>();
@@ -84,14 +86,16 @@ public abstract class Movement : MonoBehaviour
         {
             Tile to = targets[i];
             yield return StartCoroutine(MoveTo(to));
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(moveDelaySpeed);
+            // yield return new WaitForSeconds(.05f);
         }
         yield return null;
     }
 
     IEnumerator MoveTo (Tile target){
         while((Vector2)transform.position != target.center){
-            transform.position  = Vector2.MoveTowards(transform.position, target.center, .035f);
+            transform.position  = Vector2.MoveTowards(transform.position, target.center, moveSpeed);
+            // transform.position  = Vector2.MoveTowards(transform.position, target.center, .035f);
             yield return null;
         }
     }

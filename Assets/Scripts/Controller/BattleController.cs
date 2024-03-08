@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class BattleController : StateMachine 
 {
-    [Header("")]
+    [Header("Camera")]
     public CameraRig cameraRig;
     
     [Header("Level and Board")]
     public Board board;
     public TileSelectionIndicator tileSelectionIndicator;
     [HideInInspector]public Point selectPos;
-    
     public LevelData levelData;
     public LevelRecipe levelRecipe;
+    
+    [Header("Movement")]
+    [Tooltip("The delay for PLAYER units to move during the movesequence state")] public float movementDelay;
     public Tile selectedTile { get { return board.GetTile(selectPos); }}
     // [Header("Unit Stuff")]
     [HideInInspector]public Unit currentUnit;

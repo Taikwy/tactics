@@ -39,7 +39,7 @@ public static class UnitFactory
 		AddBurst(unit);
 		AddSkill(unit);
 		AddAlliance(unit, recipe.alliance);
-		AddMovement(unit, recipe.movementType);
+		AddMovement(unit, recipe.movementType, recipe.moveSpeed, recipe.moveDelay);
 		// AddJob(unit, recipe.job);
 
 		// AddAttack(unit, recipe.attack);
@@ -117,18 +117,26 @@ public static class UnitFactory
 		alliance.type = type;
 		return type;
 	}
-	static void AddMovement(GameObject obj, MovementTypes type){
+	static void AddMovement(GameObject obj, MovementTypes type, float moveSpeed, float moveDelay){
+		Movement movement;
 		switch (type){
             case MovementTypes.Walk:
-                obj.AddComponent<WalkMovement>();
+                movement = obj.AddComponent<WalkMovement>();
                 break;
             case MovementTypes.Fly:
-                obj.AddComponent<FlyMovement>();
+                movement = obj.AddComponent<FlyMovement>();
                 break;
 			case MovementTypes.Teleport:
-				obj.AddComponent<TeleportMovement>();
+				movement = obj.AddComponent<TeleportMovement>();
+				break;
+			default:
+				movement = null;
 				break;
 		}
+		// movement.moveSpeed = moveSpeed;
+		// movement.moveDelaySpeed = moveDelay;
+		movement.moveSpeed = .025f;
+		movement.moveDelaySpeed = .04f;
 	}
 
 	static void AddEquipment(GameObject unit, List<GameObject> equipment){

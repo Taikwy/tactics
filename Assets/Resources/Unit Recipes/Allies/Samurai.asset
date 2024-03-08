@@ -19,8 +19,11 @@ MonoBehaviour:
   statData: {fileID: 11400000, guid: b14de9cedb06fe749afb72affc7f732e, type: 2}
   job: 
   movementType: 0
+  moveSpeed: 0.02
+  moveDelay: 0.04
   alliance: 2
   equipment: []
   attack: 
   abilityCatalog: Samurai Catalog
+  cpuDriver: 0
   attackPattern: 

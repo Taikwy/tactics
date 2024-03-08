@@ -15,6 +15,8 @@ public class UnitRecipe : ScriptableObject
     public string job;
     [Header("general info")]
     public MovementTypes movementType;
+    [Tooltip("for the movement coroutine moving speed")]public float moveSpeed = .035f;
+    [Tooltip("for the movement coroutine delay after reaching a tile")]public float moveDelay = .05f;
     public Alliances alliance;
     public List<GameObject> equipment = new List<GameObject>();
     
