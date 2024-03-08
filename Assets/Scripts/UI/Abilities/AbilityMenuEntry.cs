@@ -50,11 +50,11 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         ButtonStatus desiredButtonStatus = ButtonStatus.Normal;
         
-        button.interactable = !guiController.isPaused;
-        if(guiController.isPaused){
-            print("gui controller is paused");
-            // button.interactable = false;
-        }
+        // button.interactable = !guiController.isPaused;
+        // if(guiController.isPaused){
+        //     print("gui controller is paused");
+        //     // button.interactable = false;
+        // }
         if ( !button.interactable){
             desiredButtonStatus = ButtonStatus.Disabled;
         }
