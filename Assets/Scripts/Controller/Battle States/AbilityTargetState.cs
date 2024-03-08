@@ -39,11 +39,14 @@ public class AbilityTargetState : BattleState
         }
         else{
             board.humanDriver = true;
+            
+            cameraRig.selectMovement = false;
             updating = true;
         }
     }
     public override void Exit (){
         updating = false;
+        cameraRig.selectMovement = true;
         // Debug.Log("exitingggg");
         base.Exit ();
         tileSelectionIndicator.ChangeSelect();

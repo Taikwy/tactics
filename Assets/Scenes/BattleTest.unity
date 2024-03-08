@@ -10468,6 +10468,13 @@ MonoBehaviour:
   cameraLeniency: 2
   following: 0
   target: {fileID: 5253958902572673093}
+  cameraBufferX: 0
+  cameraBufferY: 0
+  selectMovement: 1
+  screenBoundWidth: 240
+  screenBoundHeight: 200
+  screenBoundWidthPercent: 70
+  screenBoundHeightPercent: 70
 --- !u!4 &1742690636
 Transform:
   m_ObjectHideFlags: 0

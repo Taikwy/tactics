@@ -33,6 +33,8 @@ public class MoveTargetState : BattleState
         }
         else{
             board.humanDriver = true;
+            
+            cameraRig.selectMovement = false;
             updating = true;
         }
 
@@ -41,6 +43,7 @@ public class MoveTargetState : BattleState
     public override void Exit () {
         // Debug.Log("exiting moving state");
         updating = false;
+        cameraRig.selectMovement = true;
 
         base.Exit ();
         board.UnhighlightTiles(tiles);

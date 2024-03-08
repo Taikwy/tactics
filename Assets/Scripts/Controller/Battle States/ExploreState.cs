@@ -12,10 +12,12 @@ public class ExploreState : BattleState
         tiles = allyTiles = foeTiles = new List<Tile>();
         RefreshPrimaryPanel(selectPos);
 
+        cameraRig.selectMovement = false;
         updating = true;
     }
     public override void Exit (){
         updating = false;
+        cameraRig.selectMovement = true;
 
         // UnhighlightTiles();
 
