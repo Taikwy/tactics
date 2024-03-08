@@ -13,7 +13,7 @@ public class UnitPanel : MonoBehaviour
     public Sprite unitBackground;
     [Space(2)][Header("Unit Stats")]
     public TMP_Text nameLabel;
-    public TMP_Text lvLabel, xpLabel, hpLabel, bpLabel;
+    public TMP_Text lvLabel, xpLabel, mvLabel, hpLabel, bpLabel;
     public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
     
     //takes in unit gaemeobject
