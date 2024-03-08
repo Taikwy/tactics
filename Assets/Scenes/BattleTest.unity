@@ -3433,6 +3433,7 @@ MonoBehaviour:
   nameLabel: {fileID: 1273188126}
   lvLabel: {fileID: 15831448}
   xpLabel: {fileID: 1936808618}
+  mvLabel: {fileID: 966252790}
   hpLabel: {fileID: 1061765065}
   bpLabel: {fileID: 1193381637}
   skpLabel: {fileID: 2000721528}
@@ -4872,7 +4873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.3000073, y: -12.6}
+  m_AnchoredPosition: {x: -2.3000073, y: -13.2}
   m_SizeDelta: {x: 16, y: 5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &708123976
@@ -9622,6 +9623,7 @@ MonoBehaviour:
   nameLabel: {fileID: 1582340155}
   lvLabel: {fileID: 1635238867}
   xpLabel: {fileID: 247688626}
+  mvLabel: {fileID: 0}
   hpLabel: {fileID: 1472141786}
   bpLabel: {fileID: 1059067675}
   skpLabel: {fileID: 62754015}
@@ -10728,6 +10730,7 @@ MonoBehaviour:
   nameLabel: {fileID: 1634488959}
   lvLabel: {fileID: 48485946}
   xpLabel: {fileID: 701061817}
+  mvLabel: {fileID: 708123976}
   hpLabel: {fileID: 164575430}
   bpLabel: {fileID: 1022095587}
   skpLabel: {fileID: 1754349768}

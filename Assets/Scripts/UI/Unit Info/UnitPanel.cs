@@ -30,6 +30,15 @@ public class UnitPanel : MonoBehaviour
         if (stats) {
             lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LV]);
             xpLabel.text = string.Format( "XP. {0} / {1}", stats.GetCurrentXP(), unit.GetComponent<UnitLevel>().xpData.experiencePerLevel[stats[StatTypes.LV]]);
+            if(unit.GetComponent<Unit>().movement.GetType() == typeof(WalkMovement)){
+                 mvLabel.text = "WALKING";
+            }
+            if(unit.GetComponent<Unit>().movement.GetType() == typeof(FlyMovement)){
+                 mvLabel.text = "FLYING";
+            }
+            if(unit.GetComponent<Unit>().movement.GetType() == typeof(TeleportMovement)){
+                 mvLabel.text = "TELEPORTING";
+            }
             hpLabel.text = string.Format( "HEALTH {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
             bpLabel.text = string.Format( "BURST {0} / {1}", stats[StatTypes.BP], stats[StatTypes.MBP] );
             skpLabel.text = string.Format( "SKILL PTS {0} / {1}", stats[StatTypes.SK], stats[StatTypes.MSK] );
