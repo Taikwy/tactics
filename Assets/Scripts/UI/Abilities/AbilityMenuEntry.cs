@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     GameUIController guiController;
-    [SerializeField] Image bullet;
+    // [SerializeField] Image bullet;
     // [SerializeField] SpriteRenderer bullet;
     [SerializeField] Sprite normalSprite;
     [SerializeField] Sprite selectedSprite;
