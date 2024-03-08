@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameObjectPoolController : MonoBehaviour 
 {
-	#region Fields / Properties
 	static GameObjectPoolController Instance{
 		get{
 			if (instance == null)
@@ -15,18 +14,12 @@ public class GameObjectPoolController : MonoBehaviour
 	static GameObjectPoolController instance;
 	
 	static Dictionary<string, PoolData> pools = new Dictionary<string, PoolData>();
-	#endregion
-	
-	#region MonoBehaviour
 	void Awake (){
 		if (instance != null && instance != this)
 			Destroy(this);
 		else
 			instance = this;
 	}
-	#endregion
-	
-	#region Public
 	public static void SetMaxCount (string key, int maxCount){
 		if (!pools.ContainsKey(key))
 			return;
@@ -90,9 +83,6 @@ public class GameObjectPoolController : MonoBehaviour
 		obj.isPooled = false;
 		return obj;
 	}
-	#endregion
-	
-	#region Private
 	static void CreateSharedInstance (){
 		GameObject obj = new GameObject("GameObject Pool Controller");
 		DontDestroyOnLoad(obj);
@@ -105,5 +95,4 @@ public class GameObjectPoolController : MonoBehaviour
 		p.key = key;
 		return p;
 	}
-	#endregion
 }

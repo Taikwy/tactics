@@ -7,6 +7,11 @@ public class GameUIController : MonoBehaviour
     [SerializeField] PausePanel pauseMenu; 
     [SerializeField] GameOverPanel GameOverMenu;              //selected and targeted unit
     [HideInInspector] public bool showingPause, showingGameOver = false;
+    [HideInInspector] public bool isPaused{
+        get{
+            return pauseMenu.isPaused;
+        }
+    }
     
     void Start (){
         HidePause();

@@ -26,7 +26,8 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(guiController.showingGameOver || guiController.showingPause)
+        // if(guiController.showingGameOver || guiController.showingPause)
+        if(guiController.isPaused)
             return;
         // int x = _hor.Update();
         // int y = _ver.Update();

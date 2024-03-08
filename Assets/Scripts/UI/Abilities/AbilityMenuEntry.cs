@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+    GameUIController guiController;
     [SerializeField] Image bullet;
     // [SerializeField] SpriteRenderer bullet;
     [SerializeField] Sprite normalSprite;
@@ -22,7 +23,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Color pressedColor;
     public Color disabledColor;
 
-[HideInInspector] public GameObject entry;
+    [HideInInspector] public GameObject entry;
 
     [HideInInspector]public UnityEngine.Events.UnityAction highlightFunc, unhighlightFunc;
     
@@ -39,6 +40,8 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private bool isPressedDesired = false;
 
     void Awake (){
+        // guiController = GetComponent<BattleController>().guiController;
+        guiController = (FindObjectOfType(typeof(BattleController)) as BattleController).guiController;
         txt = GetComponentInChildren<TextMeshProUGUI>();
         button = gameObject.GetComponent<Button>();
     }
@@ -46,8 +49,15 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     void Update()
     {
         ButtonStatus desiredButtonStatus = ButtonStatus.Normal;
-        if ( !button.interactable )
+        
+        button.interactable = !guiController.isPaused;
+        if(guiController.isPaused){
+            print("gui controller is paused");
+            // button.interactable = false;
+        }
+        if ( !button.interactable){
             desiredButtonStatus = ButtonStatus.Disabled;
+        }
         else{
             if ( isHighlightDesired )
                 desiredButtonStatus = ButtonStatus.Highlighted;
@@ -145,6 +155,8 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 
     public void OnPointerEnter( PointerEventData eventData ){
+         if(guiController.isPaused)
+            return;
         // Debug.Log("highlighting");
         isHighlightDesired = true;
             // Debug.Log("null func " + highlightFunc);
@@ -155,6 +167,8 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     }
     public void OnPointerExit( PointerEventData eventData ){
+         if(guiController.isPaused)
+            return;
         // Debug.Log("unhighlighting");
         isHighlightDesired = false;
         if(unhighlightFunc != null)
