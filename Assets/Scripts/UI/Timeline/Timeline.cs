@@ -54,7 +54,10 @@ public class Timeline : MonoBehaviour
         indicator.statsScript = unit.statsScript;
         indicator.unitScript = unit;
         indicator.icon.sprite = unit.portrait;
-        indicator.icon.color = unit.GetComponent<Unit>().portraitColor;
+        // indicator.icon.color = Color.white;
+        // indicator.icon.color = unit.GetComponent<Unit>().portraitColor;
+
+        indicator.portraitBG.color =  unit.GetComponent<Unit>().portraitColor;
         // Debug.Log("setting timeline color as "+ indicator.icon.color);
 
         indicator.counter.text = GetAV(indicator).ToString();
@@ -77,8 +80,11 @@ public class Timeline : MonoBehaviour
             indicator.gameObject.transform.SetAsFirstSibling();
             // Debug.Log("timeline color is "+ indicator.icon.color);
             indicator.background.color = indicator.defaultBGColor;
-            if(owner.turn.actingUnit && indicator.unitScript == owner.turn.actingUnit)
+            indicator.counter.color = indicator.defaultAVColor;
+            if(owner.turn.actingUnit && indicator.unitScript == owner.turn.actingUnit){
                 indicator.background.color = Color.white;
+                indicator.counter.color = Color.black;
+            }
         }
         
     }
