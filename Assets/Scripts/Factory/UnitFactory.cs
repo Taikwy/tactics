@@ -135,8 +135,8 @@ public static class UnitFactory
 		}
 		// movement.moveSpeed = moveSpeed;
 		// movement.moveDelaySpeed = moveDelay;
-		movement.moveSpeed = .025f;
-		movement.moveDelaySpeed = .04f;
+		movement.moveSpeed = 7f;
+		movement.moveDelayAmount = 8f;
 	}
 
 	static void AddEquipment(GameObject unit, List<GameObject> equipment){
