@@ -22,16 +22,16 @@ public class PerformAbilityState : BattleState
     
     IEnumerator Animate (){
         Debug.Log("starting to animate " + turn.targets.Count);
-        for (int i = 0; i < turn.targets.Count; ++i){
-            Debug.Log("looping? ");
-            Tile target = turn.targets[i];
-            yield return StartCoroutine(Attack(target));
-            yield return new WaitForSeconds(10 * Time.deltaTime);
-            // yield return new WaitForSeconds(.05f);
-        }
+        // for (int i = 0; i < turn.targets.Count; ++i){
+        //     Debug.Log("looping? ");
+        //     Tile target = turn.targets[i];
+        //     yield return StartCoroutine(Attack(target));
+        //     yield return new WaitForSeconds(10 * Time.deltaTime);
+        //     // yield return new WaitForSeconds(.05f);
+        // }
         // SelectTile(turn.actingUnit.tile.position);
 
-        yield return null;
+        yield return StartCoroutine(AttackTargets());
 		ApplyAbility();
 		
 		if (IsBattleOver()){
