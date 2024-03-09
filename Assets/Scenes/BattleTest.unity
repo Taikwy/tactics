@@ -4088,7 +4088,7 @@ MonoBehaviour:
   pitTilePrefab: {fileID: 6534081145384810864, guid: 681bd367d04e4f540a4d9ff125009ea9, type: 3}
   wallTilePrefab: {fileID: 1025403324043751005, guid: 2d1833f51b6bd424a81a418c30b67967, type: 3}
   selectValid: {r: 1, g: 0.9880785, b: 0, a: 1}
-  selectInvalid: {r: 0.8301887, g: 0.5018593, b: 0.18405126, a: 1}
+  selectInvalid: {r: 1, g: 1, b: 1, a: 1}
   selectEmpty: {r: 0.5566038, g: 0.5527114, b: 0, a: 1}
   selectAlly: {r: 0, g: 0, b: 0, a: 1}
   selectEnemy: {r: 1, g: 0.14509805, b: 0, a: 1}
@@ -10471,6 +10471,7 @@ MonoBehaviour:
   cameraBufferX: 0
   cameraBufferY: 0
   selectMovement: 1
+  unitMovement: 0
   screenBoundWidth: 240
   screenBoundHeight: 200
   screenBoundWidthPercent: 70

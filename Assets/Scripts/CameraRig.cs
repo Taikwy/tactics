@@ -18,6 +18,7 @@ public class CameraRig : MonoBehaviour
     float minScreenBoundY, maxScreenBoundY;
     public float cameraBufferX, cameraBufferY;
     public bool selectMovement = true;
+    public bool unitMovement = false;
 
     public float screenBoundWidth;
     public float screenBoundHeight;
@@ -54,6 +55,8 @@ public class CameraRig : MonoBehaviour
         // print("MOUSE " + (mousePosition/16f) + "   | SELECT " + target.position);
         if(selectMovement)
             SelectCameraMovement();
+        else if(unitMovement)
+            UnitCameraMovement();
         else
             BoundsCameraMovement();
         // Debug.Log("camerapos " +  cameraTransform.position);
@@ -68,6 +71,9 @@ public class CameraRig : MonoBehaviour
             // if(Vector2.Distance(cameraTransform.position, target.position) > cameraLeniency)
             // targetPos = Vector2.SmoothDamp(cameraTransform.position, target.position, ref velocity, smoothTime);
         }
+    }
+    void UnitCameraMovement(){
+        targetPos = bc.turn.actingUnit.transform.position;
     }
 
     void BoundsCameraMovement(){

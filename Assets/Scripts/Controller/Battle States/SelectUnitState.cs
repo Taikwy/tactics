@@ -26,7 +26,7 @@ public class SelectUnitState : BattleState
 		// 	owner.ChangeState<EndBattleState>();
         // }
         owner.round.MoveNext();
-        SelectTile(turn.actingUnit.tile.position);
+        SelectTile(turn.actingUnit.tile.position, Board.SelectColor.VALID);
 		driver = (turn.actingUnit != null) ? turn.actingUnit.GetComponent<Driver>() : null;
 
         if (driver.Current == Drivers.Computer){
@@ -37,7 +37,10 @@ public class SelectUnitState : BattleState
             RefreshPrimaryPanel(selectPos);
             // board.humanDriver = true;
         }
-        
+        yield return new WaitForSeconds(.1f);
+        cameraRig.selectMovement = true;
+        cameraRig.unitMovement = false;
+        yield return new WaitForSeconds(.4f);
         yield return null;
         if (IsBattleOver()){
             Debug.Log("selecting says battle is over PLEASE");
