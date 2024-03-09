@@ -10,9 +10,19 @@ public class PerformAbilityState : BattleState
         if (turn.hasUnitMoved)
             turn.lockMove = true;
         StartCoroutine(Animate());
+        // StartCoroutine(AttackTargets());
     }
     
     IEnumerator Animate (){
+        Debug.Log("starting to animate " + turn.targets.Count);
+        for (int i = 0; i < turn.targets.Count; ++i){
+            Debug.Log("looping? ");
+            Tile target = turn.targets[i];
+            yield return StartCoroutine(Attack(target));
+            yield return new WaitForSeconds(10 * Time.deltaTime);
+            // yield return new WaitForSeconds(.05f);
+        }
+
         yield return null;
 		ApplyAbility();
 		
@@ -36,10 +46,39 @@ public class PerformAbilityState : BattleState
     void ApplyAbility (){
 		turn.selectedAbility.Perform(turn.targets);
 	}
-	
-	// bool UnitHasControl ()
-	// {
-	// 	return turn.actingUnit.GetComponentInChildren<KnockOutStatusEffect>() == null;
-	// }
+
+    public virtual IEnumerator AttackTargets()
+    {
+        Debug.Log("starting to attack " + turn.targets.Count);
+        for (int i = 0; i < turn.targets.Count; ++i){
+            Tile target = turn.targets[i];
+            Debug.Log("targeting " +target);
+            yield return StartCoroutine(Attack(target));
+            yield return new WaitForSeconds(10 * Time.deltaTime);
+            // yield return new WaitForSeconds(.05f);
+        }
+        Debug.Log("finishing attacks " + turn.targets.Count);
+        yield return null;
+    }
+    IEnumerator Attack (Tile target){
+        Debug.Log("attacking " + target);
+        Transform actorTransform = turn.actingUnit.transform;
+        Vector2 startPos = actorTransform.position;
+
+        float baseAttackTime = .25f;
+        float adjustedAttackSpeed = Vector2.Distance(actorTransform.position, target.center)/baseAttackTime;
+        print("attack move speed " + adjustedAttackSpeed);
+
+        while((Vector2)actorTransform.position != target.center){
+            Debug.Log("moving to target " );
+            actorTransform.position  = Vector2.MoveTowards(actorTransform.position, target.center, adjustedAttackSpeed*Time.deltaTime);
+            yield return null;
+        }
+        while((Vector2)actorTransform.position != startPos){
+            Debug.Log("moving back  " );
+            actorTransform.position  = Vector2.MoveTowards(actorTransform.position, startPos, adjustedAttackSpeed*Time.deltaTime);
+            yield return null;
+        }
+    }
 
 }
