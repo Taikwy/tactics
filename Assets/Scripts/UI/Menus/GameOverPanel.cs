@@ -9,10 +9,12 @@ public class GameOverPanel : MonoBehaviour
     public static bool isPaused = false;
 
     public void ShowPanel(){
+        Time.timeScale = 0f;
         isPaused = true;
         endGameMenu.SetActive(true);
     }
     public void HidePanel(){
+        Time.timeScale = 1f;
         isPaused = false;
         endGameMenu.SetActive(false);
     }
