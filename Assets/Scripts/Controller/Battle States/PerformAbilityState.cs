@@ -83,7 +83,7 @@ public class PerformAbilityState : BattleState
             // Debug.Log("targeting " +target);
             panelController.ShowSecondary(target.content);
             yield return StartCoroutine(Perform(target));
-            yield return new WaitForSeconds(.75f);
+            yield return new WaitForSeconds(.5f);
         }
         panelController.HideSecondary();
         // Debug.Log("finishing attacks " + turn.targets.Count);
@@ -127,9 +127,9 @@ public class PerformAbilityState : BattleState
         print("animating miss");
         Transform targetTransform = target.content.transform;
         Vector2 startPos = target.center;
-        Vector2 dodgePos = target.center + new Vector2(.2f, 0f);
+        Vector2 dodgePos = target.center + new Vector2(.75f, 0f);
         
-        float dodgeSpeed = .15f;
+        float dodgeSpeed = 4f;
 
         while((Vector2)targetTransform.position != dodgePos){
             targetTransform.position  = Vector2.MoveTowards(targetTransform.position, dodgePos, dodgeSpeed*Time.deltaTime);
