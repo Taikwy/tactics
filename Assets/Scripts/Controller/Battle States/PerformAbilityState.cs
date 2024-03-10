@@ -22,6 +22,7 @@ public class PerformAbilityState : BattleState
     
     IEnumerator Animate (){
         Debug.Log("starting to animate " + turn.targets.Count);
+        panelController.ShowAbilityDisplay(turn.selectedAbility.gameObject);
         // for (int i = 0; i < turn.targets.Count; ++i){
         //     Debug.Log("looping? ");
         //     Tile target = turn.targets[i];
@@ -31,8 +32,10 @@ public class PerformAbilityState : BattleState
         // }
         // SelectTile(turn.actingUnit.tile.position);
 
-        yield return StartCoroutine(AttackTargets());
+        yield return StartCoroutine(PerformTargets());
 		ApplyAbility();
+        
+        panelController.HideAbilityDisplay();
 		
 		if (IsBattleOver()){
             Debug.Log("changing to end");
@@ -55,21 +58,21 @@ public class PerformAbilityState : BattleState
 		turn.selectedAbility.Perform(turn.targets);
 	}
 
-    public virtual IEnumerator AttackTargets()
+    public virtual IEnumerator PerformTargets()
     {
-        Debug.Log("starting to attack " + turn.targets.Count);
+        Debug.Log("starting to perform " + turn.targets.Count);
         for (int i = 0; i < turn.targets.Count; ++i){
             Tile target = turn.targets[i];
             Debug.Log("targeting " +target);
-            yield return StartCoroutine(Attack(target));
+            yield return StartCoroutine(Perform(target));
             yield return new WaitForSeconds(1.2f);
             // yield return new WaitForSeconds(.05f);
         }
         Debug.Log("finishing attacks " + turn.targets.Count);
         yield return null;
     }
-    IEnumerator Attack (Tile target){
-        Debug.Log("attacking " + target);
+    IEnumerator Perform (Tile target){
+        Debug.Log("performing " + target);
         Transform actorTransform = turn.actingUnit.transform;
         Vector2 startPos = actorTransform.position;
         

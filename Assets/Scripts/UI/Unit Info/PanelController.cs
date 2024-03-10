@@ -11,8 +11,9 @@ public class PanelController : MonoBehaviour
     [SerializeField] StatusPanel primaryStatusPanel;              //selected and targeted unit
     [SerializeField] AbilityInfoPanel abilityInfoPanel;              //selected and targeted unit
     [SerializeField] DetailsPanel detailsPanel;              //selected and targeted unit
+    [SerializeField] AbilityDisplayPanel abilityDisplayPanel;              //selected and targeted unit
     // [SerializeField] AbilityMenu abilityMenu;
-    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo, showingDetails = false;
+    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo, showingDetails, showingAbilityDisplay = false;
     
     void Start (){
         HidePrimary();
@@ -20,6 +21,7 @@ public class PanelController : MonoBehaviour
         HideSecondary(); 
         HideAbilityInfo();
         HideDetails();
+        HideAbilityDisplay();
     }
 
     public void ShowPrimary (GameObject unit){
@@ -69,15 +71,12 @@ public class PanelController : MonoBehaviour
         detailsPanel.HidePanel();
     }
 
-    // void MovePanel (StatPanel obj, string pos) {
-    //     Panel.Position target = obj.panel[pos];
-    //     if (obj.panel.CurrentPosition != target)
-    //     {
-    //     if (t != null && t.easingControl != null)
-    //         t.easingControl.Stop();
-    //     t = obj.panel.SetPosition(pos, true);
-    //     t.easingControl.duration = 0.5f;
-    //     t.easingControl.equation = EasingEquations.EaseOutQuad;
-    //     }
-    // }
+    public void ShowAbilityDisplay (GameObject unit){
+        showingAbilityDisplay = true;
+        abilityDisplayPanel.Display(unit);
+        abilityDisplayPanel.ShowPanel();
+    }    public void HideAbilityDisplay (){
+        showingAbilityDisplay = false;
+        abilityDisplayPanel.HidePanel();
+    }
 }
