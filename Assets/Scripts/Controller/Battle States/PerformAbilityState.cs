@@ -58,16 +58,16 @@ public class PerformAbilityState : BattleState
 		turn.selectedAbility.Perform(turn.targets);
 	}
 
-    public virtual IEnumerator PerformTargets()
-    {
+    public virtual IEnumerator PerformTargets(){
         Debug.Log("starting to perform " + turn.targets.Count);
         for (int i = 0; i < turn.targets.Count; ++i){
             Tile target = turn.targets[i];
             Debug.Log("targeting " +target);
+            panelController.ShowSecondary(target.content);
             yield return StartCoroutine(Perform(target));
             yield return new WaitForSeconds(1.2f);
-            // yield return new WaitForSeconds(.05f);
         }
+        panelController.HideSecondary();
         Debug.Log("finishing attacks " + turn.targets.Count);
         yield return null;
     }
