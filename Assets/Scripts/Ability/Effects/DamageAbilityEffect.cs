@@ -63,6 +63,8 @@ public class DamageAbilityEffect : BaseAbilityEffect
 
 			// predictedDMG *= (int)((1f + critDMG/100f)*predictedDMG);
 			Debug.Log("CRIT!!! " + critRate + " | " + critDMG + " | crit damage: " + critDamage);
+			// var info = new Info<Tile, int>(target, OnApply(target));
+			this.PostEvent(EffectCritEvent, target);
 		}
 		else
 			didCrit = false;

@@ -17,8 +17,9 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	// public const string GetPowerEvent = "BaseAbilityEffect.GetPowerEvent";
 	// public const string TweakDamageEvent = "BaseAbilityEffect.TweakDamageEvent";
 
-	public const string HitEvent = "BaseAbilityEffect.HitEvent";
-	public const string MissedEvent = "BaseAbilityEffect.MissedEvent";
+	public const string EffectHitEvent = "BaseAbilityEffect.EffectHitEvent";
+	public const string EffectMissedEvent = "BaseAbilityEffect.EffectMissedEvent";
+	public const string EffectCritEvent = "BaseAbilityEffect.EffectCritEvent";
 	
 	[Tooltip("Used for creating the status effect obj under a unit's status component")]public string abilityEffectName;
 	[Tooltip("Shows when hovering the status effect under the status panel")][TextArea(5,20)]public string abilityEffectDescription;
@@ -48,14 +49,20 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 
 		if (GetComponent<HitRate>().RollForHit(target)){
             // Debug.Log("HIT! " + abilityEffectName);
-			this.PostEvent(HitEvent, OnApply(target));
+			//posts event with info for PERFORM ABILITY STATE - tile target, int damage/ability effect
+			var info = new Info<Tile, int>(target, OnApply(target));
+			this.PostEvent(EffectHitEvent, info);
+			if(didCrit)
+				this.PostEvent(EffectCritEvent, target);
+			// this.PostEvent(EffectHitEvent, OnApply(target));
 			foreach(BaseAbilityEffect effect in subEffects){
 				effect.SubApply(target, didCrit);
 			}
         }
 		else{
-            Debug.Log("MISS! " + abilityEffectName);
-			this.PostEvent(MissedEvent);
+            // Debug.Log("MISS! " + abilityEffectName);
+			this.PostEvent(EffectMissedEvent, target);
+			// this.PostEvent(EffectMissedEvent);
         }
 	}
 	public void SubApply (Tile target, bool crit){
@@ -65,15 +72,18 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 		// 	return;
 
 		if (GetComponent<HitRate>().RollForHit(target)){
-            Debug.Log("HIT! " + abilityEffectName);
-			this.PostEvent(HitEvent, OnSubApply(target, crit));
+            Debug.Log("SUB HIT! " + abilityEffectName);
+			//posts event with info for PERFORM ABILITY STATE - tile target, int damage/ability effect
+			var info = new Info<Tile, int>(target,  OnSubApply(target, crit));
+			this.PostEvent(EffectHitEvent, info);
+			// this.PostEvent(EffectHitEvent, OnSubApply(target, crit));
 			foreach(BaseAbilityEffect effect in subEffects){
 				effect.Apply(target);
 			}
         }
 		else{
             Debug.Log("MISS! " + abilityEffectName);
-			this.PostEvent(MissedEvent);
+			this.PostEvent(EffectMissedEvent);
         }
 	}
 

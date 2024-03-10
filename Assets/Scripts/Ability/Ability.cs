@@ -8,6 +8,7 @@ public class Ability : MonoBehaviour
     public const string FailedEvent = "Ability.FailedEvent";
     public const string DidPerformEvent = "Ability.DidPerformEvent";
 	public const string AbilityHitEvent = "Ability.AbilityHitEvent";
+	public const string FinishedPerformingEvent = "Ability.FinishedPerformingEvent";
     public AbilityTypes type;
 	public Board.OverlayColor overlayColor;
 	public List<GameObject> primaryEffects = new List<GameObject>();
@@ -25,11 +26,11 @@ public class Ability : MonoBehaviour
 		primaryEffect = primaryEffects[0];
 	}
 	void OnEnable (){
-		this.AddObserver(OnPrimaryHit, BaseAbilityEffect.HitEvent);
+		this.AddObserver(OnPrimaryHit, BaseAbilityEffect.EffectHitEvent);
 	}
 	
 	void OnDisable (){
-		this.RemoveObserver(OnPrimaryHit, BaseAbilityEffect.HitEvent);
+		this.RemoveObserver(OnPrimaryHit, BaseAbilityEffect.EffectHitEvent);
 	}
 	public void SetOwner(){
 		Unit owner = GetComponentInParent<Unit>();
@@ -78,6 +79,8 @@ public class Ability : MonoBehaviour
 			this.PostEvent(AbilityHitEvent, burstGain);
 			abilityHit = false;
 		}
+		
+		this.PostEvent(FinishedPerformingEvent);
 	}
 
 	void Perform (Tile target){
@@ -101,6 +104,7 @@ public class Ability : MonoBehaviour
 
 	}
 	void OnPrimaryHit(object sender, object args){
+		// print("primary hiot");
 		MonoBehaviour obj = sender as MonoBehaviour;
 		if(obj == null || obj.GetComponentInParent<Ability>() != this)
 			return;
