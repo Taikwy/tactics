@@ -29,7 +29,7 @@ public class AbilityTargetState : BattleState
         if(areaScript.GetType() == typeof(FullAbilityArea)){
             // areaScript.targets = new List<Tile>(highlightedTiles);
             areaScript.GetTilesInArea(board, selectPos);
-            indicators = IndicateTiles(areaScript.targets, Board.SelectColor.ENEMY);
+            // indicators = IndicateTiles(areaScript.targets, Board.SelectColor.ENEMY);
         }
 
         selectedTiles = new List<Tile>();
@@ -79,7 +79,13 @@ public class AbilityTargetState : BattleState
         // SelectTile(board.selectedPoint);
         if(highlightedTiles.Contains(board.selectedTile)){
             if(board.selectedTile.content != null){
-                SelectTile(board.selectedPoint, Board.SelectColor.ENEMY);
+                if(turn.selectedAbility.IsTarget(board.selectedTile)){
+                    SelectTile(board.selectedPoint, Board.SelectColor.ENEMY);
+                }
+                else{
+                    SelectTile(board.selectedPoint, Board.SelectColor.EMPTY);
+                }
+
                 // if(board.selectedTile.content.GetComponent<Alliance>().IsMatch(turn.actingUnit.allianceScript, Targets.Ally)){
                 //     SelectTile(board.selectedPoint, Board.SelectColor.ALLY);
                 // }

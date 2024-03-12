@@ -22,7 +22,7 @@ public class ConfirmAbilityTargetState : BattleState
         FindTargets();
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
-        Debug.LogError(turn.targets.Count);
+        // Debug.LogError(turn.targets.Count);
         if (turn.targets.Count > 0){
 			// if (driver.Current == Drivers.Human)
             forecastPanel.Show();
@@ -30,6 +30,7 @@ public class ConfirmAbilityTargetState : BattleState
 		}
         else{
             HideSelect();
+            DisplayEffects(turn.actingUnit.tile);
             // SelectTile(turn.actingUnit.tile.position, false);
         }
 		if (driver.Current == Drivers.Computer){
@@ -40,7 +41,15 @@ public class ConfirmAbilityTargetState : BattleState
         else
             board.humanDriver = true;
     }
-    
+    void DisplayEffects (Tile target){
+        int targetIndex = turn.targets.IndexOf(target);
+        Vector2 labelOffset = new Vector2(0, .6f);
+        Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
+        Unit unit = target.content.GetComponent<Unit>();
+        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+
+        effectLabel.GetComponent<EffectLabel>().Initialize("NO VALID TARGETS", .75f, 2);
+    }
 
     public override void Exit (){
         // Debug.Log("exiting confirm ability state");
@@ -70,7 +79,10 @@ public class ConfirmAbilityTargetState : BattleState
             if (turn.targets.Count > 0){
                 owner.ChangeState<PerformAbilityState>();
             }
-            Debug.LogError("NO TARGETS, CANNOT CONTINUE");
+            else{
+                // Debug.LogError("NO TARGETS, CANNOT CONTINUE");
+                DisplayEffects(turn.actingUnit.tile);
+            }
         }
         else{
             owner.ChangeState<AbilityTargetState>();

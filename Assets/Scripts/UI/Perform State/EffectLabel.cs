@@ -26,6 +26,8 @@ public class EffectLabel : MonoBehaviour
                 effectLabel.color = Color.gray;
             else if(labelText == "PURIFYING!")
                 effectLabel.color = Color.white;
+            else if(labelText == "NO VALID TARGETS")
+                effectLabel.color = Color.red;
             else
                 effectLabel.color = Color.yellow;
         }
