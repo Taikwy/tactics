@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Unity.VisualScripting;
 
 public static class UnitFactory
 {
@@ -45,6 +46,7 @@ public static class UnitFactory
 		// AddAttack(unit, recipe.attack);
 		AddEquipment(unit, recipe.equipment);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
+		AddCanvas(unit);
 
 		AddAttackPattern(unit,recipe.cpuDriver, recipe.attackPattern);
 		return unit;
@@ -213,6 +215,13 @@ public static class UnitFactory
 			}
 			ability.GetComponent<Ability>().SetOwner();
 		}
+	}
+
+	static void AddCanvas(GameObject obj){
+		GameObject canvasObj = new GameObject();
+		// canvasObj
+		canvasObj.transform.parent = obj.transform;
+		Canvas canvas = canvasObj.AddComponent<Canvas>();
 	}
 
 	static void AddAttackPattern (GameObject obj, bool cpuDriver, string name){
