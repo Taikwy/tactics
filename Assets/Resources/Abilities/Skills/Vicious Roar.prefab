@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6966475923109113812}
-  - component: {fileID: 1918677148183206524}
+  - component: {fileID: 788084920924728007}
   - component: {fileID: 616511774074537263}
   - component: {fileID: 4742295797092695002}
   - component: {fileID: 6950046999304816923}
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 7693599255702816309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1918677148183206524
+--- !u!114 &788084920924728007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861301945464717442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d09096b31189404ab8c486574cb1699, type: 3}
+  m_Script: {fileID: 11500000, guid: 8117545df9fe66544811190e7ff7061a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &616511774074537263
@@ -148,7 +148,7 @@ MonoBehaviour:
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 10
-  abilityDescription: Deals 100% of the unit's ATTACK to ALL targets within range.
+  abilityDescription: Deals 100% of the unit's ATTACK to ENEMY targets within range.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0

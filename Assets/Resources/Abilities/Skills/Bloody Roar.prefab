@@ -246,7 +246,7 @@ MonoBehaviour:
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 10
-  abilityDescription: Deals 60% of the unit's ATTACK to ALL targets within range
+  abilityDescription: Deals 60% of the unit's ATTACK to ENEMY targets within range
     and inflicts BREAK for 1 turn.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
