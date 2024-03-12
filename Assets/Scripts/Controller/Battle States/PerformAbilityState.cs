@@ -150,13 +150,13 @@ public class PerformAbilityState : BattleState
         print("displaying effect");
         Camera cam = owner.cameraRig.GetComponentInChildren<Camera>();
         // Vector2 targetPos = cam.WorldToScreenPoint((Vector2)target.transform.position + new Vector2(0, 1f));
-        Vector2 targetPos = (Vector2)target.transform.position + new Vector2(0, 1f);
+        Vector2 targetPos = (Vector2)target.transform.position + new Vector2(0, .6f);
         Unit unit = target.content.GetComponent<Unit>();
         GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
         // GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, owner.performStateUI.effectLabelContainer.transform);
 
         int targetIndex = turn.targets.IndexOf(target);
-        effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], 1, 3);
+        effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], .75f, 2);
         print(effect[targetIndex] + " | pos " + targetPos);
     }
     IEnumerator AnimateEffect (Tile target){
