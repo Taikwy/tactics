@@ -57,6 +57,18 @@ public abstract class BattleState : State
     protected virtual void OnFire (object sender, InfoEventArgs<int> e){  
     }
 
+    protected virtual void HideSelect () {
+        Color temp = tileSelectionIndicator.sr.color;
+        temp.a = 0f;
+        tileSelectionIndicator.sr.color = temp;
+    }
+    protected virtual void ShowSelect () {
+        Color temp = tileSelectionIndicator.sr.color;
+        temp.a = 1f;
+        tileSelectionIndicator.sr.color = temp;
+    }
+
+
     //moves tile selection indicator to point
     protected virtual void SelectTile (Point p) {
         // Debug.Log("selecting tile " + p);
@@ -64,7 +76,6 @@ public abstract class BattleState : State
             return;
         selectPos = p;
         tileSelectionIndicator.transform.localPosition = board.tiles[p].center;
-        
         tileSelectionIndicator.sr.color = board.selectValid;
     }
     //takes in a bool to see whether the selected tile is targetable. will change color of the highlight

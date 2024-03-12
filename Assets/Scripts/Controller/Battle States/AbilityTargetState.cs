@@ -29,7 +29,7 @@ public class AbilityTargetState : BattleState
         if(areaScript.GetType() == typeof(FullAbilityArea)){
             // areaScript.targets = new List<Tile>(highlightedTiles);
             areaScript.GetTilesInArea(board, selectPos);
-            indicators = IndicateTiles(areaScript.targets, Board.SelectColor.INVALID);
+            indicators = IndicateTiles(areaScript.targets, Board.SelectColor.ENEMY);
         }
 
         selectedTiles = new List<Tile>();
@@ -54,6 +54,7 @@ public class AbilityTargetState : BattleState
         cameraRig.selectMovement = true;
         // Debug.Log("exitingggg");
         base.Exit ();
+        if(indicators != null)
         foreach(GameObject indicator in indicators){
             Destroy(indicator);
         }

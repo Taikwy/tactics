@@ -22,11 +22,16 @@ public class ConfirmAbilityTargetState : BattleState
         FindTargets();
         RefreshPrimaryPanel(turn.actingUnit.tile.position);
         
+        Debug.LogError(turn.targets.Count);
         if (turn.targets.Count > 0){
 			// if (driver.Current == Drivers.Human)
-				forecastPanel.Show();
+            forecastPanel.Show();
 			SetTarget(0);
 		}
+        else{
+            HideSelect();
+            // SelectTile(turn.actingUnit.tile.position, false);
+        }
 		if (driver.Current == Drivers.Computer){
             // Debug.LogError("asdasd");
             board.humanDriver = false;
@@ -35,6 +40,7 @@ public class ConfirmAbilityTargetState : BattleState
         else
             board.humanDriver = true;
     }
+    
 
     public override void Exit (){
         // Debug.Log("exiting confirm ability state");
@@ -46,6 +52,7 @@ public class ConfirmAbilityTargetState : BattleState
         panelController.HidePrimary();
         panelController.HideSecondary();
 
+        ShowSelect();
         forecastPanel.Hide();
     }
     //scrolls thru all the targets affected by the current attack
@@ -63,6 +70,7 @@ public class ConfirmAbilityTargetState : BattleState
             if (turn.targets.Count > 0){
                 owner.ChangeState<PerformAbilityState>();
             }
+            Debug.LogError("NO TARGETS, CANNOT CONTINUE");
         }
         else{
             owner.ChangeState<AbilityTargetState>();
