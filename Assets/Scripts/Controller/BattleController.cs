@@ -30,6 +30,7 @@ public class BattleController : StateMachine
     public ForecastPanel forecastPanel;
     public TurnOrderController turnOrderController;
     public GameUIController guiController;
+    public PerformStateUI performStateUI;
     [Header("turn stuff")]
     public IEnumerator round;
     public Timeline timeline;

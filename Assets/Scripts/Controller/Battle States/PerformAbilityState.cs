@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PerformAbilityState : BattleState 
@@ -110,6 +111,7 @@ public class PerformAbilityState : BattleState
             StartCoroutine(AnimateHit(target));
         else if(!hit[targetIndex])
             StartCoroutine(AnimateMiss(target));
+        DisplayEffect(target);
         while((Vector2)actorTransform.position != startPos){
             // Debug.Log("moving back  " );
             actorTransform.position  = Vector2.MoveTowards(actorTransform.position, startPos, adjustedAttackSpeed*Time.deltaTime);
@@ -118,7 +120,11 @@ public class PerformAbilityState : BattleState
     }
     IEnumerator AnimateHit (Tile target){
         print("animating HIT");
-        target.content.GetComponent<SpriteRenderer>().color = Color.red;
+        int targetIndex = turn.targets.IndexOf(target);
+        if(crit[targetIndex])
+            target.content.GetComponent<SpriteRenderer>().color = Color.red;
+        else
+            target.content.GetComponent<SpriteRenderer>().color = Color.yellow;
         yield return new WaitForSeconds(.15f);
         target.content.GetComponent<SpriteRenderer>().color = Color.white;
         yield return new WaitForSeconds(.1f);
@@ -129,7 +135,7 @@ public class PerformAbilityState : BattleState
         Vector2 startPos = target.center;
         Vector2 dodgePos = target.center + new Vector2(.75f, 0f);
         
-        float dodgeSpeed = 4f;
+        float dodgeSpeed = 5f;
 
         while((Vector2)targetTransform.position != dodgePos){
             targetTransform.position  = Vector2.MoveTowards(targetTransform.position, dodgePos, dodgeSpeed*Time.deltaTime);
@@ -140,22 +146,20 @@ public class PerformAbilityState : BattleState
             yield return null;
         }
     }
-    IEnumerator AnimateEffect (Tile target){
-        print("animating effect");
-        Transform targetTransform = target.content.transform;
-        Vector2 startPos = target.center;
-        Vector2 dodgePos = target.center + new Vector2(.2f, 0f);
-        
-        float dodgeSpeed = .15f;
+    void DisplayEffect (Tile target){
+        print("displaying effect");
+        Camera cam = owner.cameraRig.GetComponentInChildren<Camera>();
+        // Vector2 targetPos = cam.WorldToScreenPoint((Vector2)target.transform.position + new Vector2(0, 1f));
+        Vector2 targetPos = (Vector2)target.transform.position + new Vector2(0, 1f);
+        print("effect pos " + targetPos);
+        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, target.content.transform);
+        // GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, owner.performStateUI.effectLabelContainer.transform);
 
-        while((Vector2)targetTransform.position != target.center){
-            targetTransform.position  = Vector2.MoveTowards(targetTransform.position, dodgePos, dodgeSpeed*Time.deltaTime);
-            yield return null;
-        }
-        while((Vector2)targetTransform.position != startPos){
-            targetTransform.position  = Vector2.MoveTowards(targetTransform.position, startPos, dodgeSpeed*Time.deltaTime);
-            yield return null;
-        }
+        int targetIndex = turn.targets.IndexOf(target);
+        effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], 1, 3);
+    }
+    IEnumerator AnimateEffect (Tile target){
+        return null;
     }
 
     void OnAbilityFinishedPerforming(object sender, object args){

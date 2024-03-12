@@ -1597,6 +1597,8 @@ RectTransform:
   - {fileID: 1201334132}
   - {fileID: 205846719}
   - {fileID: 1268517467}
+  - {fileID: 958648334}
+  - {fileID: 1422172082}
   m_Father: {fileID: 184543102}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3582,6 +3584,7 @@ MonoBehaviour:
   forecastPanel: {fileID: 210886686}
   turnOrderController: {fileID: 0}
   guiController: {fileID: 439395760}
+  performStateUI: {fileID: 1274223313}
   timeline: {fileID: 1074842531}
   cpu: {fileID: 431054554}
   actionDelays:
@@ -5968,6 +5971,42 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3548770329478891150, guid: d7f41f83785748248aef87b211126cfc, type: 3}
   m_PrefabInstance: {fileID: 922418459}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &958648333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958648334}
+  m_Layer: 5
+  m_Name: ===== PERFROM STATE STUFF =======
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &958648334
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958648333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 129042353}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &966252788
 GameObject:
   m_ObjectHideFlags: 0
@@ -8280,6 +8319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1274223311}
   - component: {fileID: 1274223312}
+  - component: {fileID: 1274223313}
   m_Layer: 5
   m_Name: UI Controller
   m_TagString: Untagged
@@ -8328,6 +8368,20 @@ MonoBehaviour:
   showingAbilityInfo: 0
   showingDetails: 0
   showingAbilityDisplay: 0
+--- !u!114 &1274223313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274223310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1c7601758c4f647be79c108bbb8cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectLabelPrefab: {fileID: 5399575319666421873, guid: 9cf64d76a37a2ea42aa85fbcc7e27c89, type: 3}
+  effectLabelContainer: {fileID: 1422172081}
 --- !u!1 &1280479880
 GameObject:
   m_ObjectHideFlags: 0
@@ -8692,6 +8746,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1422172081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422172082}
+  m_Layer: 5
+  m_Name: Effect Label Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1422172082
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422172081}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 129042353}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1436757968
 GameObject:
   m_ObjectHideFlags: 0

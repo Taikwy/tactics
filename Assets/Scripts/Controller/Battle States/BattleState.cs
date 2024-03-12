@@ -21,6 +21,7 @@ public abstract class BattleState : State
     public ForecastPanel forecastPanel { get { return owner.forecastPanel; }}
     public TurnOrderController turnOrderController { get { return owner.turnOrderController; }}
     public GameUIController guiController { get { return owner.guiController; }}
+    public PerformStateUI performStateUI { get { return owner.performStateUI; }}
 
     // public bool currentlyActive = false;                    //used for update functions of the different states
 
