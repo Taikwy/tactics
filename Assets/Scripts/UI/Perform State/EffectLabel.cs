@@ -22,7 +22,12 @@ public class EffectLabel : MonoBehaviour
             effectLabel.color = Color.red;
         }
         else{
-            effectLabel.color = Color.yellow;
+            if(labelText == "MISS!")
+                effectLabel.color = Color.gray;
+            else if(labelText == "PURIFYING!")
+                effectLabel.color = Color.white;
+            else
+                effectLabel.color = Color.yellow;
         }
         // effectLabel.color = Color.white;
         // print("alpha: " + effectLabel.color.a);

@@ -22,7 +22,7 @@ public class PerformAbilityState : BattleState
         this.AddObserver(OnAbilityHit, BaseAbilityEffect.EffectHitEvent);
         this.AddObserver(OnAbilityMiss, BaseAbilityEffect.EffectMissedEvent);
         this.AddObserver(OnAbilityFinishedPerforming, Ability.FinishedPerformingEvent);
-        // this.AddObserver(OnAbilityCrit, BaseAbilityEffect.EffectHitEvent);
+        this.AddObserver(OnAbilityCrit, BaseAbilityEffect.EffectCritEvent);
         hit = new bool[turn.targets.Count];
         crit = new bool[turn.targets.Count];
         effect = new string[turn.targets.Count];
@@ -48,7 +48,7 @@ public class PerformAbilityState : BattleState
 		this.RemoveObserver(OnAbilityHit, BaseAbilityEffect.EffectHitEvent);
         this.RemoveObserver(OnAbilityMiss, BaseAbilityEffect.EffectMissedEvent);
         this.RemoveObserver(OnAbilityFinishedPerforming, Ability.FinishedPerformingEvent);
-        // this.RemoveObserver(OnAbilityCrit, BaseAbilityEffect.EffectHitEvent);
+        this.RemoveObserver(OnAbilityCrit, BaseAbilityEffect.EffectCritEvent);
         base.Exit ();
     }
     
@@ -136,11 +136,18 @@ public class PerformAbilityState : BattleState
     IEnumerator AnimateHit (Tile target){
         // print("animating HIT");
         int targetIndex = turn.targets.IndexOf(target);
-        if(crit[targetIndex])
-            target.content.GetComponent<SpriteRenderer>().color = Color.red;
-        else
+        if(crit[targetIndex]){
+            for(int i =0; i <8; i++){
+                target.content.GetComponent<SpriteRenderer>().color = Color.red;
+                yield return new WaitForSeconds(.04f);
+                target.content.GetComponent<SpriteRenderer>().color = Color.yellow;
+                yield return new WaitForSeconds(.04f);
+            }
+        }
+        else{
             target.content.GetComponent<SpriteRenderer>().color = Color.yellow;
         yield return new WaitForSeconds(.15f);
+        }
         target.content.GetComponent<SpriteRenderer>().color = Color.white;
         yield return new WaitForSeconds(.1f);
     }
@@ -238,7 +245,7 @@ public class PerformAbilityState : BattleState
         print("ON ABILITY CRIT " + args);
         int targetIndex = turn.targets.IndexOf(args as Tile);
         crit[targetIndex] = true;
-        effects[targetIndex].Add("CRIT!");
+        // effects[targetIndex].Add("CRIT!");
     }
 
 }
