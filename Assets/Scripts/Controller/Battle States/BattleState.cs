@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+
 // using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
@@ -11,6 +13,8 @@ public abstract class BattleState : State
     public Board board { get { return owner.board; }}
     public LevelData levelData { get { return owner.levelData; }}
     public TileSelectionIndicator tileSelectionIndicator { get { return owner.tileSelectionIndicator; }}
+    
+    public GameObject tileSelectionIndicatorPrefab { get { return owner.tileSelectionIndicatorPrefab; }}
     public Point selectPos { get { return owner.selectPos; } set { owner.selectPos = value; }}
     public Turn turn { get { return owner.turn; }}
     public List<Unit> units { get { return owner.units; }}
@@ -94,10 +98,7 @@ public abstract class BattleState : State
         }
         tileSelectionIndicator.sr.color = temp;
     }
-    protected virtual void SelectTiles (List<Tile> tiles, Board.SelectColor color) {
-        foreach(Tile t in tiles){
-            SelectTile(t.position, color);
-        }
+    protected virtual List<GameObject> IndicateTiles (List<Tile> tiles, Board.SelectColor color) {
         Color temp = Color.white;
         switch(color){
             case Board.SelectColor.VALID:
@@ -116,7 +117,40 @@ public abstract class BattleState : State
                 temp = board.selectEnemy;
                 break;
         }
-        tileSelectionIndicator.sr.color = temp;
+        List<GameObject> indicators = new List<GameObject>();
+        foreach(Tile t in tiles){
+            GameObject indicator = IndicateTile(t.position, color);
+            indicator.GetComponent<SpriteRenderer>().color = temp;
+            indicators.Add(indicator);
+        }
+        return indicators;
+    }
+    protected virtual GameObject IndicateTile (Point p, Board.SelectColor color) {
+        if (!board.tiles.ContainsKey(p))
+            return null;
+        GameObject indicator = Instantiate(tileSelectionIndicatorPrefab, board.tiles[p].center,  Quaternion.identity, board.transform);
+        
+        Color temp = Color.white;
+        switch(color){
+            case Board.SelectColor.VALID:
+                temp = board.selectValid;
+                break;
+            case Board.SelectColor.INVALID:
+                temp = board.selectInvalid;
+                break;
+            case Board.SelectColor.EMPTY:
+                temp = board.selectEmpty;
+                break;
+            case Board.SelectColor.ALLY:
+                temp = board.selectAlly;
+                break;
+            case Board.SelectColor.ENEMY:
+                temp = board.selectEnemy;
+                break;
+        }
+        indicator.GetComponent<SpriteRenderer>().color = temp;
+        indicator.GetComponent<TileSelectionIndicator>().ChangeTarget();
+        return indicator;
     }
 
 

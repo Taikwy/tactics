@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class AbilityTargetState : BattleState 
@@ -9,6 +10,8 @@ public class AbilityTargetState : BattleState
     AbilityRange rangeScript;
     AbilityArea areaScript;
     EffectZone zoneScript;
+
+    List<GameObject> indicators;
     
     public override void Enter (){
         base.Enter ();
@@ -24,7 +27,9 @@ public class AbilityTargetState : BattleState
         
         areaScript.targets.Clear();
         if(areaScript.GetType() == typeof(FullAbilityArea)){
-            areaScript.targets = new List<Tile>(highlightedTiles);
+            // areaScript.targets = new List<Tile>(highlightedTiles);
+            areaScript.GetTilesInArea(board, selectPos);
+            indicators = IndicateTiles(areaScript.targets, Board.SelectColor.INVALID);
         }
 
         selectedTiles = new List<Tile>();
@@ -49,6 +54,9 @@ public class AbilityTargetState : BattleState
         cameraRig.selectMovement = true;
         // Debug.Log("exitingggg");
         base.Exit ();
+        foreach(GameObject indicator in indicators){
+            Destroy(indicator);
+        }
         tileSelectionIndicator.ChangeSelect();
 
         board.UnhighlightTiles(highlightedTiles);
@@ -128,7 +136,7 @@ public class AbilityTargetState : BattleState
         }
         Debug.Log("post on fire");
         TargetTiles();
-        SelectTiles();
+        // SelectTiles();
     }
 
     //unused rn

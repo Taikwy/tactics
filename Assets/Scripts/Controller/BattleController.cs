@@ -8,9 +8,11 @@ public class BattleController : StateMachine
     [Header("Camera")]
     public CameraRig cameraRig;
     
-    [Header("Level and Board")]
+    [Header(" Board")]
     public Board board;
     public TileSelectionIndicator tileSelectionIndicator;
+    public GameObject tileSelectionIndicatorPrefab;
+    [Header(" Level")]
     [HideInInspector]public Point selectPos;
     public LevelData levelData;
     public LevelRecipe levelRecipe;
