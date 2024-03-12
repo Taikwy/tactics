@@ -71,8 +71,7 @@ public abstract class Movement : MonoBehaviour
         return foes;
     }
 
-    public virtual IEnumerator Move(Tile target)
-    {
+    public virtual IEnumerator Move(Tile target){
         unit.Place(target);
         //Builds a list backwards forwards from start to target tile
         List<Tile> targets = new List<Tile>();
@@ -82,8 +81,7 @@ public abstract class Movement : MonoBehaviour
         }
 
         // Move to each way point in succession
-        for (int i = 1; i < targets.Count; ++i)
-        {
+        for (int i = 1; i < targets.Count; ++i) {
             Tile to = targets[i];
             yield return StartCoroutine(MoveTo(to));
             yield return new WaitForSeconds(moveDelayAmount * Time.deltaTime);

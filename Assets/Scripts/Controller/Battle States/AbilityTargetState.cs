@@ -22,7 +22,8 @@ public class AbilityTargetState : BattleState
         zoneScript = turn.selectedAbility.primaryEffect.GetComponent<EffectZone>();
 
         SelectTile(turn.actingUnit.tile.position);
-        highlightedTiles = rangeScript.FilterTargetable(rangeScript.GetTilesInRange(board));
+        highlightedTiles = rangeScript.GetTilesForHighlighting(board, turn.actingUnit.tile);
+        // highlightedTiles = rangeScript.FilterLOS(turn.actingUnit.tile, rangeScript.FilterTargetable(rangeScript.GetTilesInRange(board)));
         board.HighlightTiles(highlightedTiles, turn.selectedAbility.overlayColor);
         
         areaScript.targets.Clear();

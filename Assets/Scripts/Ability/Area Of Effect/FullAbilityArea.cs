@@ -12,6 +12,8 @@ public class FullAbilityArea : AbilityArea
     public override List<Tile> GetTilesInArea (Board board, Point pos){
 		AbilityRange ar = GetComponent<AbilityRange>();
         targets = ar.FilterTargetable(ar.GetTilesInRange(board));
+        
+        targets = ar.GetTilesForHighlighting(board, GetComponentInParent<Unit>().tile);
 		return targets;
 	}
 }

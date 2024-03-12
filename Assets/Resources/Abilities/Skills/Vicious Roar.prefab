@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 1
+  losRequired: 1
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &8077837941182523857
