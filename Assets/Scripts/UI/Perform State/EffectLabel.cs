@@ -14,9 +14,19 @@ public class EffectLabel : MonoBehaviour
 
     public void Initialize(string labelText, float floatspeed, float fadeTime){
         effectLabel.text = labelText;
-        effectLabel.color = Color.white;
-        print("alpha: " + effectLabel.color.a);
-        print("position: " + gameObject.transform.position);
+        int.TryParse(labelText, out int result);
+        if(result > 0){
+            effectLabel.color = Color.green;
+        }
+        else if(result < 0){
+            effectLabel.color = Color.red;
+        }
+        else{
+            effectLabel.color = Color.yellow;
+        }
+        // effectLabel.color = Color.white;
+        // print("alpha: " + effectLabel.color.a);
+        // print("position: " + gameObject.transform.position);
 
         this.floatSpeed = floatspeed;
         fadeAmount = 1/fadeTime;
@@ -27,7 +37,7 @@ public class EffectLabel : MonoBehaviour
         if(!intialized)
             return;
         if(effectLabel.color.a <= 0){
-            print("alpha at 0, destroying label " + effectLabel.text);
+            // print("alpha at 0, destroying label " + effectLabel.text);
             Destroy(gameObject);
 
         }

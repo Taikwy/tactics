@@ -143,7 +143,7 @@ public class InflictAbilityEffect : BaseAbilityEffect
 				(effect as StatModifyStatusEffect).incrementOrMultiply = incrementOrMultiply;
 				(effect as StatModifyStatusEffect).statType = statType;
 				(effect as StatModifyStatusEffect).AddObservers();
-				Debug.Log(incrementOrMultiply + " | " + statType);
+				// Debug.Log(incrementOrMultiply + " | " + statType);
 				break;
 		}
 		// print("created statuys object of type " + effectType + " | condition " + conditionType + " duration " + adjustedDuration);

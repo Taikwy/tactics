@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Linq;
+using System;
+// using Unity.Mathematics;
 
 public class PerformAbilityState : BattleState 
 {
@@ -9,6 +12,7 @@ public class PerformAbilityState : BattleState
     bool[] hit;
     bool[] crit;
     string[] effect;
+    List<string>[] effects;
     bool finishedCalculating;
 
     public override void Enter (){
@@ -22,6 +26,12 @@ public class PerformAbilityState : BattleState
         hit = new bool[turn.targets.Count];
         crit = new bool[turn.targets.Count];
         effect = new string[turn.targets.Count];
+        // effects = List<string>()[turn.targets.Count];
+        effects = new List<String>[turn.targets.Count];
+        for(int i = 0; i < turn.targets.Count; i++){
+            effects[i] = new List<string>();
+        }
+        // effects = Enumerable.Repeat(new List<string>(), turn.targets.Count).ToArray();
         finishedCalculating = false;
 
         turn.hasUnitActed = true;
@@ -92,7 +102,7 @@ public class PerformAbilityState : BattleState
     }
     IEnumerator Perform (Tile target){
         int targetIndex = turn.targets.IndexOf(target);
-        Debug.Log("performing " + target + " | " + hit[targetIndex] + " | " + crit[targetIndex] + " | " + effect[targetIndex]);
+        // Debug.Log("performing " + target + " | " + hit[targetIndex] + " | " + crit[targetIndex] + " | " + effect[targetIndex]);
         Transform actorTransform = turn.actingUnit.transform;
         Vector2 startPos = actorTransform.position;
         
@@ -107,11 +117,16 @@ public class PerformAbilityState : BattleState
             actorTransform.position  = Vector2.MoveTowards(actorTransform.position, target.center, adjustedAttackSpeed*Time.deltaTime);
             yield return null;
         }
-        if(hit[targetIndex])
+        if(hit[targetIndex]){
             StartCoroutine(AnimateHit(target));
-        else if(!hit[targetIndex])
+        }
+        else if(!hit[targetIndex]){
             StartCoroutine(AnimateMiss(target));
-        DisplayEffect(target);
+            effects[targetIndex].Add("MISS!");
+        }
+        // StartCoroutine(AnimateMiss(target));
+        // DisplayEffect(target);
+        StartCoroutine(DisplayEffects(target));
         while((Vector2)actorTransform.position != startPos){
             // Debug.Log("moving back  " );
             actorTransform.position  = Vector2.MoveTowards(actorTransform.position, startPos, adjustedAttackSpeed*Time.deltaTime);
@@ -119,7 +134,7 @@ public class PerformAbilityState : BattleState
         }
     }
     IEnumerator AnimateHit (Tile target){
-        print("animating HIT");
+        // print("animating HIT");
         int targetIndex = turn.targets.IndexOf(target);
         if(crit[targetIndex])
             target.content.GetComponent<SpriteRenderer>().color = Color.red;
@@ -137,30 +152,48 @@ public class PerformAbilityState : BattleState
         
         float dodgeSpeed = 5f;
 
+        print(targetTransform.position + " | " + dodgePos + " | " + startPos);
         while((Vector2)targetTransform.position != dodgePos){
             targetTransform.position  = Vector2.MoveTowards(targetTransform.position, dodgePos, dodgeSpeed*Time.deltaTime);
             yield return null;
         }
+        print(targetTransform.position + " | " + dodgePos);
         while((Vector2)targetTransform.position != startPos){
             targetTransform.position  = Vector2.MoveTowards(targetTransform.position, startPos, dodgeSpeed*Time.deltaTime);
             yield return null;
         }
+        print(targetTransform.position + " | " + startPos);
     }
     void DisplayEffect (Tile target){
         print("displaying effect");
-        Camera cam = owner.cameraRig.GetComponentInChildren<Camera>();
+        // Camera cam = owner.cameraRig.GetComponentInChildren<Camera>();
         // Vector2 targetPos = cam.WorldToScreenPoint((Vector2)target.transform.position + new Vector2(0, 1f));
-        Vector2 targetPos = (Vector2)target.transform.position + new Vector2(0, .6f);
+        int targetIndex = turn.targets.IndexOf(target);
+        Vector2 labelOffset = new Vector2(0, .6f);
+        Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
         Unit unit = target.content.GetComponent<Unit>();
         GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
         // GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, owner.performStateUI.effectLabelContainer.transform);
 
-        int targetIndex = turn.targets.IndexOf(target);
         effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], .75f, 2);
         print(effect[targetIndex] + " | pos " + targetPos);
     }
-    IEnumerator AnimateEffect (Tile target){
-        return null;
+
+    IEnumerator DisplayEffects (Tile target){
+        int targetIndex = turn.targets.IndexOf(target);
+        // print("displaying effect " + targetIndex + " ______________________");
+        for(int effectIndex = 0; effectIndex < effects[targetIndex].Count; effectIndex++){
+            // Vector2 labelOffset = new Vector2(Random.Range(-.2f,.2f), Random.Range(.55f,.6f));
+            Vector2 labelOffset = new Vector2(0, .6f);
+            Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
+            Unit unit = target.content.GetComponent<Unit>();
+            GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+
+            effectLabel.GetComponent<EffectLabel>().Initialize(effects[targetIndex][effectIndex], .75f, 2);
+            // print(effects[targetIndex][effectIndex] + " | pos " + targetPos);
+            yield return new WaitForSeconds(.2f);
+        }
+        yield return null;
     }
 
     void OnAbilityFinishedPerforming(object sender, object args){
@@ -169,6 +202,7 @@ public class PerformAbilityState : BattleState
     }
 
     void OnAbilityHit(object sender, object args){
+        // print("HELLLOOOOOOOOOOOOOOO");
         var info = args as Info<Tile, int>;
         // print("ON HIT TILE " + info.arg0);
         // print("ON HIT INT " + info.arg1);
@@ -177,28 +211,34 @@ public class PerformAbilityState : BattleState
 
         // print("ON HIT SENDER " + sender);
         if(sender.GetType() == typeof(DamageAbilityEffect)){
-            effect[targetIndex] = info.arg1.ToString();
+            // effect[targetIndex] = info.arg1.ToString();
+            effects[targetIndex].Add(info.arg1.ToString());
         }
         else if(sender.GetType() == typeof(HealAbilityEffect)){
-            effect[targetIndex] = info.arg1.ToString();
+            // effect[targetIndex] = info.arg1.ToString();
+            effects[targetIndex].Add(info.arg1.ToString());
         }
         else if(sender.GetType() == typeof(InflictAbilityEffect)){
-            effect[targetIndex] = (sender as InflictAbilityEffect).abilityEffectName;
+            // effect[targetIndex] = (sender as InflictAbilityEffect).abilityEffectName + "!";
+            effects[targetIndex].Add( (sender as InflictAbilityEffect).abilityEffectName + "!");
         }
         else if(sender.GetType() == typeof(PurifyAbilityEffect)){
-            effect[targetIndex] = (sender as InflictAbilityEffect).abilityEffectName;
+            // effect[targetIndex] = (sender as PurifyAbilityEffect).abilityEffectName + "!";
+            effects[targetIndex].Add( (sender as PurifyAbilityEffect).abilityEffectName + "!");
         }
-        // print("ON HIT EFFECT " + effect[targetIndex]);
+        // print(info.arg0 + " | " + targetIndex + " ON HIT " + effects[targetIndex].Count);
     }
     void OnAbilityMiss(object sender, object args){
         // print("ON ABILITY MISS " + args);
         int targetIndex = turn.targets.IndexOf(args as Tile);
-        effect[targetIndex] = "MISS!";
+        // effect[targetIndex] = "MISS!";
+        // effects[targetIndex].Add("MISS!");
     }
     void OnAbilityCrit(object sender, object args){
         print("ON ABILITY CRIT " + args);
         int targetIndex = turn.targets.IndexOf(args as Tile);
         crit[targetIndex] = true;
+        effects[targetIndex].Add("CRIT!");
     }
 
 }

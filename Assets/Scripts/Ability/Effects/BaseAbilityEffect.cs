@@ -72,7 +72,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 		// 	return;
 
 		if (GetComponent<HitRate>().RollForHit(target)){
-            Debug.Log("SUB HIT! " + abilityEffectName);
+            // Debug.Log("SUB HIT! " + abilityEffectName);
 			//posts event with info for PERFORM ABILITY STATE - tile target, int damage/ability effect
 			var info = new Info<Tile, int>(target,  OnSubApply(target, crit));
 			this.PostEvent(EffectHitEvent, info);
@@ -82,7 +82,7 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 			}
         }
 		else{
-            Debug.Log("MISS! " + abilityEffectName);
+            // Debug.Log("MISS! " + abilityEffectName);
 			this.PostEvent(EffectMissedEvent);
         }
 	}
