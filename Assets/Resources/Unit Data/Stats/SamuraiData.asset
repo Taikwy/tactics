@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79dbd39aed8e324b85871ad441c4e55, type: 3}
   m_Name: SamuraiData
   m_EditorClassIdentifier: 
-  fixedStats: 8c00000004000000040000005c0000005000000032000000
+  fixedStats: 8c00000004000000040000005c0000001400000032000000
   combatStats: 160000000e00000005000000
   growthStats:
   - 3.2
