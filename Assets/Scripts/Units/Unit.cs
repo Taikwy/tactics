@@ -36,6 +36,12 @@ public class Unit : MonoBehaviour
     public Movement movement{
         get{ return GetComponent<Movement>();}
     }
+    public Canvas canvas{
+        get{ return GetComponentInChildren<Canvas>(); }
+    }
+    public Transform canvasObj{
+        get{ return transform.GetChild(1); }
+    }
     public void Init(Tile t){
         Place(t);
         Match();

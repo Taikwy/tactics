@@ -8,6 +8,8 @@ public class UnitRecipe : ScriptableObject
      [Header("Sprites")]
     public Sprite sprite;
     public Sprite portrait;
+    [Header("ui stuff")]
+    public GameObject canvasPrefab;
     
      [Header("stat curves")]
     public XPCurveData xpData;

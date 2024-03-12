@@ -15,12 +15,16 @@ MonoBehaviour:
   unitBase: Unit Base
   sprite: {fileID: 21300000, guid: 5797870cb82ce8b4f907d35046e8659a, type: 3}
   portrait: {fileID: 21300000, guid: b9a73927af77c6040b1d5e580b22f192, type: 3}
+  canvasPrefab: {fileID: 3810713407271520425, guid: 5445606a57e889041a747b9e2eb42e6a, type: 3}
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: 8cfaa1287c79adb4fb20d41d1fec2a80, type: 2}
   job: 
   movementType: 0
+  moveSpeed: 0.035
+  moveDelay: 0.05
   alliance: 2
   equipment: []
   attack: 
   abilityCatalog: Paladin Catalog
+  cpuDriver: 0
   attackPattern: 

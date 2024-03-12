@@ -15,10 +15,13 @@ MonoBehaviour:
   unitBase: Unit Base
   sprite: {fileID: 21300000, guid: 5f28786840ba68b498fdf66323ca9825, type: 3}
   portrait: {fileID: 21300000, guid: 800808881c4814046aa5937142fd8763, type: 3}
+  canvasPrefab: {fileID: 0}
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: 0bacb785bdfe3b141ad7438407cb15cf, type: 2}
   job: 
   movementType: 1
+  moveSpeed: 0.035
+  moveDelay: 0.05
   alliance: 4
   equipment: []
   attack: 

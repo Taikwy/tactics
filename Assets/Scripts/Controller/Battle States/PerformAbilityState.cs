@@ -151,12 +151,13 @@ public class PerformAbilityState : BattleState
         Camera cam = owner.cameraRig.GetComponentInChildren<Camera>();
         // Vector2 targetPos = cam.WorldToScreenPoint((Vector2)target.transform.position + new Vector2(0, 1f));
         Vector2 targetPos = (Vector2)target.transform.position + new Vector2(0, 1f);
-        print("effect pos " + targetPos);
-        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, target.content.transform);
+        Unit unit = target.content.GetComponent<Unit>();
+        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
         // GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, owner.performStateUI.effectLabelContainer.transform);
 
         int targetIndex = turn.targets.IndexOf(target);
         effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], 1, 3);
+        print(effect[targetIndex] + " | pos " + targetPos);
     }
     IEnumerator AnimateEffect (Tile target){
         return null;
@@ -191,6 +192,8 @@ public class PerformAbilityState : BattleState
     }
     void OnAbilityMiss(object sender, object args){
         // print("ON ABILITY MISS " + args);
+        int targetIndex = turn.targets.IndexOf(args as Tile);
+        effect[targetIndex] = "MISS!";
     }
     void OnAbilityCrit(object sender, object args){
         print("ON ABILITY CRIT " + args);

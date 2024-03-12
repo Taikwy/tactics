@@ -46,7 +46,7 @@ public static class UnitFactory
 		// AddAttack(unit, recipe.attack);
 		AddEquipment(unit, recipe.equipment);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
-		AddCanvas(unit);
+		AddCanvas(unit, recipe.canvasPrefab);
 
 		AddAttackPattern(unit,recipe.cpuDriver, recipe.attackPattern);
 		return unit;
@@ -217,11 +217,11 @@ public static class UnitFactory
 		}
 	}
 
-	static void AddCanvas(GameObject obj){
-		GameObject canvasObj = new GameObject();
-		// canvasObj
-		canvasObj.transform.parent = obj.transform;
-		Canvas canvas = canvasObj.AddComponent<Canvas>();
+	static void AddCanvas(GameObject obj, GameObject canvasPrefab){
+        GameObject canvasObj = GameObject.Instantiate(canvasPrefab, obj.transform.position, Quaternion.identity, obj.transform);
+		canvasObj.name = obj.name+" Canvas";
+		// Canvas canvas = canvasObj.AddComponent<Canvas>();
+		// canvas.renderMode = RenderMode.WorldSpace;
 	}
 
 	static void AddAttackPattern (GameObject obj, bool cpuDriver, string name){
