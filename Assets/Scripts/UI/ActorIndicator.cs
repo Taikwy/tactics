@@ -11,27 +11,32 @@ public class ActorIndicator : MonoBehaviour
     // public RuntimeAnimatorController targetAnim;
 
     Vector2 centerPos;
+    Vector2 offset;
     public float moveSpeed;
     public float moveDistance;
     Vector2 movePos, topPos, botPos;
     bool movingUp;
 
-    public void Reset(){
-        centerPos = transform.position;
-        topPos = centerPos + new Vector2(0, moveDistance);
-        botPos = centerPos - new Vector2(0, moveDistance);
+    public void Reset(Vector2 offset){
+        transform.localPosition = offset;
+        this.offset = offset;
+        // Debug.LogError(transform.localPosition + " | " + offset);
+        // centerPos = transform.localPosition;
+        // topPos = centerPos + new Vector2(0, moveDistance);
+        // botPos = centerPos - new Vector2(0, moveDistance);
     }
     void Update(){
-        if((Vector2)transform.position == botPos)
+        // print(transform.localPosition.y + " | " + offset.y + " | " + movePos);
+        if(transform.localPosition.y <= -moveDistance + offset.y)
             movingUp = true;
-        else if((Vector2)transform.position == topPos)
+        else if(transform.localPosition.y >= moveDistance + offset.y)
             movingUp = false;
         if(movingUp)
-            movePos = topPos;
+            movePos = (Vector2)transform.localPosition + new Vector2(0, 1);
         else if(!movingUp)
-            movePos = botPos;
+            movePos =(Vector2)transform.localPosition +  new Vector2(0, -1);
 
-        transform.position = Vector2.MoveTowards(transform.position, movePos, moveSpeed*Time.deltaTime);
+        transform.localPosition = Vector2.MoveTowards(transform.localPosition, movePos, moveSpeed*Time.deltaTime);
         
     }
     

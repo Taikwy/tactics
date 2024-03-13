@@ -29,6 +29,10 @@ public class SelectUnitState : BattleState
         SelectTile(turn.actingUnit.tile.position, Board.SelectColor.VALID);
 		driver = (turn.actingUnit != null) ? turn.actingUnit.GetComponent<Driver>() : null;
 
+        IndicateActor(turn.actingUnit);
+
+
+
         if (driver.Current == Drivers.Computer){
             // board.humanDriver = false;
             RefreshPrimaryStatusPanel(selectPos);

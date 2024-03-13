@@ -13,6 +13,7 @@ public abstract class BattleState : State
     public Board board { get { return owner.board; }}
     public LevelData levelData { get { return owner.levelData; }}
     public TileSelectionIndicator tileSelectionIndicator { get { return owner.tileSelectionIndicator; }}
+    public ActorIndicator actorIndicator { get { return owner.actorIndicator; }}
     
     public GameObject tileSelectionIndicatorPrefab { get { return owner.tileSelectionIndicatorPrefab; }}
     public Point selectPos { get { return owner.selectPos; } set { owner.selectPos = value; }}
@@ -66,6 +67,13 @@ public abstract class BattleState : State
         Color temp = tileSelectionIndicator.sr.color;
         temp.a = 1f;
         tileSelectionIndicator.sr.color = temp;
+    }
+
+    protected virtual void IndicateActor(Unit unit){
+        actorIndicator.transform.parent = unit.transform;
+        // actorIndicator.transform.localPosition = new Vector2(0,1);
+        // actorIndicator.transform.localPosition = (Vector2)unit.transform.position + new Vector2(0,1);
+        actorIndicator.Reset(new Vector2(0,.9f));
     }
 
 

@@ -11,6 +11,7 @@ public class BattleController : StateMachine
     [Header(" Board")]
     public Board board;
     public TileSelectionIndicator tileSelectionIndicator;
+    public ActorIndicator actorIndicator;
     public GameObject tileSelectionIndicatorPrefab;
     [Header(" Level")]
     [HideInInspector]public Point selectPos;
