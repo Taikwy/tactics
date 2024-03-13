@@ -23,6 +23,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         }
 
         updating = true;
+        panelController.ShowMouseControls();
     }
     public override void Exit (){
         // Debug.Log("exiting command selection state");
@@ -31,6 +32,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         base.Exit ();
         panelController.HidePrimary();
         panelController.HideStatus();
+        panelController.HideMouseControls();
     }
     protected void Update(){
         if(!updating)

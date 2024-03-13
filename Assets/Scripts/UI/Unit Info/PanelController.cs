@@ -8,12 +8,13 @@ public class PanelController : MonoBehaviour
     const string HideKey = "Hide";
     // [SerializeField] BasePanel basePanel;
     [SerializeField] UnitPanel primaryPanel, secondaryPanel;              //selected and targeted unit
-    [SerializeField] StatusPanel primaryStatusPanel;              //selected and targeted unit
-    [SerializeField] AbilityInfoPanel abilityInfoPanel;              //selected and targeted unit
-    [SerializeField] DetailsPanel detailsPanel;              //selected and targeted unit
-    [SerializeField] AbilityDisplayPanel abilityDisplayPanel;              //selected and targeted unit
+    [SerializeField] StatusPanel primaryStatusPanel;    
+    [SerializeField] AbilityInfoPanel abilityInfoPanel; 
+    [SerializeField] DetailsPanel detailsPanel;            
+    [SerializeField] AbilityDisplayPanel abilityDisplayPanel;         
+    [SerializeField] MouseControlsPanel mouseControlsPanel;         
     // [SerializeField] AbilityMenu abilityMenu;
-    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo, showingDetails, showingAbilityDisplay = false;
+    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo, showingDetails, showingAbilityDisplay, showingMouseControls = false;
     
     void Start (){
         HidePrimary();
@@ -22,6 +23,7 @@ public class PanelController : MonoBehaviour
         HideAbilityInfo();
         HideDetails();
         HideAbilityDisplay();
+        HideMouseControls();
     }
 
     public void ShowPrimary (GameObject unit){
@@ -78,5 +80,15 @@ public class PanelController : MonoBehaviour
     }    public void HideAbilityDisplay (){
         showingAbilityDisplay = false;
         abilityDisplayPanel.HidePanel();
+    }
+
+    
+    public void ShowMouseControls (string LMB = "SELECT", string RMB = "BACK"){
+        showingMouseControls = true;
+        mouseControlsPanel.Display(LMB, RMB);
+        mouseControlsPanel.ShowPanel();
+    }    public void HideMouseControls (){
+        showingMouseControls = false;
+        mouseControlsPanel.HidePanel();
     }
 }

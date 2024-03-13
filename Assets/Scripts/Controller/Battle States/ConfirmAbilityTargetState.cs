@@ -40,6 +40,8 @@ public class ConfirmAbilityTargetState : BattleState
         }
         else
             board.humanDriver = true;
+        
+        panelController.ShowMouseControls("PERFORM", "CANCEL");
     }
     void DisplayEffects (Tile target){
         int targetIndex = turn.targets.IndexOf(target);
@@ -63,6 +65,7 @@ public class ConfirmAbilityTargetState : BattleState
 
         ShowSelect();
         forecastPanel.Hide();
+        panelController.HideMouseControls();
     }
     //scrolls thru all the targets affected by the current attack
     protected override void OnMove (object sender, InfoEventArgs<Point> e){

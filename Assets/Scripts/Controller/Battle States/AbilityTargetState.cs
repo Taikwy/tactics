@@ -49,6 +49,7 @@ public class AbilityTargetState : BattleState
             cameraRig.selectMovement = false;
             updating = true;
         }
+        panelController.ShowMouseControls();
     }
     public override void Exit (){
         updating = false;
@@ -67,8 +68,7 @@ public class AbilityTargetState : BattleState
         board.UnselectTiles(selectedTiles);
         panelController.HidePrimary();
         panelController.HideSecondary();
-        // statPanelController.HidePrimary();
-        // statPanelController.HideSecondary();
+        panelController.HideMouseControls();
     }
 
     protected void Update(){

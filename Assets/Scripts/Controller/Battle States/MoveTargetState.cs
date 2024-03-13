@@ -38,6 +38,7 @@ public class MoveTargetState : BattleState
             updating = true;
         }
 
+        panelController.ShowMouseControls();
     }
     
     public override void Exit () {
@@ -54,6 +55,7 @@ public class MoveTargetState : BattleState
         // statPanelController.HidePrimary();
         panelController.HidePrimary();
         panelController.HideSecondary();
+        panelController.HideMouseControls();
     } 
 
     protected void Update(){
