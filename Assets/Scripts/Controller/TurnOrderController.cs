@@ -75,27 +75,29 @@ public class TurnOrderController : MonoBehaviour
 					units[i].PostEvent(TurnBeganEvent);
                     // Debug.Log("new turn");
                     yield return units[i];
-
-                    //Adjusts actiongauge for calculation based on unit actiosn during the turn
-                    Stats statsScript = units[i].GetComponent<Stats>();
-                    int adjustedActionGauge = baseActionGauge;
-                    if (battleController.turn.hasUnitMoved)
-                        adjustedActionGauge += moveCost;
-                    if (battleController.turn.hasUnitActed)
-                        adjustedActionGauge += actionCost;
-                    // else if(battleController.turn.hasUnitFocused)
-                    //     adjustedActionGauge += focusCost;
+                    //makes sure the unit is still alive. if it died just now, the unit will be null and we simply cycle to the next unit to take a turn
+                    if(units[i]){
+                        //Adjusts actiongauge for calculation based on unit actiosn during the turn
+                        Stats statsScript = units[i].GetComponent<Stats>();
+                        int adjustedActionGauge = baseActionGauge;
+                        if (battleController.turn.hasUnitMoved)
+                            adjustedActionGauge += moveCost;
+                        if (battleController.turn.hasUnitActed)
+                            adjustedActionGauge += actionCost;
+                        // else if(battleController.turn.hasUnitFocused)
+                        //     adjustedActionGauge += focusCost;
+                            
+                            // actionGauge += battleController.turn.actionCost;
                         
-                        // actionGauge += battleController.turn.actionCost;
-                    
-                    
-                    CalculateAV(units[i], adjustedActionGauge);
-                    // float AV = adjustedActionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
-                    // //Sets the current unit its new AV
-                    // statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
-                    // Debug.Log(statsScript.gameObject.name + "'s AV = "+ AV);
+                        
+                        CalculateAV(units[i], adjustedActionGauge);
+                        // float AV = adjustedActionGauge / Mathf.Clamp(statsScript[StatTypes.SP], minSPEED, maxSPEED) ;
+                        // //Sets the current unit its new AV
+                        // statsScript.SetValue(StatTypes.AV, (int)Mathf.Ceil(AV), false);
+                        // Debug.Log(statsScript.gameObject.name + "'s AV = "+ AV);
 
-					units[i].PostEvent(TurnCompletedEvent);
+                        units[i].PostEvent(TurnCompletedEvent);
+                    }
                 }
             }
             //if av has gone below 0, means that 100Av has passed and the round has ended. AFTER units have acted, since 100AV on turn 1 still lets u act once before a new turn

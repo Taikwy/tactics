@@ -6,6 +6,8 @@ public class SelectUnitState : BattleState
 {
     public override void Enter (){
         base.Enter ();
+
+        // Debug.LogError("ENTERING SELECT STATE");
         if (IsBattleOver()){
             Debug.Log("selecting says battle is over BEFORE roling over");
 			owner.ChangeState<EndBattleState>();
@@ -21,17 +23,16 @@ public class SelectUnitState : BattleState
 
     //logic for cycling thru and selecting the next acting unit
     IEnumerator ChangeCurrentUnit (){
+        // print("starting change current unit again");
         // if (IsBattleOver()){
         //     Debug.Log("selecting says battle is over AGAIN");
 		// 	owner.ChangeState<EndBattleState>();
         // }
         owner.round.MoveNext();
+        // if(turn.actingUnit)
+        
         SelectTile(turn.actingUnit.tile.position, Board.SelectColor.VALID);
 		driver = (turn.actingUnit != null) ? turn.actingUnit.GetComponent<Driver>() : null;
-
-        IndicateActor(turn.actingUnit);
-
-
 
         if (driver.Current == Drivers.Computer){
             // board.humanDriver = false;
@@ -41,16 +42,22 @@ public class SelectUnitState : BattleState
             RefreshPrimaryPanel(selectPos);
             // board.humanDriver = true;
         }
+        yield return new WaitForSeconds(.2f);
         yield return new WaitForSeconds(.1f);
-        // cameraRig.selectMovement = true;
-        // cameraRig.unitMovement = false;
-        yield return new WaitForSeconds(.4f);
         yield return null;
         if (IsBattleOver()){
             Debug.Log("selecting says battle is over PLEASE");
 			owner.ChangeState<EndBattleState>();
         }
-        else
+        else if(!turn.actingUnit){
+            // Debug.LogError("START COROUTEIN AGAIN");
+            StartCoroutine("ChangeCurrentUnit");
+        }
+        else{
+            // print("changing to command from select!!!");
+            
+            IndicateActor(turn.actingUnit);
             owner.ChangeState<CommandSelectionState>();
+        }
     }
 }

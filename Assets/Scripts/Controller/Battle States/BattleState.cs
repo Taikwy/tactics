@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditor;
 
 // using UnityEditor.U2D.Aseprite;
@@ -47,19 +48,23 @@ public abstract class BattleState : State
 
     public override void Enter (){
 		driver = (turn.actingUnit != null) ? turn.actingUnit.GetComponent<Driver>() : null;
+        // if(!driver)
+        //     Debug.LogError("DRIVER IS NULL");
 		base.Enter ();
         
         this.AddObserver(OnStatusEffectApplied, StatusEffect.EffectAppliedEvent);
+        this.AddObserver(OnUnitDeath, Unit.UnitDiedEvent);
 	}
 
     public override void Exit (){
 		base.Exit ();
         
         this.RemoveObserver(OnStatusEffectApplied, StatusEffect.EffectAppliedEvent);
+        this.RemoveObserver(OnUnitDeath, Unit.UnitDiedEvent);
 	}
 
     void OnStatusEffectApplied(object sender, object args){
-        Debug.LogError("STATUS EFFECT APPLIED " + (sender as StatusEffect) + " | " + args);
+        // Debug.LogError("STATUS EFFECT APPLIED " + (sender as StatusEffect) + " | " + args);
         Tile target = (sender as StatusEffect).GetComponentInParent<Unit>().tile;
         // print("ON HIT SENDER " + target + " | " + sender.GetType());
         string effect = "-" + args.ToString();
@@ -69,7 +74,7 @@ public abstract class BattleState : State
         // print(info.arg0 + " | " + targetIndex + " ON HIT " + effects[targetIndex].Count);
     }
     void DisplayStatusEffect (Tile target, string effect){
-        Debug.LogError("DISPLATYINY STATUS EFFECT " + target + " | " + effect);
+        // Debug.LogError("DISPLATYINY STATUS EFFECT " + target + " | " + effect);
         Vector2 labelOffset = new Vector2(0, .6f);
         Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
         Unit unit = target.content.GetComponent<Unit>();
@@ -78,6 +83,17 @@ public abstract class BattleState : State
         effectLabel.GetComponent<EffectLabel>().Initialize(effect, .75f, 2);
         // print(effects[targetIndex][effectIndex] + " | pos " + targetPos);
         // yield return null;
+    }
+
+    void OnUnitDeath(object sender, object args){
+        // print("ON UNIT DEATH");
+        // Unit unit = args as Unit;
+        // // units.Remove(unit);
+        // bool change = turn.actingUnit == unit;
+        // Destroy(unit);
+        // if(change){
+        //     owner.ChangeState<SelectUnitState>();
+        // }
     }
 
     protected virtual void OnMove (object sender, InfoEventArgs<Point> e){

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour 
 {
+    
+	public const string UnitDiedEvent = "Unit.UnitDiedEvent";
     public Tile tile { get; protected set; }
     public Directions dir;
     // public string unitName;
@@ -79,6 +81,8 @@ public class Unit : MonoBehaviour
 		// 	features[i].Deactivate();
 
 		// this.RemoveObserver(GetComponent<UnitLevel>().OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
+        // print("ON DEATH");
+        this.PostEvent(UnitDiedEvent, gameObject);
         Destroy(gameObject);
     }    
 }

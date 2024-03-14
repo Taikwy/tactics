@@ -10,22 +10,29 @@ public class CommandSelectionState : BaseAbilityMenuState
     public override void Enter (){
         // Debug.Log("enter command selection  state");
         base.Enter ();
-        SelectTile(turn.actingUnit.tile.position);
-
-        if (driver.Current == Drivers.Computer){
-            panelController.ShowPrimary(turn.actingUnit.gameObject);
-            board.humanDriver = false;
-			StartCoroutine( ComputerTurn() );
+        if(!turn.actingUnit){
+            Debug.LogError("NO DRIVER, IM ASSUMING HE DIED, GO BACK TO SELECT UNIT STATE");
+            // SelectUnitAgain();
         }
         else{
-            panelController.ShowStatus(turn.actingUnit.gameObject);
-            board.humanDriver = true;
-        }
-        cameraRig.selectMovement = true;
-        cameraRig.unitMovement = false;
+            SelectTile(turn.actingUnit.tile.position);
 
-        updating = true;
-        panelController.ShowMouseControls();
+            if (driver.Current == Drivers.Computer){
+                panelController.ShowPrimary(turn.actingUnit.gameObject);
+                board.humanDriver = false;
+                StartCoroutine( ComputerTurn() );
+            }
+            else{
+                panelController.ShowStatus(turn.actingUnit.gameObject);
+                board.humanDriver = true;
+            }
+            cameraRig.selectMovement = true;
+            cameraRig.unitMovement = false;
+
+            updating = true;
+            panelController.ShowMouseControls();
+        }
+        
     }
     public override void Exit (){
         // Debug.Log("exiting command selection state");
@@ -35,6 +42,9 @@ public class CommandSelectionState : BaseAbilityMenuState
         panelController.HidePrimary();
         panelController.HideStatus();
         panelController.HideMouseControls();
+    }
+    void SelectUnitAgain(){
+        owner.ChangeState<SelectUnitState>();
     }
     protected void Update(){
         if(!updating)

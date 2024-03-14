@@ -17,6 +17,7 @@ public class Turn
 	public PlanOfAttack plan;
     
     public void Change (Unit current){
+        // Debug.Log("changing to " + current); 
         actingUnit = current;
         hasUnitMoved = false;
         hasUnitActed = false;

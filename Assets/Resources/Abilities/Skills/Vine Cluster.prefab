@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 2
+  losRequired: 1
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &5404156047748858531
@@ -160,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: flatOrPercent
-      value: 8
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: abilityEffectDescription

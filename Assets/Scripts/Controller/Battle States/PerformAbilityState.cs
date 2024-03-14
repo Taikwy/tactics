@@ -93,7 +93,7 @@ public class PerformAbilityState : BattleState
                 yield return new WaitForSeconds(Time.deltaTime);
                 timeElapsed += Time.deltaTime;
             }
-            print("starting to perform after " + timeElapsed);
+            // print("starting to perform after " + timeElapsed);
             yield return StartCoroutine(PerformTargets());
             
             panelController.HideAbilityDisplay();

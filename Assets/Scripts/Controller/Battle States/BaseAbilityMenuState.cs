@@ -14,7 +14,8 @@ public abstract class BaseAbilityMenuState : BattleState
         // Debug.Log("entering base ability menu state");
         base.Enter ();
         SelectTile(turn.actingUnit.tile.position);
-        if (driver.Current == Drivers.Human)
+            // print("changing to enter " + driver + " | ");
+        if (driver && driver.Current == Drivers.Human)
 			LoadMenu();
         // LoadMenu();
     }

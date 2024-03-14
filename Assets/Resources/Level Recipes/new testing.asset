@@ -15,7 +15,6 @@ MonoBehaviour:
   levelName: AI Testing Grounds
   levelIndex: -1
   allyUnitRecipes:
-  - Samurai
   - Shaman
   allySpawnLocations:
   - x: 6
@@ -26,6 +25,7 @@ MonoBehaviour:
     y: 3
   enemyUnitRecipes:
   - Kitsune
+  - Faerie
   enemySpawnLocations:
   - x: 5
     y: 6

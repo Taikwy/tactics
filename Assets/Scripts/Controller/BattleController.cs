@@ -49,9 +49,6 @@ public class BattleController : StateMachine
         public float displayActionDelay;
     }
 
-
-    
-
     void Start (){
         tileSelectionIndicator.ChangeSelect();
         guiController.gameObject.SetActive(true);
