@@ -9,8 +9,11 @@ public class AbilityDisplayPanel : MonoBehaviour
     public TMP_Text nameLabel;
     
     //takes in ability gameobject
-    public void Display (GameObject ability){
-        nameLabel.text = string.Format("{0}", ability.name);
+    public void Display (GameObject ability, bool focus = false){
+        if(focus)
+            nameLabel.text = string.Format("FOCUS");
+        else if(ability)
+            nameLabel.text = string.Format("{0}", ability.name);
     }
 
     public void ShowPanel(){

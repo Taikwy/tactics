@@ -18,7 +18,6 @@ public class PerformAbilityState : BattleState
     public override void Enter (){
         base.Enter ();
 
-        
         this.AddObserver(OnAbilityHit, BaseAbilityEffect.EffectHitEvent);
         this.AddObserver(OnAbilityMiss, BaseAbilityEffect.EffectMissedEvent);
         this.AddObserver(OnAbilityFinishedPerforming, Ability.FinishedPerformingEvent);
@@ -31,7 +30,6 @@ public class PerformAbilityState : BattleState
         for(int i = 0; i < turn.targets.Count; i++){
             effects[i] = new List<string>();
         }
-        // effects = Enumerable.Repeat(new List<string>(), turn.targets.Count).ToArray();
         finishedCalculating = false;
 
         turn.hasUnitActed = true;
@@ -41,7 +39,15 @@ public class PerformAbilityState : BattleState
         //THIS IS RESET IN SELECT UNIT STATE AFTER THE DELAY CALL
         cameraRig.unitMovement = true;
         cameraRig.selectMovement = false;
-        StartCoroutine(Animate());
+
+        //if there is no selected ability, that means focus was selected
+        if(!turn.selectedAbility){
+            StartCoroutine(Focus());
+
+        }
+        else{
+            StartCoroutine(Animate());
+        }
     }
     public override void Exit (){
 
@@ -50,6 +56,25 @@ public class PerformAbilityState : BattleState
         this.RemoveObserver(OnAbilityFinishedPerforming, Ability.FinishedPerformingEvent);
         this.RemoveObserver(OnAbilityCrit, BaseAbilityEffect.EffectCritEvent);
         base.Exit ();
+    }
+
+    IEnumerator Focus (){
+        // Debug.Log("focusing ");
+        panelController.ShowAbilityDisplay(null, true);
+        yield return new WaitForSeconds(.5f);
+        panelController.HideAbilityDisplay();
+		
+		if (IsBattleOver()){
+            Debug.Log("changing to end");
+			owner.ChangeState<EndBattleState>();
+
+        }
+		// else if (!UnitHasDied())
+		// 	owner.ChangeState<SelectUnitState>();
+		else{
+			// owner.ChangeState<CommandSelectionState>();
+            owner.ChangeState<SelectUnitState>();
+        }
     }
     
     IEnumerator Animate (){

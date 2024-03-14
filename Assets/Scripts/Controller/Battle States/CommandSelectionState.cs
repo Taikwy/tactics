@@ -89,6 +89,7 @@ public class CommandSelectionState : BaseAbilityMenuState
     // }
     protected void Focus(){
         // Debug.Log("Focus clicked!");
+        // print("selected ability! " + turn.selectedAbility);
         if(MaxedSkillPoints()){
             Debug.LogError("skill points already max, cannot focus");
             return;
@@ -96,7 +97,8 @@ public class CommandSelectionState : BaseAbilityMenuState
         turn.hasUnitActed = true;
         owner.turn.actingUnit.GetComponent<SkillPoints>().SK += 2;
         owner.turn.actingUnit.GetComponent<Burst>().BP += owner.turn.actingUnit.GetComponent<Burst>().focusBP;
-        owner.ChangeState<SelectUnitState>();
+        owner.ChangeState<PerformAbilityState>();
+        // owner.ChangeState<SelectUnitState>();
     }protected void Pass(){
         // Debug.Log("defend clicked!");
         owner.ChangeState<SelectUnitState>();

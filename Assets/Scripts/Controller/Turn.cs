@@ -22,6 +22,8 @@ public class Turn
         hasUnitActed = false;
         lockMove = false;
         startTile = actingUnit.tile;
+        selectedAbility = null;
+        targets = new List<Tile>();
 		plan = null;
         
     }

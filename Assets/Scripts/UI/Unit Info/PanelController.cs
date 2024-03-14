@@ -73,9 +73,9 @@ public class PanelController : MonoBehaviour
         detailsPanel.HidePanel();
     }
 
-    public void ShowAbilityDisplay (GameObject unit){
+    public void ShowAbilityDisplay (GameObject unit, bool focus = false){
         showingAbilityDisplay = true;
-        abilityDisplayPanel.Display(unit);
+        abilityDisplayPanel.Display(unit, focus);
         abilityDisplayPanel.ShowPanel();
     }    public void HideAbilityDisplay (){
         showingAbilityDisplay = false;
