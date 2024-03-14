@@ -21,6 +21,8 @@ public class CommandSelectionState : BaseAbilityMenuState
             panelController.ShowStatus(turn.actingUnit.gameObject);
             board.humanDriver = true;
         }
+        cameraRig.selectMovement = true;
+        cameraRig.unitMovement = false;
 
         updating = true;
         panelController.ShowMouseControls();

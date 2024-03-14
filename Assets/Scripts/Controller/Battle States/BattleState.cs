@@ -48,9 +48,37 @@ public abstract class BattleState : State
     public override void Enter (){
 		driver = (turn.actingUnit != null) ? turn.actingUnit.GetComponent<Driver>() : null;
 		base.Enter ();
+        
+        this.AddObserver(OnStatusEffectApplied, StatusEffect.EffectAppliedEvent);
 	}
 
-    
+    public override void Exit (){
+		base.Exit ();
+        
+        this.RemoveObserver(OnStatusEffectApplied, StatusEffect.EffectAppliedEvent);
+	}
+
+    void OnStatusEffectApplied(object sender, object args){
+        Debug.LogError("STATUS EFFECT APPLIED " + (sender as StatusEffect) + " | " + args);
+        Tile target = (sender as StatusEffect).GetComponentInParent<Unit>().tile;
+        // print("ON HIT SENDER " + target + " | " + sender.GetType());
+        string effect = "-" + args.ToString();
+        if(target){
+            DisplayStatusEffect(target, effect);
+        }
+        // print(info.arg0 + " | " + targetIndex + " ON HIT " + effects[targetIndex].Count);
+    }
+    void DisplayStatusEffect (Tile target, string effect){
+        Debug.LogError("DISPLATYINY STATUS EFFECT " + target + " | " + effect);
+        Vector2 labelOffset = new Vector2(0, .6f);
+        Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
+        Unit unit = target.content.GetComponent<Unit>();
+        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+
+        effectLabel.GetComponent<EffectLabel>().Initialize(effect, .75f, 2);
+        // print(effects[targetIndex][effectIndex] + " | pos " + targetPos);
+        // yield return null;
+    }
 
     protected virtual void OnMove (object sender, InfoEventArgs<Point> e){
     }

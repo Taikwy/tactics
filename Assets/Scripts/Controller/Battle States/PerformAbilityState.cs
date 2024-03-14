@@ -125,7 +125,7 @@ public class PerformAbilityState : BattleState
         for (int i = 0; i < turn.targets.Count; ++i){
             Tile target = turn.targets[i];
             // Debug.Log("targeting " +target);
-            panelController.ShowSecondary(target.content);
+            // panelController.ShowSecondary(target.content);
             yield return StartCoroutine(Perform(target));
             yield return new WaitForSeconds(.5f);
         }

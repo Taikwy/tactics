@@ -10,5 +10,7 @@ public class PercentDamageStatusEffect : DamageStatusEffect
 		int percentDMG = (int)(s[StatTypes.HP]*(flatOrPercent/100f));
 		int currentHP = s[StatTypes.HP] - Mathf.Max(percentDMG, 1);
 		s.SetValue(StatTypes.HP, currentHP, false);
+
+		this.PostEvent(EffectAppliedEvent, percentDMG);
 	}
 }

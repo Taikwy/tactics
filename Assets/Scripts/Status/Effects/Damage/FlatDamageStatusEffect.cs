@@ -9,5 +9,8 @@ public class FlatDamageStatusEffect : DamageStatusEffect
 		Stats s = GetComponentInParent<Stats>();
 		int currentHP = s[StatTypes.HP] - flatOrPercent;
 		s.SetValue(StatTypes.HP, currentHP, false);
+
+		
+		this.PostEvent(EffectAppliedEvent, flatOrPercent);
 	}
 }

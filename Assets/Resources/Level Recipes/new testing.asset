@@ -15,7 +15,6 @@ MonoBehaviour:
   levelName: AI Testing Grounds
   levelIndex: -1
   allyUnitRecipes:
-  - Barbarian
   - Samurai
   - Shaman
   allySpawnLocations:

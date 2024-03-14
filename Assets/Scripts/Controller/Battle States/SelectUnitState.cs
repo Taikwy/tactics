@@ -42,8 +42,8 @@ public class SelectUnitState : BattleState
             // board.humanDriver = true;
         }
         yield return new WaitForSeconds(.1f);
-        cameraRig.selectMovement = true;
-        cameraRig.unitMovement = false;
+        // cameraRig.selectMovement = true;
+        // cameraRig.unitMovement = false;
         yield return new WaitForSeconds(.4f);
         yield return null;
         if (IsBattleOver()){
