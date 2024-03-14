@@ -82,6 +82,24 @@ public class Unit : MonoBehaviour
 
 		// this.RemoveObserver(GetComponent<UnitLevel>().OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
         // print("ON DEATH");
+        AbilityCatalog catalog = GetComponentInChildren<AbilityCatalog>();
+        if(catalog){
+            if(catalog.basicAbility){
+                catalog.basicAbility.SetActive(false);
+            }
+            if(catalog.primarySkillAbility){
+                catalog.primarySkillAbility.SetActive(false);
+            }
+            if(catalog.secondarySkillAbility){
+                catalog.secondarySkillAbility.SetActive(false);
+            }
+            if(catalog.traitAbility){
+                catalog.traitAbility.SetActive(false);
+            }
+            if(catalog.burstAbility){
+                catalog.burstAbility.SetActive(false);
+            }
+        }
         this.PostEvent(UnitDiedEvent, gameObject);
         Destroy(gameObject);
     }    

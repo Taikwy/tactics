@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AutoStatusController : MonoBehaviour 
 {
@@ -28,6 +29,7 @@ public class AutoStatusController : MonoBehaviour
 			Unit unit = stats.GetComponentInChildren<Unit>();
 			owner.timeline.RemoveUnit(unit);
 			owner.units.Remove(unit);
+			owner.turnOrderController.units = new List<Unit>( owner.units );
 
 			unit.OnDeath();
 		}

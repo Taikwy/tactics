@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: flatOrPercent
-      value: 80
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: abilityEffectDescription

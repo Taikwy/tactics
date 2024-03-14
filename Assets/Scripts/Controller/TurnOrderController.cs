@@ -28,6 +28,7 @@ public class TurnOrderController : MonoBehaviour
 	public const string AVChangedEvent = "TurnOrderController.AVChanged";
 	public const string SpeedChangedEvent = "TurnOrderController.speedChanged";
 	public const string GetSpeedEvent = "BaseAbilityEffect.GetSpeedEvent";
+    public List<Unit> units;
     
     void OnEnable(){
 		this.AddObserver(OnSpeedChange, SpeedChangedEvent);
@@ -47,7 +48,7 @@ public class TurnOrderController : MonoBehaviour
                 this.PostEvent(RoundBeganEvent);
             }
 
-            List<Unit> units = new List<Unit>( battleController.units );
+            units = new List<Unit>( battleController.units );
             SortUnitsTurnOrder(units);
             
             //if the first unit value is not 0 yet, decrements all units by the first unit's remaining AV so the first unit can take a turn and al other units move up the timeline

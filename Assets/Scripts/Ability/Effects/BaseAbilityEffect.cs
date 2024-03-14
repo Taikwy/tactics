@@ -155,8 +155,19 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 	//checks if the sender of the event is on the same ability, ie other abilities and unit stats won't get called
 	protected bool IsMyEffect (object sender){
 		MonoBehaviour obj = sender as MonoBehaviour;
-		// Debug.Log("check is my effect " + obj + " | " + obj.transform.parent + " | " + transform);
 		// return obj != null && obj.transform.parent == transform.parent;
+		//THIS SHIT IS SO BANDAID, I HAVE NO ACTUAL CLUE WHY THIS FUCKS ME
+		if(this == null)
+			return false;
+		if(transform == null)
+			return false;
+		//YES I KNOW I CAN MAKE THIS MORE OPTIMAL BUT IDC BC IM TOO SCARED THAT IT WON'T WORK
+		if(obj.transform == null)
+			return false;
+			
+		Debug.Log("check is my effect 1  " + obj);
+		Debug.Log("check is my effect 2  " +  obj.transform );
+		Debug.Log("check is my effect 3  " + transform);
 		return obj != null && obj.transform == transform;
 	}
 

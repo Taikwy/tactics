@@ -117,6 +117,7 @@ public class PerformAbilityState : BattleState
     }
 
     void ApplyAbility (){
+        print("selected ability " + turn.selectedAbility);
 		turn.selectedAbility.Perform(turn.targets);
 	}
 
