@@ -45,6 +45,8 @@ public class ExploreState : BattleState
                     if(board.GetTile(board.selectedPoint).content != null){
                         Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
                         if(selectedUnit != null){
+
+                            cameraRig.selectMovement = true;
                             Movement moveScript = selectedUnit.movement;
                             tiles = moveScript.GetAllTilesInRange(board);
                             allyTiles = moveScript.FilterAllies(tiles);
@@ -57,6 +59,8 @@ public class ExploreState : BattleState
                             // RefreshPrimaryPanel(selectPos);
                         }
                     }
+                    else
+                        cameraRig.selectMovement = false;
                     
                     RefreshPrimaryStatusPanel(board.selectedPoint);
                 }
