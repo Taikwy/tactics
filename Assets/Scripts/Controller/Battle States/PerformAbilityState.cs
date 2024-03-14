@@ -41,13 +41,14 @@ public class PerformAbilityState : BattleState
         cameraRig.selectMovement = false;
 
         //if there is no selected ability, that means focus was selected
-        if(!turn.selectedAbility){
-            StartCoroutine(Focus());
+            StartCoroutine(Animate(!turn.selectedAbility));
+        // if(!turn.selectedAbility){
+        //     StartCoroutine(Focus());
 
-        }
-        else{
-            StartCoroutine(Animate());
-        }
+        // }
+        // else{
+        //     StartCoroutine(Animate(!turn.selectedAbility));
+        // }
     }
     public override void Exit (){
 
@@ -58,54 +59,61 @@ public class PerformAbilityState : BattleState
         base.Exit ();
     }
 
-    IEnumerator Focus (){
-        // Debug.Log("focusing ");
-        panelController.ShowAbilityDisplay(null, true);
-        yield return new WaitForSeconds(.5f);
-        panelController.HideAbilityDisplay();
+    // IEnumerator Focus (){
+    //     // Debug.Log("focusing ");
+    //     panelController.ShowAbilityDisplay(null, true);
+    //     yield return new WaitForSeconds(.5f);
+    //     panelController.HideAbilityDisplay();
 		
-		if (IsBattleOver()){
-            Debug.Log("changing to end");
-			owner.ChangeState<EndBattleState>();
+	// 	if (IsBattleOver()){
+    //         Debug.Log("changing to end");
+	// 		owner.ChangeState<EndBattleState>();
 
-        }
-		// else if (!UnitHasDied())
-		// 	owner.ChangeState<SelectUnitState>();
-		else{
-			// owner.ChangeState<CommandSelectionState>();
-            owner.ChangeState<SelectUnitState>();
-        }
-    }
+    //     }
+	// 	else if (UnitHasDied())
+	// 		owner.ChangeState<SelectUnitState>();
+	// 	else{
+	// 		// owner.ChangeState<CommandSelectionState>();
+    //         owner.ChangeState<CommandSelectionState>();
+    //     }
+    // }
     
-    IEnumerator Animate (){
+    IEnumerator Animate (bool focusing = false){
         Debug.Log("starting to animate " + turn.targets.Count);
-		ApplyAbility();
-        panelController.ShowAbilityDisplay(turn.selectedAbility.gameObject);
-        float timeElapsed = 0;
-        while(!finishedCalculating || timeElapsed > 2f){
-            yield return new WaitForSeconds(Time.deltaTime);
-            timeElapsed += Time.deltaTime;
+        if(focusing){
+            panelController.ShowAbilityDisplay(null, true);
+            yield return new WaitForSeconds(.5f);
+            panelController.HideAbilityDisplay();
         }
-        print("starting to perform after " + timeElapsed);
-        yield return StartCoroutine(PerformTargets());
-        
-        panelController.HideAbilityDisplay();
+        else{
+            ApplyAbility();
+            panelController.ShowAbilityDisplay(turn.selectedAbility.gameObject);
+            float timeElapsed = 0;
+            while(!finishedCalculating || timeElapsed > 2f){
+                yield return new WaitForSeconds(Time.deltaTime);
+                timeElapsed += Time.deltaTime;
+            }
+            print("starting to perform after " + timeElapsed);
+            yield return StartCoroutine(PerformTargets());
+            
+            panelController.HideAbilityDisplay();
+        }
+		
 		
 		if (IsBattleOver()){
             Debug.Log("changing to end");
 			owner.ChangeState<EndBattleState>();
-
         }
-		// else if (!UnitHasDied())
-		// 	owner.ChangeState<SelectUnitState>();
+		else if (UnitHasDied())
+			owner.ChangeState<SelectUnitState>();
 		else{
 			// owner.ChangeState<CommandSelectionState>();
-            owner.ChangeState<SelectUnitState>();
+            owner.ChangeState<CommandSelectionState>();
         }
     }
 
     bool UnitHasDied (){
-        return turn.actingUnit.GetComponentInChildren<DeadStatusEffect>() == null;
+        return turn.actingUnit.GetComponentInChildren<DeadStatusEffect>() != null;
     }
 
     void ApplyAbility (){

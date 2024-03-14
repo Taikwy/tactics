@@ -69,7 +69,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         //logic for setting stuff as locked depending on actions the playe rhas taken
         abilityPanelController.SetLocked(0, turn.hasUnitMoved || turn.hasUnitActed);                             //disable movement if already moved or acted
         abilityPanelController.SetLocked(1, turn.hasUnitActed);                             //disable action if already acted
-        abilityPanelController.SetLocked(2, turn.hasUnitMoved || MaxedSkillPoints());                             //disable focus if unit has moved or already has maxed out skill points
+        abilityPanelController.SetLocked(2, turn.hasUnitMoved || MaxedSkillPoints() || turn.hasUnitActed);                             //disable focus if unit has moved or already has maxed out skill points
         // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             //disable action if already acted
         // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             
 
