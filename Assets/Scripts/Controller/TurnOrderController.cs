@@ -28,7 +28,7 @@ public class TurnOrderController : MonoBehaviour
 	public const string AVChangedEvent = "TurnOrderController.AVChanged";
 	public const string SpeedChangedEvent = "TurnOrderController.speedChanged";
 	public const string GetSpeedEvent = "BaseAbilityEffect.GetSpeedEvent";
-    public List<Unit> units;
+    // public List<Unit> units;
     
     void OnEnable(){
 		this.AddObserver(OnSpeedChange, SpeedChangedEvent);
@@ -48,7 +48,8 @@ public class TurnOrderController : MonoBehaviour
                 this.PostEvent(RoundBeganEvent);
             }
 
-            units = new List<Unit>( battleController.units );
+            // units = new List<Unit>( battleController.units );
+            List<Unit> units = new List<Unit>( battleController.units );
             SortUnitsTurnOrder(units);
             
             //if the first unit value is not 0 yet, decrements all units by the first unit's remaining AV so the first unit can take a turn and al other units move up the timeline
@@ -70,6 +71,8 @@ public class TurnOrderController : MonoBehaviour
 
             //Loops thru all units that can act
             for (int i = 0; i < units.Count; ++i){
+                if(!units[i])
+                    continue;
                 //If the current units AV is below 0, it can act and will change to its turn
                 if (CanAct(units[i])){
                     battleController.turn.Change(units[i]);
@@ -98,6 +101,9 @@ public class TurnOrderController : MonoBehaviour
                         // Debug.Log(statsScript.gameObject.name + "'s AV = "+ AV);
 
                         units[i].PostEvent(TurnCompletedEvent);
+                    }
+                    else{
+                        Debug.LogError("oops, unit[i] is nul");
                     }
                 }
             }
@@ -137,6 +143,8 @@ public class TurnOrderController : MonoBehaviour
         // Debug.Log("calculating " + statsScript.gameObject.name + "'s AV = "+ AV);
         
 		unit.PostEvent(AVChangedEvent);
+
+        print("CALCULATING NEW AV " + unit + " | " + newAV);
     }
 
     //current version's equation is oldAV / ( adjSP / baseSP )

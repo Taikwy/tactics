@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571dd3124515bf04d9fa18eed365ec64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guaranteed: 0
+  guaranteed: 1
   abilityHitRate: 80
 --- !u!114 &4742295797092695002
 MonoBehaviour:
@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 1
+  losRequired: 1
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &9014984441247006717

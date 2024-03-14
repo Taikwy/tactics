@@ -29,7 +29,7 @@ public class AutoStatusController : MonoBehaviour
 			Unit unit = stats.GetComponentInChildren<Unit>();
 			owner.timeline.RemoveUnit(unit);
 			owner.units.Remove(unit);
-			owner.turnOrderController.units = new List<Unit>( owner.units );
+			// owner.turnOrderController.units = new List<Unit>( owner.units );
 
 			unit.OnDeath();
 		}

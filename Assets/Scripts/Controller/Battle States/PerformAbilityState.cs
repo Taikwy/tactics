@@ -238,7 +238,7 @@ public class PerformAbilityState : BattleState
     }
 
     void OnAbilityFinishedPerforming(object sender, object args){
-        print("ABILITY DONE CALCULATING STUFF ");
+        // print("ABILITY DONE CALCULATING STUFF ");
         finishedCalculating = true;
     }
 

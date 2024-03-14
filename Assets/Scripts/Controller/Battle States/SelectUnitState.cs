@@ -53,7 +53,7 @@ public class SelectUnitState : BattleState
             StartCoroutine("ChangeCurrentUnit");
         }
         else{
-            // print("changing to command from select!!!");
+            print("changing to command from select!!! " + turn.actingUnit);
             IndicateActor(turn.actingUnit);
             yield return new WaitForSeconds(.25f);
             owner.ChangeState<CommandSelectionState>();

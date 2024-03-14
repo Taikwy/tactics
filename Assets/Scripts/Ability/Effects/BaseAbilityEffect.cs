@@ -165,9 +165,9 @@ public abstract class BaseAbilityEffect : MonoBehaviour
 		if(obj.transform == null)
 			return false;
 			
-		Debug.Log("check is my effect 1  " + obj);
-		Debug.Log("check is my effect 2  " +  obj.transform );
-		Debug.Log("check is my effect 3  " + transform);
+		// Debug.Log("check is my effect 1  " + obj);
+		// Debug.Log("check is my effect 2  " +  obj.transform );
+		// Debug.Log("check is my effect 3  " + transform);
 		return obj != null && obj.transform == transform;
 	}
 
