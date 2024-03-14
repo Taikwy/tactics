@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Tilemaps;
 
 public class Board : MonoBehaviour 
 {
@@ -13,10 +14,18 @@ public class Board : MonoBehaviour
         MOVE,
         PASS,
     }
+    [Header("Rule Tile Prefabs")]
+    [SerializeField] Tilemap tilemap;
+    [SerializeField] TileBase pitTile;
+    [SerializeField] TileBase barrierTile;
+    [SerializeField] TileBase wallTile;
+    [SerializeField] TileBase groundTile;
+    [Header("Tile Prefabs")]
     [SerializeField] GameObject barrierTilePrefab;
     [SerializeField] GameObject groundTilePrefab;
     [SerializeField] GameObject pitTilePrefab;
     [SerializeField] GameObject wallTilePrefab;
+    
     public enum SelectColor{
         VALID,
         INVALID,
@@ -58,8 +67,44 @@ public class Board : MonoBehaviour
     Point _min;
     Point _max;
 
-    public void Load (LevelData data)
-    {
+    public void Set (LevelData data){
+        _min = new Point(int.MaxValue, int.MaxValue);
+        _max = new Point(int.MinValue, int.MinValue);
+        for (int i = 0; i < data.tileTypes.Count; ++i){
+            GameObject tileInstance;
+            Vector3Int tilePos = new Vector3Int((int)data.tilePositions[i].x, (int)data.tilePositions[i].y, 0);
+            switch(data.tileTypes[i]){
+                case Tile.TILETYPE.GROUND:
+                    tilemap.SetTile(tilePos, groundTile);
+                    break;
+                case Tile.TILETYPE.BARRIER:
+                    tilemap.SetTile(tilePos, barrierTile);
+                    break;
+                case Tile.TILETYPE.PIT:
+                    tilemap.SetTile(tilePos, pitTile);
+                    break;
+                case Tile.TILETYPE.WALL:
+                    tilemap.SetTile(tilePos, wallTile);
+                    break;
+                default:
+                    Debug.LogError("no tiletype for tile position: " + data.tilePositions[i]);
+                    tileInstance = new GameObject();
+                    break;
+            }
+            tileInstance = tilemap.GetInstantiatedObject(tilePos);
+
+            Tile tileScript = tileInstance.GetComponent<Tile>();
+            tileScript.Load(data.tilePositions[i]);
+            tiles.Add(tileScript.position, tileScript);
+
+            _min.x = Mathf.Min(_min.x, tileScript.position.x);
+            _min.y = Mathf.Min(_min.y, tileScript.position.y);
+            _max.x = Mathf.Max(_max.x, tileScript.position.x);
+            _max.y = Mathf.Max(_max.y, tileScript.position.y);
+        }
+    }
+
+    public void Load (LevelData data){
         _min = new Point(int.MaxValue, int.MaxValue);
         _max = new Point(int.MinValue, int.MinValue);
         for (int i = 0; i < data.tileTypes.Count; ++i){
@@ -70,6 +115,7 @@ public class Board : MonoBehaviour
                     break;
                 case Tile.TILETYPE.BARRIER:
                     tileInstance = Instantiate(barrierTilePrefab, gameObject.transform);
+                    // tileInstance = Instantiate(barrierRuleTilePrefab, gameObject.transform);
                     break;
                 case Tile.TILETYPE.PIT:
                     tileInstance = Instantiate(pitTilePrefab, gameObject.transform);

@@ -15,7 +15,8 @@ public class InitBattleState : BattleState
         owner.turnOrderController = owner.gameObject.AddComponent<TurnOrderController>();
         owner.round = owner.turnOrderController.Round();
         
-        board.Load( levelData );
+        // board.Load( levelData );
+        board.Set( levelData );
         Point p = new Point((int)levelData.tilePositions[0].x, (int)levelData.tilePositions[0].y);
         SelectTile(p);
         // SpawnTestUnits(); // This is new
