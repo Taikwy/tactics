@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 
 public class ActorIndicator : MonoBehaviour
@@ -37,7 +36,23 @@ public class ActorIndicator : MonoBehaviour
             movePos =(Vector2)transform.localPosition +  new Vector2(0, -1);
 
         transform.localPosition = Vector2.MoveTowards(transform.localPosition, movePos, moveSpeed*Time.deltaTime);
-        
+    }
+
+    public void ChangeColor(Unit unit){
+        switch(unit.allianceScript.type){
+			default:
+				sr.color = Color.white;
+				break;
+			case Alliances.Ally:
+				sr.color = new Color32 (0,255,248,255);
+				break;
+			case Alliances.Enemy:
+				sr.color = new Color32 (255,0,124,255);
+				break;
+			case Alliances.Neutral:
+				sr.color = Color.green;
+				break;
+		}
     }
     
     

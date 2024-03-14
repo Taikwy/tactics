@@ -71,9 +71,9 @@ public abstract class BattleState : State
 
     protected virtual void IndicateActor(Unit unit){
         actorIndicator.transform.parent = unit.transform;
-        // actorIndicator.transform.localPosition = new Vector2(0,1);
-        // actorIndicator.transform.localPosition = (Vector2)unit.transform.position + new Vector2(0,1);
         actorIndicator.Reset(new Vector2(0,.9f));
+        actorIndicator.ChangeColor(unit);
+
     }
 
 

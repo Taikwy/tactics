@@ -16,17 +16,20 @@ MonoBehaviour:
   levelIndex: -1
   allyUnitRecipes:
   - Barbarian
+  - Samurai
   - Shaman
   allySpawnLocations:
   - x: 6
     y: 3
+  - x: 5
+    y: 3
   - x: 4
     y: 3
   enemyUnitRecipes:
-  - Qinglong
+  - Kitsune
   enemySpawnLocations:
-  - x: 4
-    y: 7
+  - x: 5
+    y: 6
   - x: 7
     y: 8
   - x: 5

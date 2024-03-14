@@ -17,7 +17,6 @@ public abstract class BaseAbilityMenuState : BattleState
         if (driver.Current == Drivers.Human)
 			LoadMenu();
         // LoadMenu();
-        
     }
     public override void Exit (){
         base.Exit ();
