@@ -20,6 +20,7 @@ public abstract class BattleState : State
     public Point selectPos { get { return owner.selectPos; } set { owner.selectPos = value; }}
     public Turn turn { get { return owner.turn; }}
     public List<Unit> units { get { return owner.units; }}
+    public AudioManager audioManager { get {return owner.audioManager; }}
 
     // public AbilityMenuPanelController abilityMenuPanelController { get { return owner.abilityMenuPanelController; }}
     public AbilityPanelController abilityPanelController { get { return owner.abilityPanelController; }}

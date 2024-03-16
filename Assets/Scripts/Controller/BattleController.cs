@@ -25,6 +25,8 @@ public class BattleController : StateMachine
     [HideInInspector]public Unit currentUnit;
     public Turn turn = new Turn();
     [HideInInspector]public List<Unit> units = new List<Unit>();
+    [Header("Audio")]
+    public AudioManager audioManager;
 
     [Header("Controller Scripts")]
     // public AbilityMenuPanelController abilityMenuPanelController;

@@ -102,5 +102,6 @@ public class Unit : MonoBehaviour
         }
         this.PostEvent(UnitDiedEvent, gameObject);
         Destroy(gameObject);
+        GetComponentInParent<BattleController>().audioManager.Play("Unit Death");
     }    
 }
