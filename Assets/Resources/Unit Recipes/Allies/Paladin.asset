@@ -15,7 +15,8 @@ MonoBehaviour:
   unitBase: Unit Base
   sprite: {fileID: 476361012, guid: be8a51219234c2c4e890dbbc203f68ab, type: 3}
   portrait: {fileID: 476361012, guid: be8a51219234c2c4e890dbbc203f68ab, type: 3}
-  anim: {fileID: 0}
+  idleAnim: {fileID: 9100000, guid: 63d90238cd21f45419805af598fad127, type: 2}
+  outlineIdleAnim: {fileID: 9100000, guid: 572bd9c303226174e9a93732f5d5617b, type: 2}
   canvasPrefab: {fileID: 3810713407271520425, guid: 5445606a57e889041a747b9e2eb42e6a, type: 3}
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
   statData: {fileID: 11400000, guid: 8cfaa1287c79adb4fb20d41d1fec2a80, type: 2}
