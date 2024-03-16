@@ -130,6 +130,11 @@ public abstract class BattleState : State
         selectPos = p;
         tileSelectionIndicator.transform.localPosition = board.tiles[p].center;
         tileSelectionIndicator.sr.color = board.selectValid;
+
+        if(driver && driver.Current == Drivers.Computer)
+            audioManager.Play(owner.selectTileSound);
+        else if(!cameraRig.unitMovement && !cameraRig.selectMovement)
+            audioManager.Play(owner.selectTileSound);
     }
     //takes in a bool to see whether the selected tile is targetable. will change color of the highlight
     protected virtual void SelectTile (Point p, bool targetable = true) {

@@ -82,6 +82,7 @@ public abstract class Movement : MonoBehaviour
 
         // Move to each way point in succession
         for (int i = 1; i < targets.Count; ++i) {
+            unit.bc.audioManager.Play(unit.bc.moveSound);
             Tile to = targets[i];
             yield return StartCoroutine(MoveTo(to));
             yield return new WaitForSeconds(moveDelayAmount * Time.deltaTime);

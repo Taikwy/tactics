@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour 
 {
-    
 	public const string UnitDiedEvent = "Unit.UnitDiedEvent";
     public Tile tile { get; protected set; }
     public Directions dir;
@@ -19,6 +18,7 @@ public class Unit : MonoBehaviour
     public Sprite portrait;
     public Color portraitColor;
 
+    [HideInInspector] public BattleController bc{ get {return GetComponentInParent<BattleController>(); }}
     [HideInInspector] public Stats statsScript;
     [HideInInspector] public UnitLevel levelScript;
     [HideInInspector] public Alliance allianceScript;

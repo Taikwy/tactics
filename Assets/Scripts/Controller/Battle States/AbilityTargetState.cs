@@ -118,7 +118,14 @@ public class AbilityTargetState : BattleState
                     unitArea.targets.Add(owner.selectedTile);
                 }
                 if(unitArea.targets.Count >= unitArea.numTargets){
-                    owner.ChangeState<ConfirmAbilityTargetState>();
+                    if(turn.targets.Count > 0){
+                        audioManager.Play(owner.confirmSound);
+                        owner.ChangeState<ConfirmAbilityTargetState>();
+                    }
+                    else{
+                        DisplayEffects(turn.actingUnit.tile);
+                        audioManager.Play(owner.invalidSound);
+                    }
                     return;
                 }
             }
@@ -137,14 +144,26 @@ public class AbilityTargetState : BattleState
                 Tile toRemove = areaScript.targets[areaScript.targets.Count-1];
                 areaScript.targets.Remove(toRemove);
                 SelectTile(toRemove.position);
+                // audioManager.Play(owner.cancelSound);
             }
-            else
+            else{
                 owner.ChangeState<AbilitySectionState>();
+                audioManager.Play(owner.cancelSound);
+
+            }
             return;
         }
         Debug.Log("post on fire");
         TargetTiles();
         // SelectTiles();
+    }
+    void DisplayEffects (Tile target){
+        Vector2 labelOffset = new Vector2(0, .6f);
+        Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
+        Unit unit = target.content.GetComponent<Unit>();
+        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+
+        effectLabel.GetComponent<EffectLabel>().Initialize("NO VALID TARGETS", .75f, 2);
     }
 
     //unused rn

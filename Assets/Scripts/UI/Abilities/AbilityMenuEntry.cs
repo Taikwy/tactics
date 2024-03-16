@@ -37,7 +37,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private bool isHighlightDesired = false;
     private bool isPressedDesired = false;
 
-    public string hoverEnabled, hoverDisabled, clickEnabled, clickDisabled;
+    public string hoverEnabledSound, hoverDisabledSound, clickEnabledSound, clickDisabledSound;
 
     void Awake (){
         // guiController = GetComponent<BattleController>().guiController;
@@ -165,9 +165,9 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
             highlightFunc();
         }
         if(button.interactable)
-            am.Play(hoverEnabled);
+            am.Play(hoverEnabledSound);
         else
-            am.Play(hoverDisabled);
+            am.Play(hoverDisabledSound);
 
     }
     public void OnPointerExit( PointerEventData eventData ){
@@ -181,9 +181,9 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerDown( PointerEventData eventData ){
         isPressedDesired = true;
         if(button.interactable)
-            am.Play(clickEnabled);
+            am.Play(clickEnabledSound);
         else
-            am.Play(clickDisabled);
+            am.Play(clickDisabledSound);
     }
 
     public void OnPointerUp( PointerEventData eventData ){

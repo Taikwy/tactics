@@ -6,6 +6,10 @@ public class PanelController : MonoBehaviour
 {
     const string ShowKey = "Show";
     const string HideKey = "Hide";
+    [Header("Audio")]
+    public AudioManager audioManager;
+    public string abilityDisplaySound;
+    [Header("Panels")]
     // [SerializeField] BasePanel basePanel;
     [SerializeField] UnitPanel primaryPanel, secondaryPanel;              //selected and targeted unit
     [SerializeField] StatusPanel primaryStatusPanel;    
@@ -77,6 +81,7 @@ public class PanelController : MonoBehaviour
         showingAbilityDisplay = true;
         abilityDisplayPanel.Display(unit, focus);
         abilityDisplayPanel.ShowPanel();
+        audioManager.Play(abilityDisplaySound);
     }    public void HideAbilityDisplay (){
         showingAbilityDisplay = false;
         abilityDisplayPanel.HidePanel();

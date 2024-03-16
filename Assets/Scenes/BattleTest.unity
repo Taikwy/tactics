@@ -3900,6 +3900,11 @@ MonoBehaviour:
   currentUnit: {fileID: 0}
   units: []
   audioManager: {fileID: 900619631}
+  selectTileSound: Select Tile
+  cancelSound: Cancel
+  confirmSound: Confirm
+  invalidSound: Invalid
+  moveSound: Move
   abilityPanelController: {fileID: 1201334133}
   panelController: {fileID: 1274223312}
   forecastPanel: {fileID: 210886686}
@@ -6390,12 +6395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Unit Death
-    clip: {fileID: 8300000, guid: 3b43a9ce81b8bfb438d0957f0f527a73, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: Button Hover
     clip: {fileID: 8300000, guid: aa8f2673a2f9bc14d86360dfe3604b81, type: 3}
     volume: 0.4
@@ -6404,6 +6403,42 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Button Click
     clip: {fileID: 8300000, guid: a050aa913e7a2e5418e22497bf21aa77, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Select Tile
+    clip: {fileID: 8300000, guid: a3752f0167c9dd648af3e37c2399dcea, type: 3}
+    volume: 0.35
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Cancel
+    clip: {fileID: 8300000, guid: 56585d04803215a48934d5400f8c371d, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Confirm
+    clip: {fileID: 8300000, guid: 805b482f696c36d4e85ccef97c31c1e7, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Invalid
+    clip: {fileID: 8300000, guid: 6556e58c1c68e2741aa84af5e0c99006, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Move
+    clip: {fileID: 8300000, guid: 1da24f36d86a09c4fae6f490f3e81d38, type: 3}
+    volume: 0.4
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Ability Display
+    clip: {fileID: 8300000, guid: 686030cb572af9947b62317c4b6f8167, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -9279,6 +9314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd279e76506d5547bdca5cd51c1bad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
+  abilityDisplaySound: Ability Display
   primaryPanel: {fileID: 1856305562}
   secondaryPanel: {fileID: 1632149149}
   primaryStatusPanel: {fileID: 432285246}

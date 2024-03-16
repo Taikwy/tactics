@@ -27,6 +27,7 @@ public class BattleController : StateMachine
     [HideInInspector]public List<Unit> units = new List<Unit>();
     [Header("Audio")]
     public AudioManager audioManager;
+    public string selectTileSound, cancelSound, confirmSound, invalidSound, moveSound;
 
     [Header("Controller Scripts")]
     // public AbilityMenuPanelController abilityMenuPanelController;

@@ -44,7 +44,6 @@ public class ConfirmAbilityTargetState : BattleState
         panelController.ShowMouseControls("PERFORM", "CANCEL");
     }
     void DisplayEffects (Tile target){
-        int targetIndex = turn.targets.IndexOf(target);
         Vector2 labelOffset = new Vector2(0, .6f);
         Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
         Unit unit = target.content.GetComponent<Unit>();
@@ -80,6 +79,7 @@ public class ConfirmAbilityTargetState : BattleState
         if (e.info == 0){
             // Debug.Log("firing? " + turn.targets.Count);
             if (turn.targets.Count > 0){
+                audioManager.Play(owner.confirmSound);
                 owner.ChangeState<PerformAbilityState>();
             }
             else{

@@ -129,6 +129,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         else{
             owner.ChangeState<ExploreState>();
         }
+        audioManager.Play(owner.cancelSound);
     }
 
     IEnumerator ComputerTurn ()

@@ -92,6 +92,7 @@ public class MoveTargetState : BattleState
             if (tiles.Contains(owner.selectedTile)){
                 if(owner.selectedTile != turn.actingUnit.tile){
                     // Debug.Log("moving");
+                    audioManager.Play(owner.confirmSound);
                     owner.ChangeState<MoveSequenceState>();
                 }
                 else{
@@ -101,10 +102,14 @@ public class MoveTargetState : BattleState
                 // else
                 //     owner.ChangeState<CommandSelectionState>();
             }
+            else{
+                audioManager.Play(owner.invalidSound);
+            }
         }
         else{
             // Debug.Log("going back");
             owner.ChangeState<CommandSelectionState>();
+            audioManager.Play(owner.cancelSound);
         }
     }
     void TargetTiles(){

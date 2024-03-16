@@ -55,10 +55,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   entry: {fileID: 0}
-  hoverEnabled: Button Hover
-  hoverDisabled: 
-  clickEnabled: Button Click
-  clickDisabled: 
+  hoverEnabledSound: Button Hover
+  hoverDisabledSound: 
+  clickEnabledSound: Button Click
+  clickDisabledSound: 
 --- !u!114 &428001351400084571
 MonoBehaviour:
   m_ObjectHideFlags: 0
