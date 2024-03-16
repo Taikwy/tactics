@@ -44,6 +44,8 @@ public static class UnitFactory
 		AddMovement(unit, recipe.movementType, recipe.moveSpeed, recipe.moveDelay);
 		// AddJob(unit, recipe.job);
 
+		AddAnimation(unit, recipe);
+
 		// AddAttack(unit, recipe.attack);
 		AddEquipment(unit, recipe.equipment);
 		AddAbilityCatalog(unit, recipe.abilityCatalog);
@@ -153,6 +155,15 @@ public static class UnitFactory
 		movement.moveDelayAmount = 8f;
 	}
 
+	static Animator AddAnimation(GameObject unit, UnitRecipe recipe){
+		Animator a = unit.AddComponent<Animator>();
+		if(recipe.idleAnim != null)
+			a.runtimeAnimatorController = recipe.idleAnim;
+		Animator a2 = unit.AddComponent<Animator>();
+		if(recipe.outlineIdleAnim != null)
+			a2.runtimeAnimatorController = recipe.outlineIdleAnim;
+		return a;
+	}
 	static void AddEquipment(GameObject unit, List<GameObject> equipment){
         Equipment equipmentScript = unit.GetComponent<Equipment>();
 		foreach(GameObject equipmentPiece in equipment){

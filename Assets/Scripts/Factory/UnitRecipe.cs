@@ -8,13 +8,17 @@ public class UnitRecipe : ScriptableObject
      [Header("Sprites")]
     public Sprite sprite;
     public Sprite portrait;
+    [Header("Animations")]
+    public RuntimeAnimatorController idleAnim;
+    public RuntimeAnimatorController outlineIdleAnim;
+    // public RuntimeAnimatorController targetAnim;
+
     [Header("ui stuff")]
     public GameObject canvasPrefab;
     
      [Header("stat curves")]
     public XPCurveData xpData;
     public UnitStatData statData;
-    public string job;
     [Header("general info")]
     public MovementTypes movementType;
     [Tooltip("for the movement coroutine moving speed")]public float moveSpeed = .035f;
