@@ -36,6 +36,7 @@ public static class UnitFactory
 		unit.AddComponent<Status>();
 		unit.AddComponent<Equipment>();
 
+		AddAudio(unit, recipe);
 		AddHealth(unit, recipe.statData.minHP);
 		AddBurst(unit);
 		AddSkill(unit);
@@ -86,6 +87,17 @@ public static class UnitFactory
 				break;
 		}
 		return unitScript;
+	}
+	static UnitAudio AddAudio(GameObject unit, UnitRecipe recipe){
+		UnitAudio unitAudio = unit.AddComponent<UnitAudio>();
+		unitAudio.unit = unit.GetComponent<Unit>();
+		unitAudio.stats = unit.GetComponent<Stats>();
+
+		unitAudio.hpIncreaseSound = recipe.hpIncreaseSound;
+		unitAudio.hpDecreaseSound = recipe.hpDecreaseSound;
+		unitAudio.deathSound = recipe.deathSound;
+		unitAudio.moveSound = recipe.moveSound;
+		return unitAudio;
 	}
 
 	static Stats AddStats (GameObject unit, UnitStatData data){

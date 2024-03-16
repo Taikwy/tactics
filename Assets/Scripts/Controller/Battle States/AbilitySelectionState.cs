@@ -88,6 +88,6 @@ public class AbilitySectionState : BaseAbilityMenuState
 
     protected override void Cancel(){
         owner.ChangeState<CommandSelectionState>();
-        audioManager.Play(owner.cancelSound);
+        audioManager.PlaySFX(owner.cancelSound);
     }
 }

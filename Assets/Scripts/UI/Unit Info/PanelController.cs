@@ -81,7 +81,7 @@ public class PanelController : MonoBehaviour
         showingAbilityDisplay = true;
         abilityDisplayPanel.Display(unit, focus);
         abilityDisplayPanel.ShowPanel();
-        audioManager.Play(abilityDisplaySound);
+        // audioManager.Play(abilityDisplaySound);
     }    public void HideAbilityDisplay (){
         showingAbilityDisplay = false;
         abilityDisplayPanel.HidePanel();

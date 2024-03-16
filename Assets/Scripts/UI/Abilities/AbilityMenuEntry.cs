@@ -165,9 +165,9 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
             highlightFunc();
         }
         if(button.interactable)
-            am.Play(hoverEnabledSound);
+            am.PlaySFX(hoverEnabledSound);
         else
-            am.Play(hoverDisabledSound);
+            am.PlaySFX(hoverDisabledSound);
 
     }
     public void OnPointerExit( PointerEventData eventData ){
@@ -181,9 +181,9 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerDown( PointerEventData eventData ){
         isPressedDesired = true;
         if(button.interactable)
-            am.Play(clickEnabledSound);
+            am.PlaySFX(clickEnabledSound);
         else
-            am.Play(clickDisabledSound);
+            am.PlaySFX(clickDisabledSound);
     }
 
     public void OnPointerUp( PointerEventData eventData ){

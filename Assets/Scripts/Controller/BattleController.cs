@@ -27,6 +27,7 @@ public class BattleController : StateMachine
     [HideInInspector]public List<Unit> units = new List<Unit>();
     [Header("Audio")]
     public AudioManager audioManager;
+    public string mainMenuMusic, battleMusic, pauseMusic, gameOverMusic;
     public string selectTileSound, cancelSound, confirmSound, invalidSound, moveSound;
 
     [Header("Controller Scripts")]
@@ -52,9 +53,14 @@ public class BattleController : StateMachine
         public float displayActionDelay;
     }
 
+    void Awake(){
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
     void Start (){
         tileSelectionIndicator.ChangeSelect();
         guiController.gameObject.SetActive(true);
         ChangeState<InitBattleState>();
+        audioManager.PlayMusic(battleMusic);
     }
 }

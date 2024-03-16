@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour
     [HideInInspector] public Stats statsScript;
     [HideInInspector] public UnitLevel levelScript;
     [HideInInspector] public Alliance allianceScript;
+    [HideInInspector] public UnitAudio audioScript;
 
     //public getter for level and experience
     public int LV{
@@ -51,6 +52,7 @@ public class Unit : MonoBehaviour
         statsScript = GetComponent<Stats>();
         levelScript = GetComponent<UnitLevel>();
         allianceScript = GetComponent<Alliance>();
+        audioScript = GetComponent<UnitAudio>();
 
 		// this.AddObserver(GetComponent<UnitLevel>().OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
 		// Feature[] features = GetComponentsInChildren<Feature>();
@@ -102,6 +104,5 @@ public class Unit : MonoBehaviour
         }
         this.PostEvent(UnitDiedEvent, gameObject);
         Destroy(gameObject);
-        GetComponentInParent<BattleController>().audioManager.Play("Unit Death");
     }    
 }

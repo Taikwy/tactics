@@ -25,6 +25,11 @@ public class UnitRecipe : ScriptableObject
      [Header("abilities and stuff")]
     public string attack;
     public string abilityCatalog;
+    [Header("audio stuff")]
+    public string hpIncreaseSound = "Health Increase";
+    public string hpDecreaseSound = "Health Decrease";
+    public string deathSound =  "Unit Death";
+    public string moveSound;
     [Header("ai stuff")]
     public bool cpuDriver = false;
     public string attackPattern;

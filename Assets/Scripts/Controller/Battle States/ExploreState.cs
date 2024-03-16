@@ -23,7 +23,7 @@ public class ExploreState : BattleState
 
         base.Exit ();
         panelController.HidePrimary();
-        audioManager.Play(owner.confirmSound);
+        audioManager.PlaySFX(owner.confirmSound);
     }
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
         SelectTile(e.info + selectPos);
@@ -57,7 +57,7 @@ public class ExploreState : BattleState
                             tiles.Add(board.GetTile(board.selectedPoint));
 
                             HighlightTiles();
-                            audioManager.Play(owner.confirmSound);
+                            audioManager.PlaySFX(owner.confirmSound);
                             // RefreshPrimaryPanel(selectPos);
                         }
                     }

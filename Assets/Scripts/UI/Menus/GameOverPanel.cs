@@ -9,6 +9,7 @@ public class GameOverPanel : MonoBehaviour
     public static bool isPaused = false;
 
     public void ShowPanel(){
+        GetComponentInParent<BattleController>().audioManager.PlayMusic(GetComponentInParent<BattleController>().gameOverMusic);
         Time.timeScale = 0f;
         isPaused = true;
         endGameMenu.SetActive(true);
@@ -20,10 +21,12 @@ public class GameOverPanel : MonoBehaviour
     }
     
     public void PlayAgain(){
+        GetComponentInParent<BattleController>().audioManager.StopMusic();
         SceneManager.LoadScene("BattleTest");
     }
     public void MainMenu(){
-        SceneManager.LoadScene("TestMainMenu");
+        GetComponentInParent<BattleController>().audioManager.StopMusic();
+        SceneManager.LoadScene("MainMenu");
     }
 
     

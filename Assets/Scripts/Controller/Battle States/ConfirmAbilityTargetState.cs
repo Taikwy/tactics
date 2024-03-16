@@ -79,7 +79,7 @@ public class ConfirmAbilityTargetState : BattleState
         if (e.info == 0){
             // Debug.Log("firing? " + turn.targets.Count);
             if (turn.targets.Count > 0){
-                audioManager.Play(owner.confirmSound);
+                audioManager.PlaySFX(owner.confirmSound);
                 owner.ChangeState<PerformAbilityState>();
             }
             else{

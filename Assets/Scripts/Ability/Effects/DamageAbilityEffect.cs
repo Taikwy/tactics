@@ -74,7 +74,7 @@ public class DamageAbilityEffect : BaseAbilityEffect
 
 		// Apply the damage to the target
 		Stats s = defender.GetComponent<Stats>();
-		s[StatTypes.HP] += predictedDMG;
+		s[StatTypes.HP] += predictedDMG; 
 		return predictedDMG;
 	}
 	protected override int OnSubApply (Tile target, bool crit){

@@ -53,7 +53,7 @@ public class AbilityTargetState : BattleState
 
         if(!TargetsInRange()){
             DisplayWarning(turn.actingUnit.tile, "NO TARGETS IN RANGE");
-            audioManager.Play(owner.invalidSound);
+            audioManager.PlaySFX(owner.invalidSound);
         }
     }
     public override void Exit (){
@@ -128,12 +128,12 @@ public class AbilityTargetState : BattleState
                     }
                     else{
                         DisplayWarning(turn.actingUnit.tile);
-                        audioManager.Play(owner.invalidSound);
+                        audioManager.PlaySFX(owner.invalidSound);
                         return;
                     }
                 }
                 if(unitArea.targets.Count >= unitArea.numTargets){
-                        audioManager.Play(owner.confirmSound);
+                        audioManager.PlaySFX(owner.confirmSound);
                         owner.ChangeState<ConfirmAbilityTargetState>();
                     // if(turn.targets.Count > 0){
                     // }
@@ -163,7 +163,7 @@ public class AbilityTargetState : BattleState
             }
             else{
                 owner.ChangeState<AbilitySectionState>();
-                audioManager.Play(owner.cancelSound);
+                audioManager.PlaySFX(owner.cancelSound);
 
             }
             return;
