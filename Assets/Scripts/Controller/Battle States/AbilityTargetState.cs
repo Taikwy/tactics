@@ -50,6 +50,11 @@ public class AbilityTargetState : BattleState
             updating = true;
         }
         panelController.ShowMouseControls();
+
+        if(!TargetsInRange()){
+            DisplayWarning(turn.actingUnit.tile, "NO TARGETS IN RANGE");
+            audioManager.Play(owner.invalidSound);
+        }
     }
     public override void Exit (){
         updating = false;
@@ -109,27 +114,37 @@ public class AbilityTargetState : BattleState
         if (e.info == 0){
             //selected tile must be in currently highlighted area
             if(!highlightedTiles.Contains(owner.selectedTile)){
+                // DisplayWarning(turn.actingUnit.tile);
+                // audioManager.Play(owner.invalidSound);
                 return;
             }
             //only relevant for unit area, cuz full area will just auto return the full range
             if(areaScript.GetType() == typeof(UnitAbilityArea)){
                 UnitAbilityArea unitArea = areaScript as UnitAbilityArea;
                 if(unitArea.targets.Count < unitArea.numTargets){
-                    unitArea.targets.Add(owner.selectedTile);
-                }
-                if(unitArea.targets.Count >= unitArea.numTargets){
-                    if(turn.targets.Count > 0){
-                        audioManager.Play(owner.confirmSound);
-                        owner.ChangeState<ConfirmAbilityTargetState>();
+                    if (turn.selectedAbility.IsTarget(owner.selectedTile)){
+				        turn.targets.Add(owner.selectedTile);
+                        unitArea.targets.Add(owner.selectedTile);
                     }
                     else{
-                        DisplayEffects(turn.actingUnit.tile);
+                        DisplayWarning(turn.actingUnit.tile);
                         audioManager.Play(owner.invalidSound);
+                        return;
                     }
+                }
+                if(unitArea.targets.Count >= unitArea.numTargets){
+                        audioManager.Play(owner.confirmSound);
+                        owner.ChangeState<ConfirmAbilityTargetState>();
+                    // if(turn.targets.Count > 0){
+                    // }
+                    // else{
+                    //     DisplayWarning(turn.actingUnit.tile);
+                    //     audioManager.Play(owner.invalidSound);
+                    // }
                     return;
                 }
             }
-            else{
+            else if(TargetsInRange()){
                 //logic here for adding all units to target lis
                 // areaScript.targets = new List<Tile>(highlightedTiles);
                 // print("confirming ability target state with full area, targets " + areaScript.targets.Count);
@@ -153,17 +168,28 @@ public class AbilityTargetState : BattleState
             }
             return;
         }
-        Debug.Log("post on fire");
+        // Debug.Log("post on fire");
         TargetTiles();
         // SelectTiles();
     }
-    void DisplayEffects (Tile target){
+    //loops thru all highlighted tiles to see if there even IS a valid target
+    bool TargetsInRange(){
+        foreach(Tile highlight in highlightedTiles){
+            if(turn.selectedAbility.IsTarget(highlight))
+                return true;
+            if(areaScript.GetType() == typeof(UnitAbilityArea)){
+                UnitAbilityArea unitArea = areaScript as UnitAbilityArea;
+            }
+        }
+        return false;
+    }
+    void DisplayWarning (Tile target, string warning = "NOT A VALID TARGET"){
         Vector2 labelOffset = new Vector2(0, .6f);
         Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
         Unit unit = target.content.GetComponent<Unit>();
         GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
 
-        effectLabel.GetComponent<EffectLabel>().Initialize("NO VALID TARGETS", .75f, 2);
+        effectLabel.GetComponent<EffectLabel>().Initialize(warning, .75f, 2);
     }
 
     //unused rn
