@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Unity.VisualScripting;
+using System.Security.Principal;
 
 public static class UnitFactory
 {
@@ -159,9 +160,14 @@ public static class UnitFactory
 		Animator a = unit.AddComponent<Animator>();
 		if(recipe.idleAnim != null)
 			a.runtimeAnimatorController = recipe.idleAnim;
-		Animator a2 = unit.AddComponent<Animator>();
+		GameObject outline = new GameObject("outline anim");
+		outline.transform.parent = unit.transform;
+		Animator aa = outline.AddComponent<Animator>();
+		SpriteRenderer sr = outline.AddComponent<SpriteRenderer>();
+		unit.GetComponent<Unit>().outlineRenderer = sr;
+		sr.sortingOrder = 2;
 		if(recipe.outlineIdleAnim != null)
-			a2.runtimeAnimatorController = recipe.outlineIdleAnim;
+			aa.runtimeAnimatorController = recipe.outlineIdleAnim;
 		return a;
 	}
 	static void AddEquipment(GameObject unit, List<GameObject> equipment){

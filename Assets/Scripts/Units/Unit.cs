@@ -23,6 +23,7 @@ public class Unit : MonoBehaviour
     [HideInInspector] public UnitLevel levelScript;
     [HideInInspector] public Alliance allianceScript;
     [HideInInspector] public UnitAudio audioScript;
+    [HideInInspector] public SpriteRenderer outlineRenderer;
 
     //public getter for level and experience
     public int LV{
