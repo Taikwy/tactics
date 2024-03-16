@@ -7,26 +7,24 @@ using UnityEngine.UI;
 
 public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+    AudioManager am;
     GameUIController guiController;
-    // [SerializeField] Image bullet;
-    // [SerializeField] SpriteRenderer bullet;
-    [SerializeField] Sprite normalSprite;
-    [SerializeField] Sprite selectedSprite;
-    [SerializeField] Sprite disabledSprite;
-    [SerializeField] TMP_Text label;
-
-    private TextMeshProUGUI txt;
-    public Button button;
-
-    public Color normalColor;
-    public Color highlightedColor;
-    public Color pressedColor;
-    public Color disabledColor;
-
+    TMP_Text label;
+    TextMeshProUGUI txt;
+    [HideInInspector] public Button button;
     [HideInInspector] public GameObject entry;
 
     [HideInInspector]public UnityEngine.Events.UnityAction highlightFunc, unhighlightFunc;
-    
+
+    // [SerializeField] SpriteRenderer bullet;
+    // [SerializeField] Sprite normalSprite;
+    // [SerializeField] Sprite selectedSprite;
+    // [SerializeField] Sprite disabledSprite;
+
+    // public Color normalColor;
+    // public Color highlightedColor;
+    // public Color pressedColor;
+    // public Color disabledColor;
 
     public enum ButtonStatus{
         Normal,
@@ -39,11 +37,15 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private bool isHighlightDesired = false;
     private bool isPressedDesired = false;
 
+    public string hoverEnabled, hoverDisabled, clickEnabled, clickDisabled;
+
     void Awake (){
         // guiController = GetComponent<BattleController>().guiController;
+        am = (FindObjectOfType(typeof(BattleController)) as BattleController).audioManager;
         guiController = (FindObjectOfType(typeof(BattleController)) as BattleController).guiController;
         txt = GetComponentInChildren<TextMeshProUGUI>();
         button = gameObject.GetComponent<Button>();
+        label = gameObject.GetComponentInChildren<TMP_Text>();
     }
 
     void Update()
@@ -158,27 +160,30 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter( PointerEventData eventData ){
          if(guiController.isPaused)
             return;
-        // Debug.Log("highlighting");
         isHighlightDesired = true;
-            // Debug.Log("null func " + highlightFunc);
         if(highlightFunc != null){
-            // Debug.Log("func " + highlightFunc);
             highlightFunc();
         }
+        if(button.interactable)
+            am.Play(hoverEnabled);
+        else
+            am.Play(hoverDisabled);
 
     }
     public void OnPointerExit( PointerEventData eventData ){
          if(guiController.isPaused)
             return;
-        // Debug.Log("unhighlighting");
         isHighlightDesired = false;
         if(unhighlightFunc != null)
             unhighlightFunc();
-        // abilityMenuEntry.Unhover();
     }
 
     public void OnPointerDown( PointerEventData eventData ){
         isPressedDesired = true;
+        if(button.interactable)
+            am.Play(clickEnabled);
+        else
+            am.Play(clickDisabled);
     }
 
     public void OnPointerUp( PointerEventData eventData ){

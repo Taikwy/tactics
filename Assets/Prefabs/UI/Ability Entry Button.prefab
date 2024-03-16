@@ -53,16 +53,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea38b331048a442469b93cc12e79bfab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSprite: {fileID: 0}
-  selectedSprite: {fileID: 0}
-  disabledSprite: {fileID: 0}
-  label: {fileID: 5303026404453740952}
   button: {fileID: 0}
-  normalColor: {r: 0.62352943, g: 0.5058824, b: 0, a: 1}
-  highlightedColor: {r: 1, g: 0.7960785, b: 0, a: 1}
-  pressedColor: {r: 0.30980393, g: 0.2509804, b: 0, a: 1}
-  disabledColor: {r: 0.27450982, g: 0.13333334, b: 0, a: 1}
   entry: {fileID: 0}
+  hoverEnabled: Button Hover
+  hoverDisabled: 
+  clickEnabled: Button Click
+  clickDisabled: 
 --- !u!114 &428001351400084571
 MonoBehaviour:
   m_ObjectHideFlags: 0

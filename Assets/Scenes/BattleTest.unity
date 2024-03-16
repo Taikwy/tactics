@@ -6396,6 +6396,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Button Hover
+    clip: {fileID: 8300000, guid: aa8f2673a2f9bc14d86360dfe3604b81, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Button Click
+    clip: {fileID: 8300000, guid: a050aa913e7a2e5418e22497bf21aa77, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &900619632
 Transform:
   m_ObjectHideFlags: 0
