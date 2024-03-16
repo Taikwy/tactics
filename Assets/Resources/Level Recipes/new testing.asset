@@ -16,7 +16,7 @@ MonoBehaviour:
   levelIndex: -1
   allyUnitRecipes:
   - Samurai
-  - Barbarian
+  - Shaman
   allySpawnLocations:
   - x: 6
     y: 3
