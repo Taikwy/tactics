@@ -11,6 +11,7 @@ public class UnitRecipe : ScriptableObject
     [Header("Animations")]
     public RuntimeAnimatorController idleAnim;
     public RuntimeAnimatorController outlineIdleAnim;
+    public RuntimeAnimatorController iconAnim;
     // public RuntimeAnimatorController targetAnim;
 
     [Header("ui stuff")]

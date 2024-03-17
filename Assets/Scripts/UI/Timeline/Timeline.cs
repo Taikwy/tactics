@@ -54,10 +54,15 @@ public class Timeline : MonoBehaviour
         indicator.statsScript = unit.statsScript;
         indicator.unitScript = unit;
         indicator.icon.sprite = unit.portrait;
+        
+        if(unit.animScript.iconAnim != null){
+            indicator.animator.runtimeAnimatorController = unit.animScript.iconAnim;
+
+        }
         // indicator.icon.color = Color.white;
         // indicator.icon.color = unit.GetComponent<Unit>().portraitColor;
 
-        indicator.portraitBG.color =  unit.GetComponent<Unit>().portraitColor;
+        indicator.portraitBG.color =  unit.GetComponent<Unit>().unitColor;
         // Debug.Log("setting timeline color as "+ indicator.icon.color);
 
         indicator.counter.text = GetAV(indicator).ToString();

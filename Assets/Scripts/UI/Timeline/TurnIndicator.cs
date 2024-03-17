@@ -8,6 +8,7 @@ public class TurnIndicator : MonoBehaviour
 {
     public Image icon;
     public Image background;
+    public Animator animator;
     public Color defaultBGColor, defaultAVColor;
     public Image portraitBG;
     public TMP_Text counter;

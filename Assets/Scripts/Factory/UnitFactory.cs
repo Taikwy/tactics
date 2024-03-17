@@ -178,6 +178,8 @@ public static class UnitFactory
 		ua.outlineAnimator = outlineObj.AddComponent<Animator>();
 		if(recipe.outlineIdleAnim != null)
 			ua.outlineAnimator.runtimeAnimatorController = recipe.outlineIdleAnim;
+		if(recipe.iconAnim != null)
+			ua.iconAnim = recipe.iconAnim;
 
 		// Animator a = unit.AddComponent<Animator>();
 		// if(recipe.idleAnim != null)

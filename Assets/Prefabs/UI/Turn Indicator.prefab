@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 1848576319461952951}
   - component: {fileID: 5332872233104447998}
   - component: {fileID: 3209830619723164898}
+  - component: {fileID: 5524204557273163104}
   m_Layer: 5
   m_Name: portait
   m_TagString: Untagged
@@ -228,6 +229,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5524204557273163104
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718034302731417957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7297579781615785432
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 3209830619723164898}
   background: {fileID: 477847077939368631}
+  animator: {fileID: 5524204557273163104}
   defaultBGColor: {r: 0, g: 0, b: 0, a: 0.5882353}
   defaultAVColor: {r: 1, g: 0.78823537, b: 0, a: 1}
   portraitBG: {fileID: 2588051483405520949}

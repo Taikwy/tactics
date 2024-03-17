@@ -10,6 +10,7 @@ public class UnitAnimator : MonoBehaviour
     [HideInInspector] public Animator outlineAnimator;
     [HideInInspector] public SpriteRenderer idleRenderer;
     [HideInInspector] public SpriteRenderer outlineRenderer;
+    [HideInInspector] public RuntimeAnimatorController iconAnim;
 
     void Start(){
         // idleRenderer = unit.GetComponent<SpriteRenderer>();
