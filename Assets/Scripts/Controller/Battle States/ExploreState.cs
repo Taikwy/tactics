@@ -48,7 +48,7 @@ public class ExploreState : BattleState
                         if(selectedUnit != null){
 
                             cameraRig.selectMovement = true;
-                            Movement moveScript = selectedUnit.movement;
+                            Movement moveScript = selectedUnit.moveScript;
                             tiles = moveScript.GetAllTilesInRange(board);
                             allyTiles = moveScript.FilterAllies(tiles);
                             foeTiles = moveScript.FilterFoes(tiles);

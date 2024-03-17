@@ -337,7 +337,7 @@ public class ComputerPlayer : MonoBehaviour
 		nearestFoe = null;
         bool walker = false;
         //checks if acting unit is a walker
-        if(actingUnit.movement.GetType() == typeof(WalkMovement))
+        if(actingUnit.moveScript.GetType() == typeof(WalkMovement))
             walker = true;
         // print("unit is walker??? " + walker);
 

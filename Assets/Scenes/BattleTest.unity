@@ -3896,6 +3896,10 @@ MonoBehaviour:
     y: 0
   levelData: {fileID: 11400000, guid: 5f83d828f47b71f4fa9a8b17bcf7a27a, type: 2}
   levelRecipe: {fileID: 11400000, guid: c8b2efd7fd2008f46861684577bc9ec3, type: 2}
+  player: {r: 0, g: 1, b: 0.972549, a: 1}
+  enemy: {r: 1, g: 0, b: 0.4862745, a: 1}
+  neutral: {r: 0, g: 1, b: 0, a: 1}
+  none: {r: 1, g: 1, b: 1, a: 1}
   movementDelay: 0.05
   currentUnit: {fileID: 0}
   units: []

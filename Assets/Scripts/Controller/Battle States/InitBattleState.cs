@@ -134,9 +134,9 @@ public class InitBattleState : BattleState
         {
             GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
             Unit unitScript = instance.GetComponent<Unit>();
+            instance.transform.SetParent(container.transform);
             unitScript.Init(board.GetTile(spawnLocations[i]));
 
-            instance.transform.SetParent(container.transform);
             units.Add(unitScript);
         }
     }

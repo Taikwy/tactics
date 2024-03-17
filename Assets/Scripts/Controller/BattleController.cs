@@ -13,11 +13,15 @@ public class BattleController : StateMachine
     public TileSelectionIndicator tileSelectionIndicator;
     public ActorIndicator actorIndicator;
     public GameObject tileSelectionIndicatorPrefab;
-    [Header(" Level")]
     [HideInInspector]public Point selectPos;
+    [Header(" Level")]
     public LevelData levelData;
     public LevelRecipe levelRecipe;
-    
+    [Header("Alliance Colors")]
+    public Color playerColor = new Color32 (0,255,248,255);
+    public Color enemyColor = new Color32 (255,0,124,255);
+    public Color neutralColor = Color.green;
+    public Color defaultColor;    
     [Header("Movement")]
     [Tooltip("The delay for PLAYER units to move during the movesequence state")] public float movementDelay;
     public Tile selectedTile { get { return board.GetTile(selectPos); }}

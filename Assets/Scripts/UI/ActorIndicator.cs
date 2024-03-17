@@ -15,6 +15,7 @@ public class ActorIndicator : MonoBehaviour
     public float moveDistance;
     Vector2 movePos, topPos, botPos;
     bool movingUp;
+    [HideInInspector] public BattleController bc{ get {return GetComponentInParent<BattleController>(); }}
 
     public void Reset(Vector2 offset){
         transform.localPosition = offset;
@@ -41,16 +42,16 @@ public class ActorIndicator : MonoBehaviour
     public void ChangeColor(Unit unit){
         switch(unit.allianceScript.type){
 			default:
-				sr.color = Color.white;
+				sr.color = bc.defaultColor;
 				break;
 			case Alliances.Ally:
-				sr.color = new Color32 (0,255,248,255);
+				sr.color = bc.playerColor;
 				break;
 			case Alliances.Enemy:
-				sr.color = new Color32 (255,0,124,255);
+				sr.color = bc.enemyColor;
 				break;
 			case Alliances.Neutral:
-				sr.color = Color.green;
+				sr.color = bc.neutralColor;
 				break;
 		}
     }

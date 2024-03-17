@@ -118,8 +118,6 @@ public abstract class BattleState : State
         actorIndicator.transform.parent = unit.transform;
         actorIndicator.Reset(new Vector2(0,.9f));
         actorIndicator.ChangeColor(unit);
-        if(turn.actingUnit.outlineRenderer)
-        turn.actingUnit.outlineRenderer.color = Color.blue;
 
     }
 

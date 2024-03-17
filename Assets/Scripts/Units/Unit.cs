@@ -17,10 +17,13 @@ public class Unit : MonoBehaviour
     // public XPCurveData xpData;
     public Sprite portrait;
     public Color portraitColor;
+    public Color unitColor;
 
     [HideInInspector] public BattleController bc{ get {return GetComponentInParent<BattleController>(); }}
+    [HideInInspector] public UnitAnimator animScript;
     [HideInInspector] public Stats statsScript;
     [HideInInspector] public UnitLevel levelScript;
+    [HideInInspector] public Movement moveScript;
     [HideInInspector] public Alliance allianceScript;
     [HideInInspector] public UnitAudio audioScript;
     [HideInInspector] public SpriteRenderer outlineRenderer;
@@ -37,23 +40,43 @@ public class Unit : MonoBehaviour
         get { return allianceScript.type; }
         // set { statsScript[StatTypes.XP] = value; }
     }
-    public Movement movement{
-        get{ return GetComponent<Movement>();}
-    }
+    // public Movement moveScript{
+    //     get{ return GetComponent<Movement>();}
+    // }
     public Canvas canvas{
         get{ return GetComponentInChildren<Canvas>(); }
     }
-    public Transform canvasObj{
-        get{ return transform.GetChild(1); }
-    }
+    public Transform canvasObj;
+    // public Transform canvasObj{
+    //     get{ return transform.GetChild(1); }
+    // }
     public void Init(Tile t){
         Place(t);
         Match();
 
+        animScript = GetComponent<UnitAnimator>();
+        // canvasObj = transform.GetChild(1);
         statsScript = GetComponent<Stats>();
         levelScript = GetComponent<UnitLevel>();
+        moveScript = GetComponent<Movement>();
         allianceScript = GetComponent<Alliance>();
         audioScript = GetComponent<UnitAudio>();
+
+        switch(ALLIANCE){
+			default:
+				unitColor = bc.defaultColor;
+				break;
+			case Alliances.Ally:
+				unitColor = bc.playerColor;
+				break;
+			case Alliances.Enemy:
+				unitColor = bc.enemyColor;
+				break;
+			case Alliances.Neutral:
+				unitColor = bc.neutralColor;
+				break;
+		}
+        animScript.outlineRenderer.color = unitColor;
 
 		// this.AddObserver(GetComponent<UnitLevel>().OnLvChangeEvent, Stats.DidChangeEvent(StatTypes.LV), statsScript);
 		// Feature[] features = GetComponentsInChildren<Feature>();

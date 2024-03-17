@@ -29,9 +29,11 @@ public static class UnitFactory
 	public static GameObject Create (UnitRecipe recipe, int level){
 		GameObject unit = InstantiatePrefab("Units/" + recipe.unitBase);
 		unit.name = recipe.name;
-		unit.GetComponent<SpriteRenderer>().sprite = recipe.sprite;
+		// unit.GetComponent<SpriteRenderer>().sprite = recipe.sprite;
 
 		InitUnitScript(unit, recipe);
+		InitAnimator(unit, recipe);
+
 		AddStats(unit, recipe.statData);
 		AddLevel(unit, level, recipe.xpData);
 		unit.AddComponent<Status>();
@@ -45,7 +47,6 @@ public static class UnitFactory
 		AddMovement(unit, recipe.movementType, recipe.moveSpeed, recipe.moveDelay);
 		// AddJob(unit, recipe.job);
 
-		AddAnimation(unit, recipe);
 
 		// AddAttack(unit, recipe.attack);
 		AddEquipment(unit, recipe.equipment);
@@ -156,19 +157,37 @@ public static class UnitFactory
 		movement.moveDelayAmount = 8f;
 	}
 
-	static Animator AddAnimation(GameObject unit, UnitRecipe recipe){
-		Animator a = unit.AddComponent<Animator>();
+	static UnitAnimator InitAnimator(GameObject unit, UnitRecipe recipe){
+		UnitAnimator ua = unit.AddComponent<UnitAnimator>();
+		ua.unit = unit.GetComponent<Unit>();
+		ua.idleRenderer = unit.AddComponent<SpriteRenderer>();
+		ua.idleRenderer.sprite = recipe.sprite;
+
+		GameObject outlineObj = new GameObject("outline animator");
+		outlineObj.transform.parent = unit.transform;
+		ua.outlineRenderer = outlineObj.AddComponent<SpriteRenderer>();
+		// ua.outlineRenderer.color = unit.GetComponent<Unit>().portraitColor;
+
+		ua.idleRenderer.sortingLayerID = SortingLayer.NameToID("Characters");
+		ua.outlineRenderer.sortingLayerID = SortingLayer.NameToID("Characters");
+		ua.outlineRenderer.sortingOrder = -1;
+
+		ua.idleAnimator = unit.AddComponent<Animator>();
 		if(recipe.idleAnim != null)
-			a.runtimeAnimatorController = recipe.idleAnim;
-		GameObject outline = new GameObject("outline anim");
-		outline.transform.parent = unit.transform;
-		Animator aa = outline.AddComponent<Animator>();
-		SpriteRenderer sr = outline.AddComponent<SpriteRenderer>();
-		unit.GetComponent<Unit>().outlineRenderer = sr;
-		sr.sortingOrder = 2;
+			ua.idleAnimator.runtimeAnimatorController = recipe.idleAnim;
+		ua.outlineAnimator = outlineObj.AddComponent<Animator>();
 		if(recipe.outlineIdleAnim != null)
-			aa.runtimeAnimatorController = recipe.outlineIdleAnim;
-		return a;
+			ua.outlineAnimator.runtimeAnimatorController = recipe.outlineIdleAnim;
+
+		// Animator a = unit.AddComponent<Animator>();
+		// if(recipe.idleAnim != null)
+		// 	a.runtimeAnimatorController = recipe.idleAnim;
+		// outline.transform.parent = unit.transform;
+		// Animator aa = outline.AddComponent<Animator>();
+		// SpriteRenderer sr = outline.AddComponent<SpriteRenderer>();
+		// unit.GetComponent<Unit>().outlineRenderer = sr;
+		// sr.sortingOrder = 2;
+		return ua;
 	}
 	static void AddEquipment(GameObject unit, List<GameObject> equipment){
         Equipment equipmentScript = unit.GetComponent<Equipment>();
@@ -178,9 +197,9 @@ public static class UnitFactory
 			equipmentScript.Equip (toEquip, toEquip.defaultSlots);
 		}
 	}
-	static void AddAbilityCatalog (GameObject obj, string name){
+	static void AddAbilityCatalog (GameObject unit, string name){
 		GameObject catalog = new GameObject("Ability Catalog");
-		catalog.transform.SetParent(obj.transform);
+		catalog.transform.SetParent(unit.transform);
 		AbilityCatalog catalogScript = catalog.AddComponent<AbilityCatalog>();
 
 		AbilityCatalogRecipe recipe = Resources.Load<AbilityCatalogRecipe>("Ability Catalog Recipes/" + name);
@@ -246,26 +265,27 @@ public static class UnitFactory
 		}
 	}
 
-	static void AddCanvas(GameObject obj, GameObject canvasPrefab){
-        GameObject canvasObj = GameObject.Instantiate(canvasPrefab, obj.transform.position, Quaternion.identity, obj.transform);
-		canvasObj.name = obj.name+" Canvas";
+	static void AddCanvas(GameObject unit, GameObject canvasPrefab){
+        GameObject canvasObj = GameObject.Instantiate(canvasPrefab, unit.transform.position, Quaternion.identity, unit.transform);
+		canvasObj.name = unit.name+" Canvas";
+		unit.GetComponent<Unit>().canvasObj = canvasObj.transform;
 		// Canvas canvas = canvasObj.AddComponent<Canvas>();
 		// canvas.renderMode = RenderMode.WorldSpace;
 	}
 
-	static void AddAttackPattern (GameObject obj, bool cpuDriver, string name){
-		Driver driver = obj.AddComponent<Driver>();
+	static void AddAttackPattern (GameObject unit, bool cpuDriver, string name){
+		Driver driver = unit.AddComponent<Driver>();
 		if(!cpuDriver){
 			driver.normal = Drivers.Human;
 		}
 		else{
 			GameObject pattern = InstantiatePrefab("Attack Patterns/" + name);
 			if(pattern != null){
-				pattern.transform.SetParent(obj.transform);
+				pattern.transform.SetParent(unit.transform);
 				driver.normal = Drivers.Computer;
 			}
 			else{
-				Debug.LogError(obj.name + " set to CPU Driver but no Attack Pattern found");
+				Debug.LogError(unit.name + " set to CPU Driver but no Attack Pattern found");
 				driver.normal = Drivers.Human;
 			}
 		}
