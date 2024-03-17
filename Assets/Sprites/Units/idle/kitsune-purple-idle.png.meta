@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 82d6476ca6390634fb79eadb74aaf134
+guid: cee4520485161174e89e84c606f59c62
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: select-anim_0
+      name: kitsune-purple-idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
-        height: 18
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31d18ce8d0e12f6409592c3c023248f2
-      internalID: -942159846
+      spriteID: 10eac89d71fc515489cb50d057ec58fb
+      internalID: 801082039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: select-anim_1
+      name: kitsune-purple-idle_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 16
         y: 0
-        width: 18
-        height: 18
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96df57a0128236c4db58b6b49f45033f
-      internalID: -1312907140
+      spriteID: e6d6e931748620743ac25400f7d7caf7
+      internalID: -1550428967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitsune-purple-idle_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c185ece30a0ca2746a56400a8d86afb6
+      internalID: 946772330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitsune-purple-idle_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29008089a69bf424c9f75a8f16cba641
+      internalID: -139170419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitsune-purple-idle_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae928b60c5ff7974787000b44491ef69
+      internalID: 928610665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kitsune-purple-idle_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8082b32ba9d70634ba0c4b4110244f4f
+      internalID: -203736340
       vertices: []
       indices: 
       edges: []
@@ -157,8 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      select-anim_0: -942159846
-      select-anim_1: -1312907140
+      kitsune-purple-idle_0: 801082039
+      kitsune-purple-idle_1: -1550428967
+      kitsune-purple-idle_2: 946772330
+      kitsune-purple-idle_3: -139170419
+      kitsune-purple-idle_4: 928610665
+      kitsune-purple-idle_5: -203736340
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

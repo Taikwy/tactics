@@ -25,7 +25,11 @@ MonoBehaviour:
   - x: 4
     y: 3
   enemyUnitRecipes:
-  - Kitsune
+  - Kitsune Black
+  - Kitsune Purple
+  - Gorgon Blue
+  - Sphinx Black
+  - Faerie Pink
   enemySpawnLocations:
   - x: 5
     y: 6
@@ -33,5 +37,7 @@ MonoBehaviour:
     y: 8
   - x: 5
     y: 8
-  - x: 8
+  - x: 4
+    y: 7
+  - x: 6
     y: 7

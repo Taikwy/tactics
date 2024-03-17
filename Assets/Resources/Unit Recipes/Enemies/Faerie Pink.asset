@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c666d4609392c245aa32f8419270021, type: 3}
-  m_Name: Shaman
+  m_Name: Faerie Pink
   m_EditorClassIdentifier: 
   unitBase: Unit Base
-  sprite: {fileID: 246786150, guid: 20ac29f5bd47fb649bbdd280774feded, type: 3}
-  portrait: {fileID: 21300000, guid: a3156d026ae30d44c81d3a4190462f83, type: 3}
-  idleAnim: {fileID: 9100000, guid: 53b6c675a6b49194582d4395ad45944d, type: 2}
-  outlineIdleAnim: {fileID: 9100000, guid: c1d2321c74c594e47a4b3d1d3677e5ca, type: 2}
+  sprite: {fileID: 21300000, guid: 1c875423fdcde2c44b90c6938568210a, type: 3}
+  portrait: {fileID: 21300000, guid: f11bb1333658f224eb39a09553151991, type: 3}
+  idleAnim: {fileID: 9100000, guid: 68351f00dd5454a43931a1701931064c, type: 2}
+  outlineIdleAnim: {fileID: 9100000, guid: 30cf22bd9c3cc154899ec44578b72b61, type: 2}
   canvasPrefab: {fileID: 3810713407271520425, guid: 5445606a57e889041a747b9e2eb42e6a, type: 3}
   xpData: {fileID: 11400000, guid: 93a8caefac541a54ba25cf8fce7d76df, type: 2}
-  statData: {fileID: 11400000, guid: 00f298a6a5828fa4381f1957f782251a, type: 2}
-  movementType: 0
+  statData: {fileID: 11400000, guid: acdc24855d514524dbf0f6d45fb309e2, type: 2}
+  movementType: 1
   moveSpeed: 0.035
   moveDelay: 0.05
-  alliance: 2
+  alliance: 4
   equipment: []
   attack: 
-  abilityCatalog: Shaman Catalog
+  abilityCatalog: Faerie Catalog
   hpIncreaseSound: Health Increase
   hpDecreaseSound: Health Decrease
   deathSound: Unit Death
   moveSound: 
-  cpuDriver: 0
-  attackPattern: 
+  cpuDriver: 1
+  attackPattern: Faerie Attack Pattern

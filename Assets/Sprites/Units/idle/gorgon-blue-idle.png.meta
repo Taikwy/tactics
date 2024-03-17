@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 82d6476ca6390634fb79eadb74aaf134
+guid: a3b5feb0b17cb4b4ea0c7dc586f74115
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: select-anim_0
+      name: gorgon-blue-idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
-        height: 18
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31d18ce8d0e12f6409592c3c023248f2
-      internalID: -942159846
+      spriteID: e71cf1dc63186214fa7fe6a6838f6dd1
+      internalID: 1860175371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: select-anim_1
+      name: gorgon-blue-idle_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 16
         y: 0
-        width: 18
-        height: 18
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96df57a0128236c4db58b6b49f45033f
-      internalID: -1312907140
+      spriteID: 0a045dd85e4dae541a4082ea7acda802
+      internalID: -1750394361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorgon-blue-idle_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbcae90ccfd3ced47bdb3bdde944e6e1
+      internalID: -1131177915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorgon-blue-idle_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a02d371b3e77d4b4b8304951b19a5408
+      internalID: 344460981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorgon-blue-idle_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda4bd18252cee3418d824b46c27f61a
+      internalID: 2080324304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorgon-blue-idle_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a787400264f08a4ab0e0a4c3d6cd98a
+      internalID: 602707175
       vertices: []
       indices: 
       edges: []
@@ -157,8 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      select-anim_0: -942159846
-      select-anim_1: -1312907140
+      gorgon-blue-idle_0: 1860175371
+      gorgon-blue-idle_1: -1750394361
+      gorgon-blue-idle_2: -1131177915
+      gorgon-blue-idle_3: 344460981
+      gorgon-blue-idle_4: 2080324304
+      gorgon-blue-idle_5: 602707175
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
