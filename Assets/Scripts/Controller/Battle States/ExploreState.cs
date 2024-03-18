@@ -46,19 +46,9 @@ public class ExploreState : BattleState
                     if(board.GetTile(board.selectedPoint).content != null){
                         Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
                         if(selectedUnit != null){
-
+                            HighlightMovement(selectedUnit);
                             cameraRig.selectMovement = true;
-                            Movement moveScript = selectedUnit.moveScript;
-                            tiles = moveScript.GetAllTilesInRange(board);
-                            allyTiles = moveScript.FilterAllies(tiles);
-                            foeTiles = moveScript.FilterFoes(tiles);
-                            
-                            moveScript.FilterOccupied(tiles);
-                            tiles.Add(board.GetTile(board.selectedPoint));
-
-                            HighlightTiles();
                             audioManager.PlaySFX(owner.confirmSound);
-                            // RefreshPrimaryPanel(selectPos);
                         }
                     }
                     else
@@ -73,12 +63,55 @@ public class ExploreState : BattleState
         }
         //if currently showing status info, right click goes back to default explore state
         else{
-            if (e.info == 1){
-                panelController.HideStatus();
-                UnhighlightTiles();
-            }
+            // if (e.info == 0){
+            //     UnhighlightTiles();
+            //     //if current unit, goes back to command selection state
+            //     if(board.selectedTile.content == owner.turn.actingUnit.gameObject){
+            //         owner.ChangeState<CommandSelectionState>();
+            //     }
+            //     //if not current unit, shows the unit's info
+            //     else{
+            //         if(board.GetTile(board.selectedPoint).content != null){
+            //             Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
+            //             if(selectedUnit != null){
+            //                 HighlightMovement(selectedUnit);
+            //                 cameraRig.selectMovement = true;
+            //                 audioManager.PlaySFX(owner.confirmSound);
+            //             }
+            //             else{
+            //                 panelController.HideStatus();
+            //                 UnhighlightTiles(); 
+            //             }
+            //         }
+            //         else{
+            //             cameraRig.selectMovement = false;
+            //             panelController.HideStatus();
+            //             UnhighlightTiles(); 
+            //         }
+                    
+            //         RefreshPrimaryStatusPanel(board.selectedPoint);
+            //     }
+            // }
+            // if (e.info == 1){
+            //     panelController.HideStatus();
+            //     UnhighlightTiles(); 
+            // }
+            panelController.HideStatus();
+            UnhighlightTiles(); 
         }
         
+    }
+
+    void HighlightMovement(Unit selectedUnit){
+        Movement moveScript = selectedUnit.moveScript;
+        tiles = moveScript.GetAllTilesInRange(board);
+        allyTiles = moveScript.FilterAllies(tiles);
+        foeTiles = moveScript.FilterFoes(tiles);
+        
+        moveScript.FilterOccupied(tiles);
+        tiles.Add(board.GetTile(board.selectedPoint));
+
+        HighlightTiles();
     }
 
     protected void Update(){
@@ -88,6 +121,16 @@ public class ExploreState : BattleState
         if(!panelController.showingPrimaryStatus){
             RefreshPrimaryPanel(board.selectedPoint);
             SelectTile(board.selectedPoint);
+
+            if(board.GetTile(board.selectedPoint).content != null){
+                Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
+                if(selectedUnit != null)
+                    HighlightMovement(selectedUnit);
+                else
+                    UnhighlightTiles();
+            }
+            else
+                UnhighlightTiles();
         }
     }
 
