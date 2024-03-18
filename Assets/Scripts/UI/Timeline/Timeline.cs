@@ -56,7 +56,7 @@ public class Timeline : MonoBehaviour
         indicator.icon.sprite = unit.portrait;
         
         if(unit.animScript.iconAnim != null){
-            indicator.animator.runtimeAnimatorController = unit.animScript.iconAnim;
+            indicator.portraitAnimator.runtimeAnimatorController = unit.animScript.iconAnim;
 
         }
         // indicator.icon.color = Color.white;
@@ -141,5 +141,19 @@ public class Timeline : MonoBehaviour
         if(index != -1)
             RemoveIndicator(turnIndicators[index]);
 
+    }
+
+    public void IndicateActor(Unit unit){
+        TurnIndicator turnIndicator = null;
+        foreach(TurnIndicator ti in turnIndicators){
+            ti.Deselect();
+            if(ti.unitScript == unit)
+                turnIndicator = ti;
+        }
+        if(turnIndicator != null){
+            turnIndicator.Select();
+        }
+        else
+            Debug.LogError("NO TURN INDICATOR FOUND FOR UNIT " + unit);
     }
 }

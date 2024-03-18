@@ -33,7 +33,7 @@ public class SelectUnitState : BattleState
         
         SelectTile(turn.actingUnit.tile.position, Board.SelectColor.VALID);
 		driver = (turn.actingUnit != null) ? turn.actingUnit.GetComponent<Driver>() : null;
-        yield return new WaitForSeconds(.05f);
+        // yield return new WaitForSeconds(.05f);
 
         if (driver.Current == Drivers.Computer){
             // board.humanDriver = false;
@@ -55,6 +55,8 @@ public class SelectUnitState : BattleState
         else{
             print("changing to command from select!!! " + turn.actingUnit);
             IndicateActor(turn.actingUnit);
+            owner.timeline.IndicateActor(turn.actingUnit);
+        yield return new WaitForSeconds(.05f);
             yield return new WaitForSeconds(.25f);
             owner.ChangeState<CommandSelectionState>();
         }
