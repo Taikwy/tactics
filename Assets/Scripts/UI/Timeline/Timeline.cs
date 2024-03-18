@@ -11,6 +11,7 @@ public class Timeline : MonoBehaviour
     //refs to the actual prefabs of the indicators
     public GameObject container;
     public GameObject indicatorPrefab;
+    public TurnIndicator selectedIndicator = null;
     BattleController owner;
     public List<TurnIndicator> turnIndicators = new List<TurnIndicator>();
 
@@ -144,16 +145,25 @@ public class Timeline : MonoBehaviour
     }
 
     public void IndicateActor(Unit unit){
+        if(selectedIndicator!=null && selectedIndicator.unitScript == unit)
+            return;
         TurnIndicator turnIndicator = null;
         foreach(TurnIndicator ti in turnIndicators){
-            ti.Deselect();
             if(ti.unitScript == unit)
                 turnIndicator = ti;
         }
         if(turnIndicator != null){
-            turnIndicator.Select();
+            StopIndicate();
+            selectedIndicator = turnIndicator;
+            selectedIndicator.Select();
         }
         else
             Debug.LogError("NO TURN INDICATOR FOUND FOR UNIT " + unit);
+    }
+    public void StopIndicate(){
+        foreach(TurnIndicator ti in turnIndicators){
+            ti.Deselect();
+            selectedIndicator = null;
+        }
     }
 }

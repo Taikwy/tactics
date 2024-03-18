@@ -17,6 +17,7 @@ public class TurnIndicator : MonoBehaviour
     [HideInInspector] public Stats statsScript;
 
     public void Select(){
+        selectedAnimator.GetComponent<Image>().color = unitScript.unitColor;
         selectedAnimator.gameObject.SetActive(true);
     }
     public void Deselect(){
