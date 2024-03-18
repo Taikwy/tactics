@@ -105,6 +105,7 @@ public class AbilityTargetState : BattleState
         }else{
             SelectTile(board.selectedPoint, Board.SelectColor.EMPTY);
         }
+        IndicateTimeline(board.selectedTile);
         // SelectTile(board.selectedPoint, highlightedTiles.Contains(board.selectedTile));
         TargetTiles();
     }

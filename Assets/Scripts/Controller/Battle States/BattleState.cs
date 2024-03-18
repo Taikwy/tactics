@@ -120,6 +120,21 @@ public abstract class BattleState : State
         actorIndicator.ChangeColor(unit);
 
     }
+    protected void IndicateTimeline(Tile tile){
+        if(tile.content != null){
+            if(tile.content.GetComponent<Unit>() != null)
+                owner.timeline.IndicateActor(tile.content.GetComponent<Unit>());
+            else{
+                // owner.timeline.StopIndicate();
+                owner.timeline.IndicateActor(turn.actingUnit);
+
+            }
+        } 
+        else{
+            // owner.timeline.StopIndicate();
+            owner.timeline.IndicateActor(turn.actingUnit);
+        }
+    }
 
 
     //moves tile selection indicator to point

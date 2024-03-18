@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 
 public class MoveTargetState : BattleState
@@ -68,6 +69,7 @@ public class MoveTargetState : BattleState
         if(tiles.Contains(board.selectedTile)){
             if(board.selectedTile.content != null){
                 SelectTile(board.selectedPoint, Board.SelectColor.ENEMY);
+                
             }
             else{
                 SelectTile(board.selectedPoint, Board.SelectColor.VALID);
@@ -75,6 +77,8 @@ public class MoveTargetState : BattleState
         }else{
             SelectTile(board.selectedPoint, Board.SelectColor.EMPTY);
         }
+
+        IndicateTimeline(board.selectedTile);
 
         TargetTiles();        
     }
