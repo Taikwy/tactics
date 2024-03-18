@@ -18,6 +18,7 @@ MonoBehaviour:
   - Samurai
   - Barbarian
   - Shaman
+  - Paladin
   allySpawnLocations:
   - x: 3
     y: 4
