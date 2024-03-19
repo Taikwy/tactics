@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
         // print("playing clip " + soundName);
         Sound sound = Array.Find(sounds, sound => sound.name == soundName);
         if(sound == null){
-            print("no sound found for name " + soundName);
+            // print("no sound found for name " + soundName);
             return;
         }
         sound.source.Play();
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(string musicName){
         Sound sound = Array.Find(music, sound => sound.name == musicName);
         if(sound == null){
-            print("no music found for name " + musicName);
+            // print("no music found for name " + musicName);
             return;
         }
         if(currentMusicSource != null)

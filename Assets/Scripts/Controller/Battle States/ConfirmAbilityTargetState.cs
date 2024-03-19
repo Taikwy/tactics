@@ -6,12 +6,16 @@ using UnityEngine;
 //shows ability forecast state p much
 public class ConfirmAbilityTargetState : BattleState
 {
+    bool updating = false;
     List<Tile> targetedTiles, highlightedTiles;
     AbilityArea areaScript;
-    int currentTarget = 0;
+    // int currentTarget = 0;
     AbilityEffectTarget[] targeters;
+    List<GameObject> indicatedTiles;
+    Tile currentTarget;
     public override void Enter (){
         base.Enter ();
+        tileSelectionIndicator.ChangeTarget();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
         targetedTiles = areaScript.targets;
         highlightedTiles = new List<Tile>(targetedTiles);
@@ -26,20 +30,26 @@ public class ConfirmAbilityTargetState : BattleState
         if (turn.targets.Count > 0){
 			// if (driver.Current == Drivers.Human)
             forecastPanel.Show();
-			SetTarget(0);
+            SetTarget(turn.targets[0]);
+            indicatedTiles = IndicateTiles(turn.targets, Board.SelectColor.VALID);
 		}
-        else{
-            HideSelect();
-            DisplayEffects(turn.actingUnit.tile);
-            // SelectTile(turn.actingUnit.tile.position, false);
-        }
+        //this should no longer be used to this logic being in abilitytargetstate
+        // else{
+        //     HideSelect();
+        //     DisplayEffects(turn.actingUnit.tile);
+        //     // SelectTile(turn.actingUnit.tile.position, false);
+        // }
 		if (driver.Current == Drivers.Computer){
             // Debug.LogError("asdasd");
+            updating = false;
             board.humanDriver = false;
 			StartCoroutine(ComputerDisplayAbilitySelection());
         }
-        else
+        else{
+            cameraRig.selectMovement = false;
+            updating = true;
             board.humanDriver = true;
+        }
         
         panelController.ShowMouseControls("PERFORM", "CANCEL");
     }
@@ -54,8 +64,12 @@ public class ConfirmAbilityTargetState : BattleState
 
     public override void Exit (){
         // Debug.Log("exiting confirm ability state");
+        tileSelectionIndicator.ChangeSelect();
+        cameraRig.selectMovement = true;
+        updating = false;
         base.Exit ();
         areaScript.targets.Clear();
+        StopIndicating(indicatedTiles);
         // Debug.Log(highlightedTiles + "        | " + highlightedTiles.Count);
         board.UnhighlightTiles(highlightedTiles);
         board.UntargetTiles(targetedTiles);
@@ -66,14 +80,22 @@ public class ConfirmAbilityTargetState : BattleState
         forecastPanel.Hide();
         panelController.HideMouseControls();
     }
-    //scrolls thru all the targets affected by the current attack
-    protected override void OnMove (object sender, InfoEventArgs<Point> e){
-        if (e.info.y > 0 || e.info.x > 0){
-            SetTarget(currentTarget + 1);
+    protected void Update(){
+        if(!updating ) 
+            return;
+        
+        // SelectTile(board.selectedPoint);
+        if(turn.targets.Contains(board.selectedTile)){
+            // forecastPanel.Show();
+            SelectTile(board.selectedPoint, Board.SelectColor.ENEMY);
+            // RefreshSecondaryPanel(board.selectedPoint);
+            SetTarget(board.selectedTile);
         }
-        else{
-            SetTarget(currentTarget - 1);
-        }
+        // else
+        //     forecastPanel.Hide();
+        // UpdateForecastPanel(board.selectedTile);
+        IndicateTimeline(board.selectedTile);
+        // TargetTiles();
     }
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){
@@ -88,6 +110,7 @@ public class ConfirmAbilityTargetState : BattleState
             }
         }
         else{
+            turn.targets.Clear();
             owner.ChangeState<AbilityTargetState>();
             SelectTile(turn.actingUnit.tile.position);
         }
@@ -99,20 +122,54 @@ public class ConfirmAbilityTargetState : BattleState
 			if (turn.selectedAbility.IsTarget(targetedTiles[i]))
 				turn.targets.Add(targetedTiles[i]);
     }
-    
-    void SetTarget (int target)
-    {
+    void SetTarget (Tile target){
         currentTarget = target;
-        if (currentTarget < 0)
-            currentTarget = turn.targets.Count - 1;
-        if (currentTarget >= turn.targets.Count)
-            currentTarget = 0;
 
         if (turn.targets.Count > 0){
-            RefreshSecondaryPanel(turn.targets[currentTarget].position);
-            UpdateForecastPanel ();
-            SelectTile(turn.targets[currentTarget].position);
+            RefreshSecondaryPanel(currentTarget.position);
+            // UpdateForecastPanel ();
+            UpdateForecastPanel(currentTarget);
+            SelectTile(currentTarget.position);
         }
+    }
+    // void SetTarget (int target){
+    //     currentTarget = target;
+    //     if (currentTarget < 0)
+    //         currentTarget = turn.targets.Count - 1;
+    //     if (currentTarget >= turn.targets.Count)
+    //         currentTarget = 0;
+
+    //     if (turn.targets.Count > 0){
+    //         RefreshSecondaryPanel(turn.targets[currentTarget].position);
+    //         // UpdateForecastPanel ();
+    //         UpdateForecastPanel(turn.targets[currentTarget]);
+    //         SelectTile(turn.targets[currentTarget].position);
+    //     }
+    // }
+    void UpdateForecastPanel(Tile target){
+        // Debug.Log("updating forecast panel");
+		float hitrate = 0;
+		int amount = 0;
+        float subHitrate;
+        int subAmount;
+        if(target.content == null)
+            return;
+
+		Transform obj = turn.selectedAbility.transform;
+		for (int i = 0; i < obj.childCount; ++i){
+			AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
+            //loops thru the possible targets the ability can have to check and calculate hitrate and effect
+			if (targeter.IsTarget(target)){
+				HitRate hitRate = targeter.GetComponent<HitRate>();
+				hitrate = hitRate.CalculateHitRate(target);
+
+				BaseAbilityEffect effect = targeter.GetComponent<BaseAbilityEffect>();
+				amount = effect.Predict(target);
+				break;
+			}
+		}
+
+		forecastPanel.SetStats(turn.actingUnit, target.content, turn.selectedAbility.gameObject, hitrate, amount);
     }
 
     void UpdateForecastPanel(){
@@ -121,7 +178,7 @@ public class ConfirmAbilityTargetState : BattleState
 		int amount = 0;
         float subHitrate;
         int subAmount;
-		Tile target = turn.targets[currentTarget];
+		Tile target = currentTarget;
 
 		Transform obj = turn.selectedAbility.transform;
 		for (int i = 0; i < obj.childCount; ++i)
@@ -190,7 +247,7 @@ public class ConfirmAbilityTargetState : BattleState
     IEnumerator ComputerDisplayAbilitySelection (){
 		// owner.battleMessageController.Display(turn.ability.name);
         Debug.Log(" i need to add ui here to display this " + turn.selectedAbility.name);
-        SetTarget(0);
+        SetTarget(turn.targets[0]);
         // UpdateForecastPanel();
 		yield return new WaitForSeconds (owner.actionDelays.displayActionDelay);
         // print("delaying display action " + owner.actionDelays.displayActionDelay);

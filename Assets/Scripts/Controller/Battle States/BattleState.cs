@@ -237,6 +237,11 @@ public abstract class BattleState : State
         return indicator;
     }
 
+    protected virtual void StopIndicating (List<GameObject> indicators) {
+        foreach(GameObject i in indicators){
+            Destroy(i);
+        }
+    }
 
     protected virtual Unit GetUnit (Point p) {
         Tile t = board.GetTile(p);

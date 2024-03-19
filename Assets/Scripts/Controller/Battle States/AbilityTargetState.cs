@@ -77,7 +77,7 @@ public class AbilityTargetState : BattleState
     }
 
     protected void Update(){
-        if(!updating )     // || !highlightedTiles.Contains(board.selectedTile)
+        if(!updating )
             return;
         // Debug.Log("abilitytarget updating");
         
