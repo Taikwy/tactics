@@ -103,7 +103,8 @@ public class ExploreState : BattleState
                 }
             }
             else{
-                owner.timeline.IndicateActor(turn.actingUnit);
+                // owner.timeline.IndicateActor(turn.actingUnit);
+                owner.timeline.StopIndicate();
                 UnhighlightTiles();
             }
         }

@@ -38,7 +38,6 @@ public class ActorIndicator : MonoBehaviour
 
         transform.localPosition = Vector2.MoveTowards(transform.localPosition, movePos, moveSpeed*Time.deltaTime);
     }
-
     public void ChangeColor(Unit unit){
         switch(unit.allianceScript.type){
 			default:
@@ -54,6 +53,7 @@ public class ActorIndicator : MonoBehaviour
 				sr.color = bc.neutralColor;
 				break;
 		}
+        sr.color = bc.board.selectValid;
     }
     
     
