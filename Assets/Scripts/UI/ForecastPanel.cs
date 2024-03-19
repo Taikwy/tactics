@@ -33,20 +33,20 @@ public class ForecastPanel : MonoBehaviour
       // abilityHitrate.text = string.Format("HITRATE : {0} %", (int)(chance));
       Type type = ability.GetComponent<Ability>().primaryEffect.GetComponent<BaseAbilityEffect>().GetType();
       if(type == typeof(DamageAbilityEffect)){
-        abilityEffect.text = string.Format("HEALTH : -{0} pts", Mathf.Abs(amount));
-      abilityHitrate.text = string.Format("HITRATE : {0} %", (int)(chance));
+        abilityEffect.text = string.Format("HEALTH: -{0} pts", Mathf.Abs(amount));
+      abilityHitrate.text = string.Format("HITRATE: {0} %", (int)(chance));
       }
       else if(type == typeof(HealAbilityEffect)){
-        abilityEffect.text = string.Format("HEALTH : +{0} pts",  Mathf.Abs(amount));
-      abilityHitrate.text = string.Format("HITRATE : {0} %", (int)(chance));
+        abilityEffect.text = string.Format("HEALTH: +{0} pts",  Mathf.Abs(amount));
+      abilityHitrate.text = string.Format("HITRATE: {0} %", (int)(chance));
       }
       else if(type == typeof(InflictAbilityEffect)){
-        abilityEffect.text = string.Format("INFLICT : {0} ", effect);
-      abilityHitrate.text = string.Format("HITRATE : {0} %", (int)(chance));
+        abilityEffect.text = string.Format("INFLICT: {0} ", effect);
+      abilityHitrate.text = string.Format("HITRATE: {0} %", (int)(chance));
       }
       else if(type == typeof(PurifyAbilityEffect)){
         abilityEffect.text = string.Format("PURIFYING");
-      abilityHitrate.text = string.Format("HITRATE : {0} %", (int)(chance));
+      abilityHitrate.text = string.Format("HITRATE: {0} %", (int)(chance));
       }
       
 

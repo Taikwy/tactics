@@ -19,6 +19,7 @@ public class ExploreState : BattleState
         updating = false;
         cameraRig.selectMovement = true;
 
+        UnhighlightTiles();
         // UnhighlightTiles();
 
         base.Exit ();
