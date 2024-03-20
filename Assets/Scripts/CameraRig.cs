@@ -70,6 +70,7 @@ public class CameraRig : MonoBehaviour
             targetPos = target.position;
             // if(Vector2.Distance(cameraTransform.position, target.position) > cameraLeniency)
             // targetPos = Vector2.SmoothDamp(cameraTransform.position, target.position, ref velocity, smoothTime);
+            // print("selet movement");
         }
     }
     void UnitCameraMovement(){

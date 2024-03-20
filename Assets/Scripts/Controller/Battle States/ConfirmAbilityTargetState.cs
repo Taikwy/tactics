@@ -46,7 +46,7 @@ public class ConfirmAbilityTargetState : BattleState
 			StartCoroutine(ComputerDisplayAbilitySelection());
         }
         else{
-            cameraRig.selectMovement = false;
+            // cameraRig.selectMovement = false;
             updating = true;
             board.humanDriver = true;
         }
