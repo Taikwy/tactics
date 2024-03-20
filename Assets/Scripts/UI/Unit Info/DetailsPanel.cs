@@ -12,7 +12,7 @@ public class DetailsPanel : MonoBehaviour
 	public const string GetCritRateEvent = "StatusPanel.GetCritRateEvent";
 	public const string GetCritDMGEvent = "StatusPanel.GetCritDMGEvent";
 	public const string GetSpeedEvent = "StatusPanel.GetSpeedEvent";
-    public GameObject detailsBG;
+    public GameObject panel;
     public GameObject equipmentLabelPrefab, equipmentInfoPanelPrefab;
     [Space(2)][Header("Unit stuff")]
     public Image background;
@@ -81,10 +81,10 @@ public class DetailsPanel : MonoBehaviour
     }
 
     public void ShowPanel(){
-        detailsBG.SetActive(true);
+        panel.SetActive(true);
     }
     public void HidePanel(){
-        detailsBG.SetActive(false);
+        panel.SetActive(false);
     }
 
     void CreateEquipmentInfoPanel(GameObject label, GameObject equipment){

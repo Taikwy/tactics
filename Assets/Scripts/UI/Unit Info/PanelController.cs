@@ -24,8 +24,8 @@ public class PanelController : MonoBehaviour
         HidePrimary();
         HideStatus();
         HideSecondary(); 
-        HideAbilityInfo();
-        HideDetails();
+        // HideAbilityInfo();
+        // HideDetails();
         HideAbilityDisplay();
         HideMouseControls();
     }
@@ -59,23 +59,23 @@ public class PanelController : MonoBehaviour
         secondaryPanel.HidePanel();
     }
 
-    public void ShowAbilityInfo (GameObject ability){
-        showingAbilityInfo = true;
-        abilityInfoPanel.Display(ability);
-        abilityInfoPanel.ShowPanel();
-    }    public void HideAbilityInfo (){
-        showingAbilityInfo = false;
-        abilityInfoPanel.HidePanel();
-    }
+    // public void ShowAbilityInfo (GameObject ability){
+    //     showingAbilityInfo = true;
+    //     abilityInfoPanel.Display(ability);
+    //     abilityInfoPanel.ShowPanel();
+    // }    public void HideAbilityInfo (){
+    //     showingAbilityInfo = false;
+    //     abilityInfoPanel.HidePanel();
+    // }
     
-    public void ShowDetails (GameObject ability){
-        showingDetails = true;
-        detailsPanel.Display(ability);
-        detailsPanel.ShowPanel();
-    }    public void HideDetails (){
-        showingDetails = false;
-        detailsPanel.HidePanel();
-    }
+    // public void ShowDetails (GameObject ability){
+    //     showingDetails = true;
+    //     detailsPanel.Display(ability);
+    //     detailsPanel.ShowPanel();
+    // }    public void HideDetails (){
+    //     showingDetails = false;
+    //     detailsPanel.HidePanel();
+    // }
 
     public void ShowAbilityDisplay (GameObject unit, bool focus = false){
         showingAbilityDisplay = true;

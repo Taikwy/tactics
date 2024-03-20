@@ -5,7 +5,7 @@ using TMPro;
 
 public class AbilityDisplayPanel : MonoBehaviour
 {
-    public GameObject panelBG;
+    public GameObject panel;
     public TMP_Text nameLabel;
     
     //takes in ability gameobject
@@ -18,9 +18,10 @@ public class AbilityDisplayPanel : MonoBehaviour
 
     public void ShowPanel(){
         // Debug.Log("showing ability display panel");
-        panelBG.SetActive(true);
+        panel.SetActive(true);
     }
     public void HidePanel(){
-        panelBG.SetActive(false);
+        print("hiding ability panel");
+        panel.SetActive(false);
     }
 }
