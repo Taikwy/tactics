@@ -5,19 +5,11 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // public Sprite defaultSprite;
-    // public Sprite highlightedSprite;
-
-    // public SpriteRenderer tileRenderer;
+    public GameObject highlight, target, select;
     public SpriteRenderer highlightRenderer, targetRenderer, selectRenderer;
-    // public SpriteRenderer overlayRenderer;
-    // public Sprite tileSprite;
     public Sprite highlightSprite, targetSprite, selectSprite;
      [Space(10)]
     public Animation targetAnim;
-    // public Color moveHighlight = new Color(1,1,1);
-    // public Color attackHighlight = new Color(1,1,1);
-    // public Color allyHighlight = new Color(1,1,1);
 
     public bool hovered = false;
     

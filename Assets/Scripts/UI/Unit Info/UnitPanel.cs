@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UnitPanel : MonoBehaviour 
 {
@@ -23,7 +24,10 @@ public class UnitPanel : MonoBehaviour
         // background.sprite = Random.value > 0.5f? enemyBackground : unitBackground;
         
         // portrait.sprite = null; Need a component which provides this data
+        nameLabel.text = unit.GetComponent<Unit>().name.ToUpper();
         nameLabel.text = unit.GetComponent<Unit>().name;
+
+
         portrait.sprite = unit.GetComponent<Unit>().portrait;
         // portrait.color = unit.GetComponent<Unit>().portraitColor;
         Stats stats = unit.GetComponent<Stats>();

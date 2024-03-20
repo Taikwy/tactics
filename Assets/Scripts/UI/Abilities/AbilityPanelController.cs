@@ -114,7 +114,19 @@ public class AbilityPanelController : MonoBehaviour
         
         menuEntries[index].button.interactable = !value;
     }
-
+    public void CreateAbilityInfoPanel(AbilityMenuEntry entry){
+        GameObject label = entry.gameObject;
+        GameObject ability = entry.entry;
+        // Debug.Log("creating ability info panel");
+        Destroy(abilityInfoPanel);
+        Vector2 pos = label.transform.position;
+        print("height " + entry.GetComponent<RectTransform>().rect.height + " | width " +  entry.GetComponent<RectTransform>().rect.width);
+        // pos += new Vector2(200, 16);
+        pos += new Vector2(entry.GetComponent<RectTransform>().rect.width, entry.GetComponent<RectTransform>().rect.height);
+        abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, pos, Quaternion.identity, label.transform);
+        abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);
+        abilityInfoPanel.GetComponent<AbilityInfoPanel>().ShowPanel();
+    }
     public void CreateAbilityInfoPanel(GameObject label, GameObject ability){
         // Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
