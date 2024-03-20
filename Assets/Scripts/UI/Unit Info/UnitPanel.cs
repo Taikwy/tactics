@@ -26,6 +26,7 @@ public class UnitPanel : MonoBehaviour
         // portrait.sprite = null; Need a component which provides this data
         nameLabel.text = unit.GetComponent<Unit>().name.ToUpper();
         nameLabel.text = unit.GetComponent<Unit>().name;
+        nameLabel.color = unit.GetComponent<Unit>().unitColor;
 
 
         portrait.sprite = unit.GetComponent<Unit>().portrait;

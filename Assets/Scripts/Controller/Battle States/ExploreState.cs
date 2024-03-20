@@ -92,6 +92,7 @@ public class ExploreState : BattleState
             RefreshPrimaryPanel(board.selectedPoint);
             SelectTile(board.selectedPoint);
 
+            UnhighlightTiles();
             if(board.GetTile(board.selectedPoint).content != null){
                 Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
                 if(selectedUnit != null){
@@ -100,13 +101,12 @@ public class ExploreState : BattleState
                 }
                 else{
                     owner.timeline.IndicateActor(turn.actingUnit);
-                    UnhighlightTiles();
                 }
             }
             else{
                 // owner.timeline.IndicateActor(turn.actingUnit);
                 owner.timeline.StopIndicate();
-                UnhighlightTiles();
+                // UnhighlightTiles();
             }
         }
     }
