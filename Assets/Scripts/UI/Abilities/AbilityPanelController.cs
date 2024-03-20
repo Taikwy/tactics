@@ -89,7 +89,8 @@ public class AbilityPanelController : MonoBehaviour
             entry.entry = abilities[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
             // Debug.Log("index " + i);
-            entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, entry.entry); };
+            // entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, entry.entry); };
+            entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry); };
             // Debug.Log("null? " +  abilities[i] + " gameobject " + entry.gameObject + " highlight func " + entry.highlightFunc);
             // entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, abilities[i]); };
             entry.unhighlightFunc = delegate { DestroyAbilityInfoPanel(); };
@@ -120,10 +121,13 @@ public class AbilityPanelController : MonoBehaviour
         // Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
         Vector2 pos = label.transform.position;
+        // print("hello?");
         print("height " + entry.GetComponent<RectTransform>().rect.height + " | width " +  entry.GetComponent<RectTransform>().rect.width);
         // pos += new Vector2(200, 16);
-        pos += new Vector2(entry.GetComponent<RectTransform>().rect.width, entry.GetComponent<RectTransform>().rect.height);
+        pos += new Vector2(entry.GetComponent<RectTransform>().rect.width, 0);
+        print(entry.transform.position + " | placing at " + pos);
         abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, pos, Quaternion.identity, label.transform);
+        abilityInfoPanel.transform.localPosition = new Vector2(entry.GetComponent<RectTransform>().rect.width, entry.GetComponent<RectTransform>().rect.height);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().ShowPanel();
     }
