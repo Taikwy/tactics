@@ -16,15 +16,14 @@ public class UnitPanel : MonoBehaviour
     public TMP_Text nameLabel;
     public TMP_Text hpLabel, bpLabel;
     public Slider hpSlider, bpSlider;
-    public TMP_Text skpLabel;
+    public SkillIcons skillIcons;
     
     [Space(2)][Header("Unused for now, this shit goes to status panel later")]
     public TMP_Text lvLabel, xpLabel, mvLabel;
-    public TMP_Text atLabel, dfLabel, spLabel, cpLabel, cdLabel;
+    public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
     
     //takes in unit gaemeobject
-    public void Display (GameObject unit)
-    {
+    public void Display (GameObject unit){
         // Temp until I add a component to determine unit alliances
         // background.sprite = Random.value > 0.5f? enemyBackground : unitBackground;
         
@@ -54,9 +53,16 @@ public class UnitPanel : MonoBehaviour
             bpSlider.maxValue = stats[StatTypes.MBP];
             bpSlider.value = stats[StatTypes.BP];
 
-            hpLabel.text = string.Format( "{0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
-            bpLabel.text = string.Format( "{0} / {1}", stats[StatTypes.BP], stats[StatTypes.MBP] );
+            hpLabel.text = string.Format( "{0}/{1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
+            bpLabel.text = string.Format( "{0}/{1}", stats[StatTypes.BP], stats[StatTypes.MBP] );
+            if(stats[StatTypes.MBP] <= 0)
+                bpLabel.text = "\\\\\\";
+
+            skillIcons.FillIcons(stats[StatTypes.SK]);
+            skillIcons.FillBgs(stats[StatTypes.MSK]);
             // skpLabel.text = string.Format( "SKILL PTS {0} / {1}", stats[StatTypes.SK], stats[StatTypes.MSK] );
+
+
 
             // atLabel.text = string.Format( "ATTACK {0}", stats[StatTypes.AT]);
             // dfLabel.text = string.Format( "DEFENSE {0}", stats[StatTypes.DF]);

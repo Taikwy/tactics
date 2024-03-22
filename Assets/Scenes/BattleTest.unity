@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2127,6 +2127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 116572332}
   - component: {fileID: 116572333}
+  - component: {fileID: 116572334}
   m_Layer: 5
   m_Name: Skill Icons
   m_TagString: Untagged
@@ -2185,6 +2186,30 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &116572334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116572331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c6d0f88fd11bc44be91b1674ae39be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  iconBGs:
+  - {fileID: 1631170734}
+  - {fileID: 1804336766}
+  - {fileID: 50774628}
+  - {fileID: 2044821524}
+  - {fileID: 414768859}
 --- !u!1 &129042352
 GameObject:
   m_ObjectHideFlags: 0
@@ -5260,7 +5285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8069,10 +8094,11 @@ MonoBehaviour:
   bpLabel: {fileID: 965945537}
   hpSlider: {fileID: 0}
   bpSlider: {fileID: 0}
-  skpLabel: {fileID: 2020179044}
+  skillIcons: {fileID: 0}
   lvLabel: {fileID: 27747369}
   xpLabel: {fileID: 849252895}
   mvLabel: {fileID: 1524820329}
+  skpLabel: {fileID: 2020179044}
   atLabel: {fileID: 454940429}
   dfLabel: {fileID: 372961314}
   spLabel: {fileID: 873650048}
@@ -8785,7 +8811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.058072258, g: 0.38569027, b: 0.8207547, a: 1}
+  m_Color: {r: 0.047481313, g: 0.41867653, b: 0.9150943, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14794,7 +14820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14880,10 +14906,11 @@ MonoBehaviour:
   bpLabel: {fileID: 1059067675}
   hpSlider: {fileID: 0}
   bpSlider: {fileID: 0}
-  skpLabel: {fileID: 62754015}
+  skillIcons: {fileID: 0}
   lvLabel: {fileID: 1635238867}
   xpLabel: {fileID: 247688626}
   mvLabel: {fileID: 283458140}
+  skpLabel: {fileID: 62754015}
   atLabel: {fileID: 108784598}
   dfLabel: {fileID: 1698805453}
   spLabel: {fileID: 330687131}
@@ -15809,7 +15836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16469,10 +16496,11 @@ MonoBehaviour:
   bpLabel: {fileID: 1822459687}
   hpSlider: {fileID: 670758312}
   bpSlider: {fileID: 342942466}
-  skpLabel: {fileID: 0}
+  skillIcons: {fileID: 116572334}
   lvLabel: {fileID: 48485946}
   xpLabel: {fileID: 701061817}
   mvLabel: {fileID: 708123976}
+  skpLabel: {fileID: 0}
   atLabel: {fileID: 722841598}
   dfLabel: {fileID: 1185511005}
   spLabel: {fileID: 677435898}
@@ -17799,7 +17827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
