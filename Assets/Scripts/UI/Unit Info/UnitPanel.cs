@@ -14,7 +14,11 @@ public class UnitPanel : MonoBehaviour
     public Sprite unitBackground;
     [Space(2)][Header("Unit Stats")]
     public TMP_Text nameLabel;
-    public TMP_Text lvLabel, xpLabel, mvLabel, hpLabel, bpLabel;
+    public TMP_Text hpLabel, bpLabel;
+    public Slider hpSlider, bpSlider;
+    
+    [Space(2)][Header("Unused for now, this shit goes to status panel later")]
+    public TMP_Text lvLabel, xpLabel, mvLabel;
     public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
     
     //takes in unit gaemeobject
@@ -44,15 +48,20 @@ public class UnitPanel : MonoBehaviour
             if(unit.GetComponent<Unit>().moveScript.GetType() == typeof(TeleportMovement)){
                  mvLabel.text = "TELEPORTING";
             }
-            hpLabel.text = string.Format( "HEALTH {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
-            bpLabel.text = string.Format( "BURST {0} / {1}", stats[StatTypes.BP], stats[StatTypes.MBP] );
-            skpLabel.text = string.Format( "SKILL PTS {0} / {1}", stats[StatTypes.SK], stats[StatTypes.MSK] );
+            hpSlider.maxValue = stats[StatTypes.MHP];
+            hpSlider.value = stats[StatTypes.HP];
+            bpSlider.maxValue = stats[StatTypes.MBP];
+            bpSlider.value = stats[StatTypes.BP];
 
-            atLabel.text = string.Format( "ATTACK {0}", stats[StatTypes.AT]);
-            dfLabel.text = string.Format( "DEFENSE {0}", stats[StatTypes.DF]);
-            spLabel.text = string.Format( "SPEED {0}", stats[StatTypes.SP]);
-            cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CR]);
-            cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
+            hpLabel.text = string.Format( "{0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
+            bpLabel.text = string.Format( "{0} / {1}", stats[StatTypes.BP], stats[StatTypes.MBP] );
+            // skpLabel.text = string.Format( "SKILL PTS {0} / {1}", stats[StatTypes.SK], stats[StatTypes.MSK] );
+
+            // atLabel.text = string.Format( "ATTACK {0}", stats[StatTypes.AT]);
+            // dfLabel.text = string.Format( "DEFENSE {0}", stats[StatTypes.DF]);
+            // spLabel.text = string.Format( "SPEED {0}", stats[StatTypes.SP]);
+            // cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CR]);
+            // cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
         }
     }
 
