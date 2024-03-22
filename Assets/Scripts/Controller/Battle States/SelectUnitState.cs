@@ -18,7 +18,7 @@ public class SelectUnitState : BattleState
     public override void Exit (){
         base.Exit ();
         panelController.HidePrimary();
-        panelController.HideStatus();
+        // panelController.HideStatus();
     }
 
     //logic for cycling thru and selecting the next acting unit

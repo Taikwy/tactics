@@ -11,14 +11,16 @@ public class AbilitySectionState : BaseAbilityMenuState
     public override void Enter (){
         // Debug.Log("entering category state");
         base.Enter ();
-        panelController.ShowStatus(turn.actingUnit.gameObject);
+        panelController.ShowPrimary(turn.actingUnit.gameObject);
+        // panelController.ShowStatus(turn.actingUnit.gameObject);
         panelController.ShowMouseControls();
     }
     public override void Exit (){
         // Debug.Log("exiting category state");
         base.Exit ();
         abilityPanelController.DestroyAbilityInfoPanel();
-        panelController.HideStatus();
+        // panelController.HideStatus();
+        panelController.HidePrimary();
         panelController.HideMouseControls();
     }
 

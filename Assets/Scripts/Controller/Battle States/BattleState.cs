@@ -266,10 +266,12 @@ public abstract class BattleState : State
         Unit target = GetUnit(p);
         if (target != null){
             // Debug.Log("showing status"); 
-            panelController.ShowStatus(target.gameObject);
+            // panelController.ShowStatus(target.gameObject);
+            panelController.ShowPrimary(target.gameObject);
         }
         else{
-            panelController.HideStatus();
+            // panelController.HideStatus();
+            panelController.HidePrimary();
         }
     }
     protected virtual void RefreshSecondaryPanel (Point p){

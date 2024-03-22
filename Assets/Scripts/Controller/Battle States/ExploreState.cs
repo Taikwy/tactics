@@ -66,7 +66,8 @@ public class ExploreState : BattleState
         }
         //if currently showing status info, right click goes back to default explore state
         else{
-            panelController.HideStatus();
+            // panelController.HideStatus();
+            panelController.HidePrimary();
             UnhighlightTiles(); 
         }
         

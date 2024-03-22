@@ -18,7 +18,8 @@ public class TurnStartState : BattleState
 			StartCoroutine( ComputerTurn() );
         }
         else{
-            panelController.ShowStatus(turn.actingUnit.gameObject);
+            // panelController.ShowStatus(turn.actingUnit.gameObject);
+            panelController.ShowPrimary(turn.actingUnit.gameObject);
             board.humanDriver = true;
         }
 
@@ -31,7 +32,7 @@ public class TurnStartState : BattleState
 
         base.Exit ();
         panelController.HidePrimary();
-        panelController.HideStatus();
+        // panelController.HideStatus();
         panelController.HideMouseControls();
     }
     IEnumerator ComputerTurn ()

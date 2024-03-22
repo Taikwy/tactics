@@ -23,7 +23,8 @@ public class CommandSelectionState : BaseAbilityMenuState
                 StartCoroutine( ComputerTurn() );
             }
             else{
-                panelController.ShowStatus(turn.actingUnit.gameObject);
+                panelController.ShowPrimary(turn.actingUnit.gameObject);
+                // panelController.ShowStatus(turn.actingUnit.gameObject);
                 board.humanDriver = true;
             }
             cameraRig.selectMovement = true;
@@ -40,7 +41,7 @@ public class CommandSelectionState : BaseAbilityMenuState
 
         base.Exit ();
         panelController.HidePrimary();
-        panelController.HideStatus();
+        // panelController.HideStatus();
         panelController.HideMouseControls();
     }
     void SelectUnitAgain(){

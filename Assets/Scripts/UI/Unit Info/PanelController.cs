@@ -22,7 +22,7 @@ public class PanelController : MonoBehaviour
     
     void Start (){
         HidePrimary();
-        HideStatus();
+        // HideStatus();
         HideSecondary(); 
         // HideAbilityInfo();
         // HideDetails();
@@ -31,7 +31,7 @@ public class PanelController : MonoBehaviour
     }
 
     public void ShowPrimary (GameObject unit){
-        HideStatus();
+        // HideStatus();
         showingPrimary = true;
         primaryPanel.Display(unit);
         primaryPanel.ShowPanel();
@@ -40,15 +40,15 @@ public class PanelController : MonoBehaviour
         primaryPanel.HidePanel();
     }
 
-    public void ShowStatus (GameObject unit){
-        HidePrimary();
-        showingPrimaryStatus = true;
-        primaryStatusPanel.Display(unit);
-        primaryStatusPanel.ShowStatus();
-    }    public void HideStatus (){
-        showingPrimaryStatus = false;
-        primaryStatusPanel.HideStatus();
-    }
+    // public void ShowStatus (GameObject unit){
+    //     HidePrimary();
+    //     showingPrimaryStatus = true;
+    //     primaryStatusPanel.Display(unit);
+    //     primaryStatusPanel.ShowStatus();
+    // }    public void HideStatus (){
+    //     showingPrimaryStatus = false;
+    //     primaryStatusPanel.HideStatus();
+    // }
     
     public void ShowSecondary (GameObject unit){
         showingSecondary = true;
