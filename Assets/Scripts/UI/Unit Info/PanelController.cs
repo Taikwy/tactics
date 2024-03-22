@@ -11,8 +11,9 @@ public class PanelController : MonoBehaviour
     public string abilityDisplaySound;
     [Header("Panels")]
     // [SerializeField] BasePanel basePanel;
-    [SerializeField] UnitPanel primaryPanel, secondaryPanel;              //selected and targeted unit
-    [SerializeField] StatusPanel primaryStatusPanel;    
+    [SerializeField] UnitPanel primaryPanel;
+    [SerializeField] UnitPanel secondaryPanel;              //selected and targeted unit
+    // [SerializeField] StatusPanel primaryStatusPanel;    
     [SerializeField] AbilityInfoPanel abilityInfoPanel; 
     [SerializeField] DetailsPanel detailsPanel;            
     [SerializeField] AbilityDisplayPanel abilityDisplayPanel;         
