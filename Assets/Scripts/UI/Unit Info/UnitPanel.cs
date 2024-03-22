@@ -43,17 +43,17 @@ public class UnitPanel : MonoBehaviour
         // portrait.color = unit.GetComponent<Unit>().portraitColor;
         Stats stats = unit.GetComponent<Stats>();
         if (stats) {
-            lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LV]);
-            xpLabel.text = string.Format( "XP. {0} / {1}", stats.GetCurrentXP(), unit.GetComponent<UnitLevel>().xpData.experiencePerLevel[stats[StatTypes.LV]]);
-            if(unit.GetComponent<Unit>().moveScript.GetType() == typeof(WalkMovement)){
-                 mvLabel.text = "WALKING";
-            }
-            if(unit.GetComponent<Unit>().moveScript.GetType() == typeof(FlyMovement)){
-                 mvLabel.text = "FLYING";
-            }
-            if(unit.GetComponent<Unit>().moveScript.GetType() == typeof(TeleportMovement)){
-                 mvLabel.text = "TELEPORTING";
-            }
+            // lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LV]);
+            // xpLabel.text = string.Format( "XP. {0} / {1}", stats.GetCurrentXP(), unit.GetComponent<UnitLevel>().xpData.experiencePerLevel[stats[StatTypes.LV]]);
+            // if(unit.GetComponent<Unit>().moveScript.GetType() == typeof(WalkMovement)){
+            //      mvLabel.text = "WALKING";
+            // }
+            // if(unit.GetComponent<Unit>().moveScript.GetType() == typeof(FlyMovement)){
+            //      mvLabel.text = "FLYING";
+            // }
+            // if(unit.GetComponent<Unit>().moveScript.GetType() == typeof(TeleportMovement)){
+            //      mvLabel.text = "TELEPORTING";
+            // }
             hpSlider.maxValue = stats[StatTypes.MHP];
             hpSlider.value = stats[StatTypes.HP];
             bpSlider.maxValue = stats[StatTypes.MBP];
@@ -73,21 +73,26 @@ public class UnitPanel : MonoBehaviour
             // cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CR]);
             // cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
         }
+        foreach(Transform icon in statusHolder.transform){
+            Destroy(icon.gameObject);
+        }
         Status status = unit.GetComponent<Status>();
         if(status){
-            
+            int numIcons = 0;
+            Debug.LogError("num statusses " + status.statuses.Count + " | " + unit);
             foreach(GameObject effect in status.statuses){
-		        GameObject statusLabel = Instantiate(statusIconPrefab, statusHolder.transform);
-                StatusLabel label = statusLabel.GetComponent<StatusLabel>();
-                TMP_Text effectLabel = statusLabel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
-                TMP_Text durationLabel = statusLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
-
-                effectLabel.text = string.Format( "{0} EFFECT", effect.GetComponent<StatusEffect>().statusName);
+                //cuz i only have space to show 6 ailmens on the unit panel lmao
+                if(numIcons >= 6)
+                    break;
+                GameObject icon = Instantiate(statusIconPrefab, statusHolder.transform);
+                StatusIcon statusIcon = icon.GetComponent<StatusIcon>();
                 if(effect.GetComponent<DurationStatusCondition>())
-                    durationLabel.text = string.Format( "{0} TURNS LEFT", effect.GetComponent<DurationStatusCondition>().duration);
+                    statusIcon.turns.text = effect.GetComponent<DurationStatusCondition>().duration.ToString();
+                statusIcon.SetImage(effect.GetComponent<StatusEffect>().statusName);
                 
-                label.highlightFunc = delegate { CreateStatusInfoPanel(statusLabel, effect); };
-                label.unhighlightFunc = delegate { DestroyStatusInfoPanel(); };
+                statusIcon.highlightFunc = delegate { CreateStatusInfoPanel(icon, effect); };
+                statusIcon.unhighlightFunc = delegate { DestroyStatusInfoPanel(); };
+                numIcons++;
             }
         }
     }

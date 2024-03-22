@@ -187,6 +187,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 4128801054298176148}
+  turns: {fileID: 2107591999054146814}
+  statusIcons:
+  - {fileID: 21300000, guid: 5e7c10dbb6aa6784ebff5aa0f45afa78, type: 3}
+  - {fileID: 21300000, guid: cf3e594f429abcf49b306a7c81d19c17, type: 3}
+  - {fileID: 21300000, guid: 40cd7100766e5d04ab864d645e045267, type: 3}
+  - {fileID: 21300000, guid: 5b5ae024690a4a345ade0d827e280089, type: 3}
+  - {fileID: 21300000, guid: 91261e97318acaf47bf6dabd056deb45, type: 3}
+  - {fileID: 21300000, guid: bb53c65fc93515545a784794c0e57a86, type: 3}
+  - {fileID: 21300000, guid: bbfa2ba44b7e9424eb5b5154608a5166, type: 3}
+  - {fileID: 21300000, guid: e722ea773447b9441bda435ff4185e12, type: 3}
+  - {fileID: 21300000, guid: 5028004ddb342444a99218a658ed3da4, type: 3}
+  - {fileID: 21300000, guid: 87b5986da185b904f865b8b97f0699c0, type: 3}
+  - {fileID: 21300000, guid: e687dbc8b37c0764dbb5c3ebdee47c6d, type: 3}
+  - {fileID: 21300000, guid: 0aa848ee3540fbd4587ef524c3ffc12a, type: 3}
 --- !u!1 &4128801054298176146
 GameObject:
   m_ObjectHideFlags: 0
