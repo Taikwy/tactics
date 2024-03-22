@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class ExploreState : BattleState 
 {
+    bool unitSelected = false;
     List<Tile> tiles, allyTiles, foeTiles;
     bool updating = false;
     public override void Enter (){
         base.Enter ();
         tiles = allyTiles = foeTiles = new List<Tile>();
         RefreshPrimaryPanel(selectPos);
+        unitSelected= false;
 
         cameraRig.selectMovement = false;
         updating = true;
@@ -33,7 +35,7 @@ public class ExploreState : BattleState
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         //exits back to acting unit, or selects the currently targeted unit to show status info
-        if(!panelController.showingPrimaryStatus){
+        if(!unitSelected){
             //left click
             if (e.info == 0){
                 
@@ -49,14 +51,18 @@ public class ExploreState : BattleState
                         Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
                         if(selectedUnit != null){
                             HighlightMovement(selectedUnit);
+                            unitSelected= true;
                             cameraRig.selectMovement = true;
                             audioManager.PlaySFX(owner.confirmSound);
                         }
                     }
-                    else
+                    else{
+                            unitSelected= false;
+
                         cameraRig.selectMovement = false;
-                    
-                    RefreshPrimaryStatusPanel(board.selectedPoint);
+                    }
+                    RefreshPrimaryPanel(board.selectedPoint);
+                    // RefreshPrimaryStatusPanel(board.selectedPoint);
                 }
             }
             if (e.info == 1){
@@ -66,6 +72,8 @@ public class ExploreState : BattleState
         }
         //if currently showing status info, right click goes back to default explore state
         else{
+            unitSelected= false;
+            cameraRig.selectMovement = false;
             // panelController.HideStatus();
             panelController.HidePrimary();
             UnhighlightTiles(); 
@@ -89,7 +97,7 @@ public class ExploreState : BattleState
         if(!updating)
             return;
         //only updates primary panel if in default explore state and not currently showing statuses
-        if(!panelController.showingPrimaryStatus){
+        if(!unitSelected){
             RefreshPrimaryPanel(board.selectedPoint);
             SelectTile(board.selectedPoint);
 

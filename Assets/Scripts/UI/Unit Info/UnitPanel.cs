@@ -79,7 +79,7 @@ public class UnitPanel : MonoBehaviour
         Status status = unit.GetComponent<Status>();
         if(status){
             int numIcons = 0;
-            Debug.LogError("num statusses " + status.statuses.Count + " | " + unit);
+            // Debug.LogError("num statusses " + status.statuses.Count + " | " + unit);
             foreach(GameObject effect in status.statuses){
                 //cuz i only have space to show 6 ailmens on the unit panel lmao
                 if(numIcons >= 6)

@@ -37,7 +37,8 @@ public class SelectUnitState : BattleState
 
         if (driver.Current == Drivers.Computer){
             // board.humanDriver = false;
-            RefreshPrimaryStatusPanel(selectPos);
+            // RefreshPrimaryStatusPanel(selectPos);
+            RefreshPrimaryPanel(selectPos);
         }
         else{
             RefreshPrimaryPanel(selectPos);
