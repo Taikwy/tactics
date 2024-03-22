@@ -36,16 +36,16 @@ public class AbilityInfoPanel : MonoBehaviour
                 costLabel.text = string.Format("No Cost");
             }
             else
-                costLabel.text = string.Format("{0} Skill Point(s) required", ability.GetComponent<AbilitySkillCost>().cost);
+                costLabel.text = string.Format("Cost: {0} Skill Point(s)", ability.GetComponent<AbilitySkillCost>().cost);
         }
         if(ability.GetComponent<AbilityBurstCost>()){
             if(ability.GetComponent<AbilityBurstCost>().cost < 0){
                 Debug.Log("should be max " + GetComponentInParent<Stats>());
-                costLabel.text = string.Format("MAX Burst Meter required", ability.GetComponentInParent<Stats>()[StatTypes.MBP]);
+                costLabel.text = string.Format("Cost: MAX Burst Meter", ability.GetComponentInParent<Stats>()[StatTypes.MBP]);
                 Debug.Log("should be max");
             }
             else
-                costLabel.text = string.Format("{0} Burst Meter required", ability.GetComponent<AbilityBurstCost>().cost);
+                costLabel.text = string.Format("Cost: {0} Burst Meter", ability.GetComponent<AbilityBurstCost>().cost);
         }
 
         descLabel.text = abilityScript.abilityDescription;
