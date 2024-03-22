@@ -4001,7 +4001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &432285245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10520,7 +10520,7 @@ GameObject:
   - component: {fileID: 1513873024}
   - component: {fileID: 1513873025}
   m_Layer: 5
-  m_Name: Primary Details Panel
+  m_Name: Primary Details Panel - shows equipment and abilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
