@@ -8,18 +8,24 @@ using System;
 public class UnitPanel : MonoBehaviour 
 {
     public GameObject panelBG;
-    [Space(2)][Header("Unit stuff")]
+    [Header("Unit stuff")]
     public Image background;
     public Image portrait;
     public Sprite unitBackground;
-    [Space(2)][Header("Unit Stats")]
+    [Header("Unit Stats")]
     public TMP_Text nameLabel;
     public TMP_Text hpLabel, bpLabel;
     public Slider hpSlider, bpSlider;
     public SkillIcons skillIcons;
+    [Header("Ailments")]
+    public GameObject statusHolder;
+    public GameObject statusIconPrefab;
+    public GameObject statusInfoPanelPrefab;
+    GameObject statusInfoPanel;
     
-    [Space(2)][Header("Unused for now, this shit goes to status panel later")]
-    public TMP_Text lvLabel, xpLabel, mvLabel;
+    [Space(15)][Header("Unused for now, this shit goes to status panel later")]
+    public TMP_Text lvLabel;
+    public TMP_Text xpLabel, mvLabel;
     public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
     
     //takes in unit gaemeobject
@@ -61,15 +67,44 @@ public class UnitPanel : MonoBehaviour
             skillIcons.FillIcons(stats[StatTypes.SK]);
             skillIcons.FillBgs(stats[StatTypes.MSK]);
             // skpLabel.text = string.Format( "SKILL PTS {0} / {1}", stats[StatTypes.SK], stats[StatTypes.MSK] );
-
-
-
             // atLabel.text = string.Format( "ATTACK {0}", stats[StatTypes.AT]);
             // dfLabel.text = string.Format( "DEFENSE {0}", stats[StatTypes.DF]);
             // spLabel.text = string.Format( "SPEED {0}", stats[StatTypes.SP]);
             // cpLabel.text = string.Format( "CRIT% {0}", stats[StatTypes.CR]);
             // cdLabel.text = string.Format( "CRITDMG {0}", stats[StatTypes.CD]);
         }
+        Status status = unit.GetComponent<Status>();
+        if(status){
+            
+            foreach(GameObject effect in status.statuses){
+		        GameObject statusLabel = Instantiate(statusIconPrefab, statusHolder.transform);
+                StatusLabel label = statusLabel.GetComponent<StatusLabel>();
+                TMP_Text effectLabel = statusLabel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+                TMP_Text durationLabel = statusLabel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+
+                effectLabel.text = string.Format( "{0} EFFECT", effect.GetComponent<StatusEffect>().statusName);
+                if(effect.GetComponent<DurationStatusCondition>())
+                    durationLabel.text = string.Format( "{0} TURNS LEFT", effect.GetComponent<DurationStatusCondition>().duration);
+                
+                label.highlightFunc = delegate { CreateStatusInfoPanel(statusLabel, effect); };
+                label.unhighlightFunc = delegate { DestroyStatusInfoPanel(); };
+            }
+        }
+    }
+
+    void CreateStatusInfoPanel(GameObject status, GameObject effect){
+        Debug.Log("creating status panel");
+        Destroy(statusInfoPanel);
+        Vector2 pos = status.transform.position;
+        pos += new Vector2(0, 10);
+        statusInfoPanel = Instantiate(statusInfoPanelPrefab, pos, Quaternion.identity, status.transform);
+        statusInfoPanel.GetComponent<StatusInfoPanel>().Setup(effect);
+        statusInfoPanel.GetComponent<StatusInfoPanel>().ShowPanel();
+    }
+    void DestroyStatusInfoPanel(){
+        if(statusInfoPanel && statusInfoPanel.GetComponent<StatusInfoPanel>())
+            statusInfoPanel.GetComponent<StatusInfoPanel>().HidePanel();
+        Destroy(statusInfoPanel);
     }
 
     public void ShowPanel(){
