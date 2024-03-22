@@ -1706,7 +1706,7 @@ GameObject:
   - component: {fileID: 97476783}
   - component: {fileID: 97476782}
   m_Layer: 5
-  m_Name: HP
+  m_Name: ----- HP-------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7619,10 +7619,10 @@ MonoBehaviour:
   bpLabel: {fileID: 965945537}
   hpSlider: {fileID: 0}
   bpSlider: {fileID: 0}
+  skpLabel: {fileID: 2020179044}
   lvLabel: {fileID: 27747369}
   xpLabel: {fileID: 849252895}
   mvLabel: {fileID: 1524820329}
-  skpLabel: {fileID: 2020179044}
   atLabel: {fileID: 454940429}
   dfLabel: {fileID: 372961314}
   spLabel: {fileID: 873650048}
@@ -9469,7 +9469,7 @@ GameObject:
   - component: {fileID: 1022095588}
   - component: {fileID: 1022095587}
   m_Layer: 5
-  m_Name: BP
+  m_Name: ------ BP -------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14063,10 +14063,10 @@ MonoBehaviour:
   bpLabel: {fileID: 1059067675}
   hpSlider: {fileID: 0}
   bpSlider: {fileID: 0}
+  skpLabel: {fileID: 62754015}
   lvLabel: {fileID: 1635238867}
   xpLabel: {fileID: 247688626}
   mvLabel: {fileID: 283458140}
-  skpLabel: {fileID: 62754015}
   atLabel: {fileID: 108784598}
   dfLabel: {fileID: 1698805453}
   spLabel: {fileID: 330687131}
@@ -14840,7 +14840,7 @@ GameObject:
   - component: {fileID: 1754349769}
   - component: {fileID: 1754349768}
   m_Layer: 5
-  m_Name: Skill Label
+  m_Name: ------- Skill ------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15710,10 +15710,10 @@ MonoBehaviour:
   bpLabel: {fileID: 1822459687}
   hpSlider: {fileID: 670758312}
   bpSlider: {fileID: 342942466}
+  skpLabel: {fileID: 1754349768}
   lvLabel: {fileID: 48485946}
   xpLabel: {fileID: 701061817}
   mvLabel: {fileID: 708123976}
-  skpLabel: {fileID: 1754349768}
   atLabel: {fileID: 722841598}
   dfLabel: {fileID: 1185511005}
   spLabel: {fileID: 677435898}

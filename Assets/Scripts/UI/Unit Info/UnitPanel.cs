@@ -16,10 +16,11 @@ public class UnitPanel : MonoBehaviour
     public TMP_Text nameLabel;
     public TMP_Text hpLabel, bpLabel;
     public Slider hpSlider, bpSlider;
+    public TMP_Text skpLabel;
     
     [Space(2)][Header("Unused for now, this shit goes to status panel later")]
     public TMP_Text lvLabel, xpLabel, mvLabel;
-    public TMP_Text skpLabel, atLabel, dfLabel, spLabel, cpLabel, cdLabel;
+    public TMP_Text atLabel, dfLabel, spLabel, cpLabel, cdLabel;
     
     //takes in unit gaemeobject
     public void Display (GameObject unit)
