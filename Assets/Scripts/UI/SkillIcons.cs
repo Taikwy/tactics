@@ -8,7 +8,7 @@ public class SkillIcons : MonoBehaviour
     public Image[] icons = new Image[5];
     public Image[] iconBGs = new Image[5];
     
-    void Start(){
+    void Awake(){
         for(int i = 0; i < iconBGs.Length; i++){
             icons[i] = iconBGs[i].transform.GetChild(0).GetComponent<Image>();
         }
@@ -41,8 +41,15 @@ public class SkillIcons : MonoBehaviour
         }
     }
     void DisableFills(){
-        foreach(Image i in icons){
-            i.enabled = false;
+        print("disabling fills " + icons.Length);
+        print(icons);
+        for(int i = 0; i < icons.Length; i++){
+            print(icons[i]);
+            icons[i].enabled =false;
         }
+        // foreach(Image i in icons){
+        //     print(i);
+        //     i.enabled = false;
+        // }
     }
 }
