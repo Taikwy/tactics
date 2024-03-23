@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6966475923109113812
 Transform:
   m_ObjectHideFlags: 0
@@ -31,10 +31,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3347629336638676858}
+  m_Children: []
   m_Father: {fileID: 7693599255702816309}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1918677148183206524
 MonoBehaviour:
@@ -125,6 +124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3347629336638676858}
   - {fileID: 6966475923109113812}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -142,14 +142,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  overlayColor: 0
+  overlayColor: 3
   primaryEffects:
-  - {fileID: 4861301945464717442}
+  - {fileID: 55587267428238840}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 6
-  abilityDescription: Deal 65% of the unit's ATTACK to a single target and inflicts
-    BURN for 2 turns.
+  abilityDescription: Inflicts BURN on a single target for 1 turn.
 --- !u!114 &2170991809930980264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 2
+  losRequired: 1
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &8819940981040217013
@@ -198,7 +198,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6966475923109113812}
+    m_TransformParent: {fileID: 7693599255702816309}
     m_Modifications:
     - target: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_Name
@@ -206,11 +206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7003075404764746857, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: guaranteed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7003075404764746857, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: abilityHitRate
-      value: 75
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: m_RootOrder
@@ -257,19 +257,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+      propertyPath: duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: conditionName
       value: TurnDurationStatusCondition
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: flatOrPercent
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
       propertyPath: abilityEffectDescription
-      value: Unit takes 1 DAMAGE at the START of every turn.
+      value: Unit takes 2 DAMAGE at the START of their turn.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+--- !u!1 &55587267428238840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5597802304154384354, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
+  m_PrefabInstance: {fileID: 5578306112918417946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3347629336638676858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7142485807862000992, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
@@ -280,7 +289,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8112756447783014686, guid: bd51c6e0e355dd9408d67617e02791cd, type: 3}
   m_PrefabInstance: {fileID: 5578306112918417946}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 55587267428238840}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}

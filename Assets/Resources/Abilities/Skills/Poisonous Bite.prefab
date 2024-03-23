@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6966475923109113812
 Transform:
   m_ObjectHideFlags: 0
@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1581721407724682172}
+  m_Children: []
   m_Father: {fileID: 7693599255702816309}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -87,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d948ef8aacd6784a8e320c753954063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityEffectName: DAMAAAGE
+  abilityEffectName: DAMAGE
   abilityEffectDescription: 
   subEffects:
   - {fileID: 466719334600837058}
@@ -126,6 +125,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6966475923109113812}
+  - {fileID: 1581721407724682172}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  overlayColor: 0
+  overlayColor: 3
   primaryEffects:
-  - {fileID: 4861301945464717442}
+  - {fileID: 4270309970795389246}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 10
@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
+  losRequired: 1
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &2091208629387145971
@@ -198,7 +199,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6966475923109113812}
+    m_TransformParent: {fileID: 7693599255702816309}
     m_Modifications:
     - target: {fileID: 5597802304154384354, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: m_Name
@@ -210,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7142485807862000992, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -262,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: flatOrPercent
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: conditionScript
@@ -270,7 +271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: abilityEffectDescription
-      value: Unit takes 10% of their MAX HP as DAMAGE at the START of every turn.
+      value: Unit takes 15% of their MAX HP as DAMAGE at the START of their turn.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
   m_PrefabInstance: {fileID: 8569316286351103708}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4270309970795389246}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
@@ -288,5 +289,10 @@ MonoBehaviour:
 --- !u!4 &1581721407724682172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7142485807862000992, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
+  m_PrefabInstance: {fileID: 8569316286351103708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4270309970795389246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5597802304154384354, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
   m_PrefabInstance: {fileID: 8569316286351103708}
   m_PrefabAsset: {fileID: 0}

@@ -130,9 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea38b331048a442469b93cc12e79bfab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  am: {fileID: 0}
   icon: {fileID: 5536338258666836091}
   button: {fileID: 0}
-  entry: {fileID: 0}
+  abilityEntry: {fileID: 0}
   hoverEnabledSound: Button Hover
   hoverDisabledSound: 
   clickEnabledSound: Button Click
@@ -158,11 +159,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.8862745, g: 0.7437198, b: 0, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.9196026, b: 0.495283, a: 1}
+    m_NormalColor: {r: 1, g: 0.7466493, b: 0, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.5754717, g: 0.4838036, b: 0, a: 1}
     m_SelectedColor: {r: 0.5764706, g: 0.48235297, b: 0, a: 1}
-    m_DisabledColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+    m_DisabledColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
