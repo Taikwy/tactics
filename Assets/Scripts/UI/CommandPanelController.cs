@@ -105,18 +105,30 @@ public class CommandPanelController : MonoBehaviour
         for (int i = 0; i < names.Count; ++i){
 
             AbilityMenuEntry entry = Dequeue();
-            // entry.Title = names[i];
-            entry.entry = abilities[i];
+            entry.abilityEntry = abilities[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
-            // Debug.Log("index " + i);
-            // entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, entry.entry); };
             entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry); };
-            // Debug.Log("null? " +  abilities[i] + " gameobject " + entry.gameObject + " highlight func " + entry.highlightFunc);
-            // entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, abilities[i]); };
             entry.unhighlightFunc = delegate { DestroyAbilityInfoPanel(); };
 
-            // entry.highlightFunc = highglightFuncs[i];
-            // entry.unhighlightFunc = unhighlightFuncs[i];
+            switch(abilities[i].GetComponent<Ability>().overlayColor){
+                default:
+                    Debug.LogError("invalid overlay color for ability");
+                    entry.icon.color = Color.red;
+                    break;
+                case Board.OverlayColor.BUFF:
+                    entry.icon.sprite = buffIcon;
+                    break;
+                case Board.OverlayColor.ATTACK:
+                    entry.icon.sprite = damageIcon;
+                    break;
+                case Board.OverlayColor.DEBUFF:
+                    entry.icon.sprite = debuffIcon;
+                    break;
+                case Board.OverlayColor.HEAL:
+                    entry.icon.sprite = healIcon;
+                    break;
+            }
+
             entry.button.interactable = performable[i];
             menuEntries.Add(entry);
 
@@ -137,15 +149,13 @@ public class CommandPanelController : MonoBehaviour
     }
     public void CreateAbilityInfoPanel(AbilityMenuEntry entry){
         GameObject label = entry.gameObject;
-        GameObject ability = entry.entry;
+        GameObject ability = entry.abilityEntry;
         // Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
         Vector2 pos = label.transform.position;
-        // print("hello?");
-        print("height " + entry.GetComponent<RectTransform>().rect.height + " | width " +  entry.GetComponent<RectTransform>().rect.width);
-        // pos += new Vector2(200, 16);
+        // print("height " + entry.GetComponent<RectTransform>().rect.height + " | width " +  entry.GetComponent<RectTransform>().rect.width);
         pos += new Vector2(entry.GetComponent<RectTransform>().rect.width, 0);
-        print(entry.transform.position + " | placing at " + pos);
+        // print(entry.transform.position + " | placing at " + pos);
         abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, pos, Quaternion.identity, label.transform);
         abilityInfoPanel.transform.localPosition = new Vector2(entry.GetComponent<RectTransform>().rect.width, entry.GetComponent<RectTransform>().rect.height);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);

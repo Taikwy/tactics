@@ -13,7 +13,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     TextMeshProUGUI txt;
     public Image icon;
     [HideInInspector] public Button button;
-    [HideInInspector] public GameObject entry;
+    [HideInInspector] public GameObject abilityEntry;
 
     [HideInInspector]public UnityEngine.Events.UnityAction highlightFunc, unhighlightFunc;
 
