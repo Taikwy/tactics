@@ -3309,7 +3309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 158, y: 83}
+  m_AnchoredPosition: {x: 158, y: 81}
   m_SizeDelta: {x: 64, y: 22}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &205846722
@@ -6215,7 +6215,7 @@ MonoBehaviour:
   confirmSound: Confirm
   invalidSound: Invalid
   moveSound: Move
-  commandPanelController: {fileID: 0}
+  commandPanelController: {fileID: 1201334134}
   panelController: {fileID: 1274223312}
   forecastPanel: {fileID: 210886686}
   turnOrderController: {fileID: 0}

@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea38b331048a442469b93cc12e79bfab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 5536338258666836091}
   button: {fileID: 0}
   entry: {fileID: 0}
   hoverEnabledSound: Button Hover

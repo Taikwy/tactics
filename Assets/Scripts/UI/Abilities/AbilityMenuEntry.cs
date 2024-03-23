@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-    AudioManager am;
+    [HideInInspector] public AudioManager am;
     GameUIController guiController;
-    TMP_Text label;
+    // TMP_Text label;
     TextMeshProUGUI txt;
-    [HideInInspector] public Image icon;
+    public Image icon;
     [HideInInspector] public Button button;
     [HideInInspector] public GameObject entry;
 
@@ -42,12 +42,14 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     void Awake (){
         // guiController = GetComponent<BattleController>().guiController;
-        am = (FindObjectOfType(typeof(BattleController)) as BattleController).audioManager;
-        guiController = (FindObjectOfType(typeof(BattleController)) as BattleController).guiController;
         txt = GetComponentInChildren<TextMeshProUGUI>();
         button = gameObject.GetComponent<Button>();
-        label = gameObject.GetComponentInChildren<TMP_Text>();
-        icon = gameObject.GetComponentInChildren<Image>();
+        // label = gameObject.GetComponentInChildren<TMP_Text>();
+    }
+    public void Setup(){
+        am = (FindObjectOfType(typeof(BattleController)) as BattleController).audioManager;
+        guiController = (FindObjectOfType(typeof(BattleController)) as BattleController).guiController;
+
     }
 
     void Update()
@@ -88,10 +90,12 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
         // }
     }
 
-    public string Title {
-        get { return label.text; }
-        set { label.text = value; }
-    }
+    // public string Title {
+    //     get { return gameObject.name; }
+    //     set { gameObject.name = value; }
+    //     // get { return label.text; }
+    //     // set { label.text = value; }
+    // }
 
     [System.Flags]
     enum States {

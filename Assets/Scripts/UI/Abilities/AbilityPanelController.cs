@@ -72,7 +72,7 @@ public class AbilityPanelController : MonoBehaviour
 
         for (int i = 0; i < options.Count; ++i){
             AbilityMenuEntry entry = Dequeue();
-            entry.Title = options[i];
+            // entry.Title = options[i];
             // entry.gameObject.GetComponent<RectTransform>().wid
             entry.button.onClick.AddListener(functions[i]);
             // entry.gameObject.GetComponent<Button>().onClick.AddListener(delegate{ButtonClicked(entry.Title);});
@@ -89,7 +89,7 @@ public class AbilityPanelController : MonoBehaviour
         for (int i = 0; i < names.Count; ++i){
 
             AbilityMenuEntry entry = Dequeue();
-            entry.Title = names[i];
+            // entry.Title = names[i];
             entry.entry = abilities[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
             // Debug.Log("index " + i);
