@@ -11,6 +11,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     GameUIController guiController;
     TMP_Text label;
     TextMeshProUGUI txt;
+    [HideInInspector] public Image icon;
     [HideInInspector] public Button button;
     [HideInInspector] public GameObject entry;
 
@@ -46,6 +47,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
         txt = GetComponentInChildren<TextMeshProUGUI>();
         button = gameObject.GetComponent<Button>();
         label = gameObject.GetComponentInChildren<TMP_Text>();
+        icon = gameObject.GetComponentInChildren<Image>();
     }
 
     void Update()

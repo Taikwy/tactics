@@ -36,7 +36,8 @@ public class BattleController : StateMachine
 
     [Header("Controller Scripts")]
     // public AbilityMenuPanelController abilityMenuPanelController;
-    public AbilityPanelController abilityPanelController;
+    // public AbilityPanelController abilityPanelController;
+    public CommandPanelController commandPanelController;
     public PanelController panelController;
     public ForecastPanel forecastPanel;
     public TurnOrderController turnOrderController;

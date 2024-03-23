@@ -76,13 +76,13 @@ public class CommandSelectionState : BaseAbilityMenuState
         }
         
         // List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, altMenuFunctions);
-        List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, menuFunctions);
+        List<AbilityMenuEntry> menuEntries = commandPanelController.Show(menuOptions, menuFunctions);
         
 
         //logic for setting stuff as locked depending on actions the playe rhas taken
-        abilityPanelController.SetLocked(0, turn.hasUnitMoved || turn.hasUnitActed);                             //disable movement if already moved or acted
-        abilityPanelController.SetLocked(1, turn.hasUnitActed);                             //disable action if already acted
-        abilityPanelController.SetLocked(2, turn.hasUnitMoved || MaxedSkillPoints() || turn.hasUnitActed);                             //disable focus if unit has moved or already has maxed out skill points
+        commandPanelController.SetLocked(0, turn.hasUnitMoved || turn.hasUnitActed);                             //disable movement if already moved or acted
+        commandPanelController.SetLocked(1, turn.hasUnitActed);                             //disable action if already acted
+        commandPanelController.SetLocked(2, turn.hasUnitMoved || MaxedSkillPoints() || turn.hasUnitActed);                             //disable focus if unit has moved or already has maxed out skill points
         // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             //disable action if already acted
         // abilityPanelController.SetLocked(2, turn.hasUnitActed);                             
 
@@ -123,8 +123,8 @@ public class CommandSelectionState : BaseAbilityMenuState
     protected override void Cancel (){
         if (turn.hasUnitMoved && !turn.lockMove){
             turn.UndoMove();
-            abilityPanelController.SetLocked(0, false);
-            abilityPanelController.SetLocked(2, false);
+            commandPanelController.SetLocked(0, false);
+            commandPanelController.SetLocked(2, false);
             SelectTile(turn.actingUnit.tile.position);
         }
         else{

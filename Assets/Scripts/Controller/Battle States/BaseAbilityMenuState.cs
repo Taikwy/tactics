@@ -21,7 +21,7 @@ public abstract class BaseAbilityMenuState : BattleState
     }
     public override void Exit (){
         base.Exit ();
-        abilityPanelController.Hide();
+        commandPanelController.Hide();
     }
     protected override void OnFire (object sender, InfoEventArgs<int> e){
         if (e.info == 0){

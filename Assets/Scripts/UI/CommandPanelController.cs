@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityPanelController : MonoBehaviour
+public class CommandPanelController : MonoBehaviour
 {
 
     const string ShowKey = "Show";

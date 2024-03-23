@@ -23,7 +23,7 @@ public abstract class BattleState : State
     public AudioManager audioManager { get {return owner.audioManager; }}
 
     // public AbilityMenuPanelController abilityMenuPanelController { get { return owner.abilityMenuPanelController; }}
-    public AbilityPanelController abilityPanelController { get { return owner.abilityPanelController; }}
+    public CommandPanelController commandPanelController { get { return owner.commandPanelController; }}
     public PanelController panelController { get { return owner.panelController; }}
     public ForecastPanel forecastPanel { get { return owner.forecastPanel; }}
     public TurnOrderController turnOrderController { get { return owner.turnOrderController; }}
