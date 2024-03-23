@@ -88,7 +88,10 @@ public class UnitPanel : MonoBehaviour
                 StatusIcon statusIcon = icon.GetComponent<StatusIcon>();
                 if(effect.GetComponent<DurationStatusCondition>())
                     statusIcon.turns.text = effect.GetComponent<DurationStatusCondition>().duration.ToString();
-                statusIcon.Setup(effect.GetComponent<StatusEffect>().statusName);
+                if(effect.GetComponent<StatusEffect>().statusName != null){
+                    // print(effect.GetComponent<StatusEffect>().statusName);
+                    statusIcon.Setup(effect.GetComponent<StatusEffect>().statusName);
+                }
                 
                 statusIcon.highlightFunc = delegate { CreateStatusInfoPanel(icon, effect); };
                 statusIcon.unhighlightFunc = delegate { DestroyStatusInfoPanel(); };

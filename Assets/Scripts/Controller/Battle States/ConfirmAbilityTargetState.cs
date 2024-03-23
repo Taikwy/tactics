@@ -75,6 +75,7 @@ public class ConfirmAbilityTargetState : BattleState
         board.UntargetTiles(targetedTiles);
         panelController.HidePrimary();
         panelController.HideSecondary();
+        IndicateTimeline(turn.actingUnit.tile);
 
         ShowSelect();
         forecastPanel.Hide();

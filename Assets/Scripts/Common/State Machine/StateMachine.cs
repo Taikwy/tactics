@@ -20,8 +20,9 @@ public class StateMachine : MonoBehaviour
     }
     
     public virtual void ChangeState<T> () where T : State{
+        // print("changing state 1 | " + CurrentState);
         CurrentState = GetState<T>();
-        // print("changing state " + CurrentState);
+        // print("changing state 2 | " + CurrentState);
     }
 
     protected virtual void Transition (State value){

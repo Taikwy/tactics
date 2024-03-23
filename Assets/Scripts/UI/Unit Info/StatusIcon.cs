@@ -15,8 +15,9 @@ public class StatusIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [HideInInspector] public UnityEngine.Events.UnityAction highlightFunc, unhighlightFunc;
 
     public void Setup(string effectName){
-        effectName = effectName.ToUpper();
-        switch(effectName){
+        string effect = effectName.ToUpper();
+        // effectName = effectName.ToUpper();
+        switch(effect){
             default:
                 Debug.LogError("uncrecognized effect name");
                 icon.sprite = statusIcons[0];

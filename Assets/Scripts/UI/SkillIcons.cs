@@ -41,10 +41,10 @@ public class SkillIcons : MonoBehaviour
         }
     }
     void DisableFills(){
-        print("disabling fills " + icons.Length);
-        print(icons);
+        // print("disabling fills " + icons.Length);
+        // print(icons);
         for(int i = 0; i < icons.Length; i++){
-            print(icons[i]);
+            // print(icons[i]);
             icons[i].enabled =false;
         }
         // foreach(Image i in icons){

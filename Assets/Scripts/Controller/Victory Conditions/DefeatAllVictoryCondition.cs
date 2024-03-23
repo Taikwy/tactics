@@ -10,7 +10,7 @@ public class DefeatAllVictoryCondition : BaseVictoryCondition
 			// Debug.Log("==================");
 			// Debug.Log(" fucking hello? " + PartyDefeated(Alliances.Enemy));
 			Victor = Alliances.Ally;
-			Debug.Log("all enemies defeated");
+			// Debug.Log("all enemies defeated, ALLIES WIN!!!");
 			Debug.Log("ALLIES WIN!");
 		}
 	}

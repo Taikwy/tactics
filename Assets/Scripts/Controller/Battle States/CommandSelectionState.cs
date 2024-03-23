@@ -12,7 +12,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         base.Enter ();
         if(!turn.actingUnit){
             Debug.LogError("NO DRIVER, IM ASSUMING HE DIED, GO BACK TO SELECT UNIT STATE");
-            // SelectUnitAgain();
+            SelectUnitAgain();
         }
         else{
             SelectTile(turn.actingUnit.tile.position);

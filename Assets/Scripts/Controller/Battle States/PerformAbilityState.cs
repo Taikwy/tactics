@@ -98,15 +98,18 @@ public class PerformAbilityState : BattleState
             
             panelController.HideAbilityDisplay();
         }
-		
+        // yield return new WaitForSeconds(.05f);
 		
 		if (IsBattleOver()){
             Debug.Log("changing to end");
 			owner.ChangeState<EndBattleState>();
         }
-		else if (UnitHasDied())
+		else if (UnitHasDied()){
+            // Debug.Log("unit died,");
 			owner.ChangeState<SelectUnitState>();
+        }
 		else{
+            Debug.Log("finsihed performing, back to command,"); 
 			// owner.ChangeState<CommandSelectionState>();
             owner.ChangeState<CommandSelectionState>();
         }

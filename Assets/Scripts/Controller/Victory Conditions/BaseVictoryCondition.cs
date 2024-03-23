@@ -38,6 +38,7 @@ public abstract class BaseVictoryCondition : MonoBehaviour
 	}
 	
 	protected virtual bool PartyDefeated (Alliances type){
+		// Debug.Log("party defeated?");
 		//  string result = "Units: ";
         // foreach (var item in bc.units){ result += item.ToString() + ", "; }
         // Debug.Log(result);
@@ -52,7 +53,6 @@ public abstract class BaseVictoryCondition : MonoBehaviour
 				return false;
 			}
 		}
-		Debug.Log("huh");
 		return true;
 	}
 	

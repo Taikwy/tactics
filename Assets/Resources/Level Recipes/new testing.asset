@@ -16,6 +16,7 @@ MonoBehaviour:
   levelIndex: -1
   allyUnitRecipes:
   - Shaman
+  - Barbarian
   - Samurai
   allySpawnLocations:
   - x: 6
@@ -25,11 +26,8 @@ MonoBehaviour:
   - x: 4
     y: 3
   enemyUnitRecipes:
-  - Kitsune Black
-  - Kitsune Purple
-  - Gorgon Blue
-  - Sphinx Black
-  - Faerie Pink
+  - Kitsune
+  - Faerie
   enemySpawnLocations:
   - x: 5
     y: 6

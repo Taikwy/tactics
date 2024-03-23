@@ -7,6 +7,7 @@ public class EndBattleState : BattleState
 {
 	public override void Enter (){
 		base.Enter ();
+		print("entering end battle state");
 		guiController.ShowGameOver();
         // SceneManager.LoadScene("TestMainMenu");
 	}

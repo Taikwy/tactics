@@ -15,6 +15,8 @@ public class StatusInfoPanel : MonoBehaviour
     
     //takes in ability gameobject
     public void Setup (GameObject statusEffect){
+        if(!statusEffect)
+            return;
         StatusEffect effectScript = statusEffect.GetComponent<StatusEffect>();
         DurationStatusCondition durationScript = statusEffect.GetComponent<DurationStatusCondition>();
         if(!effectScript || !durationScript)  {
