@@ -88,7 +88,7 @@ public class UnitPanel : MonoBehaviour
                 StatusIcon statusIcon = icon.GetComponent<StatusIcon>();
                 if(effect.GetComponent<DurationStatusCondition>())
                     statusIcon.turns.text = effect.GetComponent<DurationStatusCondition>().duration.ToString();
-                statusIcon.SetImage(effect.GetComponent<StatusEffect>().statusName);
+                statusIcon.Setup(effect.GetComponent<StatusEffect>().statusName);
                 
                 statusIcon.highlightFunc = delegate { CreateStatusInfoPanel(icon, effect); };
                 statusIcon.unhighlightFunc = delegate { DestroyStatusInfoPanel(); };
@@ -100,9 +100,9 @@ public class UnitPanel : MonoBehaviour
     void CreateStatusInfoPanel(GameObject status, GameObject effect){
         Debug.Log("creating status panel");
         Destroy(statusInfoPanel);
-        Vector2 pos = status.transform.position;
-        pos += new Vector2(0, 10);
-        statusInfoPanel = Instantiate(statusInfoPanelPrefab, pos, Quaternion.identity, status.transform);
+        Vector2 localPos = new Vector2(-42, 10);
+        statusInfoPanel = Instantiate(statusInfoPanelPrefab, localPos, Quaternion.identity, status.transform);
+        statusInfoPanel.transform.localPosition = localPos;
         statusInfoPanel.GetComponent<StatusInfoPanel>().Setup(effect);
         statusInfoPanel.GetComponent<StatusInfoPanel>().ShowPanel();
     }

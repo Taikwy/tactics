@@ -11,6 +11,7 @@ public class StatusInfoPanel : MonoBehaviour
     [Header("Status Info")]
     public TMP_Text nameLabel;
     public TMP_Text descLabel, effectLabel, durationLabel;
+    public Color damageColor, debuffColor, buffColor;
     
     //takes in ability gameobject
     public void Setup (GameObject statusEffect){
@@ -22,8 +23,47 @@ public class StatusInfoPanel : MonoBehaviour
         }
 
         nameLabel.text = string.Format("{0}", statusEffect.name);
+        switch(statusEffect.name){
+            default:
+                Debug.LogError("uncrecognized effect name");
+                nameLabel.color = Color.white;
+                break;
+            case "BREAK":
+                nameLabel.color = debuffColor;
+                break;
+            case "CRUSH":
+                nameLabel.color = debuffColor;
+                break;
+            case "BURN":
+                nameLabel.color = damageColor;
+                break;
+            case "TOXIC":
+                nameLabel.color = damageColor;
+                break;
+            case "SHOCK":
+                nameLabel.color = damageColor;
+                break;
+            case "COLD":
+                nameLabel.color = debuffColor;
+                break;
+            case "STRENGTHEN":
+                nameLabel.color = buffColor;
+                break;
+            case "FORTIFY":
+                nameLabel.color = buffColor;
+                break;
+            case "HASTE":
+                nameLabel.color = buffColor;
+                break;
+            case "RESTORE":
+                nameLabel.color = buffColor;
+                break;
+            case "HALT":
+                nameLabel.color = debuffColor;
+                break;
+        }
         descLabel.text = effectScript.statusEffectDescription;
-        effectLabel.text = string.Format( "EFFECT: {0}", effectScript.statusName);
+        // effectLabel.text = string.Format( "EFFECT: {0}", effectScript.statusName);
         durationLabel.text = string.Format( "{0} TURNS LEFT", durationScript.duration);
         // nameLabel.text = string.Format("{0}", ability.name);
         // descLabel.text = abilityScript.abilityDescription;

@@ -188,6 +188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 4128801054298176148}
   turns: {fileID: 2107591999054146814}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  debuffColor: {r: 0.2392157, g: 0.2392157, b: 0.2392157, a: 1}
+  buffColor: {r: 0, g: 1, b: 0.14117648, a: 1}
   statusIcons:
   - {fileID: 21300000, guid: 5e7c10dbb6aa6784ebff5aa0f45afa78, type: 3}
   - {fileID: 21300000, guid: cf3e594f429abcf49b306a7c81d19c17, type: 3}
@@ -201,6 +204,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 87b5986da185b904f865b8b97f0699c0, type: 3}
   - {fileID: 21300000, guid: e687dbc8b37c0764dbb5c3ebdee47c6d, type: 3}
   - {fileID: 21300000, guid: 0aa848ee3540fbd4587ef524c3ffc12a, type: 3}
+  statusColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4128801054298176146
 GameObject:
   m_ObjectHideFlags: 0
