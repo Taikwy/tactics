@@ -531,7 +531,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 112, y: 68}
+  m_SizeDelta: {x: 144, y: 35}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1316923320154009276
 MonoBehaviour:
@@ -575,15 +575,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ece9f8e8a96050645b9518b36efe5d28, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 9310889926ecd8248abeaf5cab194e27, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -762,7 +762,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4, y: 55}
+  m_AnchoredPosition: {x: 4, y: 25.5}
   m_SizeDelta: {x: 112, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1316923320531725714
@@ -899,8 +899,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4, y: 47}
-  m_SizeDelta: {x: 112, y: 0}
+  m_AnchoredPosition: {x: 4, y: 17.5}
+  m_SizeDelta: {x: 132, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1316923320562210758
 CanvasRenderer:
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'DESCRIPTION: LOREM IPSUM LOREM IPSUM LOREM '
+  m_text: Deals 100% of the unit's ATTACK to ENEMY targets within range.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4714bea3ca7aa1458863df430249c80, type: 2}
   m_sharedMaterial: {fileID: -3450516215223756797, guid: b4714bea3ca7aa1458863df430249c80, type: 2}
@@ -1034,7 +1034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4, y: 62.4}
+  m_AnchoredPosition: {x: 4, y: 32.9}
   m_SizeDelta: {x: 112, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1316923321021185266
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -21.358505, w: 0}
+  m_margin: {x: 0, y: 0, z: -39.205765, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
