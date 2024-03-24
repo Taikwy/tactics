@@ -54,8 +54,7 @@ public class ConfirmAbilityTargetState : BattleState
         panelController.ShowMouseControls("PERFORM", "CANCEL");
     }
     void DisplayEffects (Tile target){
-        Vector2 labelOffset = new Vector2(0, .6f);
-        Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
+        Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
         Unit unit = target.content.GetComponent<Unit>();
         GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
 

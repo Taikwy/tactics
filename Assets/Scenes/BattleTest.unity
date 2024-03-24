@@ -14175,6 +14175,7 @@ MonoBehaviour:
   effectLabelContainer: {fileID: 1422172081}
   effectFloatSpeed: 1.5
   effectFadeSpeed: 1
+  unitEffectLabelOffset: {x: 0, y: 0.8}
 --- !u!1 &1280479880
 GameObject:
   m_ObjectHideFlags: 0
