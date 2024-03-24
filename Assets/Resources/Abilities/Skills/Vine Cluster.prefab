@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   overlayColor: 3
+  abilityIcon: {fileID: 21300000, guid: 8bb16b5a02261ab4c9cd6cf067af620d, type: 3}
   primaryEffects:
   - {fileID: 9182130221946047181}
   primaryEffect: {fileID: 0}
@@ -160,12 +161,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
+      propertyPath: duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: flatOrPercent
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8112756447783014686, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}
       propertyPath: abilityEffectDescription
-      value: Unit takes 8% of their MAX HP as DAMAGE at the START of every turn.
+      value: Unit takes 10% of their MAX HP as DAMAGE at the START of every turn.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d00b1df1540f08542b20be11cdfd641a, type: 3}

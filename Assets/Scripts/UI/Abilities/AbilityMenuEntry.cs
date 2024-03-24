@@ -157,6 +157,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
         isPressedDesired = false;
         button.interactable = true;
         button.onClick.RemoveAllListeners();
+        icon.sprite = null;
 
         highlightFunc = null;
         unhighlightFunc = null;

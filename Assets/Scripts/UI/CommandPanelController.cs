@@ -110,24 +110,29 @@ public class CommandPanelController : MonoBehaviour
             entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry); };
             entry.unhighlightFunc = delegate { DestroyAbilityInfoPanel(); };
 
-            switch(abilities[i].GetComponent<Ability>().overlayColor){
-                default:
-                    Debug.LogError("invalid overlay color for ability");
-                    entry.icon.color = Color.red;
-                    break;
-                case Board.OverlayColor.BUFF:
-                    entry.icon.sprite = buffIcon;
-                    break;
-                case Board.OverlayColor.ATTACK:
-                    entry.icon.sprite = damageIcon;
-                    break;
-                case Board.OverlayColor.DEBUFF:
-                    entry.icon.sprite = debuffIcon;
-                    break;
-                case Board.OverlayColor.HEAL:
-                    entry.icon.sprite = healIcon;
-                    break;
-            }
+            if(abilities[i].GetComponent<Ability>().abilityIcon != null)
+                entry.icon.sprite = abilities[i].GetComponent<Ability>().abilityIcon;
+            else
+                Debug.LogError(abilities[i] + " ability has no icon set");
+
+            // switch(abilities[i].GetComponent<Ability>().overlayColor){
+            //     default:
+            //         Debug.LogError("invalid overlay color for ability");
+            //         entry.icon.color = Color.red;
+            //         break;
+            //     case Board.OverlayColor.BUFF:
+            //         entry.icon.sprite = buffIcon;
+            //         break;
+            //     case Board.OverlayColor.ATTACK:
+            //         entry.icon.sprite = damageIcon;
+            //         break;
+            //     case Board.OverlayColor.DEBUFF:
+            //         entry.icon.sprite = debuffIcon;
+            //         break;
+            //     case Board.OverlayColor.HEAL:
+            //         entry.icon.sprite = healIcon;
+            //         break;
+            // }
 
             entry.button.interactable = performable[i];
             menuEntries.Add(entry);

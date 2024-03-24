@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   overlayColor: 0
+  abilityIcon: {fileID: 21300000, guid: a82b3495e5c3ed64ea91bd60bc0fa663, type: 3}
   primaryEffects:
   - {fileID: 4861301945464717442}
   primaryEffect: {fileID: 0}

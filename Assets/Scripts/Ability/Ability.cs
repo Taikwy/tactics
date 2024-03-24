@@ -11,8 +11,9 @@ public class Ability : MonoBehaviour
 	public const string FinishedPerformingEvent = "Ability.FinishedPerformingEvent";
     public AbilityTypes type;
 	public Board.OverlayColor overlayColor;
+	[Space(5)]public Sprite abilityIcon;
 	public List<GameObject> primaryEffects = new List<GameObject>();
-	public GameObject primaryEffect, primarySubEffect;
+	[HideInInspector]public GameObject primaryEffect, primarySubEffect;
 	bool abilityHit = false;													//did ability hit or miss this turn
 	[Header("BURST")]public int burstGain = 0;
 	[TextArea(5,20)]public string abilityDescription = "EMPTY DESCRIPTION";

@@ -1,101 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5944560895218502667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8993413393573697161}
-  - component: {fileID: 3842186769517003793}
-  - component: {fileID: 8560646854337039823}
-  - component: {fileID: 9151273558764580736}
-  - component: {fileID: 8018232712710892279}
-  m_Layer: 0
-  m_Name: Inflict Break Template
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8993413393573697161
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5944560895218502667}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7693599255702816309}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3842186769517003793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5944560895218502667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8117545df9fe66544811190e7ff7061a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8560646854337039823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5944560895218502667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f6bd882afabe1d49bfe701971ac261a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
---- !u!114 &9151273558764580736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5944560895218502667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2ca026f6d009ea4bb7d29c3aec2d079, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guaranteed: 1
-  abilityHitRate: 0
---- !u!114 &8018232712710892279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5944560895218502667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b39d2901c07634db72d377463dcca7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityEffectName: BREAK
-  abilityEffectDescription: Unit has -2 DEFENSE
-  subEffects: []
-  owner: {fileID: 0}
-  effectScript: 2
-  conditionScript: 1
-  duration: 2
-  flatOrPercent: 0
-  statType: 11
-  incrementOrMultiply: -2
 --- !u!1 &8935371756486926109
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8993413393573697161}
+  - {fileID: 447126722026912047}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,13 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  overlayColor: 3
+  overlayColor: 0
+  abilityIcon: {fileID: 21300000, guid: 74e0c6041dbd0f1488a4d2b896c06047, type: 3}
   primaryEffects:
-  - {fileID: 5944560895218502667}
+  - {fileID: 0}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 10
-  abilityDescription: Inflicts BREAK on ALL ENEMY targets within range for 2 turns
+  abilityDescription: Deals 65% of the unit's ATTACK to ALL ENEMIES within range.
 --- !u!114 &7818359391419740545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,3 +100,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canTargetSelf: 0
   targets: []
+--- !u!1001 &6804532239529615436
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7693599255702816309}
+    m_Modifications:
+    - target: {fileID: 3493002925478867864, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: guaranteed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493002925478867864, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: abilityHitRate
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378345542120587180, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: attackPercentModifier
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899457881431701045, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+      propertyPath: m_Name
+      value: Damage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+--- !u!4 &447126722026912047 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+  m_PrefabInstance: {fileID: 6804532239529615436}
+  m_PrefabAsset: {fileID: 0}
