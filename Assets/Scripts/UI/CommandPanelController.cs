@@ -154,10 +154,10 @@ public class CommandPanelController : MonoBehaviour
         // print(entry.transform.position + " | placing at " + pos);
         
         commandInfoPanel = Instantiate(commandInfoPanelPrefab, commandLabelAnchor.position, Quaternion.identity, commandLabelAnchor);
-        Vector2 pos = new Vector2(-5, 0);
-        print(commandInfoPanel.transform.localPosition);
+        // Vector2 pos = new Vector2(-5, 0);
+        // print(commandInfoPanel.transform.localPosition);
         commandInfoPanel.transform.localPosition = new Vector2(-commandInfoPanel.GetComponent<RectTransform>().rect.width/2, -commandInfoPanel.GetComponent<RectTransform>().rect.height);
-        print(commandInfoPanel.transform.localPosition);
+        // print(commandInfoPanel.transform.localPosition);
         // commandInfoPanel.GetComponent<RectTransform>().localPosition = pos;
 
         commandInfoPanel.GetComponent<CommandInfoPanel>().Display(entry.commandLabel);
@@ -169,16 +169,17 @@ public class CommandPanelController : MonoBehaviour
         Destroy(commandInfoPanel);
     }
     public void CreateAbilityInfoPanel(AbilityMenuEntry entry){
-        GameObject label = entry.gameObject;
+        // GameObject label = entry.gameObject;
         GameObject ability = entry.abilityEntry;
         // Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
-        Vector2 pos = label.transform.position;
+        // Vector2 pos = label.transform.position;
         // print("height " + entry.GetComponent<RectTransform>().rect.height + " | width " +  entry.GetComponent<RectTransform>().rect.width);
-        pos += new Vector2(entry.GetComponent<RectTransform>().rect.width, 0);
+        // pos += new Vector2(entry.GetComponent<RectTransform>().rect.width, 0);
         // print(entry.transform.position + " | placing at " + pos);
-        abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, pos, Quaternion.identity, label.transform);
-        abilityInfoPanel.transform.localPosition = new Vector2(entry.GetComponent<RectTransform>().rect.width, entry.GetComponent<RectTransform>().rect.height);
+        abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, abilityLabelAnchor.position, Quaternion.identity, abilityLabelAnchor.transform);
+        // abilityInfoPanel.transform.localPosition = new Vector2(entry.GetComponent<RectTransform>().rect.width, entry.GetComponent<RectTransform>().rect.height);
+        abilityInfoPanel.transform.localPosition = new Vector2(-abilityInfoPanel.GetComponent<RectTransform>().rect.width/2, -abilityInfoPanel.GetComponent<RectTransform>().rect.height);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().ShowPanel();
     }

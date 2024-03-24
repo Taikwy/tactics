@@ -79,9 +79,9 @@ public abstract class BattleState : State
         Vector2 labelOffset = new Vector2(0, .6f);
         Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
         Unit unit = target.content.GetComponent<Unit>();
-        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+        GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
 
-        effectLabel.GetComponent<EffectLabel>().Initialize(effect, .75f, 2);
+        effectLabel.GetComponent<EffectLabel>().Initialize(effect, performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
         // print(effects[targetIndex][effectIndex] + " | pos " + targetPos);
         // yield return null;
     }

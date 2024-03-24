@@ -7,13 +7,14 @@ using TMPro;
 public class EffectLabel : MonoBehaviour
 {
     bool intialized = false;
-    public TMP_Text effectLabel;
+    public TMP_Text effectLabel, bgLabel;
     public float floatSpeed, fadeTime;
     float fadeAmount;
     Vector2 movePos;
 
     public void Initialize(string labelText, float floatspeed, float fadeTime){
         effectLabel.text = labelText;
+        bgLabel.text = labelText;
         int.TryParse(labelText, out int result);
         if(result > 0){
             effectLabel.color = Color.green;
@@ -57,6 +58,11 @@ public class EffectLabel : MonoBehaviour
         Color newColor = effectLabel.color;
         newColor.a -= fadeAmount*Time.deltaTime;
         effectLabel.color = newColor;
+        
+        Color bgColor = bgLabel.color;
+        bgColor.a -= fadeAmount*Time.deltaTime;
+        bgLabel.color = bgColor;
+        
     }
 
 }

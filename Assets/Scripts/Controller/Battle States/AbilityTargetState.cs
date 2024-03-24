@@ -188,9 +188,9 @@ public class AbilityTargetState : BattleState
         Vector2 labelOffset = new Vector2(0, .6f);
         Vector2 targetPos = (Vector2)target.transform.position + labelOffset;
         Unit unit = target.content.GetComponent<Unit>();
-        GameObject effectLabel = Instantiate(owner.performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+        GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
 
-        effectLabel.GetComponent<EffectLabel>().Initialize(warning, .75f, 2);
+        effectLabel.GetComponent<EffectLabel>().Initialize(warning, performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
     }
 
     //unused rn

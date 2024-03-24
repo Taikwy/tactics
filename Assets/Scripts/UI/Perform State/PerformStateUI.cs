@@ -6,4 +6,5 @@ public class PerformStateUI : MonoBehaviour
 {
     public GameObject effectLabelPrefab;
     public GameObject effectLabelContainer;
+    public float effectFloatSpeed, effectFadeSpeed;
 }
