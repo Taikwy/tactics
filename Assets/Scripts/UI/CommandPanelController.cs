@@ -66,7 +66,7 @@ public class CommandPanelController : MonoBehaviour
     //creates ability entries with names from the list of strings passed in
     //returns list of menu entries
     //its called show, but it essentially creates it from scratch
-    public List<AbilityMenuEntry> Show (List<string> options, List<UnityEngine.Events.UnityAction> functions){
+    public List<AbilityMenuEntry> Show (List<string> options, List<bool> performable, List<UnityEngine.Events.UnityAction> functions){
         menuPanel.SetActive(true);
         Clear ();
         print("showing commands");
@@ -93,6 +93,7 @@ public class CommandPanelController : MonoBehaviour
                     break;
             }
             entry.button.onClick.AddListener(functions[i]);
+            entry.button.interactable = performable[i];
             menuEntries.Add(entry);
         }
         return menuEntries;
@@ -114,25 +115,6 @@ public class CommandPanelController : MonoBehaviour
                 entry.icon.sprite = abilities[i].GetComponent<Ability>().abilityIcon;
             else
                 Debug.LogError(abilities[i] + " ability has no icon set");
-
-            // switch(abilities[i].GetComponent<Ability>().overlayColor){
-            //     default:
-            //         Debug.LogError("invalid overlay color for ability");
-            //         entry.icon.color = Color.red;
-            //         break;
-            //     case Board.OverlayColor.BUFF:
-            //         entry.icon.sprite = buffIcon;
-            //         break;
-            //     case Board.OverlayColor.ATTACK:
-            //         entry.icon.sprite = damageIcon;
-            //         break;
-            //     case Board.OverlayColor.DEBUFF:
-            //         entry.icon.sprite = debuffIcon;
-            //         break;
-            //     case Board.OverlayColor.HEAL:
-            //         entry.icon.sprite = healIcon;
-            //         break;
-            // }
 
             entry.button.interactable = performable[i];
             menuEntries.Add(entry);

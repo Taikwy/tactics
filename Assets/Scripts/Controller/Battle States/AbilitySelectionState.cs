@@ -74,9 +74,9 @@ public class AbilitySectionState : BaseAbilityMenuState
         // List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, performable, menuFunctions, menuHighlightFunctions, menuUnhighlightFunctions);
         List<AbilityMenuEntry> menuEntries = commandPanelController.Show(abilities, menuOptions, performable, menuFunctions);
     
-        for (int i = 0; i < menuEntries.Count; ++i){
-            menuEntries[i].button.interactable = performable[i]; 
-        }
+        // for (int i = 0; i < menuEntries.Count; ++i){
+        //     menuEntries[i].button.interactable = performable[i]; 
+        // }
         //logic for disabling actions the unit cannot take, ie not enough burst or currently silenced or whatever
         // abilityPanelController.SetLocked(0, turn.hasUnitMoved);                           
     }

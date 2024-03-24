@@ -12,6 +12,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     // TMP_Text label;
     TextMeshProUGUI txt;
     public Image icon;
+    public Color disabledColor;
     [HideInInspector] public Button button;
     [HideInInspector] public GameObject abilityEntry;
 
@@ -62,13 +63,15 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
         //     // button.interactable = false;
         // }
         if ( !button.interactable){
-            desiredButtonStatus = ButtonStatus.Disabled;
+            // desiredButtonStatus = ButtonStatus.Disabled;
+            icon.color = disabledColor;
         }
         else{
-            if ( isHighlightDesired )
-                desiredButtonStatus = ButtonStatus.Highlighted;
-            if ( isPressedDesired )
-                desiredButtonStatus = ButtonStatus.Pressed;
+            icon.color = Color.white;
+            // if ( isHighlightDesired )
+            //     desiredButtonStatus = ButtonStatus.Highlighted;
+            // if ( isPressedDesired )
+            //     desiredButtonStatus = ButtonStatus.Pressed;
         }
 
         // if ( desiredButtonStatus != lastButtonStatus ){

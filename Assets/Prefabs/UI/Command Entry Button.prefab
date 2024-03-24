@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   am: {fileID: 0}
   icon: {fileID: 5536338258666836091}
+  disabledColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
   button: {fileID: 0}
   abilityEntry: {fileID: 0}
   hoverEnabledSound: Button Hover

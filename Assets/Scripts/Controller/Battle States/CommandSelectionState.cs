@@ -73,10 +73,16 @@ public class CommandSelectionState : BaseAbilityMenuState
                 delegate { Focus(); },
                 delegate { Pass(); },
             };
+            performable = new List<bool>(){
+                turn.hasUnitMoved || turn.hasUnitActed,
+                turn.hasUnitActed,
+                turn.hasUnitMoved || MaxedSkillPoints() || turn.hasUnitActed,
+                true
+            };
         }
         
         // List<AbilityMenuEntry> menuEntries = abilityPanelController.Show(menuOptions, altMenuFunctions);
-        List<AbilityMenuEntry> menuEntries = commandPanelController.Show(menuOptions, menuFunctions);
+        List<AbilityMenuEntry> menuEntries = commandPanelController.Show(menuOptions, performable, menuFunctions);
         
 
         //logic for setting stuff as locked depending on actions the playe rhas taken
