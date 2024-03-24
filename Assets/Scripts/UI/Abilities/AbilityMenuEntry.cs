@@ -15,6 +15,7 @@ public class AbilityMenuEntry : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Color disabledColor;
     [HideInInspector] public Button button;
     [HideInInspector] public GameObject abilityEntry;
+    [HideInInspector] public string commandLabel;
 
     [HideInInspector]public UnityEngine.Events.UnityAction highlightFunc, unhighlightFunc;
 

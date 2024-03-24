@@ -16,6 +16,7 @@ public class CommandPanelController : MonoBehaviour
     [SerializeField] GameObject menuPanel;
     List<AbilityMenuEntry> menuEntries = new List<AbilityMenuEntry>(MenuCount);
     [Header("COMMAND ENTRY STUFF")]
+    public GameObject commandInfoPanelPrefab;
     [SerializeField] GameObject entryPrefab;
     public Sprite moveIcon, actionIcon, focusIcon, passIcon;
     [Header("ABILITY STUFF")]
@@ -24,6 +25,10 @@ public class CommandPanelController : MonoBehaviour
     public List<Action> menuFunctions = new List<Action>(MenuCount);
     public int currentSelection { get; private set; }
     GameObject abilityInfoPanel = null;
+    GameObject commandInfoPanel = null;
+    [Header("anchors for the info panels")]
+    public Transform commandLabelAnchor;
+    public Transform abilityLabelAnchor;
 
     void Awake (){
         GameObjectPoolController.AddEntry(EntryPoolKey, entryPrefab, MenuCount, int.MaxValue);
@@ -78,20 +83,28 @@ public class CommandPanelController : MonoBehaviour
                 default:
                     Debug.LogError("invalid command menu entry name");
                     entry.icon.color = Color.red;
+                    entry.commandLabel = "INVALID";
                     break;
                 case "MOVE":
                     entry.icon.sprite = moveIcon;
+                    entry.commandLabel = "MOVE";
                     break;
                 case "ACTION":
                     entry.icon.sprite = actionIcon;
+                    entry.commandLabel = "ACTION";
                     break;
                 case "FOCUS":
                     entry.icon.sprite = focusIcon;
+                    entry.commandLabel = "FOCUS";
                     break;
                 case "PASS":
                     entry.icon.sprite = passIcon;
+                    entry.commandLabel = "PASS";
                     break;
             }
+            entry.highlightFunc = delegate { CreateCommandInfoPanel(entry); };
+            entry.unhighlightFunc = delegate { DestroyCommandInfoPanel(); };
+
             entry.button.onClick.AddListener(functions[i]);
             entry.button.interactable = performable[i];
             menuEntries.Add(entry);
@@ -134,6 +147,27 @@ public class CommandPanelController : MonoBehaviour
         
         menuEntries[index].button.interactable = !value;
     }
+    public void CreateCommandInfoPanel(AbilityMenuEntry entry){
+        Destroy(commandInfoPanel);
+        // print("height " + entry.GetComponent<RectTransform>().rect.height + " | width " +  entry.GetComponent<RectTransform>().rect.width);
+        // pos += new Vector2(entry.GetComponent<RectTransform>().rect.width, 0);
+        // print(entry.transform.position + " | placing at " + pos);
+        
+        commandInfoPanel = Instantiate(commandInfoPanelPrefab, commandLabelAnchor.position, Quaternion.identity, commandLabelAnchor);
+        Vector2 pos = new Vector2(-5, 0);
+        print(commandInfoPanel.transform.localPosition);
+        commandInfoPanel.transform.localPosition = new Vector2(-commandInfoPanel.GetComponent<RectTransform>().rect.width/2, -commandInfoPanel.GetComponent<RectTransform>().rect.height);
+        print(commandInfoPanel.transform.localPosition);
+        // commandInfoPanel.GetComponent<RectTransform>().localPosition = pos;
+
+        commandInfoPanel.GetComponent<CommandInfoPanel>().Display(entry.commandLabel);
+        commandInfoPanel.GetComponent<CommandInfoPanel>().ShowPanel();
+    }
+    public void DestroyCommandInfoPanel(){
+        if(commandInfoPanel && commandInfoPanel.GetComponent<CommandInfoPanel>())
+            commandInfoPanel.GetComponent<CommandInfoPanel>().HidePanel();
+        Destroy(commandInfoPanel);
+    }
     public void CreateAbilityInfoPanel(AbilityMenuEntry entry){
         GameObject label = entry.gameObject;
         GameObject ability = entry.abilityEntry;
@@ -148,15 +182,15 @@ public class CommandPanelController : MonoBehaviour
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);
         abilityInfoPanel.GetComponent<AbilityInfoPanel>().ShowPanel();
     }
-    public void CreateAbilityInfoPanel(GameObject label, GameObject ability){
-        // Debug.Log("creating ability info panel");
-        Destroy(abilityInfoPanel);
-        Vector2 pos = label.transform.position;
-        pos += new Vector2(200, 16);
-        abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, pos, Quaternion.identity, label.transform);
-        abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);
-        abilityInfoPanel.GetComponent<AbilityInfoPanel>().ShowPanel();
-    }
+    // public void CreateAbilityInfoPanel(GameObject label, GameObject ability){
+    //     // Debug.Log("creating ability info panel");
+    //     Destroy(abilityInfoPanel);
+    //     Vector2 pos = label.transform.position;
+    //     pos += new Vector2(200, 16);
+    //     abilityInfoPanel = Instantiate(abilityInfoPanelPrefab, pos, Quaternion.identity, label.transform);
+    //     abilityInfoPanel.GetComponent<AbilityInfoPanel>().Display(ability);
+    //     abilityInfoPanel.GetComponent<AbilityInfoPanel>().ShowPanel();
+    // }
     public void DestroyAbilityInfoPanel(){
         if(abilityInfoPanel && abilityInfoPanel.GetComponent<AbilityInfoPanel>())
             abilityInfoPanel.GetComponent<AbilityInfoPanel>().HidePanel();

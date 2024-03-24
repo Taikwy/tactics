@@ -40,6 +40,7 @@ public class CommandSelectionState : BaseAbilityMenuState
         updating = false;
 
         base.Exit ();
+        commandPanelController.DestroyCommandInfoPanel();
         panelController.HidePrimary();
         // panelController.HideStatus();
         panelController.HideMouseControls();
