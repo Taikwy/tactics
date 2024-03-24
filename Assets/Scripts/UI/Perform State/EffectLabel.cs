@@ -29,6 +29,8 @@ public class EffectLabel : MonoBehaviour
                 effectLabel.color = Color.white;
             else if(labelText == "NO VALID TARGETS")
                 effectLabel.color = Color.red;
+            else if(labelText.Contains("SKILL"))
+                effectLabel.color = Color.magenta;
             else
                 effectLabel.color = Color.yellow;
         }
@@ -58,7 +60,7 @@ public class EffectLabel : MonoBehaviour
         Color newColor = effectLabel.color;
         newColor.a -= fadeAmount*Time.deltaTime;
         effectLabel.color = newColor;
-        
+
         Color bgColor = bgLabel.color;
         bgColor.a -= fadeAmount*Time.deltaTime;
         bgLabel.color = bgColor;

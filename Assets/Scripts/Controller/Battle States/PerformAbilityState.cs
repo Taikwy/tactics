@@ -83,8 +83,7 @@ public class PerformAbilityState : BattleState
         Debug.Log("starting to animate " + turn.targets.Count);
         if(focusing){
             panelController.ShowAbilityDisplay(null, true);
-            // GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
-            // effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
+            performStateUI.DisplayEffect(turn.actingUnit.tile, "+2 SKILL POINTS");
             yield return new WaitForSeconds(.5f);
             panelController.HideAbilityDisplay();
         }
@@ -214,24 +213,31 @@ public class PerformAbilityState : BattleState
     void DisplayEffect (Tile target){
         print("displaying effect");
         int targetIndex = turn.targets.IndexOf(target);
-        Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
-        Unit unit = target.content.GetComponent<Unit>();
-        GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
-
-        effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
-        print(effect[targetIndex] + " | pos " + targetPos);
+        
+        performStateUI.DisplayEffect(target, effect[targetIndex]);
+        // Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
+        // Unit unit = target.content.GetComponent<Unit>();
+        // GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+        // effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
+        // print(effect[targetIndex] + " | pos " + targetPos);
     }
 
     IEnumerator DisplayEffects (Tile target){
         int targetIndex = turn.targets.IndexOf(target);
         // print("displaying effect " + targetIndex + " ______________________");
         for(int effectIndex = 0; effectIndex < effects[targetIndex].Count; effectIndex++){
+            performStateUI.DisplayEffect(target, effects[targetIndex][effectIndex]);
+
+
+
+
             // Vector2 labelOffset = new Vector2(Random.Range(-.2f,.2f), Random.Range(.55f,.6f));
-            Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
-            Unit unit = target.content.GetComponent<Unit>();
-            GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
-            effectLabel.GetComponent<EffectLabel>().Initialize(effects[targetIndex][effectIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
+            // Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
+            // Unit unit = target.content.GetComponent<Unit>();
+            // GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+            // effectLabel.GetComponent<EffectLabel>().Initialize(effects[targetIndex][effectIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
             // print(effects[targetIndex][effectIndex] + " | pos " + targetPos);
+
             yield return new WaitForSeconds(.2f);
         }
         yield return null;

@@ -70,12 +70,13 @@ public abstract class BattleState : State
         // print("ON HIT SENDER " + target + " | " + sender.GetType());
         string effect = "-" + args.ToString();
         if(target){
-            DisplayStatusEffect(target, effect);
+            performStateUI.DisplayEffect(target, effect);
+            // DisplayStatusEffect(target, effect);
         }
         // print(info.arg0 + " | " + targetIndex + " ON HIT " + effects[targetIndex].Count);
     }
     void DisplayStatusEffect (Tile target, string effect){
-        // Debug.LogError("DISPLATYINY STATUS EFFECT " + target + " | " + effect);
+        Debug.LogError("THIS SHOULDN'T BE SHOWING DISPLATYINY STATUS EFFECT " + target + " | " + effect);
         Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
         Unit unit = target.content.GetComponent<Unit>();
         GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);

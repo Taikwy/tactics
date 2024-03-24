@@ -185,11 +185,12 @@ public class AbilityTargetState : BattleState
         return false;
     }
     void DisplayWarning (Tile target, string warning = "NOT A VALID TARGET"){
-        Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
-        Unit unit = target.content.GetComponent<Unit>();
-        GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+            performStateUI.DisplayEffect(target, warning);
+        // Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
+        // Unit unit = target.content.GetComponent<Unit>();
+        // GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
 
-        effectLabel.GetComponent<EffectLabel>().Initialize(warning, performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
+        // effectLabel.GetComponent<EffectLabel>().Initialize(warning, performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
     }
 
     //unused rn

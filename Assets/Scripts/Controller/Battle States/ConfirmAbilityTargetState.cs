@@ -54,11 +54,13 @@ public class ConfirmAbilityTargetState : BattleState
         panelController.ShowMouseControls("PERFORM", "CANCEL");
     }
     void DisplayEffects (Tile target){
-        Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
-        Unit unit = target.content.GetComponent<Unit>();
-        GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+        
+        performStateUI.DisplayEffect(target, "NO VALID TARGETS");
+        // Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
+        // Unit unit = target.content.GetComponent<Unit>();
+        // GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
 
-        effectLabel.GetComponent<EffectLabel>().Initialize("NO VALID TARGETS", performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
+        // effectLabel.GetComponent<EffectLabel>().Initialize("NO VALID TARGETS", performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
     }
 
     public override void Exit (){

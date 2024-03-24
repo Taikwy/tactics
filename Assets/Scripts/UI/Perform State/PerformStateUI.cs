@@ -9,7 +9,7 @@ public class PerformStateUI : MonoBehaviour
     public float effectFloatSpeed, effectFadeSpeed;
     public Vector2 unitEffectLabelOffset;
 
-    void DisplayEffect (Tile target, string label){
+    public void DisplayEffect (Tile target, string label){
         print("displaying effect");
         Vector2 targetPos = (Vector2)target.transform.position + unitEffectLabelOffset;
         Unit unit = target.content.GetComponent<Unit>();
