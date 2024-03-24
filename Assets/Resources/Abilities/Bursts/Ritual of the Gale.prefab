@@ -87,12 +87,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityEffectName: SPEED BUFF
-  abilityEffectDescription: Unit has +3 Speed for 1 turn
+  abilityEffectDescription: 'Unit has x2 Speed
+
+'
   subEffects: []
   owner: {fileID: 0}
   effectScript: 3
   conditionScript: 1
-  duration: 1
+  duration: 2
   flatOrPercent: 0
   statType: 12
   incrementOrMultiply: 2
@@ -183,12 +185,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityEffectName: ATTACK BUFF
-  abilityEffectDescription: Unit has +3 Attack for 1 turn
+  abilityEffectDescription: Unit has +3 Attack
   subEffects: []
   owner: {fileID: 0}
   effectScript: 2
   conditionScript: 1
-  duration: 1
+  duration: 2
   flatOrPercent: 0
   statType: 10
   incrementOrMultiply: 3
@@ -243,13 +245,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   overlayColor: 2
+  abilityIcon: {fileID: 21300000, guid: 65f8d0f47a9131748834efc60b9cd2d4, type: 3}
   primaryEffects:
   - {fileID: 2870192414544954239}
   - {fileID: 2849906046321617892}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 0
-  abilityDescription: Inflicts SURGE on ALLY unit's within range for 1 turn.
+  abilityDescription: Inflicts SURGE on ALL ALLY units within range for 2 turns.
 --- !u!114 &4888908716431183397
 MonoBehaviour:
   m_ObjectHideFlags: 0

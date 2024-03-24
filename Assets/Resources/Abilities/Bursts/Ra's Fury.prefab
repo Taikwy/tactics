@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   overlayColor: 0
+  abilityIcon: {fileID: 21300000, guid: 8dde1e7fc2faa3e40ab1c24182384322, type: 3}
   primaryEffects:
   - {fileID: 5801221991015302157}
   primaryEffect: {fileID: 0}
@@ -82,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 2
+  losRequired: 1
   tilesInRange: []
   targetsInRange: []
 --- !u!114 &3466583539704759156

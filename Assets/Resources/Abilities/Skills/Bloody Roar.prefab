@@ -52,7 +52,7 @@ MonoBehaviour:
   overlayColor: 0
   abilityIcon: {fileID: 21300000, guid: 74e0c6041dbd0f1488a4d2b896c06047, type: 3}
   primaryEffects:
-  - {fileID: 0}
+  - {fileID: 2733605601267570297}
   primaryEffect: {fileID: 0}
   primarySubEffect: {fileID: 0}
   burstGain: 10
@@ -172,5 +172,10 @@ PrefabInstance:
 --- !u!4 &447126722026912047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6366415761088747875, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
+  m_PrefabInstance: {fileID: 6804532239529615436}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2733605601267570297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8899457881431701045, guid: ac3bc6a1b7510f349a825be082308746, type: 3}
   m_PrefabInstance: {fileID: 6804532239529615436}
   m_PrefabAsset: {fileID: 0}
