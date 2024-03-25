@@ -15,6 +15,7 @@ public class BattleController : StateMachine
     public GameObject tileSelectionIndicatorPrefab;
     [HideInInspector]public Point selectPos;
     [Header(" Level")]
+    public BoardData boardData;
     public LevelData levelData;
     public LevelRecipe levelRecipe;
     [Header("Alliance Colors")]

@@ -16,15 +16,15 @@ public class Board : MonoBehaviour
     }
     [Header("Rule Tile Prefabs")]
     [SerializeField] Tilemap tilemap;
-    [SerializeField] TileBase pitTile;
-    [SerializeField] TileBase barrierTile;
-    [SerializeField] TileBase wallTile;
-    [SerializeField] TileBase groundTile;
-    [Header("Tile Prefabs")]
-    [SerializeField] GameObject barrierTilePrefab;
-    [SerializeField] GameObject groundTilePrefab;
-    [SerializeField] GameObject pitTilePrefab;
-    [SerializeField] GameObject wallTilePrefab;
+    // [SerializeField] TileBase pitTile;
+    // [SerializeField] TileBase barrierTile;
+    // [SerializeField] TileBase wallTile;
+    // [SerializeField] TileBase groundTile;
+    // [Header("Tile Prefabs")]
+    // [SerializeField] GameObject barrierTilePrefab;
+    // [SerializeField] GameObject groundTilePrefab;
+    // [SerializeField] GameObject pitTilePrefab;
+    // [SerializeField] GameObject wallTilePrefab;
     
     public enum SelectColor{
         VALID,
@@ -67,7 +67,8 @@ public class Board : MonoBehaviour
     Point _min;
     Point _max;
 
-    public void Set (LevelData data){
+    public void Set (BoardData boardData, LevelData data){
+        // print(tilemap);
         _min = new Point(int.MaxValue, int.MaxValue);
         _max = new Point(int.MinValue, int.MinValue);
         for (int i = 0; i < data.tileTypes.Count; ++i){
@@ -75,16 +76,16 @@ public class Board : MonoBehaviour
             Vector3Int tilePos = new Vector3Int((int)data.tilePositions[i].x, (int)data.tilePositions[i].y, 0);
             switch(data.tileTypes[i]){
                 case Tile.TILETYPE.GROUND:
-                    tilemap.SetTile(tilePos, groundTile);
+                    tilemap.SetTile(tilePos, boardData.groundTile);
                     break;
                 case Tile.TILETYPE.BARRIER:
-                    tilemap.SetTile(tilePos, barrierTile);
+                    tilemap.SetTile(tilePos, boardData.barrierTile);
                     break;
                 case Tile.TILETYPE.PIT:
-                    tilemap.SetTile(tilePos, pitTile);
+                    tilemap.SetTile(tilePos, boardData.pitTile);
                     break;
                 case Tile.TILETYPE.WALL:
-                    tilemap.SetTile(tilePos, wallTile);
+                    tilemap.SetTile(tilePos, boardData.wallTile);
                     break;
                 default:
                     Debug.LogError("no tiletype for tile position: " + data.tilePositions[i]);
@@ -104,24 +105,24 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void Load (LevelData data){
+    public void Load (BoardData boardData, LevelData data){
         _min = new Point(int.MaxValue, int.MaxValue);
         _max = new Point(int.MinValue, int.MinValue);
         for (int i = 0; i < data.tileTypes.Count; ++i){
             GameObject tileInstance;
             switch(data.tileTypes[i]){
                 case Tile.TILETYPE.GROUND:
-                    tileInstance = Instantiate(groundTilePrefab, gameObject.transform);
+                    tileInstance = Instantiate(boardData.groundTilePrefab, gameObject.transform);
                     break;
                 case Tile.TILETYPE.BARRIER:
-                    tileInstance = Instantiate(barrierTilePrefab, gameObject.transform);
+                    tileInstance = Instantiate(boardData.barrierTilePrefab, gameObject.transform);
                     // tileInstance = Instantiate(barrierRuleTilePrefab, gameObject.transform);
                     break;
                 case Tile.TILETYPE.PIT:
-                    tileInstance = Instantiate(pitTilePrefab, gameObject.transform);
+                    tileInstance = Instantiate(boardData.pitTilePrefab, gameObject.transform);
                     break;
                 case Tile.TILETYPE.WALL:
-                    tileInstance = Instantiate(wallTilePrefab, gameObject.transform);
+                    tileInstance = Instantiate(boardData.wallTilePrefab, gameObject.transform);
                     break;
                 default:
                     tileInstance = new GameObject();

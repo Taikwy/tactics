@@ -12,6 +12,7 @@ public abstract class BattleState : State
     protected Driver driver;
     public CameraRig cameraRig { get { return owner.cameraRig; }}
     public Board board { get { return owner.board; }}
+    public BoardData boardData { get { return owner.boardData; }}
     public LevelData levelData { get { return owner.levelData; }}
     public TileSelectionIndicator tileSelectionIndicator { get { return owner.tileSelectionIndicator; }}
     public ActorIndicator actorIndicator { get { return owner.actorIndicator; }}

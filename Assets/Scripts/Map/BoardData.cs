@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class LevelData : ScriptableObject
-{
-    // public Texture2D mapLayout;
-    // public MapData mapData;
+[CreateAssetMenu(fileName = "Board Data", menuName = "ScriptableObjects/BoardData", order = 1)]
+public class BoardData : ScriptableObject{
     [Header("rule Tile Prefabs")]
-    public TileBase pitTile;
     public TileBase barrierTile;
-    public TileBase wallTile;
     public TileBase groundTile;
+    public TileBase pitTile;
+    public TileBase wallTile;
     [Header("Tile Prefabs")]
     public GameObject barrierTilePrefab;
     public GameObject groundTilePrefab;
     public GameObject pitTilePrefab;
     public GameObject wallTilePrefab;
-    [Header("tile positions and data")]
-    public List<Vector2> tilePositions;
-    public List<Tile.TILETYPE> tileTypes;
     
 }

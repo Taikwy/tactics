@@ -6196,6 +6196,7 @@ MonoBehaviour:
   selectPos:
     x: 0
     y: 0
+  boardData: {fileID: 11400000, guid: 4bfcb80ad23d1c4438f7c7edafe59b3f, type: 2}
   levelData: {fileID: 11400000, guid: 5f83d828f47b71f4fa9a8b17bcf7a27a, type: 2}
   levelRecipe: {fileID: 11400000, guid: 84345429a29ca0d469fe9671ee5656b9, type: 2}
   playerColor: {r: 0, g: 0.66169167, b: 1, a: 1}
@@ -7195,14 +7196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1893026046}
-  pitTile: {fileID: 11400000, guid: 5b8eccd8a6b779c4bbb28628aaac58b4, type: 2}
-  barrierTile: {fileID: 11400000, guid: a6c647ffbd1d2db40b6d1914c2a4f82a, type: 2}
-  wallTile: {fileID: 11400000, guid: 7620fd5cc2062d64390302c8a58366ca, type: 2}
-  groundTile: {fileID: 11400000, guid: d5e18eebc8d7ba04eacf967fac08da75, type: 2}
-  barrierTilePrefab: {fileID: 6692019245188394809, guid: bffde1243e82a3f4e940d1cad167d3cd, type: 3}
-  groundTilePrefab: {fileID: 6364204904911779010, guid: 90bd2a19f46ae2c4fa2977a5e384d33f, type: 3}
-  pitTilePrefab: {fileID: 6534081145384810864, guid: 681bd367d04e4f540a4d9ff125009ea9, type: 3}
-  wallTilePrefab: {fileID: 1025403324043751005, guid: 2d1833f51b6bd424a81a418c30b67967, type: 3}
   selectValid: {r: 1, g: 0.9880785, b: 0, a: 1}
   selectInvalid: {r: 1, g: 1, b: 1, a: 1}
   selectEmpty: {r: 0.5566038, g: 0.5527114, b: 0, a: 1}
@@ -19661,7 +19654,7 @@ GameObject:
   - component: {fileID: 1893026046}
   - component: {fileID: 1893026045}
   m_Layer: 0
-  m_Name: Purple TileMap
+  m_Name: TileMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
