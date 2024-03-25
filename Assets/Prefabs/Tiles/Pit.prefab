@@ -240,6 +240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b615a171d24334fb71849fdffdfd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlight: {fileID: 0}
+  target: {fileID: 0}
+  select: {fileID: 0}
   highlightRenderer: {fileID: 6534081144608980279}
   targetRenderer: {fileID: 1498750513161544531}
   selectRenderer: {fileID: 242101125028100315}
@@ -264,7 +267,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6534081145384810864}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -298,7 +301,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1813749632, guid: 236418d25680caf4ea282fdd25237c0d, type: 3}
+  m_Sprite: {fileID: 1657310912, guid: 5977130b5cd77bc429faca421794cd24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
