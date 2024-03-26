@@ -9,6 +9,7 @@ public class MoveTargetState : BattleState
     List<Tile> tiles, pathTiles, allyTiles, foeTiles = new List<Tile>();
     Movement moveScript;
     bool updating = false;
+    Tile currentlyHoveredTile;
     
     public override void Enter (){
         // Debug.Log("enter moving state");
@@ -79,8 +80,10 @@ public class MoveTargetState : BattleState
         }
 
         IndicateTimeline(board.selectedTile);
-
-        TargetTiles();        
+        if(currentlyHoveredTile != owner.selectedTile){
+            TargetTiles();        
+            currentlyHoveredTile = owner.selectedTile;
+        }
     }
     
     protected override void OnMove (object sender, InfoEventArgs<Point> e){
@@ -117,9 +120,11 @@ public class MoveTargetState : BattleState
         }
     }
     void TargetTiles(){
+        // print("targeting");
         // targetedTiles = rangeScript.GetTargetsInRange(board);
-        if(pathTiles != null)
+        if(pathTiles != null){
             board.UntargetTiles(pathTiles);
+        }
          if (tiles.Contains(owner.selectedTile)){
             // pathTiles = new List<Tile>();
             // pathTiles.Add(board.GetTile(selectPos));

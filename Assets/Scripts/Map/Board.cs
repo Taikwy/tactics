@@ -67,6 +67,8 @@ public class Board : MonoBehaviour
     Point _min;
     Point _max;
 
+    List<Tile> currentlyHighlighted, currentlyTargeted, currentlySelected;
+
     public void Set (BoardData boardData, LevelData data){
         // print(tilemap);
         _min = new Point(int.MaxValue, int.MaxValue);
@@ -158,6 +160,9 @@ public class Board : MonoBehaviour
     }
 
     public void HighlightTiles (List<Tile> tiles, OverlayColor type){
+        if(CompareTiles(currentlyHighlighted, tiles))
+            return;
+        currentlyHighlighted = tiles;
         Color temp = Color.white;
         switch(type){
             case OverlayColor.MOVE:
@@ -188,6 +193,10 @@ public class Board : MonoBehaviour
     }
     
     public void TargetTiles (List<Tile> tiles, OverlayColor type){
+        // if(CompareTiles(currentlyTargeted, tiles))
+        //     return;
+        currentlyTargeted = tiles;
+        // print("targeting " + currentlyTargeted.Count + " | " + tiles.Count);
         Color temp = Color.white;
         switch(type){
             case OverlayColor.MOVE:
@@ -212,6 +221,7 @@ public class Board : MonoBehaviour
         }
     }
     public void UntargetTiles (List<Tile> tiles){
+        print("untarget");
         if(tiles != null)
             for (int i = tiles.Count - 1; i >= 0; --i){
                 tiles[i].Untarget();
@@ -219,6 +229,9 @@ public class Board : MonoBehaviour
     }
 
     public void SelectTiles (List<Tile> tiles, OverlayColor type){
+        if(CompareTiles(currentlySelected, tiles))
+            return;
+        currentlySelected = tiles;
         Color temp = Color.white;
         switch(type){
             case OverlayColor.MOVE:
@@ -246,6 +259,16 @@ public class Board : MonoBehaviour
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].Unselect();
         }
+    }
+
+    bool CompareTiles(List<Tile> current, List<Tile> tiles){
+        if(current.Count != tiles.Count)
+            return false;
+        for(int i = 0; i < current.Count; i++){
+            if(current[i] != tiles[i])
+                return false;
+        }
+        return true;
     }
 
     //Finds tiles within range, no filter

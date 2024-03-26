@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public GameObject highlight, target, select;
+    // public GameObject highlight, target, select;
     public SpriteRenderer highlightRenderer, targetRenderer, selectRenderer;
     public Sprite highlightSprite, targetSprite, selectSprite;
+    bool highlightIncreasing, targetIncreasing, selectIncreasing = false;
+    float highlightMaxAlpha = .3f;
+    float targetMaxAlpha = .7f;
+    float selectMaxAlpha = 1f;
+    float minAlpha = .3f;
      [Space(10)]
-    public Animation targetAnim;
+    // public Animation targetAnim;
 
     public bool hovered = false;
+    float animateTime = .6f;
+    // float animateSpeed = .25f;
     
     public Point position;
     //public int height;
@@ -101,6 +109,38 @@ public class Tile : MonoBehaviour
     }    public void Unselect(){
         selectRenderer.enabled = false;
         selectRenderer.color = Color.clear;
+    }
+
+    void Update(){
+        // highlightIncreasing = UpdateRenderer(highlightRenderer, highlightIncreasing, highlightMaxAlpha);
+        targetIncreasing = UpdateRenderer(targetRenderer, targetIncreasing, targetMaxAlpha);
+        selectIncreasing = UpdateRenderer(selectRenderer, selectIncreasing, selectMaxAlpha);
+        // print("updating");
+    }
+
+    bool UpdateRenderer(SpriteRenderer renderer, bool increasing, float max){
+        Color color = renderer.color;
+        float animateSpeed = (max - minAlpha)/animateTime;
+        if(increasing){
+            if(color.a >= max){
+                increasing = false;
+                color.a -= animateSpeed * Time.deltaTime;
+            }
+            else{
+                color.a += animateSpeed * Time.deltaTime;
+            }
+        }
+        else{
+            if(color.a <= minAlpha){
+                increasing = true;
+                color.a += animateSpeed * Time.deltaTime;
+            }
+            else{
+                color.a -= animateSpeed * Time.deltaTime;
+            }
+        }
+        renderer.color = color;
+        return increasing;
     }
 
 }

@@ -8,6 +8,7 @@ public class ExploreState : BattleState
     bool unitSelected = false;
     List<Tile> tiles, allyTiles, foeTiles;
     bool updating = false;
+    Unit currentlyHovered;
     public override void Enter (){
         base.Enter ();
         tiles = allyTiles = foeTiles = new List<Tile>();
@@ -82,6 +83,7 @@ public class ExploreState : BattleState
     }
 
     void HighlightMovement(Unit selectedUnit){
+        // print("highlighting");
         Movement moveScript = selectedUnit.moveScript;
         tiles = moveScript.GetAllTilesInRange(board);
         allyTiles = moveScript.FilterAllies(tiles);
@@ -101,12 +103,17 @@ public class ExploreState : BattleState
             RefreshPrimaryPanel(board.selectedPoint);
             SelectTile(board.selectedPoint);
 
-            UnhighlightTiles();
             if(board.GetTile(board.selectedPoint).content != null){
                 Unit selectedUnit = board.GetTile(board.selectedPoint).content.GetComponent<Unit>();
                 if(selectedUnit != null){
-                    HighlightMovement(selectedUnit);
+                    // if(currentlyHovered != selectedUnit){
+                    //     UnhighlightTiles();
+                    //     HighlightMovement(selectedUnit);
+                    //     currentlyHovered = selectedUnit;
+                    // }
+                        HighlightMovement(selectedUnit);
                     owner.timeline.IndicateActor(selectedUnit);
+                    return;
                 }
                 else{
                     owner.timeline.IndicateActor(turn.actingUnit);
@@ -115,9 +122,9 @@ public class ExploreState : BattleState
             else{
                 // owner.timeline.IndicateActor(turn.actingUnit);
                 owner.timeline.StopIndicate();
-                // UnhighlightTiles();
             }
         }
+        UnhighlightTiles();
     }
 
     void HighlightTiles(){

@@ -12,6 +12,7 @@ public class AbilityTargetState : BattleState
     EffectZone zoneScript;
 
     List<GameObject> indicators;
+    Tile currentlyHoveredTile;
     
     public override void Enter (){
         base.Enter ();
@@ -107,6 +108,7 @@ public class AbilityTargetState : BattleState
         }
         IndicateTimeline(board.selectedTile);
         // SelectTile(board.selectedPoint, highlightedTiles.Contains(board.selectedTile));
+        
         TargetTiles();
     }
 
@@ -208,8 +210,15 @@ public class AbilityTargetState : BattleState
 
     void TargetTiles (){
         // targetedTiles = rangeScript.GetTargetsInRange(board);
-        if(targetedTiles != null)
+        
+        if(targetedTiles != null){
+            if(currentlyHoveredTile != board.selectedTile){
+                print("not");     
+                board.UntargetTiles(targetedTiles);
+                currentlyHoveredTile = board.selectedTile;
+            }
             board.UntargetTiles(targetedTiles);
+        }
 
         //gets all the currently targeted tiles
         // List<Tile> centerTiles = areaScript.ShowTargetedTiles(board);
@@ -235,8 +244,7 @@ public class AbilityTargetState : BattleState
         board.SelectTiles(selectedTiles, turn.selectedAbility.overlayColor);
     }
 
-    IEnumerator ComputerHighlightTarget ()
-	{
+    IEnumerator ComputerHighlightTarget (){
         //for direction orientated abilities
 		// if (ar.directionOriented)
 		// {

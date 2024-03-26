@@ -409,17 +409,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b615a171d24334fb71849fdffdfd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlight: {fileID: 6364204905016770590}
-  target: {fileID: 4654504544128500481}
-  select: {fileID: 7398022443215691608}
   highlightRenderer: {fileID: 6364204905016770591}
   targetRenderer: {fileID: 7937413143799556046}
   selectRenderer: {fileID: 4293732335792253242}
   highlightSprite: {fileID: 21300000, guid: 371ac495c7a1ba049af0b4d6b9057f71, type: 3}
   targetSprite: {fileID: 1204405536, guid: feaedf39666e69446b0d54a69066bc2e, type: 3}
   selectSprite: {fileID: -1808446317, guid: c517fb5d06e59cb4299724899f0a0db0, type: 3}
-  targetAnim: {fileID: 0}
   hovered: 0
+  animateSpeed: 0.5
   position:
     x: 0
     y: 0
