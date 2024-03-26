@@ -7,6 +7,7 @@ public class SelectUnitState : BattleState
     public override void Enter (){
         base.Enter ();
 
+        panelController.ShowTimeline();
         // Debug.LogError("ENTERING SELECT STATE");
         if (IsBattleOver()){
             Debug.Log("selecting says battle is over BEFORE roling over");

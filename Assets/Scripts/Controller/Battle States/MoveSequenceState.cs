@@ -6,9 +6,16 @@ public class MoveSequenceState : BattleState
 {
     public override void Enter (){
         base.Enter ();
+        panelController.HideTimeline();
         StartCoroutine("Sequence");
     }
-    
+    public override void Exit()
+    {
+        base.Exit();
+        
+        panelController.ShowTimeline();
+    }
+
 
     IEnumerator Sequence (){
         Movement m = turn.actingUnit.GetComponent<Movement>();

@@ -17,11 +17,13 @@ public class PanelController : MonoBehaviour
     [SerializeField] AbilityInfoPanel abilityInfoPanel; 
     [SerializeField] DetailsPanel detailsPanel;            
     [SerializeField] AbilityDisplayPanel abilityDisplayPanel;         
-    [SerializeField] MouseControlsPanel mouseControlsPanel;         
+    [SerializeField] MouseControlsPanel mouseControlsPanel;        
+    [SerializeField] Timeline timelinePanel;         
     // [SerializeField] AbilityMenu abilityMenu;
-    [HideInInspector] public bool showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo, showingDetails, showingAbilityDisplay, showingMouseControls = false;
+    [HideInInspector] public bool showingTimeline,showingPrimary, showingPrimaryStatus, showingSecondary, showingAbilityInfo, showingDetails, showingAbilityDisplay, showingMouseControls = false;
     
     void Start (){
+        HideTimeline();
         HidePrimary();
         // HideStatus();
         HideSecondary(); 
@@ -29,6 +31,13 @@ public class PanelController : MonoBehaviour
         // HideDetails();
         HideAbilityDisplay();
         HideMouseControls();
+    }
+    public void ShowTimeline (){
+        showingTimeline = true;
+        timelinePanel.ShowPanel();
+    }    public void HideTimeline (){
+        showingTimeline = false;
+        timelinePanel.HidePanel();
     }
 
     public void ShowPrimary (GameObject unit){

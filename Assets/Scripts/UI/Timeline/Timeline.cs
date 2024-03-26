@@ -28,6 +28,12 @@ public class Timeline : MonoBehaviour
         this.RemoveObserver(UpdateTimeline, TurnOrderController.AVChangedEvent);
         this.RemoveObserver(UpdateTimeline, Stats.DidChangeEvent(StatTypes.AV));
 	}
+    public void ShowPanel(){
+        container.SetActive(true);
+    }
+    public void HidePanel(){
+        container.SetActive(false);
+    }
 
     //initial stuff, sets things up like adding the round stuff
     public void PopulateTimeline(List<Unit> units){

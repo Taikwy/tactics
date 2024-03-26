@@ -27,7 +27,8 @@ public class MoveTargetState : BattleState
         board.HighlightTiles(tiles, Board.OverlayColor.MOVE);
         board.HighlightTiles(allyTiles, Board.OverlayColor.PASS);
         board.HighlightTiles(foeTiles, Board.OverlayColor.ATTACK);
-        RefreshPrimaryPanel(selectPos);
+        panelController.HideTimeline();
+        // RefreshPrimaryPanel(selectPos);
 
         if (driver.Current == Drivers.Computer){
             board.humanDriver = false;
@@ -56,6 +57,8 @@ public class MoveTargetState : BattleState
         board.UntargetTiles(pathTiles);
         tiles = null;
         // statPanelController.HidePrimary();
+        
+        panelController.ShowTimeline();
         panelController.HidePrimary();
         panelController.HideSecondary();
         panelController.HideMouseControls();
@@ -66,7 +69,7 @@ public class MoveTargetState : BattleState
             return;
         // Debug.Log("movestate updating");
 
-        RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
+        // RefreshSecondaryPanel(board.selectedPoint);                 //highlights hovered unit
         // SelectTile(board.selectedPoint, tiles.Contains(board.selectedTile));
         if(tiles.Contains(board.selectedTile)){
             if(board.selectedTile.content != null){
@@ -87,12 +90,12 @@ public class MoveTargetState : BattleState
         }
     }
     
-    protected override void OnMove (object sender, InfoEventArgs<Point> e){
-        Debug.LogError("movetstate onmove?");
-        // SelectTile(e.info + selectPos);
-        // TargetTiles();
-        // RefreshPrimaryPanel(selectPos);
-    }
+    // protected override void OnMove (object sender, InfoEventArgs<Point> e){
+    //     Debug.LogError("movetstate onmove?");
+    //     // SelectTile(e.info + selectPos);
+    //     // TargetTiles();
+    //     // RefreshPrimaryPanel(selectPos);
+    // }
     
     protected override void OnFire (object sender, InfoEventArgs<int> e){
             // Debug.Log("movement fire");
