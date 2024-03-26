@@ -6516,6 +6516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 462072618}
+  transparentAlpha: 0.6
   moveSpeed: 1
   moveDistance: 0.2
 --- !u!1001 &479507319
@@ -14098,8 +14099,8 @@ MonoBehaviour:
   effectDisplayDelay: 0.2
   effectLabelPrefab: {fileID: 5399575319666421873, guid: 9cf64d76a37a2ea42aa85fbcc7e27c89, type: 3}
   effectLabelContainer: {fileID: 1422172081}
-  effectFloatSpeed: 1
-  effectFadeSpeed: 1
+  effectFloatSpeed: 0.85
+  effectFadeSpeed: 1.5
   unitEffectLabelOffset: {x: 0, y: 0.8}
 --- !u!1 &1280479880
 GameObject:
@@ -22076,6 +22077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4479799511954849209, guid: 8cd085b48a6e59749ab66757ff2b370b, type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 2800000, guid: 8b3b86c38af808143ae28be213b3e5e5, type: 3}
     - target: {fileID: 4479799511954849209, guid: 8cd085b48a6e59749ab66757ff2b370b, type: 3}
       propertyPath: music.Array.data[2].volume
       value: 0.2

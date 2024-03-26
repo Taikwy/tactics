@@ -16,6 +16,7 @@ public class ConfirmAbilityTargetState : BattleState
     public override void Enter (){
         base.Enter ();
         tileSelectionIndicator.ChangeTarget();
+        actorIndicator.MakeTransparent(true);
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
         targetedTiles = areaScript.targets;
         highlightedTiles = new List<Tile>(targetedTiles);
@@ -67,6 +68,7 @@ public class ConfirmAbilityTargetState : BattleState
     public override void Exit (){
         // Debug.Log("exiting confirm ability state");
         tileSelectionIndicator.ChangeSelect();
+        actorIndicator.MakeTransparent(false);
         cameraRig.selectMovement = true;
         updating = false;
         base.Exit ();

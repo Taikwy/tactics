@@ -18,6 +18,7 @@ public class AbilityTargetState : BattleState
         // print("entering ability taget state");
         base.Enter ();
         tileSelectionIndicator.ChangeTarget();
+        actorIndicator.MakeTransparent(true);
 
         rangeScript = turn.selectedAbility.GetComponent<AbilityRange>();
         areaScript = turn.selectedAbility.GetComponent<AbilityArea>();
@@ -68,6 +69,7 @@ public class AbilityTargetState : BattleState
             Destroy(indicator);
         }
         tileSelectionIndicator.ChangeSelect();
+        actorIndicator.MakeTransparent(false);
 
         board.UnhighlightTiles(highlightedTiles);
         board.UntargetTiles(targetedTiles);

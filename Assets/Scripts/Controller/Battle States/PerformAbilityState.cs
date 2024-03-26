@@ -42,6 +42,7 @@ public class PerformAbilityState : BattleState
         cameraRig.selectMovement = false;
 
         panelController.HideTimeline();
+        actorIndicator.MakeTransparent(true);
         //if there is no selected ability, that means focus was selected
             StartCoroutine(Animate(!turn.selectedAbility));
         // if(!turn.selectedAbility){
@@ -54,6 +55,7 @@ public class PerformAbilityState : BattleState
     }
     public override void Exit (){
         panelController.ShowTimeline();
+        actorIndicator.MakeTransparent(false);
 
 		this.RemoveObserver(OnAbilityHit, BaseAbilityEffect.EffectHitEvent);
         this.RemoveObserver(OnAbilityMiss, BaseAbilityEffect.EffectMissedEvent);

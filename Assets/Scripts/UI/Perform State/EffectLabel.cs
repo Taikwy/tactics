@@ -18,6 +18,9 @@ public class EffectLabel : MonoBehaviour
         int.TryParse(labelText, out int result);
         if(result > 0){
             effectLabel.color = Color.green;
+            
+            effectLabel.text = "+"+labelText;
+            bgLabel.text = "+"+labelText;
         }
         else if(result < 0){
             effectLabel.color = Color.red;

@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public Texture2D cursor;
+    public Camera cam;
     public GameObject sfxContainer, musicContainer;
     public Sound[] sounds;
     public Sound[] music;
@@ -20,6 +22,11 @@ public class AudioManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
+            Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        cam = FindObjectOfType<Camera>();
+        if(cam != null){
+        }
         
         foreach(Sound sound in sounds){
             sound.source = sfxContainer.AddComponent<AudioSource>();

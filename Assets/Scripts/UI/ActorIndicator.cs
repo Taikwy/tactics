@@ -9,6 +9,7 @@ public class ActorIndicator : MonoBehaviour
     // public RuntimeAnimatorController selectAnim;
     // public RuntimeAnimatorController targetAnim;
 
+    public float transparentAlpha = .5f;
     Vector2 centerPos;
     Vector2 offset;
     public float moveSpeed;
@@ -24,6 +25,18 @@ public class ActorIndicator : MonoBehaviour
         // centerPos = transform.localPosition;
         // topPos = centerPos + new Vector2(0, moveDistance);
         // botPos = centerPos - new Vector2(0, moveDistance);
+    }
+    public void MakeTransparent(bool transparent){
+        if(transparent){
+            Color temp = sr.color;
+            temp.a = transparentAlpha;
+            sr.color = temp;
+        }
+        else{
+            Color temp = sr.color;
+            temp.a = 1;
+            sr.color = temp;
+        }
     }
     void Update(){
         // print(transform.localPosition.y + " | " + offset.y + " | " + movePos);
@@ -55,6 +68,7 @@ public class ActorIndicator : MonoBehaviour
 		}
         sr.color = bc.board.selectValid;
     }
+
     
     
     // public void ChangeSelect(){
