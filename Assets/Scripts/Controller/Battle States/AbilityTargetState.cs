@@ -237,14 +237,14 @@ public class AbilityTargetState : BattleState
         board.TargetTiles(targetedTiles, turn.selectedAbility.overlayColor);
     }
 
-    void SelectTiles(){
-        if(selectedTiles != null)
-            board.UnselectTiles(selectedTiles);
+    // void SelectTiles(){
+    //     if(selectedTiles != null)
+    //         board.UnselectTiles(selectedTiles);
 
-        selectedTiles = new List<Tile>(areaScript.targets);
-        // board.SelectTiles(selectedTiles);
-        board.SelectTiles(selectedTiles, turn.selectedAbility.overlayColor);
-    }
+    //     selectedTiles = new List<Tile>(areaScript.targets);
+    //     // board.SelectTiles(selectedTiles);
+    //     board.SelectTiles(selectedTiles, turn.selectedAbility.overlayColor);
+    // }
 
     IEnumerator ComputerHighlightTarget (){
         //for direction orientated abilities

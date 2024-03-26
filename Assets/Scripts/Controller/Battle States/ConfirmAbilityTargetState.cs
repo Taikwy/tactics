@@ -32,6 +32,7 @@ public class ConfirmAbilityTargetState : BattleState
             forecastPanel.Show();
             SetTarget(turn.targets[0]);
             indicatedTiles = IndicateTiles(turn.targets, Board.SelectColor.VALID);
+            board.TargetTiles(turn.targets, turn.selectedAbility.overlayColor);
 		}
         //this should no longer be used to this logic being in abilitytargetstate
         // else{
