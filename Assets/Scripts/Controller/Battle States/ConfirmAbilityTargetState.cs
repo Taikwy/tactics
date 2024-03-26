@@ -74,7 +74,7 @@ public class ConfirmAbilityTargetState : BattleState
         StopIndicating(indicatedTiles);
         // Debug.Log(highlightedTiles + "        | " + highlightedTiles.Count);
         board.UnhighlightTiles(highlightedTiles);
-        board.UntargetTiles(targetedTiles);
+        board.UntargetTiles(turn.targets);
         panelController.HidePrimary();
         panelController.HideSecondary();
         IndicateTimeline(turn.actingUnit.tile);
