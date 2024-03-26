@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SkillIcons : MonoBehaviour
 {
+    public Color fillColor, bgColor;
     public Image[] icons = new Image[5];
     public Image[] iconBGs = new Image[5];
     
@@ -22,6 +23,7 @@ public class SkillIcons : MonoBehaviour
         for(int i = 0; i < numIcons; i++){
             if(i >= iconBGs.Length)
                 return;
+            icons[i].color = fillColor;
             icons[i].enabled = true;
         }
     }
@@ -31,6 +33,7 @@ public class SkillIcons : MonoBehaviour
         for(int i = 0; i < numBgs; i++){
             if(i >= iconBGs.Length)
                 return;
+            iconBGs[i].color = bgColor;
             iconBGs[i].enabled = true;
         }
     }
