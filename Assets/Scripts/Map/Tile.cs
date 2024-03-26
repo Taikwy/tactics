@@ -95,7 +95,7 @@ public class Tile : MonoBehaviour
     }
     //indicating movement path and hovering targets
     public void Target(Color color){
-        print("targeting " + color);
+        // print("targeting " + color);
         targetRenderer.enabled = true;
         targetRenderer.sprite = targetSprite;
         targetRenderer.color = color;

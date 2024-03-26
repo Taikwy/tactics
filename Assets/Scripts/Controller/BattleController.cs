@@ -61,6 +61,7 @@ public class BattleController : StateMachine
 
     void Awake(){
         audioManager = FindObjectOfType<AudioManager>();
+        
     }
 
     void Start (){

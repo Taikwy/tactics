@@ -160,8 +160,9 @@ public class Board : MonoBehaviour
     }
 
     public void HighlightTiles (List<Tile> tiles, OverlayColor type){
-        if(CompareTiles(currentlyHighlighted, tiles))
-            return;
+        // print("highlighting " + tiles.Count);
+        // if(CompareTiles(currentlyHighlighted, tiles))
+        //     return;
         currentlyHighlighted = tiles;
         Color temp = Color.white;
         switch(type){
@@ -190,6 +191,7 @@ public class Board : MonoBehaviour
         }
     }
     public void UnhighlightTiles (List<Tile> tiles){
+        // print("unhighlighting");
         for (int i = tiles.Count - 1; i >= 0; --i){
             tiles[i].Unhighlight();
         }

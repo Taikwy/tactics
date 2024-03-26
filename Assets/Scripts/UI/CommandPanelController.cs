@@ -12,7 +12,7 @@ public class CommandPanelController : MonoBehaviour
     const string HideKey = "Hide";
     const string EntryPoolKey = "AbilityMenuPanel.Entry";
     const int MenuCount = 4;
-
+    BattleController bc;
     [SerializeField] GameObject menuPanel;
     List<AbilityMenuEntry> menuEntries = new List<AbilityMenuEntry>(MenuCount);
     [Header("COMMAND ENTRY STUFF")]
@@ -26,12 +26,14 @@ public class CommandPanelController : MonoBehaviour
     public int currentSelection { get; private set; }
     GameObject abilityInfoPanel = null;
     GameObject commandInfoPanel = null;
+    List<Tile> currentlyHighlighted;
     [Header("anchors for the info panels")]
     public Transform commandLabelAnchor;
     public Transform abilityLabelAnchor;
 
     void Awake (){
         GameObjectPoolController.AddEntry(EntryPoolKey, entryPrefab, MenuCount, int.MaxValue);
+        bc = FindObjectOfType<BattleController>();
     }
 
     // Start is called before the first frame update
@@ -74,7 +76,7 @@ public class CommandPanelController : MonoBehaviour
     public List<AbilityMenuEntry> Show (List<string> options, List<bool> performable, List<UnityEngine.Events.UnityAction> functions){
         menuPanel.SetActive(true);
         Clear ();
-        print("showing commands");
+        // print("showing commands");
         for (int i = 0; i < options.Count; ++i){
             AbilityMenuEntry entry = Dequeue();
             entry.Setup();
@@ -119,10 +121,10 @@ public class CommandPanelController : MonoBehaviour
         for (int i = 0; i < names.Count; ++i){
 
             AbilityMenuEntry entry = Dequeue();
-            entry.abilityEntry = abilities[i];
+            entry.abilityObject = abilities[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
-            entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry); };
-            entry.unhighlightFunc = delegate { DestroyAbilityInfoPanel(); };
+            entry.highlightFunc = delegate { HighlightAbilityRange(entry); CreateAbilityInfoPanel(entry); };
+            entry.unhighlightFunc = delegate { UnhighlightAbilityRange(entry); DestroyAbilityInfoPanel(); };
 
             if(abilities[i].GetComponent<Ability>().abilityIcon != null)
                 entry.icon.sprite = abilities[i].GetComponent<Ability>().abilityIcon;
@@ -168,9 +170,33 @@ public class CommandPanelController : MonoBehaviour
             commandInfoPanel.GetComponent<CommandInfoPanel>().HidePanel();
         Destroy(commandInfoPanel);
     }
+    public void HighlightAbilityRange(AbilityMenuEntry entry){
+        
+        // print("highlighting ability range");
+
+        Ability ability = entry.abilityObject.GetComponent<Ability>();
+        AbilityRange rangeScript = ability.GetComponent<AbilityRange>();
+        currentlyHighlighted = rangeScript.GetTilesForHighlighting(bc.board, bc.turn.actingUnit.tile);
+        bc.board.HighlightTiles(currentlyHighlighted, ability.overlayColor);
+    }
+    
+    public void UnhighlightAbilityRange(AbilityMenuEntry entry){
+        
+        // print("unhighlighting ability range");
+        // Ability ability = entry.abilityObject.GetComponent<Ability>();
+        // AbilityRange rangeScript = ability.GetComponent<AbilityRange>();
+        // List<Tile> highlightedTiles = rangeScript.GetTilesForHighlighting(bc.board, bc.turn.actingUnit.tile);
+        // // highlightedTiles = rangeScript.FilterLOS(bc.turn.actingUnit.tile, rangeScript.FilterTargetable(rangeScript.GetTilesInRange(bc.board)));
+        Unhighlight();
+    }
+    public void Unhighlight(){
+        // print("unhighlighting");
+        bc.board.UnhighlightTiles(currentlyHighlighted);
+    }
     public void CreateAbilityInfoPanel(AbilityMenuEntry entry){
+        // print("crating ability info");
         // GameObject label = entry.gameObject;
-        GameObject ability = entry.abilityEntry;
+        GameObject ability = entry.abilityObject;
         // Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
         // Vector2 pos = label.transform.position;
@@ -197,5 +223,6 @@ public class CommandPanelController : MonoBehaviour
             abilityInfoPanel.GetComponent<AbilityInfoPanel>().HidePanel();
         Destroy(abilityInfoPanel);
     }
+
 
 }

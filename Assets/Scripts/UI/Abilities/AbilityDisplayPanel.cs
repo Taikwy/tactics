@@ -21,7 +21,7 @@ public class AbilityDisplayPanel : MonoBehaviour
         panel.SetActive(true);
     }
     public void HidePanel(){
-        print("hiding ability panel");
+        // print("hiding ability panel");
         panel.SetActive(false);
     }
 }

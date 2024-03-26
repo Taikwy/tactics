@@ -17,8 +17,9 @@ public class AbilitySectionState : BaseAbilityMenuState
     }
     public override void Exit (){
         // Debug.Log("exiting category state");
-        base.Exit ();
+        commandPanelController.Unhighlight();
         commandPanelController.DestroyAbilityInfoPanel();
+        base.Exit ();
         // panelController.HideStatus();
         panelController.HidePrimary();
         panelController.HideMouseControls();
@@ -82,7 +83,7 @@ public class AbilitySectionState : BaseAbilityMenuState
     }
 
     void Attack (GameObject ability){
-        Debug.Log("attacking with " + ability);
+        // Debug.Log("attacking with " + ability);
         turn.selectedAbility = ability.GetComponent<Ability>();
         owner.ChangeState<AbilityTargetState>();
     }

@@ -123,8 +123,8 @@ public class ExploreState : BattleState
                 // owner.timeline.IndicateActor(turn.actingUnit);
                 owner.timeline.StopIndicate();
             }
-        }
         UnhighlightTiles();
+        }
     }
 
     void HighlightTiles(){

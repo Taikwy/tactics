@@ -15,6 +15,7 @@ public class AbilityTargetState : BattleState
     Tile currentlyHoveredTile;
     
     public override void Enter (){
+        // print("entering ability taget state");
         base.Enter ();
         tileSelectionIndicator.ChangeTarget();
 

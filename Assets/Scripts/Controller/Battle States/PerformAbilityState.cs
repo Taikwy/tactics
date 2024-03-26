@@ -41,6 +41,7 @@ public class PerformAbilityState : BattleState
         cameraRig.unitMovement = true;
         cameraRig.selectMovement = false;
 
+        panelController.HideTimeline();
         //if there is no selected ability, that means focus was selected
             StartCoroutine(Animate(!turn.selectedAbility));
         // if(!turn.selectedAbility){
@@ -52,6 +53,7 @@ public class PerformAbilityState : BattleState
         // }
     }
     public override void Exit (){
+        panelController.ShowTimeline();
 
 		this.RemoveObserver(OnAbilityHit, BaseAbilityEffect.EffectHitEvent);
         this.RemoveObserver(OnAbilityMiss, BaseAbilityEffect.EffectMissedEvent);
@@ -83,13 +85,16 @@ public class PerformAbilityState : BattleState
         Debug.Log("starting to animate " + turn.targets.Count);
         if(focusing){
             panelController.ShowAbilityDisplay(null, true);
+            yield return new WaitForSeconds(performStateUI.focusStartDelay);
             performStateUI.DisplayEffect(turn.actingUnit.tile, "+2 SKILL POINTS");
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(performStateUI.focusEndDelay);
             panelController.HideAbilityDisplay();
         }
         else{
-            ApplyAbility();
             panelController.ShowAbilityDisplay(turn.selectedAbility.gameObject);
+            yield return new WaitForSeconds(performStateUI.abilityDisplayDelay);
+
+            ApplyAbility();
             float timeElapsed = 0;
             while(!finishedCalculating || timeElapsed > 2f){
                 yield return new WaitForSeconds(Time.deltaTime);
@@ -133,7 +138,7 @@ public class PerformAbilityState : BattleState
             // Debug.Log("targeting " +target);
             // panelController.ShowSecondary(target.content);
             yield return StartCoroutine(Perform(target));
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(performStateUI.performDelay);
         }
         panelController.HideSecondary();
         // Debug.Log("finishing attacks " + turn.targets.Count);
@@ -208,19 +213,19 @@ public class PerformAbilityState : BattleState
             targetTransform.position  = Vector2.MoveTowards(targetTransform.position, startPos, dodgeSpeed*Time.deltaTime);
             yield return null;
         }
-        print(targetTransform.position + " | " + startPos);
+        // print(targetTransform.position + " | " + startPos);
     }
-    void DisplayEffect (Tile target){
-        print("displaying effect");
-        int targetIndex = turn.targets.IndexOf(target);
+    // void DisplayEffect (Tile target){
+    //     print("displaying effect");
+    //     int targetIndex = turn.targets.IndexOf(target);
         
-        performStateUI.DisplayEffect(target, effect[targetIndex]);
-        // Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
-        // Unit unit = target.content.GetComponent<Unit>();
-        // GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
-        // effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
-        // print(effect[targetIndex] + " | pos " + targetPos);
-    }
+    //     performStateUI.DisplayEffect(target, effect[targetIndex]);
+    //     // Vector2 targetPos = (Vector2)target.transform.position + performStateUI.unitEffectLabelOffset;
+    //     // Unit unit = target.content.GetComponent<Unit>();
+    //     // GameObject effectLabel = Instantiate(performStateUI.effectLabelPrefab, targetPos, Quaternion.identity, unit.canvasObj);
+    //     // effectLabel.GetComponent<EffectLabel>().Initialize(effect[targetIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
+    //     // print(effect[targetIndex] + " | pos " + targetPos);
+    // }
 
     IEnumerator DisplayEffects (Tile target){
         int targetIndex = turn.targets.IndexOf(target);
@@ -238,7 +243,7 @@ public class PerformAbilityState : BattleState
             // effectLabel.GetComponent<EffectLabel>().Initialize(effects[targetIndex][effectIndex], performStateUI.effectFloatSpeed, performStateUI.effectFadeSpeed);
             // print(effects[targetIndex][effectIndex] + " | pos " + targetPos);
 
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(performStateUI.effectDisplayDelay);
         }
         yield return null;
     }

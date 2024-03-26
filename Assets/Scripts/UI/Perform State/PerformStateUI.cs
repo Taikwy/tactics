@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PerformStateUI : MonoBehaviour
 {
+    [Header("perfrom state timing stuff")]
+    public float abilityDisplayDelay;
+    public float performDelay;
+    public float focusStartDelay, focusEndDelay;
+    public float effectDisplayDelay;
+    [Header("effect label stuff")]
     public GameObject effectLabelPrefab;
     public GameObject effectLabelContainer;
     public float effectFloatSpeed, effectFadeSpeed;

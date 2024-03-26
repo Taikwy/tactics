@@ -90,7 +90,7 @@ public class AbilityPanelController : MonoBehaviour
 
             AbilityMenuEntry entry = Dequeue();
             // entry.Title = names[i];
-            entry.abilityEntry = abilities[i];
+            entry.abilityObject = abilities[i];
             entry.gameObject.GetComponent<Button>().onClick.AddListener(functions[i]);
             // Debug.Log("index " + i);
             // entry.highlightFunc = delegate { CreateAbilityInfoPanel(entry.gameObject, entry.entry); };
@@ -121,7 +121,7 @@ public class AbilityPanelController : MonoBehaviour
     }
     public void CreateAbilityInfoPanel(AbilityMenuEntry entry){
         GameObject label = entry.gameObject;
-        GameObject ability = entry.abilityEntry;
+        GameObject ability = entry.abilityObject;
         // Debug.Log("creating ability info panel");
         Destroy(abilityInfoPanel);
         Vector2 pos = label.transform.position;
