@@ -102,7 +102,8 @@ public class AbilityTargetState : BattleState
                 // }
             }
             else{
-                SelectTile(board.selectedPoint, Board.SelectColor.VALID);
+                // SelectTile(board.selectedPoint, Board.SelectColor.VALID);
+                SelectTile(board.selectedPoint, Board.SelectColor.EMPTY);
             }
         }else{
             SelectTile(board.selectedPoint, Board.SelectColor.EMPTY);
