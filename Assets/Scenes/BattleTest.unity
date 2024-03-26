@@ -7203,10 +7203,10 @@ MonoBehaviour:
   selectEnemy: {r: 1, g: 0.14509805, b: 0, a: 1}
   moveColor: {r: 0, g: 0.12997723, b: 1, a: 1}
   passColor: {r: 0, g: 0.12941177, b: 1, a: 1}
-  attackColor: {r: 1, g: 0.14344116, b: 0, a: 1}
-  healColor: {r: 0.2016287, g: 0.9056604, b: 0, a: 1}
-  buffColor: {r: 0, g: 0.9056604, b: 0.72808003, a: 1}
-  debuffColor: {r: 0.96098137, g: 0, b: 1, a: 1}
+  attackColor: {r: 1, g: 0, b: 0, a: 1}
+  healColor: {r: 0.11031434, g: 0.8018868, b: 0, a: 1}
+  buffColor: {r: 0.90588236, g: 0.78225857, b: 0, a: 1}
+  debuffColor: {r: 1, g: 0.3515993, b: 0, a: 1}
   highlightAlpha: 0.3
   targetAlpha: 0.7
   selectAlpha: 1

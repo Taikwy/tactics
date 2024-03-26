@@ -177,6 +177,9 @@ public class Board : MonoBehaviour
             case OverlayColor.BUFF:
                 temp = buffColor;
                 break;
+            case OverlayColor.DEBUFF:
+                temp = debuffColor;
+                break;
             case OverlayColor.HEAL:
                 temp = healColor;
                 break;
@@ -212,6 +215,9 @@ public class Board : MonoBehaviour
             case OverlayColor.BUFF:
                 temp = buffColor;
                 break;
+            case OverlayColor.DEBUFF:
+                temp = debuffColor;
+                break;
             case OverlayColor.HEAL:
                 temp = healColor;
                 break;
@@ -246,6 +252,9 @@ public class Board : MonoBehaviour
                 break;
             case OverlayColor.BUFF:
                 temp = buffColor;
+                break;
+            case OverlayColor.DEBUFF:
+                temp = debuffColor;
                 break;
             case OverlayColor.HEAL:
                 temp = healColor;
