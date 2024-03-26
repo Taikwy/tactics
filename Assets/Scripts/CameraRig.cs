@@ -110,10 +110,10 @@ public class CameraRig : MonoBehaviour
     }
 
     void ClampCameraPosition(){
-        targetPos.x = Mathf.Max(targetPos.x, bc.board.min.x-2);
-        targetPos.x = Mathf.Min(targetPos.x, bc.board.max.x+2);
-        targetPos.y = Mathf.Max(targetPos.y, bc.board.min.y-2);
-        targetPos.y = Mathf.Min(targetPos.y, bc.board.max.y+2);
+        targetPos.x = Mathf.Max(targetPos.x, bc.board.min.x+5);
+        targetPos.x = Mathf.Min(targetPos.x, bc.board.max.x-5);
+        targetPos.y = Mathf.Max(targetPos.y, bc.board.min.y+2);
+        targetPos.y = Mathf.Min(targetPos.y, bc.board.max.y-2);
     }
     
 }

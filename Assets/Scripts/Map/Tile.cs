@@ -11,9 +11,9 @@ public class Tile : MonoBehaviour
     public Sprite highlightSprite, targetSprite, selectSprite;
     bool highlightIncreasing, targetIncreasing, selectIncreasing = false;
     float highlightMaxAlpha = .3f;
-    float targetMaxAlpha = .8f;
+    float targetMaxAlpha = .9f;
     float selectMaxAlpha = 1f;
-    float minAlpha = .2f;
+    float minAlpha = .35f;
      [Space(10)]
     // public Animation targetAnim;
 
