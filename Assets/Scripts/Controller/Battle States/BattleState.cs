@@ -137,6 +137,16 @@ public abstract class BattleState : State
         }
     }
 
+    //compare if two lists hve the same tiles in them, used for checking for highlighting and targeting logic stuff
+    public bool CompareTiles(List<Tile> current, List<Tile> tiles){
+        if(current.Count != tiles.Count)
+            return false;
+        for(int i = 0; i < current.Count; i++){
+            if(current[i] != tiles[i])
+                return false;
+        }
+        return true;
+    }
 
     //moves tile selection indicator to point
     protected virtual void SelectTile (Point p) {

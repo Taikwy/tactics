@@ -195,6 +195,7 @@ public class Board : MonoBehaviour
     public void TargetTiles (List<Tile> tiles, OverlayColor type){
         // if(CompareTiles(currentlyTargeted, tiles))
         //     return;
+        print("targeting " + tiles.Count);
         currentlyTargeted = tiles;
         // print("targeting " + currentlyTargeted.Count + " | " + tiles.Count);
         Color temp = Color.white;

@@ -11,9 +11,9 @@ public class Tile : MonoBehaviour
     public Sprite highlightSprite, targetSprite, selectSprite;
     bool highlightIncreasing, targetIncreasing, selectIncreasing = false;
     float highlightMaxAlpha = .3f;
-    float targetMaxAlpha = .7f;
+    float targetMaxAlpha = .8f;
     float selectMaxAlpha = 1f;
-    float minAlpha = .3f;
+    float minAlpha = .2f;
      [Space(10)]
     // public Animation targetAnim;
 
@@ -88,15 +88,18 @@ public class Tile : MonoBehaviour
         highlightRenderer.enabled = true;
         highlightRenderer.sprite = highlightSprite;
         highlightRenderer.color = color;
+        highlightIncreasing = true;
     }    public void Unhighlight(){
         highlightRenderer.enabled = false;
         highlightRenderer.color = Color.clear;
     }
     //indicating movement path and hovering targets
     public void Target(Color color){
+        print("targeting " + color);
         targetRenderer.enabled = true;
         targetRenderer.sprite = targetSprite;
         targetRenderer.color = color;
+        targetIncreasing = true;
     }    public void Untarget(){
         targetRenderer.enabled = false;
         targetRenderer.color = Color.clear;
@@ -106,6 +109,7 @@ public class Tile : MonoBehaviour
         selectRenderer.enabled = true;
         selectRenderer.sprite = selectSprite;
         selectRenderer.color = color;
+        selectIncreasing = true;
     }    public void Unselect(){
         selectRenderer.enabled = false;
         selectRenderer.color = Color.clear;
