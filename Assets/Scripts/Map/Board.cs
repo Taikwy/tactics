@@ -195,7 +195,7 @@ public class Board : MonoBehaviour
     public void TargetTiles (List<Tile> tiles, OverlayColor type){
         // if(CompareTiles(currentlyTargeted, tiles))
         //     return;
-        print("targeting " + tiles.Count);
+        // print("targeting " + tiles.Count);
         currentlyTargeted = tiles;
         // print("targeting " + currentlyTargeted.Count + " | " + tiles.Count);
         Color temp = Color.white;
@@ -222,7 +222,7 @@ public class Board : MonoBehaviour
         }
     }
     public void UntargetTiles (List<Tile> tiles){
-        print("untarget");
+        // print("untarget");
         if(tiles != null)
             for (int i = tiles.Count - 1; i >= 0; --i){
                 tiles[i].Untarget();

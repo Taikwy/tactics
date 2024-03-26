@@ -213,7 +213,7 @@ public class AbilityTargetState : BattleState
         
         if(targetedTiles != null){
             if(currentlyHoveredTile != board.selectedTile){
-                print("not");     
+                // print("not");     
                 currentlyHoveredTile = board.selectedTile;
                 board.UntargetTiles(targetedTiles);
             }
