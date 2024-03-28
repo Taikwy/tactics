@@ -234,8 +234,8 @@ TextureImporter:
       name: red_6
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -255,7 +255,7 @@ TextureImporter:
       name: red_7
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 16
         width: 16
         height: 16
@@ -360,8 +360,8 @@ TextureImporter:
       name: red_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 96
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -381,7 +381,7 @@ TextureImporter:
       name: red_13
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -402,7 +402,7 @@ TextureImporter:
       name: red_14
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
         width: 16
         height: 16
@@ -415,6 +415,48 @@ TextureImporter:
       bones: []
       spriteID: e31f8c42644f60743989e613433e69aa
       internalID: -1180431261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877533658c045f747860cdfd465fba75
+      internalID: 1811165647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_16
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40de80dfb94c92a4694f56ec7f0d393c
+      internalID: 180145414
       vertices: []
       indices: 
       edges: []
@@ -437,6 +479,8 @@ TextureImporter:
       red_12: 1220226023
       red_13: -1647737947
       red_14: -1180431261
+      red_15: 1811165647
+      red_16: 180145414
       red_2: -2061550023
       red_3: -1599121505
       red_4: -1257120173

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f823deb77975585449c82735fad5baf4, type: 3}
   m_Name: Blue Level
   m_EditorClassIdentifier: 
+  boardData: {fileID: 11400000, guid: 6f0e2754978d91f48b13576d85640614, type: 2}
   pitTile: {fileID: 0}
   barrierTile: {fileID: 0}
   wallTile: {fileID: 0}

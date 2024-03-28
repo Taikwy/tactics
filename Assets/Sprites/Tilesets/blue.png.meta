@@ -234,8 +234,8 @@ TextureImporter:
       name: blue_6
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -255,7 +255,7 @@ TextureImporter:
       name: blue_7
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 16
         width: 16
         height: 16
@@ -360,8 +360,8 @@ TextureImporter:
       name: blue_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 96
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -381,7 +381,7 @@ TextureImporter:
       name: blue_13
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -402,7 +402,7 @@ TextureImporter:
       name: blue_14
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
         width: 16
         height: 16
@@ -415,6 +415,48 @@ TextureImporter:
       bones: []
       spriteID: 071a8b708c6b1a142a0aacd44c38cbff
       internalID: -1889878602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794d64a2721f69d40bc858706324d21d
+      internalID: -307766518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_16
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9ce242f2c2eba4f8e852aa5daff6c7
+      internalID: 602067688
       vertices: []
       indices: 
       edges: []
@@ -437,6 +479,8 @@ TextureImporter:
       blue_12: -1649549916
       blue_13: 1494255829
       blue_14: -1889878602
+      blue_15: -307766518
+      blue_16: 602067688
       blue_2: 1429546066
       blue_3: 256562480
       blue_4: -959858535

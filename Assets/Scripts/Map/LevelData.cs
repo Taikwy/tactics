@@ -5,18 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class LevelData : ScriptableObject
 {
-    // public Texture2D mapLayout;
-    // public MapData mapData;
-    [Header("rule Tile Prefabs")]
-    public TileBase pitTile;
-    public TileBase barrierTile;
-    public TileBase wallTile;
-    public TileBase groundTile;
-    [Header("Tile Prefabs")]
-    public GameObject barrierTilePrefab;
-    public GameObject groundTilePrefab;
-    public GameObject pitTilePrefab;
-    public GameObject wallTilePrefab;
+
+public BoardData boardData;
+
+    [HideInInspector] public TileBase pitTile;
+    [HideInInspector] public TileBase barrierTile;
+    [HideInInspector] public TileBase wallTile;
+    [HideInInspector] public TileBase groundTile;
+    [HideInInspector] public GameObject barrierTilePrefab;
+    [HideInInspector] public GameObject groundTilePrefab;
+    [HideInInspector] public GameObject pitTilePrefab;
+    [HideInInspector] public GameObject wallTilePrefab;
     [Header("tile positions and data")]
     public List<Vector2> tilePositions;
     public List<Tile.TILETYPE> tileTypes;

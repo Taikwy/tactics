@@ -7,9 +7,9 @@ public class LevelRecipe : ScriptableObject
 {
     public string levelName;
     public int levelIndex;
-    public string[] allyUnitRecipes = new string[]{};
-    public Point[] allySpawnLocations = new Point[]{};
-    public string[] enemyUnitRecipes = new string[]{};
-    public Point[] enemySpawnLocations = new Point[]{};
+    public List<string> allyUnitRecipes = new List<string>();
+    public List<Vector2> allySpawnLocations = new List<Vector2>();
+    public List<string> enemyUnitRecipes = new List<string>();
+    public List<Vector2> enemySpawnLocations = new List<Vector2>();
 
 }

@@ -131,13 +131,14 @@ public class InitBattleState : BattleState
         // SelectTile(units[0].tile.position);                  //this is prob unneeded, since i already select a tile later in select unit state. ig this is jsut for the intiial tile indicator "before" i make a unit take action?
     }
 
-    void SpawnUnits(string[] unitRecipes, Point[] spawnLocations, GameObject container){
-        for (int i = 0; i < unitRecipes.Length; ++i)
+    void SpawnUnits(List<string> unitRecipes, List<Vector2> spawnLocations, GameObject container){
+        for (int i = 0; i < unitRecipes.Count; ++i)
         {
             GameObject instance = UnitFactory.Create(unitRecipes[i], 1);
             Unit unitScript = instance.GetComponent<Unit>();
             instance.transform.SetParent(container.transform);
-            unitScript.Init(board.GetTile(spawnLocations[i]));
+            Point pos = new Point((int)spawnLocations[i].x, (int)spawnLocations[i].y);
+            unitScript.Init(board.GetTile(pos));
 
             units.Add(unitScript);
         }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4d8973faf7fef48bfb0034f4f4ba6e, type: 3}
   m_Name: Blue Board
   m_EditorClassIdentifier: 
-  barrierTile: {fileID: 11400000, guid: 587ca4abda4a2534b91e822c5d844f69, type: 2}
-  groundTile: {fileID: 11400000, guid: 92babfaff8419ee44af5e12034bca191, type: 2}
-  pitTile: {fileID: 11400000, guid: 812763086fdb92a42a0f1709db55951d, type: 2}
-  wallTile: {fileID: 11400000, guid: 72c43b79a53246741b4815e46730653f, type: 2}
+  barrierTile: {fileID: 11400000, guid: cecf943523272ea4786b980faae7290f, type: 2}
+  groundTile: {fileID: 11400000, guid: 02ce39c7ea27014478adc4080c8e6958, type: 2}
+  pitTile: {fileID: 11400000, guid: 21f468cb91f2ef64aaf24ebde96f4c9f, type: 2}
+  wallTile: {fileID: 11400000, guid: c7014600fdd456f43afdae38a1cc5b1b, type: 2}
   barrierTilePrefab: {fileID: 6692019245188394809, guid: bffde1243e82a3f4e940d1cad167d3cd, type: 3}
   groundTilePrefab: {fileID: 6364204904911779010, guid: 90bd2a19f46ae2c4fa2977a5e384d33f, type: 3}
   pitTilePrefab: {fileID: 6534081145384810864, guid: 681bd367d04e4f540a4d9ff125009ea9, type: 3}
