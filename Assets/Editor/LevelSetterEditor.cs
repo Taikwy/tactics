@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(LevelSetter))]
 public class LevelSetterEditor : Editor
 {
-    public LevelSetter setter{
+    public LevelSetter levelSetter{
         get{
             return (LevelSetter)target;
         }
@@ -16,16 +16,16 @@ public class LevelSetterEditor : Editor
         DrawDefaultInspector();
         GUILayout.Space(30f);
         if (GUILayout.Button("Set Level Data from Layout"))
-            setter.SetLevel();
+            levelSetter.SetLevel();
         if (GUILayout.Button("Clear"))
-            setter.Clear();
+            levelSetter.Clear();
 
         GUILayout.Space(15f);
             
         if (GUILayout.Button("Save LevelData"))
-            setter.SaveLevel();
+            levelSetter.SaveLevel();
         if (GUILayout.Button("Load LevelData"))
-            setter.LoadLevel();
+            levelSetter.LoadLevel();
 
     }
 }
