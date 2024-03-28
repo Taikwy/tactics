@@ -5963,8 +5963,8 @@ MonoBehaviour:
   selectPos:
     x: 0
     y: 0
-  boardData: {fileID: 11400000, guid: e354f774121ed0a43b33b81d6facab40, type: 2}
-  levelData: {fileID: 11400000, guid: 5f83d828f47b71f4fa9a8b17bcf7a27a, type: 2}
+  boardData: {fileID: 11400000, guid: 6f0e2754978d91f48b13576d85640614, type: 2}
+  levelData: {fileID: 11400000, guid: af21ec6113991c14b996a8432faf2f0d, type: 2}
   levelRecipe: {fileID: 11400000, guid: 84345429a29ca0d469fe9671ee5656b9, type: 2}
   playerColor: {r: 0, g: 0.66169167, b: 1, a: 1}
   enemyColor: {r: 0.8784709, g: 0, b: 1, a: 1}

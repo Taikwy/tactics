@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f823deb77975585449c82735fad5baf4, type: 3}
-  m_Name: Red Level Data
+  m_Name: Red Level
   m_EditorClassIdentifier: 
   pitTile: {fileID: 0}
   barrierTile: {fileID: 0}
